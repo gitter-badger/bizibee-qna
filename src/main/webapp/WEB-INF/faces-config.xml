@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>tr_TR</default-locale>
+            <supported-locale>en_US</supported-locale>
+            <supported-locale>tr_TR</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>Resources</base-name>
+            <var>i18n</var>
+        </resource-bundle>
+        <message-bundle>ValidationMessages</message-bundle>
+        <resource-library-contracts>
+            <contract-mapping>
+                <url-pattern>*</url-pattern>
+                <contracts>promotion</contracts>
+            </contract-mapping>
+            <contract-mapping>
+                <url-pattern>/error/*</url-pattern>
+                <contracts>error</contracts>
+            </contract-mapping>
+            <contract-mapping>
+                <url-pattern>/administrator/*</url-pattern>
+                <contracts>ui</contracts>
+            </contract-mapping>
+            <contract-mapping>
+                <url-pattern>/member/*</url-pattern>
+                <contracts>ui</contracts>
+            </contract-mapping>
+        </resource-library-contracts>
+    </application>
+    
+</faces-config>

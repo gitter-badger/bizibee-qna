@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name="breadCrumb">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="#{i18n['Home']}" outcome="/index" />
+                <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
+            </p:breadCrumb>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <p:panel header="Chart1">
+        </p:panel>
+        <p:panel header="Chart2">
+        </p:panel>
+        <p:panel header="Chart3">
+        </p:panel>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,32 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:form>
+        <p:megaMenu orientation="vertical">
+
+            <p:submenu label="#{i18n['Product Management']}">
+                <p:column>
+                    <p:submenu label="#{i18n['Products']}">
+                        <p:menuitem value="#{i18n['Products']}" outcome="/member/product"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+            <p:submenu label="#{i18n['Settings']}" rendered="#{request.isUserInRole('Administrator')}">
+                <p:column>
+                    <p:submenu label="#{i18n['Users']}">
+                        <p:menuitem value="#{i18n['Companies']}" outcome="/administrator/company"/>
+                        <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+        </p:megaMenu>
+
+    </h:form>
+
+</ui:composition>

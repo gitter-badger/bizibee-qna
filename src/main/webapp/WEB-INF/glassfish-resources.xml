@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <mail-resource jndi-name="mail/bizibee" 
+                   host="smtp.yandex.com.tr" 
+                   user="dev@aripd.com" 
+                   from="dev@aripd.com" 
+                   object-type="user"
+                   store-protocol="imaps" 
+                   store-protocol-class="com.sun.mail.imap.IMAPSSLStore" 
+                   transport-protocol="smtps" 
+                   transport-protocol-class="com.sun.mail.smtp.SMTPSSLTransport"
+                   debug="true"
+                   enabled="true">
+        <property name="mail.smtps.host" value="smtp.yandex.com.tr"/>
+        <property name="mail.smtps.password" value="PASSWORD"/>
+        <property name="mail.smtps.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtps.auth" value="true"/>
+        <property name="mail.smtps.socketFactory.port" value="465"/>
+        <property name="mail.smtps.port" value="465"/>
+        <property name="mail.smtps.starttls.enable" value="false"/>
+        <property name="mail.smtps.timeout" value="180000"/>
+        <property name="mail.smtps.user" value="dev@aripd.com"/>
+        <property name="mail.smtps.socketFactory.fallback" value="false"/>
+        
+        <property name="mail.imaps.host" value="imap.yandex.com.tr"/>
+        <property name="mail.imaps.port" value="993"/>
+        <property name="mail.imaps.password" value="PASSWORD"/>
+        <property name="mail.imaps.starttls.enable" value="false"/>
+        <property name="mail.imaps.user" value="dev@aripd.com"/>
+        <property name="mail.imaps.socketFactory.fallback" value="false"/>
+        <property name="mail.imaps.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.imaps.connectiontimeout" value="60000"/>
+        <property name="mail.imaps.timeout" value="180000"/>
+        <property name="mail.imaps.socketFactory.port" value="993"/>
+    </mail-resource>
+
+    <jdbc-resource enabled="true" jndi-name="jdbc/bizibee" object-type="user" pool-name="bizibee"/>
+
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="bizibee" non-transactional-connections="false" pool-resize-quantity="2" res-type="javax.sql.XADataSource" statement-timeout-in-seconds="-1" steady-pool-size="8" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="serverName" value="localhost"/>
+        <property name="portNumber" value="3306"/>
+        <property name="databaseName" value="bizibee"/>
+        <property name="User" value="root"/>
+        <property name="Password" value="Q1w2e3r+"/>
+        <property name="URL" value="jdbc:mysql://localhost:3306/bizibee?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+    </jdbc-connection-pool>
+    
+</resources>

@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name="title">#{i18n['Reminder']}</ui:define>
+    <ui:define name="content">
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <div class="home-wrapper">
+                            <h4>#{i18n['Sign in and access your account.']}</h4>
+                            <p>#{i18n['To continue your transaction you must login.']}</p>
+                            <h:form>
+                                <p:commandLink action="register" value="#{i18n['Register']}"/>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <div class="home-wrapper">
+                            <h:form role="form" id="form1" styleClass="intro-form">
+                                <h3 class="text-center">#{i18n['Reminder']}</h3>
+                                <div class="form-group">
+                                    <h:inputText value="#{reminderBean.email}" autocomplete="off" pt:placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" styleClass="form-control" required="true"/>
+                                </div>
+                                <div class="form-group text-center">
+                                    <h:commandButton value="#{i18n['Remind my password']}" actionListener="#{reminderBean.doSubmit}" styleClass="btn btn-custom btn-sm">
+                                        <f:ajax execute="@form" render=":growl"/>
+                                    </h:commandButton>
+                                </div>
+                                <div class="form-group text-center">
+                                    <h:link outcome="/login" value="#{i18n['Log in']}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>
