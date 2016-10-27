@@ -8,10 +8,13 @@
     <h:form>
         <p:megaMenu orientation="vertical">
 
-            <p:submenu label="#{i18n['Product Management']}">
+            <p:submenu label="#{i18n['Settings']}">
                 <p:column>
-                    <p:submenu label="#{i18n['Products']}">
+                    <p:submenu label="#{i18n['Product Management']}">
                         <p:menuitem value="#{i18n['Products']}" outcome="/member/product"/>
+                    </p:submenu>
+                    <p:submenu label="#{i18n['Criterias']}">
+                        <p:menuitem value="#{i18n['Criterias']}" outcome="/member/criteria"/>
                     </p:submenu>
                 </p:column>
             </p:submenu>
