@@ -27,28 +27,28 @@ INSERT INTO `PRODUCTENTITY` VALUES
 (11,2,'TG'),
 (12,2,'DH');
 
-INSERT INTO `CRITERIAENTITY` VALUES 
-(1,2,'Volume Hunting'),
-(2,2,'Listing/Delisting'),
-(3,2,'Price Positioning'),
-(4,2,'E-Commerce Investment'),
-(5,2,'Instore Marketing'),
-(6,2,'Planogram'),
-(7,2,'Promotion'),
-(8,2,'Ekip Yönetimi'),
-(9,2,'Display');
+INSERT INTO `DECISIONENTITY` VALUES 
+(1,2,'Volume Hunting Mechanism'),
+(2,2,'Delisting'),
+(3,2,'Listing'),
+(4,2,'Price Positioning'),
+(5,2,'E-Commerce Investment'),
+(6,2,'Display'),
+(7,2,'Assortment'),
+(8,2,'Promotion'),
+(9,2,'Team Management');
 
-INSERT INTO `CRITERIAOPTIONENTITY` VALUES 
-(1,2,'Reyon başı',9),
-(2,2,'Gondol',9),
-(3,2,'Kasaönü stand',9),
-(4,2,'Motivasyon etkinliği',8),
-(5,2,'Eğitim planlama',8),
-(6,2,'Envanter sistemiyle aloke tabletlerin tedarik edilmesi',8),
-(7,2,'Gift Promosyonu (off pack)',7),
-(8,2,'Copack Promosyonu',7),
-(9,2,'Fiyat Promosyonu',7),
-(10,2,'E-Commerce tarafıyla ilgilenmesi için teknik donanıma sahip bir çalışanı işe almak',4),
-(11,2,'Müşterinin websitesi için kendi ürünlerimizden oluşan ürün/kampanya görsellerini ajans aracılıgıyla oluşturmak',4),
-(12,2,'E-commerce özelinde aktiviteler planlamak-öneri aksiyon fiyatlarının bir tık altına',4);
+INSERT INTO `DECISIONCHOICEENTITY` VALUES 
+(1,2,'E-Commerce tarafıyla ilgilenmesi için teknik donanıma sahip bir çalışanı işe almak',5),
+(2,2,'Müşterinin websitesi için kendi ürünlerimizden oluşan ürün/kampanya görsellerini ajans aracılıgıyla oluşturmak',5),
+(3,2,'E-commerce özelinde aktiviteler planlamak-öneri aksiyon fiyatlarının bir tık altına',5),
+(4,2,'Reyon başı',6),
+(5,2,'Gondol',6),
+(6,2,'Kasaönü stand',6),
+(7,2,'Gift Promosyonu (off pack)',8),
+(8,2,'Copack Promosyonu',8),
+(9,2,'Fiyat Promosyonu',8),
+(10,2,'Motivasyon etkinliği',9),
+(11,2,'Eğitim planlama',9),
+(12,2,'Envanter sistemiyle aloke tabletlerin tedarik edilmesi',9);
 

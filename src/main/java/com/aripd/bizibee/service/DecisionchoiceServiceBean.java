@@ -1,7 +1,7 @@
 package com.aripd.bizibee.service;
 
 import com.aripd.bizibee.entity.CompanyEntity;
-import com.aripd.bizibee.entity.CriteriaoptionEntity;
+import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.UserEntity;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class CriteriaoptionServiceBean extends CrudServiceBean<CriteriaoptionEntity, Long> implements CriteriaoptionService {
+public class DecisionchoiceServiceBean extends CrudServiceBean<DecisionchoiceEntity, Long> implements DecisionchoiceService {
 
     @PersistenceContext
     private EntityManager em;
@@ -25,8 +25,8 @@ public class CriteriaoptionServiceBean extends CrudServiceBean<CriteriaoptionEnt
         return em;
     }
 
-    public CriteriaoptionServiceBean() {
-        super(CriteriaoptionEntity.class);
+    public DecisionchoiceServiceBean() {
+        super(DecisionchoiceEntity.class);
     }
 
 }

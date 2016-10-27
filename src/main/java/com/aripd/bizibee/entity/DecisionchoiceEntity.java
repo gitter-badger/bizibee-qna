@@ -14,7 +14,7 @@ import org.eclipse.persistence.annotations.TenantDiscriminatorColumn;
 @Multitenant(value = MultitenantType.SINGLE_TABLE)
 @TenantDiscriminatorColumn(name = "COMPANY_ID", contextProperty = "eclipselink.tenant-id")
 @Cacheable(false)
-public class CriteriaoptionEntity extends AbstractEntity {
+public class DecisionchoiceEntity extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "COMPANY_ID", insertable = false, updatable = false)
@@ -27,9 +27,9 @@ public class CriteriaoptionEntity extends AbstractEntity {
     @ManyToOne
     @NotNull
     @JoinColumn(nullable = false)
-    private CriteriaEntity criteria;
+    private DecisionEntity decision;
 
-    public CriteriaoptionEntity() {
+    public DecisionchoiceEntity() {
     }
 
     public CompanyEntity getCompany() {
@@ -48,12 +48,12 @@ public class CriteriaoptionEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public CriteriaEntity getCriteria() {
-        return criteria;
+    public DecisionEntity getDecision() {
+        return decision;
     }
 
-    public void setCriteria(CriteriaEntity criteria) {
-        this.criteria = criteria;
+    public void setDecision(DecisionEntity decision) {
+        this.decision = decision;
     }
 
 }
