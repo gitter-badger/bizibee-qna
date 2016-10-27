@@ -6,31 +6,18 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:form>
-        <p:megaMenu orientation="vertical">
-
+        <p:menu>
             <p:submenu label="#{i18n['Settings']}">
-                <p:column>
-                    <p:submenu label="#{i18n['Product Management']}">
-                        <p:menuitem value="#{i18n['Products']}" outcome="/member/product"/>
-                    </p:submenu>
-                    <p:submenu label="#{i18n['Criterias']}">
-                        <p:menuitem value="#{i18n['Criterias']}" outcome="/member/criteria"/>
-                        <p:menuitem value="#{i18n['Criteria Options']}" outcome="/member/criteriaoption"/>
-                    </p:submenu>
-                </p:column>
+                <p:menuitem value="#{i18n['Teams']}" outcome="/member/team"/>
+                <p:menuitem value="#{i18n['Products']}" outcome="/member/product"/>
+                <p:menuitem value="#{i18n['Criterias']}" outcome="/member/criteria"/>
+                <p:menuitem value="#{i18n['Criteria Options']}" outcome="/member/criteriaoption"/>
             </p:submenu>
-
-            <p:submenu label="#{i18n['Settings']}" rendered="#{request.isUserInRole('Administrator')}">
-                <p:column>
-                    <p:submenu label="#{i18n['Users']}">
-                        <p:menuitem value="#{i18n['Companies']}" outcome="/administrator/company"/>
-                        <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user"/>
-                    </p:submenu>
-                </p:column>
+            <p:submenu label="#{i18n['Administrator']}">
+                <p:menuitem value="#{i18n['Companies']}" outcome="/administrator/company"/>
+                <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user"/>
             </p:submenu>
-
-        </p:megaMenu>
-
+        </p:menu>
     </h:form>
 
 </ui:composition>

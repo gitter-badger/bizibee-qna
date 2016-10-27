@@ -7,6 +7,12 @@ INSERT INTO `USERENTITY` (`ID`,`EMAIL`,`FIRSTNAME`,`LASTNAME`,`LOCALE`,`PASSWORD
 (2,'dev@aripd.com','dev','aripd','tr_TR','dev','Administrators','Confirmed',2),
 (3,'test@aripd.com','test','aripd','en_US','test','Members','Confirmed',2);
 
+INSERT INTO `TEAMENTITY` VALUES 
+(1,2,'Team1'),
+(2,2,'Team2'),
+(3,2,'Team3'),
+(4,2,'Team4');
+
 INSERT INTO `PRODUCTENTITY` VALUES 
 (1,2,'A 600+200 ml kepek-güzellik copack'),
 (2,2,'B 500 ml bakım şampuanı'),
