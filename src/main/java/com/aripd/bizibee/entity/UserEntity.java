@@ -47,20 +47,6 @@ public class UserEntity extends AbstractEntity {
     @Column(nullable = false)
     private String lastname;
 
-    private String theme;
-
-    private String imapProtocol;
-    private String imapHost;
-    private String imapPort;
-    private String imapUserName;
-    private String imapPassword;
-
-    private String smtpProtocol;
-    private String smtpHost;
-    private String smtpPort;
-    private String smtpUserName;
-    private String smtpPassword;
-
     @NotNull
     @JoinColumn(nullable = false)
     @ManyToOne
@@ -159,94 +145,6 @@ public class UserEntity extends AbstractEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
-    public String getImapProtocol() {
-        return imapProtocol;
-    }
-
-    public void setImapProtocol(String imapProtocol) {
-        this.imapProtocol = imapProtocol;
-    }
-
-    public String getImapHost() {
-        return imapHost;
-    }
-
-    public void setImapHost(String imapHost) {
-        this.imapHost = imapHost;
-    }
-
-    public String getImapPort() {
-        return imapPort;
-    }
-
-    public void setImapPort(String imapPort) {
-        this.imapPort = imapPort;
-    }
-
-    public String getImapUserName() {
-        return imapUserName;
-    }
-
-    public void setImapUserName(String imapUserName) {
-        this.imapUserName = imapUserName;
-    }
-
-    public String getImapPassword() {
-        return imapPassword;
-    }
-
-    public void setImapPassword(String imapPassword) {
-        this.imapPassword = imapPassword;
-    }
-
-    public String getSmtpProtocol() {
-        return smtpProtocol;
-    }
-
-    public void setSmtpProtocol(String smtpProtocol) {
-        this.smtpProtocol = smtpProtocol;
-    }
-
-    public String getSmtpHost() {
-        return smtpHost;
-    }
-
-    public void setSmtpHost(String smtpHost) {
-        this.smtpHost = smtpHost;
-    }
-
-    public String getSmtpPort() {
-        return smtpPort;
-    }
-
-    public void setSmtpPort(String smtpPort) {
-        this.smtpPort = smtpPort;
-    }
-
-    public String getSmtpUserName() {
-        return smtpUserName;
-    }
-
-    public void setSmtpUserName(String smtpUserName) {
-        this.smtpUserName = smtpUserName;
-    }
-
-    public String getSmtpPassword() {
-        return smtpPassword;
-    }
-
-    public void setSmtpPassword(String smtpPassword) {
-        this.smtpPassword = smtpPassword;
     }
 
     public CompanyEntity getCompany() {

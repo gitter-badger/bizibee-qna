@@ -13,11 +13,47 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <p:panel header="Chart1">
-        </p:panel>
-        <p:panel header="Chart2">
-        </p:panel>
-        <p:panel header="Chart3">
-        </p:panel>
+        <h:form>
+            <p:dataTable var="decision" value="#{scoreboardView.decisions}">
+                <f:facet name="header">#{i18n['Decisions']}</f:facet>
+                <p:columnGroup type="header">
+                    <p:row>
+                        <p:column rowspan="2" headerText="Decision" />
+                        <p:column colspan="3" headerText="Scores" />
+                    </p:row>
+                    <p:row>
+                        <p:column headerText="USG" />
+                        <p:column headerText="GM" />
+                        <p:column headerText="MS" />
+                    </p:row>
+                </p:columnGroup>
+                <p:subTable var="decisionchoice" value="#{decision.decisionchoices}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.name}" />
+                    </f:facet>
+                    <p:column>
+                        <h:outputText value="#{decisionchoice.name}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{decisionchoice.usg}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{decisionchoice.gm}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{decisionchoice.ms}" />
+                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column footerText="Totals: " style="text-align:right"/>
+                            <p:column footerText="#{decision.allUsgs}" />
+                            <p:column footerText="#{decision.allGms}" />
+                            <p:column footerText="#{decision.allMss}" />
+                        </p:row>
+                    </p:columnGroup>
+                </p:subTable>
+            </p:dataTable>
+        </h:form>
+
     </ui:define>
 </ui:composition>

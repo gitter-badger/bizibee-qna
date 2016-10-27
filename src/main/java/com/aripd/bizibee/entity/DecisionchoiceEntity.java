@@ -28,6 +28,10 @@ public class DecisionchoiceEntity extends AbstractEntity {
     @NotNull
     @JoinColumn(nullable = false)
     private DecisionEntity decision;
+    
+    private double usg;
+    private double gm;
+    private double ms;
 
     public DecisionchoiceEntity() {
     }
@@ -54,6 +58,30 @@ public class DecisionchoiceEntity extends AbstractEntity {
 
     public void setDecision(DecisionEntity decision) {
         this.decision = decision;
+    }
+
+    public double getUsg() {
+        return usg;
+    }
+
+    public void setUsg(double usg) {
+        this.usg = usg;
+    }
+
+    public double getGm() {
+        return gm;
+    }
+
+    public void setGm(double gm) {
+        this.gm = gm;
+    }
+
+    public double getMs() {
+        return ms;
+    }
+
+    public void setMs(double ms) {
+        this.ms = ms;
     }
 
 }

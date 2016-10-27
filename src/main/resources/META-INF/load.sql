@@ -39,16 +39,17 @@ INSERT INTO `DECISIONENTITY` VALUES
 (9,2,'Team Management');
 
 INSERT INTO `DECISIONCHOICEENTITY` VALUES 
-(1,2,'E-Commerce tarafıyla ilgilenmesi için teknik donanıma sahip bir çalışanı işe almak',5),
-(2,2,'Müşterinin websitesi için kendi ürünlerimizden oluşan ürün/kampanya görsellerini ajans aracılıgıyla oluşturmak',5),
-(3,2,'E-commerce özelinde aktiviteler planlamak-öneri aksiyon fiyatlarının bir tık altına',5),
-(4,2,'Reyon başı',6),
-(5,2,'Gondol',6),
-(6,2,'Kasaönü stand',6),
-(7,2,'Gift Promosyonu (off pack)',8),
-(8,2,'Copack Promosyonu',8),
-(9,2,'Fiyat Promosyonu',8),
-(10,2,'Motivasyon etkinliği',9),
-(11,2,'Eğitim planlama',9),
-(12,2,'Envanter sistemiyle aloke tabletlerin tedarik edilmesi',9);
+(1,2,0.7735973618,0.04936303895,'No e-commerce investment',0.7103098485,5),
+(2,2,0.6874970942,0.8284364257,'Hiring someone with technical knowledge to deal e-commerce area',0.3374872189,5),
+(3,2,0.8436672092,0.2952620555,'Creating product/campaing visuals for our products via agency for customers webpage',0.2459780695,5),
+(4,2,0.7276897698,0.9283852454,'Planning activities special to e-commerce, where prices are slightly lower than normal ones',0.8911583135,5),
+(5,2,1,1,'Beginning of rayon',1,6),
+(6,2,1,1,'Gondola',1,6),
+(7,2,1,1,'Checkout stand',1,6),
+(8,2,1,1,'Gift Promotion(off pack)',1,8),
+(9,2,1,1,'Copack Promotion',1,8),
+(10,2,1,1,'Price Promotion',1,8),
+(11,2,1,1,'Motivational event',1,9),
+(12,2,1,1,'Training',1,9),
+(13,2,1,1,'Providing tablets integrated to inventory system',1,9);
 
