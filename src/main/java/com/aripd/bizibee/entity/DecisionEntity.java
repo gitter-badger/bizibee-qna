@@ -34,6 +34,12 @@ public class DecisionEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
+    private double budget;
+
+    private double usg;
+    private double gm;
+    private double ms;
+
     @OneToMany(mappedBy = "decision", orphanRemoval = true)
     private List<DecisionchoiceEntity> decisionchoices;
 
@@ -95,6 +101,38 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
+
+    public double getUsg() {
+        return usg;
+    }
+
+    public void setUsg(double usg) {
+        this.usg = usg;
+    }
+
+    public double getGm() {
+        return gm;
+    }
+
+    public void setGm(double gm) {
+        this.gm = gm;
+    }
+
+    public double getMs() {
+        return ms;
+    }
+
+    public void setMs(double ms) {
+        this.ms = ms;
     }
 
     public List<DecisionchoiceEntity> getDecisionchoices() {

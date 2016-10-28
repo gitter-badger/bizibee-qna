@@ -21,15 +21,15 @@ INSERT INTO `PRODUCTENTITY` VALUES
 (4,2,0,120,75,1,0,'Product4',0);
 
 INSERT INTO `DECISIONENTITY` VALUES 
-(1,2,'SINGLE_CHOICE','Volume Hunting Mechanism'),
-(2,2,'SINGLE_CHOICE','Delisting'),
-(3,2,'MULTIPLE_CHOICE','Listing'),
-(4,2,'RANGE_PRODUCT_LISTING','Price Positioning'),
-(5,2,'MULTIPLE_CHOICE','E-Commerce Investment'),
-(6,2,'MULTIPLE_CHOICE_PRODUCT_LISTING','Display'),
-(7,2,'SINGLE_CHOICE','Assortment'),
-(8,2,'SINGLE_CHOICE_PRODUCT_LISTING','Promotion'),
-(9,2,'MULTIPLE_CHOICE','Team Management');
+(1,2,0,'SINGLE_CHOICE',0,0,'Volume Hunting Mechanism',0),
+(2,2,0,'SINGLE_CHOICE',0,0,'Delisting',0),
+(3,2,0,'MULTIPLE_CHOICE',0,0,'Listing',0),
+(4,2,0,'RANGE_PRODUCT_LISTING',0,0,'Price Positioning',0),
+(5,2,0,'MULTIPLE_CHOICE',0,0,'E-Commerce Investment',0),
+(6,2,0,'MULTIPLE_CHOICE_PRODUCT_LISTING',0,0,'Display',0),
+(7,2,0,'SINGLE_CHOICE',0,0,'Assortment',0),
+(8,2,0,'SINGLE_CHOICE_PRODUCT_LISTING',0,0,'Promotion',0),
+(9,2,0,'MULTIPLE_CHOICE',0,0,'Team Management',0);
 
 INSERT INTO `DECISIONCHOICEENTITY` VALUES 
 (1,2,0,0.0001,0.0003,'A 600+200 ml kepek-güzellik copack',0.0005,1),
