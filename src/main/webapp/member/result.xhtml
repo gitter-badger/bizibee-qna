@@ -15,111 +15,111 @@
     <ui:define name="content">
         <h:form>
             <p:repeat var="decision" value="#{scoreboardView.decisions}">
-                <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
-                             selection="#{scoreboardView.selectedDecisionchoice}" 
-                             rowKey="#{decisionchoice.id}"
-                             rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.name}"/> - <h:outputText value="#{decision.decisionType}" />
-                    </f:facet>
-                    <p:column selectionMode="single" style="width:16px;text-align:center;" />
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.name}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.usg}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.gm}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.ms}" />
-                    </p:column>
-                </p:dataTable>
 
-                <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
-                             selection="#{scoreboardView.selectedDecisionchoices}" 
-                             rowKey="#{decisionchoice.id}"
-                             rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.name}"/> - <h:outputText value="#{decision.decisionType}" />
-                    </f:facet>
-                    <p:column selectionMode="multiple" style="width:16px;text-align:center;" />
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.name}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.usg}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.gm}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{decisionchoice.ms}" />
-                    </p:column>
-                </p:dataTable>
-
-                <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
-                    <p:panel>
-                        <f:facet name="header">
-                            <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
-                        </f:facet>
-                        <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
-                            <f:param value="#{product.name}"/>
-                            <f:param value="#{product.indexMin}"/>
-                            <f:param value="#{product.indexMax}"/>
-                        </h:outputFormat>
-                        <p:knob min="#{product.indexMin}" max="#{product.indexMax}" step="#{product.indexStep}" value="#{product.indexMin}"/> 
-                    </p:panel>
-                </p:repeat>
-
-                <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
+                <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
                     <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
                                  selection="#{scoreboardView.selectedDecisionchoice}" 
-                                 rowKey="#{decisionchoice.id}"
-                                 rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
-                        <f:facet name="header">
-                            <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
-                        </f:facet>
+                                 rowKey="#{decisionchoice.id}">
                         <p:column selectionMode="single" style="width:16px;text-align:center;" />
-                        <p:column>
+                        <p:column headerText="#{i18n['Decision']}">
                             <h:outputText value="#{decisionchoice.name}" />
                         </p:column>
-                        <p:column>
+                        <p:column headerText="#{i18n['USG']}">
                             <h:outputText value="#{decisionchoice.usg}" />
                         </p:column>
-                        <p:column>
+                        <p:column headerText="#{i18n['GM']}">
                             <h:outputText value="#{decisionchoice.gm}" />
                         </p:column>
-                        <p:column>
+                        <p:column headerText="#{i18n['MS']}">
                             <h:outputText value="#{decisionchoice.ms}" />
                         </p:column>
                     </p:dataTable>
-                </p:repeat>
+                </p:panel>
 
-                <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
+                <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
                     <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
                                  selection="#{scoreboardView.selectedDecisionchoices}" 
-                                 rowKey="#{decisionchoice.id}"
-                                 rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
-                        <f:facet name="header">
-                            <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
-                        </f:facet>
+                                 rowKey="#{decisionchoice.id}">
                         <p:column selectionMode="multiple" style="width:16px;text-align:center;" />
-                        <p:column>
+                        <p:column headerText="#{i18n['Decision']}">
                             <h:outputText value="#{decisionchoice.name}" />
                         </p:column>
-                        <p:column>
+                        <p:column headerText="#{i18n['USG']}">
                             <h:outputText value="#{decisionchoice.usg}" />
                         </p:column>
-                        <p:column>
+                        <p:column headerText="#{i18n['GM']}">
                             <h:outputText value="#{decisionchoice.gm}" />
                         </p:column>
-                        <p:column>
+                        <p:column headerText="#{i18n['MS']}">
                             <h:outputText value="#{decisionchoice.ms}" />
                         </p:column>
                     </p:dataTable>
-                </p:repeat>
+                </p:panel>
+
+                <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                        <p:panel>
+                            <f:facet name="header">
+                                <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
+                                    <f:param value="#{product.name}"/>
+                                    <f:param value="#{product.indexMin}"/>
+                                    <f:param value="#{product.indexMax}"/>
+                                </h:outputFormat>
+                            </f:facet>
+                            <p:knob min="#{product.indexMin}" max="#{product.indexMax}" step="#{product.indexStep}" value="#{product.indexMin}"/> 
+                        </p:panel>
+                    </p:repeat>
+                </p:panel>
+
+                <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
+                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                        <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                                     selection="#{scoreboardView.selectedDecisionchoice}" 
+                                     rowKey="#{decisionchoice.id}">
+                            <f:facet name="header">
+                                <h:outputText value="#{product.name}"/>
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:16px;text-align:center;" />
+                            <p:column headerText="#{i18n['Decision']}">
+                                <h:outputText value="#{decisionchoice.name}" />
+                            </p:column>
+                            <p:column headerText="#{i18n['USG']}">
+                                <h:outputText value="#{decisionchoice.usg}" />
+                            </p:column>
+                            <p:column headerText="#{i18n['GM']}">
+                                <h:outputText value="#{decisionchoice.gm}" />
+                            </p:column>
+                            <p:column headerText="#{i18n['MS']}">
+                                <h:outputText value="#{decisionchoice.ms}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:repeat>
+                </p:panel>
+
+                <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
+                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                        <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                                     selection="#{scoreboardView.selectedDecisionchoices}" 
+                                     rowKey="#{decisionchoice.id}">
+                            <f:facet name="header">
+                                <h:outputText value="#{product.name}"/>
+                            </f:facet>
+                            <p:column selectionMode="multiple" style="width:16px;text-align:center;" />
+                            <p:column headerText="#{i18n['Decision']}">
+                                <h:outputText value="#{decisionchoice.name}" />
+                            </p:column>
+                            <p:column headerText="#{i18n['USG']}">
+                                <h:outputText value="#{decisionchoice.usg}" />
+                            </p:column>
+                            <p:column headerText="#{i18n['GM']}">
+                                <h:outputText value="#{decisionchoice.gm}" />
+                            </p:column>
+                            <p:column headerText="#{i18n['MS']}">
+                                <h:outputText value="#{decisionchoice.ms}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:repeat>
+                </p:panel>
 
             </p:repeat>
         </h:form>
