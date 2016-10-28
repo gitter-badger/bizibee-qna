@@ -50,7 +50,7 @@ public class UserEntity extends AbstractEntity {
     @NotNull
     @JoinColumn(nullable = false)
     @ManyToOne
-    private CompanyEntity company;
+    private SimulationEntity simulation;
 
     public UserEntity() {
     }
@@ -147,12 +147,12 @@ public class UserEntity extends AbstractEntity {
         this.email = email;
     }
 
-    public CompanyEntity getCompany() {
-        return company;
+    public SimulationEntity getSimulation() {
+        return simulation;
     }
 
-    public void setCompany(CompanyEntity company) {
-        this.company = company;
+    public void setSimulation(SimulationEntity simulation) {
+        this.simulation = simulation;
     }
 
 }

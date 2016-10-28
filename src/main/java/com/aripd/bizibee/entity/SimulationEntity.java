@@ -10,7 +10,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class CompanyEntity extends AbstractEntity {
+public class SimulationEntity extends AbstractEntity {
 
     @NotNull
     @Column(nullable = false)
@@ -21,10 +21,10 @@ public class CompanyEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "company", orphanRemoval = true)
+    @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
 
-    public CompanyEntity() {
+    public SimulationEntity() {
     }
 
     public Date getDateEnd() {

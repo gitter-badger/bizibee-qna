@@ -1,12 +1,12 @@
 package com.aripd.bizibee.service;
 
-import com.aripd.bizibee.entity.CompanyEntity;
+import com.aripd.bizibee.entity.SimulationEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class CompanyServiceBean extends CrudServiceBean<CompanyEntity, Long> implements CompanyService {
+public class SimulationServiceBean extends CrudServiceBean<SimulationEntity, Long> implements SimulationService {
 
     @PersistenceContext
     private EntityManager em;
@@ -16,8 +16,8 @@ public class CompanyServiceBean extends CrudServiceBean<CompanyEntity, Long> imp
         return em;
     }
 
-    public CompanyServiceBean() {
-        super(CompanyEntity.class);
+    public SimulationServiceBean() {
+        super(SimulationEntity.class);
     }
 
 }

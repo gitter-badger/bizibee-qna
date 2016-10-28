@@ -1,9 +1,8 @@
 package com.aripd.bizibee.view;
 
 import com.aripd.util.MessageUtil;
-import com.aripd.bizibee.model.data.LazyCompanyDataModel;
-import com.aripd.bizibee.entity.CompanyEntity;
-import com.aripd.bizibee.service.CompanyService;
+import com.aripd.bizibee.model.data.LazySimulationDataModel;
+import com.aripd.bizibee.entity.SimulationEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -12,76 +11,77 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
+import com.aripd.bizibee.service.SimulationService;
 
 @Named
 @ViewScoped
-public class CompanyController implements Serializable {
+public class SimulationController implements Serializable {
 
     @Inject
-    private CompanyService companyService;
-    private CompanyEntity newRecord;
-    private CompanyEntity selectedRecord;
-    private List<CompanyEntity> selectedRecords;
-    private LazyDataModel<CompanyEntity> lazyModel;
+    private SimulationService simulationService;
+    private SimulationEntity newRecord;
+    private SimulationEntity selectedRecord;
+    private List<SimulationEntity> selectedRecords;
+    private LazyDataModel<SimulationEntity> lazyModel;
 
     @Inject
     MessageUtil messageUtil;
 
-    public CompanyController() {
-        newRecord = new CompanyEntity();
-        selectedRecord = new CompanyEntity();
+    public SimulationController() {
+        newRecord = new SimulationEntity();
+        selectedRecord = new SimulationEntity();
     }
 
     @PostConstruct
     public void init() {
-        lazyModel = new LazyCompanyDataModel(companyService);
+        lazyModel = new LazySimulationDataModel(simulationService);
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
-        companyService.create(newRecord);
+        simulationService.create(newRecord);
         messageUtil.addGlobalInfoFlashMessage("Created");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
-        companyService.update(selectedRecord);
+        simulationService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
     public void doDeleteRecord(ActionEvent actionEvent) {
-        companyService.delete(selectedRecord);
+        simulationService.delete(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Deleted");
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        companyService.deleteItems(selectedRecords);
+        simulationService.deleteItems(selectedRecords);
         messageUtil.addGlobalInfoFlashMessage("Deleted");
     }
 
-    public CompanyEntity getSelectedRecord() {
+    public SimulationEntity getSelectedRecord() {
         return selectedRecord;
     }
 
-    public void setSelectedRecord(CompanyEntity selectedRecord) {
+    public void setSelectedRecord(SimulationEntity selectedRecord) {
         this.selectedRecord = selectedRecord;
     }
 
-    public List<CompanyEntity> getSelectedRecords() {
+    public List<SimulationEntity> getSelectedRecords() {
         return selectedRecords;
     }
 
-    public void setSelectedRecords(List<CompanyEntity> selectedRecords) {
+    public void setSelectedRecords(List<SimulationEntity> selectedRecords) {
         this.selectedRecords = selectedRecords;
     }
 
-    public CompanyEntity getNewRecord() {
+    public SimulationEntity getNewRecord() {
         return newRecord;
     }
 
-    public void setNewRecord(CompanyEntity newRecord) {
+    public void setNewRecord(SimulationEntity newRecord) {
         this.newRecord = newRecord;
     }
 
-    public LazyDataModel<CompanyEntity> getLazyModel() {
+    public LazyDataModel<SimulationEntity> getLazyModel() {
         return lazyModel;
     }
 

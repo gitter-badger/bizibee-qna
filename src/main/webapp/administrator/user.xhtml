@@ -78,11 +78,11 @@
                     <p:selectOneMenu id="userStatus" value="#{userController.selectedRecord.userStatus}" required="true">
                         <f:selectItems value="#{userController.userStatuses}" var="userStatus" itemValue="#{userStatus}" itemLabel="#{i18n[userStatus.label]}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel for="company" value="#{i18n['Company']}"/>
-                    <p:selectOneMenu id="company" value="#{userController.selectedRecord.company}" converter="#{companyConverter}" required="true"
+                    <p:outputLabel for="simulation" value="#{i18n['Simulation']}"/>
+                    <p:selectOneMenu id="simulation" value="#{userController.selectedRecord.simulation}" converter="#{simulationConverter}" required="true"
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{userController.companies}" var="company" itemValue="#{company}" itemLabel="#{company.name}"/>
+                        <f:selectItems value="#{userController.simulations}" var="simulation" itemValue="#{simulation}" itemLabel="#{simulation.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
@@ -113,11 +113,11 @@
                     <p:selectOneMenu id="userStatus" value="#{userController.newRecord.userStatus}" required="true">
                         <f:selectItems value="#{userController.userStatuses}" var="userStatus" itemValue="#{userStatus}" itemLabel="#{i18n[userStatus.label]}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel for="company" value="#{i18n['Company']}"/>
-                    <p:selectOneMenu id="company" value="#{userController.newRecord.company}" converter="#{companyConverter}" required="true"
+                    <p:outputLabel for="simulation" value="#{i18n['Simulation']}"/>
+                    <p:selectOneMenu id="simulation" value="#{userController.newRecord.simulation}" converter="#{simulationConverter}" required="true"
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{userController.companies}" var="company" itemValue="#{company}" itemLabel="#{company.name}"/>
+                        <f:selectItems value="#{userController.simulations}" var="simulation" itemValue="#{simulation}" itemLabel="#{simulation.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">

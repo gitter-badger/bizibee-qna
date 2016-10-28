@@ -3,7 +3,6 @@ package com.aripd.bizibee.service;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserEntity_;
 import com.aripd.bizibee.entity.UserGroup;
-import com.aripd.bizibee.flow.register.RegisterModel;
 import java.security.Principal;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -38,20 +37,6 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
     public UserServiceBean() {
         super(UserEntity.class);
-    }
-
-    @Override
-    public UserEntity register(RegisterModel registerModel) {
-        UserEntity u = new UserEntity();
-        u.setUserGroup(registerModel.getUserGroup());
-        u.setUserStatus(registerModel.getUserStatus());
-        u.setEmail(registerModel.getEmail());
-        u.setPassword(registerModel.getPassword());
-        u.setLocale(registerModel.getLocale());//
-        u.setFirstname(registerModel.getFirstname());
-        u.setLastname(registerModel.getLastname());
-
-        return this.create(u);
     }
 
     @Override

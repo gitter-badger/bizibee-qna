@@ -8,15 +8,15 @@
         <h:form>
             <p:breadCrumb>
                 <p:menuitem value="#{i18n['Home']}" outcome="/index" />
-                <p:menuitem value="#{i18n['Company']}" outcome="/administrator/company" />
+                <p:menuitem value="#{i18n['Simulation']}" outcome="/administrator/simulation" />
             </p:breadCrumb>
         </h:form>
     </ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="company" value="#{companyController.lazyModel}" emptyMessage="#{i18n['No records found']}"
+            <p:dataTable id="dataTable" var="simulation" value="#{simulationController.lazyModel}" emptyMessage="#{i18n['No records found']}"
                          paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{company.id}" selectionMode="single" selection="#{companyController.selectedRecord}"
+                         rowKey="#{simulation.id}" selectionMode="single" selection="#{simulationController.selectedRecord}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                          sortMode="multiple" 
@@ -27,20 +27,20 @@
                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                     </p:commandButton>
                 </f:facet>
-                <p:column headerText="#{i18n['Id']}" sortBy="#{company.id}" filterBy="#{company.id}">
-                    <h:outputText value="#{company.id}"/>
+                <p:column headerText="#{i18n['Id']}" sortBy="#{simulation.id}" filterBy="#{simulation.id}">
+                    <h:outputText value="#{simulation.id}"/>
                 </p:column>
-                <p:column headerText="#{i18n['Name']}" sortBy="#{company.name}" filterBy="#{company.name}">
-                    <h:outputText value="#{company.name}"/>
+                <p:column headerText="#{i18n['Name']}" sortBy="#{simulation.name}" filterBy="#{simulation.name}">
+                    <h:outputText value="#{simulation.name}"/>
                 </p:column>
                 <p:column headerText="#{i18n['Date End']}">
-                    <h:outputFormat value="#{company.dateEnd}">
+                    <h:outputFormat value="#{simulation.dateEnd}">
                         <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
                     </h:outputFormat>
                 </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{company}" target="#{companyController.selectedRecord}" />
+                        <f:setPropertyActionListener value="#{simulation}" target="#{simulationController.selectedRecord}" />
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
@@ -51,12 +51,12 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{companyController.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{simulationController.selectedRecord.name}" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
-                    <p:calendar id="dateEnd" value="#{companyController.selectedRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:calendar id="dateEnd" value="#{simulationController.selectedRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{companyController.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{simulationController.doUpdateRecord}"/>
                 </f:facet>
             </p:dialog>
         </h:form>
@@ -64,12 +64,12 @@
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{companyController.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{simulationController.newRecord.name}" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
-                    <p:calendar id="dateEnd" value="#{companyController.newRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:calendar id="dateEnd" value="#{simulationController.newRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{companyController.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{simulationController.doCreateRecord}"/>
                 </f:facet>
             </p:dialog>
         </h:form>

@@ -8,7 +8,7 @@
     <h:form>
         <p:menu>
             <p:submenu label="#{i18n['Administrator']}" rendered="#{request.isUserInRole('Administrator')}">
-                <p:menuitem value="#{i18n['Companies']}" outcome="/administrator/company"/>
+                <p:menuitem value="#{i18n['Simulations']}" outcome="/administrator/simulation"/>
                 <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user"/>
             </p:submenu>
             <p:submenu label="#{i18n['Ruler']}" rendered="#{request.isUserInRole('Ruler')}">

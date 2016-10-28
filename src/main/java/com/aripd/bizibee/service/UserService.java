@@ -2,14 +2,11 @@ package com.aripd.bizibee.service;
 
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserGroup;
-import com.aripd.bizibee.flow.register.RegisterModel;
 import java.util.List;
 import javax.ejb.Local;
 
 @Local
 public interface UserService extends CrudService<UserEntity, Long> {
-
-    public UserEntity register(RegisterModel registerModel);
 
     public UserEntity getCurrentUser();
 

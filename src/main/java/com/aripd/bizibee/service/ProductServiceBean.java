@@ -1,6 +1,6 @@
 package com.aripd.bizibee.service;
 
-import com.aripd.bizibee.entity.CompanyEntity;
+import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.ProductEntity;
 import com.aripd.bizibee.entity.UserEntity;
 import javax.ejb.Stateless;
@@ -20,8 +20,8 @@ public class ProductServiceBean extends CrudServiceBean<ProductEntity, Long> imp
     @Override
     protected EntityManager getEntityManager() {
         UserEntity user = userService.getCurrentUser();
-        CompanyEntity company = user.getCompany();
-        em.setProperty("eclipselink.tenant-id", company.getId());
+        SimulationEntity simulation = user.getSimulation();
+        em.setProperty("eclipselink.tenant-id", simulation.getId());
         return em;
     }
 

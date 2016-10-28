@@ -29,31 +29,7 @@
 
                     <div class="col-sm-4 col-sm-offset-2">
                         <div class="home-wrapper">
-                            <h:form role="form" id="form1" styleClass="intro-form">
-                                <h3 class="text-center">#{i18n['Register for free']}</h3>
-                                <div class="form-group">
-                                    <h:inputText value="#{registerBean.email}" autocomplete="off" pt:placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <h:inputText value="#{registerBean.firstname}" autocomplete="off" pt:placeholder="#{i18n['Firstname']}" label="#{i18n['Firstname']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <h:inputText value="#{registerBean.lastname}" autocomplete="off" pt:placeholder="#{i18n['Lastname']}" label="#{i18n['Lastname']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <h:inputText value="#{registerBean.phone}" autocomplete="off" pt:placeholder="#{i18n['Phone']}" label="#{i18n['Phone']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:commandButton value="#{i18n['Start Now']}" actionListener="#{registerBean.doSubmitMember}" styleClass="btn btn-custom btn-sm">
-                                        <f:ajax execute="@form" render=":growl"/>
-                                    </h:commandButton>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:link pt:target="form2" styleClass="btn btn-link" value="#{i18n['Log in']}"/>
-                                    <h:link pt:target="form3" styleClass="btn btn-link" value="#{i18n['Are you unable to access your account?']}"/>
-                                </div>
-                            </h:form>
-                            <h:form role="form" id="form2" styleClass="intro-form">
+                            <h:form role="form" styleClass="intro-form">
                                 <h3 class="text-center">#{i18n['Sign in']}</h3>
                                 <div class="form-group">
                                     <h:inputText id="j_username" value="#{loginBean.username}" autocomplete="off" pt:placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" styleClass="form-control" required="true"/>
@@ -65,25 +41,6 @@
                                     <h:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" styleClass="btn btn-custom btn-sm">
                                         <f:ajax execute="@form" render=":growl"/>
                                     </h:commandButton>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:link pt:target="form1" styleClass="btn btn-link" value="#{i18n['Register']}"/>
-                                    <h:link pt:target="form3" styleClass="btn btn-link" value="#{i18n['Are you unable to access your account?']}"/>
-                                </div>
-                            </h:form>
-                            <h:form role="form" id="form3" styleClass="intro-form">
-                                <h3 class="text-center">#{i18n['Reminder']}</h3>
-                                <div class="form-group">
-                                    <h:inputText value="#{reminderBean.email}" autocomplete="off" pt:placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:commandButton value="#{i18n['Remind my password']}" actionListener="#{reminderBean.doSubmit}" styleClass="btn btn-custom btn-sm">
-                                        <f:ajax execute="@form" render=":growl"/>
-                                    </h:commandButton>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:link pt:target="form1" styleClass="btn btn-link" value="#{i18n['Register']}"/>
-                                    <h:link pt:target="form2" styleClass="btn btn-link" value="#{i18n['Log in']}"/>
                                 </div>
                             </h:form>
                         </div>

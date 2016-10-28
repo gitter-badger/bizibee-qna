@@ -12,13 +12,13 @@ import org.eclipse.persistence.annotations.TenantDiscriminatorColumn;
 
 @Entity
 @Multitenant(value = MultitenantType.SINGLE_TABLE)
-@TenantDiscriminatorColumn(name = "COMPANY_ID", contextProperty = "eclipselink.tenant-id")
+@TenantDiscriminatorColumn(name = "SIMULATION_ID", contextProperty = "eclipselink.tenant-id")
 @Cacheable(false)
 public class TeamEntity extends AbstractEntity {
 
     @ManyToOne
-    @JoinColumn(name = "COMPANY_ID", insertable = false, updatable = false)
-    private CompanyEntity company;
+    @JoinColumn(name = "SIMULATION_ID", insertable = false, updatable = false)
+    private SimulationEntity simulation;
 
     @NotNull
     @Column(nullable = false)
@@ -27,12 +27,12 @@ public class TeamEntity extends AbstractEntity {
     public TeamEntity() {
     }
 
-    public CompanyEntity getCompany() {
-        return company;
+    public SimulationEntity getSimulation() {
+        return simulation;
     }
 
-    public void setCompany(CompanyEntity company) {
-        this.company = company;
+    public void setSimulation(SimulationEntity simulation) {
+        this.simulation = simulation;
     }
 
     public String getName() {

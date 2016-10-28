@@ -14,9 +14,6 @@
                         <div class="home-wrapper">
                             <h4>#{i18n['Sign in and access your account.']}</h4>
                             <p>#{i18n['To continue your transaction you must login.']}</p>
-                            <h:form>
-                                <p:commandLink action="register" value="#{i18n['Register']}"/>
-                            </h:form>
                         </div>
                     </div>
                     <div class="col-sm-4 col-sm-offset-2">
@@ -33,9 +30,6 @@
                                     <h:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" styleClass="btn btn-custom btn-sm">
                                         <f:ajax execute="@form" render=":growl"/>
                                     </h:commandButton>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:link outcome="/reminder" value="#{i18n['Are you unable to access your account?']}"/>
                                 </div>
                             </h:form>
                         </div>

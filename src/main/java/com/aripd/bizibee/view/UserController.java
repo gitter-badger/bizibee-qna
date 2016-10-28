@@ -1,12 +1,11 @@
 package com.aripd.bizibee.view;
 
-import com.aripd.bizibee.entity.CompanyEntity;
+import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyUserDataModel;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserGroup;
 import com.aripd.bizibee.entity.UserStatus;
-import com.aripd.bizibee.service.CompanyService;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import java.text.Collator;
@@ -19,6 +18,7 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
+import com.aripd.bizibee.service.SimulationService;
 
 @Named
 @ViewScoped
@@ -32,7 +32,7 @@ public class UserController implements Serializable {
     private LazyDataModel<UserEntity> lazyModel;
 
     @Inject
-    private CompanyService companyService;
+    private SimulationService simulationService;
 
     @Inject
     MessageUtil messageUtil;
@@ -55,8 +55,8 @@ public class UserController implements Serializable {
         return Arrays.asList(UserStatus.values());
     }
 
-    public List<CompanyEntity> getCompanies() {
-        return companyService.findAll();
+    public List<SimulationEntity> getSimulations() {
+        return simulationService.findAll();
     }
 
     public int fullnameSorter(UserEntity e1, UserEntity e2) {
