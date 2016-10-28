@@ -2,6 +2,7 @@ package com.aripd.bizibee.view;
 
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.DecisionEntity;
+import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -22,6 +23,8 @@ public class ScoreboardView implements Serializable {
     private DecisionService decisionService;
     private List<DecisionEntity> decisions;
 
+    private List<DecisionchoiceEntity> selectedDecisionchoices;
+
     @Inject
     MessageUtil messageUtil;
 
@@ -36,6 +39,14 @@ public class ScoreboardView implements Serializable {
 
     public List<DecisionEntity> getDecisions() {
         return decisions;
+    }
+
+    public List<DecisionchoiceEntity> getSelectedDecisionchoices() {
+        return selectedDecisionchoices;
+    }
+
+    public void setSelectedDecisionchoices(List<DecisionchoiceEntity> selectedDecisionchoices) {
+        this.selectedDecisionchoices = selectedDecisionchoices;
     }
 
 }

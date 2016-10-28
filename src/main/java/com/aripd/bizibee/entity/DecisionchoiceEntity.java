@@ -28,7 +28,9 @@ public class DecisionchoiceEntity extends AbstractEntity {
     @NotNull
     @JoinColumn(nullable = false)
     private DecisionEntity decision;
-    
+
+    private double budget;
+
     private double usg;
     private double gm;
     private double ms;
@@ -58,6 +60,14 @@ public class DecisionchoiceEntity extends AbstractEntity {
 
     public void setDecision(DecisionEntity decision) {
         this.decision = decision;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
     public double getUsg() {
