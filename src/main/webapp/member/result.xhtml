@@ -81,6 +81,7 @@
                         <f:facet name="header">
                             <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center;" />
                         <p:column>
                             <h:outputText value="#{decisionchoice.name}" />
                         </p:column>
@@ -98,12 +99,13 @@
 
                 <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
                     <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
-                                 selection="#{scoreboardView.selectedDecisionchoice}" 
+                                 selection="#{scoreboardView.selectedDecisionchoices}" 
                                  rowKey="#{decisionchoice.id}"
                                  rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
                         <f:facet name="header">
                             <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
                         </f:facet>
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center;" />
                         <p:column>
                             <h:outputText value="#{decisionchoice.name}" />
                         </p:column>
