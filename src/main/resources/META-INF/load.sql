@@ -14,6 +14,12 @@ INSERT INTO `TEAMENTITY` VALUES
 (3,2,'Team3'),
 (4,2,'Team4');
 
+INSERT INTO `PRODUCTENTITY` VALUES 
+(1,2,0,0,'Product1',0),
+(2,2,0,0,'Product2',0),
+(3,2,0,0,'Product3',0),
+(4,2,0,0,'Product4',0);
+
 INSERT INTO `DECISIONENTITY` VALUES 
 (1,2,'SINGLE_CHOICE','Volume Hunting Mechanism'),
 (2,2,'SINGLE_CHOICE','Delisting'),

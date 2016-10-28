@@ -15,15 +15,14 @@
     <ui:define name="content">
         <h:form>
             <p:repeat var="decision" value="#{scoreboardView.decisions}">
-                <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" selection="#{scoreboardView.selectedDecisionchoices}" rowKey="#{decisionchoice.id}">
+                <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                             selection="#{scoreboardView.selectedDecisionchoice}" 
+                             rowKey="#{decisionchoice.id}"
+                             rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
                     <f:facet name="header">
                         <h:outputText value="#{decision.name}"/> - <h:outputText value="#{decision.decisionType}" />
                     </f:facet>
-                    <p:column selectionMode="single" style="width:16px;text-align:center;" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}"/>
-                    <p:column selectionMode="multiple" style="width:16px;text-align:center;" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}"/>
-                    <p:column rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}"/>
-                    <p:column rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}"/>
-                    <p:column rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}"/>
+                    <p:column selectionMode="single" style="width:16px;text-align:center;" />
                     <p:column>
                         <h:outputText value="#{decisionchoice.name}" />
                     </p:column>
@@ -37,25 +36,15 @@
                         <h:outputText value="#{decisionchoice.ms}" />
                     </p:column>
                 </p:dataTable>
-            </p:repeat>
-            
-            <p:dataTable var="decision" value="#{scoreboardView.decisions}" rendered="false">
-                <f:facet name="header">#{i18n['Decisions']}</f:facet>
-                <p:columnGroup type="header">
-                    <p:row>
-                        <p:column rowspan="2" headerText="Decision" />
-                        <p:column colspan="3" headerText="Scores" />
-                    </p:row>
-                    <p:row>
-                        <p:column headerText="USG" />
-                        <p:column headerText="GM" />
-                        <p:column headerText="MS" />
-                    </p:row>
-                </p:columnGroup>
-                <p:subTable var="decisionchoice" value="#{decision.decisionchoices}">
+
+                <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                             selection="#{scoreboardView.selectedDecisionchoices}" 
+                             rowKey="#{decisionchoice.id}"
+                             rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
                     <f:facet name="header">
-                        <h:outputText value="#{decision.name}" /> - <h:outputText value="#{decision.decisionType.label}" />
+                        <h:outputText value="#{decision.name}"/> - <h:outputText value="#{decision.decisionType}" />
                     </f:facet>
+                    <p:column selectionMode="multiple" style="width:16px;text-align:center;" />
                     <p:column>
                         <h:outputText value="#{decisionchoice.name}" />
                     </p:column>
@@ -68,17 +57,32 @@
                     <p:column>
                         <h:outputText value="#{decisionchoice.ms}" />
                     </p:column>
-                    <p:columnGroup type="footer">
-                        <p:row>
-                            <p:column footerText="Totals: " style="text-align:right"/>
-                            <p:column footerText="#{decision.allUsgs}" />
-                            <p:column footerText="#{decision.allGms}" />
-                            <p:column footerText="#{decision.allMss}" />
-                        </p:row>
-                    </p:columnGroup>
-                </p:subTable>
-            </p:dataTable>
-        </h:form>
+                </p:dataTable>
 
+                <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+                    <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                                 selection="#{scoreboardView.selectedDecisionchoice}" 
+                                 rowKey="#{decisionchoice.id}"
+                                 rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+                        <f:facet name="header">
+                            <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
+                        </f:facet>
+                        <p:column>
+                            <h:outputText value="#{decisionchoice.name}" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{decisionchoice.usg}" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{decisionchoice.gm}" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{decisionchoice.ms}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:repeat>
+
+            </p:repeat>
+        </h:form>
     </ui:define>
 </ui:composition>

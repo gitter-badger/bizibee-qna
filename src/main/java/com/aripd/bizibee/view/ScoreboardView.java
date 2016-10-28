@@ -23,6 +23,7 @@ public class ScoreboardView implements Serializable {
     private DecisionService decisionService;
     private List<DecisionEntity> decisions;
 
+    private DecisionchoiceEntity selectedDecisionchoice;
     private List<DecisionchoiceEntity> selectedDecisionchoices;
 
     @Inject
@@ -39,6 +40,14 @@ public class ScoreboardView implements Serializable {
 
     public List<DecisionEntity> getDecisions() {
         return decisions;
+    }
+
+    public DecisionchoiceEntity getSelectedDecisionchoice() {
+        return selectedDecisionchoice;
+    }
+
+    public void setSelectedDecisionchoice(DecisionchoiceEntity selectedDecisionchoice) {
+        this.selectedDecisionchoice = selectedDecisionchoice;
     }
 
     public List<DecisionchoiceEntity> getSelectedDecisionchoices() {
