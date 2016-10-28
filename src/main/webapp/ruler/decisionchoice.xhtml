@@ -9,15 +9,15 @@
             <p:breadCrumb>
                 <p:menuitem value="#{i18n['Home']}" outcome="/index" />
                 <p:menuitem value="#{i18n['Settings']}" />
-                <p:menuitem value="#{i18n['Teams']}" outcome="/member/team" />
+                <p:menuitem value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" />
             </p:breadCrumb>
         </h:form>
     </ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="team" value="#{teamView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+            <p:dataTable id="dataTable" var="decisionchoice" value="#{decisionchoiceView.lazyModel}" emptyMessage="#{i18n['No records found']}"
                          paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{team.id}" selectionMode="single" selection="#{teamView.selectedRecord}"
+                         rowKey="#{decisionchoice.id}" selectionMode="single" selection="#{decisionchoiceView.selectedRecord}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                          sortMode="multiple" 
@@ -28,12 +28,15 @@
                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                     </p:commandButton>
                 </f:facet>
-                <p:column headerText="#{i18n['Name']}" sortBy="#{team.name}" filterBy="#{team.name}">
-                    <h:outputText value="#{team.name}"/>
+                <p:column headerText="#{i18n['Name']}" sortBy="#{decisionchoice.name}" filterBy="#{decisionchoice.name}">
+                    <h:outputText value="#{decisionchoice.name}"/>
+                </p:column>
+                <p:column headerText="#{i18n['Decision']}">
+                    <h:outputText value="#{decisionchoice.decision.name}"/>
                 </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{team}" target="#{teamView.selectedRecord}" />
+                        <f:setPropertyActionListener value="#{decisionchoice}" target="#{decisionchoiceView.selectedRecord}" />
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
@@ -44,11 +47,17 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{teamView.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{decisionchoiceView.selectedRecord.name}" required="true"/>
+                    <p:outputLabel for="decision" value="#{i18n['Decision']}"/>
+                    <p:selectOneMenu id="decision" value="#{decisionchoiceView.selectedRecord.decision}" converter="#{decisionConverter}"
+                                     filter="true" filterMatchMode="contains" required="true">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
+                        <f:selectItems value="#{decisionView.fetchAllRecords()}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
+                    </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamView.doUpdateRecord}"/>
-                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamView.doDeleteRecord}">
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionchoiceView.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionchoiceView.doDeleteRecord}">
                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
@@ -59,10 +68,16 @@
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{teamView.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{decisionchoiceView.newRecord.name}" required="true"/>
+                    <p:outputLabel for="decision" value="#{i18n['Decision']}"/>
+                    <p:selectOneMenu id="decision" value="#{decisionchoiceView.newRecord.decision}" converter="#{decisionConverter}"
+                                     filter="true" filterMatchMode="contains" required="true">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
+                        <f:selectItems value="#{decisionView.fetchAllRecords()}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
+                    </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{teamView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionchoiceView.doCreateRecord}"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>

@@ -7,15 +7,21 @@
 
     <h:form>
         <p:menu>
-            <p:submenu label="#{i18n['Settings']}">
-                <p:menuitem value="#{i18n['Teams']}" outcome="/member/team"/>
-                <p:menuitem value="#{i18n['Products']}" outcome="/member/product"/>
-                <p:menuitem value="#{i18n['Decisions']}" outcome="/member/decision"/>
-                <p:menuitem value="#{i18n['Decision Choices']}" outcome="/member/decisionchoice"/>
-            </p:submenu>
             <p:submenu label="#{i18n['Administrator']}" rendered="#{request.isUserInRole('Administrator')}">
                 <p:menuitem value="#{i18n['Companies']}" outcome="/administrator/company"/>
                 <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user"/>
+            </p:submenu>
+            <p:submenu label="#{i18n['Ruler']}" rendered="#{request.isUserInRole('Ruler')}">
+                <p:menuitem value="#{i18n['Teams']}" outcome="/ruler/team"/>
+                <p:menuitem value="#{i18n['Products']}" outcome="/ruler/product"/>
+                <p:menuitem value="#{i18n['Decisions']}" outcome="/ruler/decision"/>
+                <p:menuitem value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice"/>
+            </p:submenu>
+            <p:submenu label="#{i18n['Leader']}" rendered="#{request.isUserInRole('Leader')}">
+                <p:menuitem value="#{i18n['Form']}" outcome="/leader/form"/>
+            </p:submenu>
+            <p:submenu label="#{i18n['Member']}" rendered="#{request.isUserInRole('Member')}">
+                <p:menuitem value="#{i18n['Result']}" outcome="/member/result"/>
             </p:submenu>
         </p:menu>
     </h:form>

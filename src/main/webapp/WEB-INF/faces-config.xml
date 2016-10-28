@@ -30,6 +30,14 @@
                 <contracts>ui</contracts>
             </contract-mapping>
             <contract-mapping>
+                <url-pattern>/ruler/*</url-pattern>
+                <contracts>ui</contracts>
+            </contract-mapping>
+            <contract-mapping>
+                <url-pattern>/leader/*</url-pattern>
+                <contracts>ui</contracts>
+            </contract-mapping>
+            <contract-mapping>
                 <url-pattern>/member/*</url-pattern>
                 <contracts>ui</contracts>
             </contract-mapping>

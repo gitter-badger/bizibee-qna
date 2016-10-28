@@ -4,8 +4,9 @@ INSERT INTO `COMPANYENTITY` VALUES
 
 INSERT INTO `USERENTITY` (`ID`,`EMAIL`,`FIRSTNAME`,`LASTNAME`,`LOCALE`,`PASSWORD`,`USERGROUP`,`USERSTATUS`,`COMPANY_ID`) VALUES 
 (1,'cem@aripd.com','cem','aripd','tr_TR','cem','Administrators','Confirmed',1),
-(2,'dev@aripd.com','dev','aripd','tr_TR','dev','Administrators','Confirmed',2),
-(3,'test@aripd.com','test','aripd','en_US','test','Members','Confirmed',2);
+(2,'ruler@aripd.com','ruler','Unilever','tr_TR','ruler','Rulers','Confirmed',2),
+(3,'leader@aripd.com','leader','Unilever','tr_TR','leader','Leaders','Confirmed',2),
+(4,'member@aripd.com','member','Unilever','en_US','member','Members','Confirmed',2);
 
 INSERT INTO `TEAMENTITY` VALUES 
 (1,2,'Team1'),

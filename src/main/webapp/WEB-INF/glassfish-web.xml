@@ -7,6 +7,14 @@
     <group-name>Administrators</group-name>
   </security-role-mapping>
   <security-role-mapping>
+    <role-name>Ruler</role-name>
+    <group-name>Rulers</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>Leader</role-name>
+    <group-name>Leaders</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
     <role-name>Member</role-name>
     <group-name>Members</group-name>
   </security-role-mapping>

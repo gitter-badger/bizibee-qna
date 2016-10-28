@@ -80,6 +80,26 @@
         </auth-constraint>
     </security-constraint>
     <security-constraint>
+        <display-name>Ruler Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Ruler Area</web-resource-name>
+            <url-pattern>/ruler/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Ruler</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Leader Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Leader Area</web-resource-name>
+            <url-pattern>/leader/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Leader</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
         <display-name>Member Pages</display-name>
         <web-resource-collection>
             <web-resource-name>Member Area</web-resource-name>
@@ -87,6 +107,8 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>Member</role-name>
+            <role-name>Leader</role-name>
+            <role-name>Ruler</role-name>
             <role-name>Administrator</role-name>
         </auth-constraint>
     </security-constraint>
@@ -100,6 +122,12 @@
     </login-config>
     <security-role>
         <role-name>Administrator</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Ruler</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Leader</role-name>
     </security-role>
     <security-role>
         <role-name>Member</role-name>
