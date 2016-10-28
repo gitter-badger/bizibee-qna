@@ -16,6 +16,9 @@
     <ui:define name="content">
         <h:form>
             <p:panelGrid columns="2">
+                <p:outputLabel for="username" value="#{i18n['Username']}"/>
+                <p:inputText id="username" value="#{profileBean.selectedRecord.username}" placeholder="#{i18n['Username']}" required="true"/>
+
                 <p:outputLabel for="password" value="#{i18n['Password']}"/>
                 <p:inputText id="password" value="#{profileBean.selectedRecord.password}" placeholder="#{i18n['Password']}" required="true"/>
 

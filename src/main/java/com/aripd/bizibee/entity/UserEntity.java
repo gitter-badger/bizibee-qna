@@ -28,13 +28,16 @@ public class UserEntity extends AbstractEntity {
     @Column(nullable = false)
     private UserStatus userStatus;
 
-    @Email
     @NotNull
     @Column(unique = true, nullable = false)
-    private String email;
+    private String username;
     @NotNull
     @Column(nullable = false)
     private String password;
+    @Email
+    @NotNull
+    @Column(nullable = false)
+    private String email;
     @NotNull
     @Column(nullable = false)
     private String locale;
@@ -62,7 +65,7 @@ public class UserEntity extends AbstractEntity {
 
     @Transient
     public String getToken() {
-        return SHA512.hashText(password + email);
+        return SHA512.hashText(password + username);
     }
 
     @Transient
@@ -88,6 +91,14 @@ public class UserEntity extends AbstractEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLocale() {
@@ -130,12 +141,12 @@ public class UserEntity extends AbstractEntity {
         this.userStatus = userStatus;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public SimulationEntity getSimulation() {

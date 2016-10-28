@@ -19,7 +19,6 @@ import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.LocaleUtils;
-import org.hibernate.validator.constraints.Email;
 
 @Named
 @SessionScoped
@@ -33,7 +32,6 @@ public class LoginBean implements Serializable {
 
     private String token;
 
-    @Email
     private String username;
     private String password;
 
@@ -44,7 +42,6 @@ public class LoginBean implements Serializable {
     MessageUtil messageUtil;
 
     public LoginBean() {
-        LOG.info(String.format("%s is created...", this.getClass().getSimpleName()));
     }
 
     @PostConstruct
@@ -56,7 +53,7 @@ public class LoginBean implements Serializable {
             user = userService.findOneByToken(token);
 
             if (user != null) {
-                username = user.getEmail();
+                username = user.getUsername();
                 password = user.getPassword();
                 login();
             }
@@ -69,7 +66,7 @@ public class LoginBean implements Serializable {
      * @param actionEvent ActionEvent
      */
     public void doLogin(ActionEvent actionEvent) {
-        user = userService.findOneByEmail(username);
+        user = userService.findOneByUsername(username);
         if (user == null) {
             messageUtil.addGlobalErrorFlashMessage("User is not exist");
         } else if (user.getUserStatus().equals(UserStatus.Unconfirmed)) {
@@ -87,7 +84,7 @@ public class LoginBean implements Serializable {
             LOG.info(String.format("User (%s) has logged in %s", request.getUserPrincipal().getName(), new Date()));
             Locale locale = LocaleUtils.toLocale(user.getLocale());
             localeBean.doChange(locale);
-            LOG.info(String.format("Locale is set to %s for %s", locale, user.getEmail()));
+            LOG.info(String.format("Locale is set to %s for %s", locale, user.getUsername()));
 
             String navigation = "/member/index?faces-redirect=true";
             RequestUtil.doNavigate(navigation);

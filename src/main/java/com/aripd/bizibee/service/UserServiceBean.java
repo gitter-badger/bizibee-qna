@@ -56,25 +56,22 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
             throw new RuntimeException("could not determine the current user id, because no prinicial in session context");
         }
 
-        return this.findOneByEmail(name);
+        return this.findOneByUsername(name);
     }
 
     /**
-     * Girilen e-posta adresinin kendisi dışındaki kayıtlarda olup olmadığına
-     * bakar
-     *
-     * @param emailNew String
-     * @param email String
+     * @param usernameNew String
+     * @param username String
      * @return boolean
      */
     @Override
-    public boolean isExistByEmailExceptEmail(String emailNew, String email) {
+    public boolean isExistByUsernameExceptUsername(String usernameNew, String username) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
         Root<UserEntity> root = cq.from(UserEntity.class);
 
-        Predicate predicate1 = cb.notEqual(root.get(UserEntity_.email), email);
-        Predicate predicate2 = cb.equal(root.get(UserEntity_.email), emailNew);
+        Predicate predicate1 = cb.notEqual(root.get(UserEntity_.username), username);
+        Predicate predicate2 = cb.equal(root.get(UserEntity_.username), usernameNew);
         Predicate predicate = cb.and(predicate1, predicate2);
 
         cq.where(predicate);
@@ -90,7 +87,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
         CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
         Root<UserEntity> root = cq.from(UserEntity.class);
 
-        Expression<String> eConcat = cb.concat(root.get(UserEntity_.password), root.get(UserEntity_.email));
+        Expression<String> eConcat = cb.concat(root.get(UserEntity_.password), root.get(UserEntity_.username));
         Expression<String> eToken = cb.function("SHA2", String.class, eConcat, cb.literal("512"));
 
         Predicate predicate = cb.equal(eToken, token);
@@ -106,12 +103,12 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
     }
 
     @Override
-    public UserEntity findOneByEmail(String email) {
+    public UserEntity findOneByUsername(String username) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
         Root<UserEntity> root = cq.from(UserEntity.class);
 
-        Predicate predicate = cb.equal(root.get(UserEntity_.email), email);
+        Predicate predicate = cb.equal(root.get(UserEntity_.username), username);
         cq.where(predicate);
 
         Query query = getEntityManager().createQuery(cq);

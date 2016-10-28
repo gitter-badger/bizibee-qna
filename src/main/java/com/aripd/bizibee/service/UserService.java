@@ -10,11 +10,11 @@ public interface UserService extends CrudService<UserEntity, Long> {
 
     public UserEntity getCurrentUser();
 
-    public boolean isExistByEmailExceptEmail(String emailNew, String email);
+    public boolean isExistByUsernameExceptUsername(String usernameNew, String username);
 
     public UserEntity findOneByToken(String token);
 
-    public UserEntity findOneByEmail(String email);
+    public UserEntity findOneByUsername(String username);
 
     public List<UserEntity> findAllByUserGroup(UserGroup userGroup);
 

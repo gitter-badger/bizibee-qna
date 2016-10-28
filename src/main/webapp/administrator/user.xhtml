@@ -31,11 +31,11 @@
                 <p:column headerText="#{i18n['Id']}" sortBy="#{user.id}" filterBy="#{user.id}">
                     <h:outputText value="#{user.id}"/>
                 </p:column>
+                <p:column headerText="#{i18n['Username']}" sortBy="#{user.username}" filterBy="#{user.username}">
+                    <h:outputText value="#{user.username}"/>
+                </p:column>
                 <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{user.email}" filterBy="#{user.email}">
                     <h:outputText value="#{user.email}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Locale']}">
-                    <h:outputText value="#{user.localeString}"/>
                 </p:column>
                 <p:column headerText="#{i18n['Fullname']}" sortBy="#{user.firstname}" sortFunction="#{userController.fullnameSorter}">
                     <h:outputText value="#{user.fullname}"/>
