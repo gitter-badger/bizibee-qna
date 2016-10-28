@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template.xhtml">
+    <ui:define name="breadCrumb">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="#{i18n['Home']}" outcome="/index" />
+                <p:menuitem value="#{i18n['Settings']}" />
+                <p:menuitem value="#{i18n['Simulation']}" outcome="/ruler/simulation" />
+            </p:breadCrumb>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
+                <p:inputText id="salesStart" value="#{simulationView.selectedRecord.salesStart}" placeholder="#{i18n['salesStart']}" required="true"/>
+
+                <p:outputLabel for="budgetStart" value="#{i18n['budgetStart']}"/>
+                <p:inputText id="budgetStart" value="#{simulationView.selectedRecord.budgetStart}" placeholder="#{i18n['budgetStart']}" required="true"/>
+
+                <p:outputLabel for="gmStart" value="#{i18n['gmStart']}"/>
+                <p:inputText id="gmStart" value="#{simulationView.selectedRecord.gmStart}" placeholder="#{i18n['gmStart']}" required="true"/>
+
+                <p:outputLabel for="msStart" value="#{i18n['msStart']}"/>
+                <p:inputText id="msStart" value="#{simulationView.selectedRecord.msStart}" placeholder="#{i18n['msStart']}" required="true"/>
+
+                <p:outputLabel for="gmWeighted" value="#{i18n['gmWeighted']}"/>
+                <p:inputText id="gmWeighted" value="#{simulationView.selectedRecord.gmWeighted}" placeholder="#{i18n['gmWeighted']}" required="true"/>
+
+                <p:outputLabel for="msWeighted" value="#{i18n['msWeighted']}"/>
+                <p:inputText id="msWeighted" value="#{simulationView.selectedRecord.msWeighted}" placeholder="#{i18n['msWeighted']}" required="true"/>
+
+                <p:outputLabel for="usgWeighted" value="#{i18n['usgWeighted']}"/>
+                <p:inputText id="usgWeighted" value="#{simulationView.selectedRecord.usgWeighted}" placeholder="#{i18n['usgWeighted']}" required="true"/>
+
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Update']}" actionListener="#{simulationView.doUpdateRecord}" update=":growl"/>
+                </f:facet>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

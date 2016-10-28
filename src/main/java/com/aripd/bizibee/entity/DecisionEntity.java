@@ -36,9 +36,9 @@ public class DecisionEntity extends AbstractEntity {
 
     private double budget;
 
-    private double usg;
     private double gm;
     private double ms;
+    private double usg;
 
     @OneToMany(mappedBy = "decision", orphanRemoval = true)
     private List<DecisionchoiceEntity> decisionchoices;

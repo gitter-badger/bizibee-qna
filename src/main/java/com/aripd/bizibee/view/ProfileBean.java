@@ -43,10 +43,6 @@ public class ProfileBean implements Serializable {
         selectedRecord = userService.getCurrentUser();
     }
 
-    public void doUpdateTheme(AjaxBehaviorEvent abe) {
-        userService.update(selectedRecord);
-    }
-
     public void doUpdateLocale(AjaxBehaviorEvent abe) {
         FacesContext context = FacesContext.getCurrentInstance();
         NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();

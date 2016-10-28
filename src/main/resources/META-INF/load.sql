@@ -1,6 +1,6 @@
 INSERT INTO `SIMULATIONENTITY` VALUES 
-(1,NOW() + INTERVAL 30 DAY,'Capsim Türkiye'),
-(2,NOW() + INTERVAL 30 DAY,'Unilever 2016');
+(1,0,NOW() + INTERVAL 30 DAY,0,0,0,0,'Capsim Türkiye',0,0),
+(2,100000,NOW() + INTERVAL 30 DAY,0.4,0.25,0.4,0.55,'Unilever 2016',5000000,0.2);
 
 INSERT INTO `USERENTITY` (`ID`,`EMAIL`,`FIRSTNAME`,`LASTNAME`,`LOCALE`,`PASSWORD`,`USERGROUP`,`USERSTATUS`,`SIMULATION_ID`) VALUES 
 (1,'cem@aripd.com','cem','aripd','tr_TR','cem','Administrators','Confirmed',1),

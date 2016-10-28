@@ -21,6 +21,15 @@ public class SimulationEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
+    private double salesStart;
+    private double budgetStart;
+    private double gmStart;
+    private double msStart;
+
+    private double gmWeighted;
+    private double msWeighted;
+    private double usgWeighted;
+
     @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
 
@@ -41,6 +50,62 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getSalesStart() {
+        return salesStart;
+    }
+
+    public void setSalesStart(double salesStart) {
+        this.salesStart = salesStart;
+    }
+
+    public double getBudgetStart() {
+        return budgetStart;
+    }
+
+    public void setBudgetStart(double budgetStart) {
+        this.budgetStart = budgetStart;
+    }
+
+    public double getGmStart() {
+        return gmStart;
+    }
+
+    public void setGmStart(double gmStart) {
+        this.gmStart = gmStart;
+    }
+
+    public double getMsStart() {
+        return msStart;
+    }
+
+    public void setMsStart(double msStart) {
+        this.msStart = msStart;
+    }
+
+    public double getGmWeighted() {
+        return gmWeighted;
+    }
+
+    public void setGmWeighted(double gmWeighted) {
+        this.gmWeighted = gmWeighted;
+    }
+
+    public double getMsWeighted() {
+        return msWeighted;
+    }
+
+    public void setMsWeighted(double msWeighted) {
+        this.msWeighted = msWeighted;
+    }
+
+    public double getUsgWeighted() {
+        return usgWeighted;
+    }
+
+    public void setUsgWeighted(double usgWeighted) {
+        this.usgWeighted = usgWeighted;
     }
 
     public List<UserEntity> getUsers() {
