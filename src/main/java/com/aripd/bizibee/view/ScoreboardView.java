@@ -26,6 +26,8 @@ public class ScoreboardView implements Serializable {
     private DecisionchoiceEntity selectedDecisionchoice;
     private List<DecisionchoiceEntity> selectedDecisionchoices;
 
+    private int index;
+
     @Inject
     MessageUtil messageUtil;
 
@@ -56,6 +58,14 @@ public class ScoreboardView implements Serializable {
 
     public void setSelectedDecisionchoices(List<DecisionchoiceEntity> selectedDecisionchoices) {
         this.selectedDecisionchoices = selectedDecisionchoices;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
 }

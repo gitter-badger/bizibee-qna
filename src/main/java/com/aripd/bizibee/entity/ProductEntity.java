@@ -24,9 +24,13 @@ public class ProductEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
-    private double usg;
     private double gm;
     private double ms;
+    private double usg;
+    
+    private int indexMin;
+    private int indexMax;
+    private int indexStep;
 
     public ProductEntity() {
     }
@@ -69,6 +73,30 @@ public class ProductEntity extends AbstractEntity {
 
     public void setMs(double ms) {
         this.ms = ms;
+    }
+
+    public int getIndexMin() {
+        return indexMin;
+    }
+
+    public void setIndexMin(int indexMin) {
+        this.indexMin = indexMin;
+    }
+
+    public int getIndexMax() {
+        return indexMax;
+    }
+
+    public void setIndexMax(int indexMax) {
+        this.indexMax = indexMax;
+    }
+
+    public int getIndexStep() {
+        return indexStep;
+    }
+
+    public void setIndexStep(int indexStep) {
+        this.indexStep = indexStep;
     }
 
 }

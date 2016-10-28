@@ -60,28 +60,19 @@
                 </p:dataTable>
 
                 <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
-                    <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
-                                 selection="#{scoreboardView.selectedDecisionchoice}" 
-                                 rowKey="#{decisionchoice.id}"
-                                 rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+                    <p:panel>
                         <f:facet name="header">
                             <h:outputText value="#{decision.name}"/> - <h:outputText value="#{product.name}"/> - <h:outputText value="#{decision.decisionType}" />
                         </f:facet>
-                        <p:column>
-                            <h:outputText value="#{decisionchoice.name}" />
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{decisionchoice.usg}" />
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{decisionchoice.gm}" />
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{decisionchoice.ms}" />
-                        </p:column>
-                    </p:dataTable>
+                        <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
+                            <f:param value="#{product.name}"/>
+                            <f:param value="#{product.indexMin}"/>
+                            <f:param value="#{product.indexMax}"/>
+                        </h:outputFormat>
+                        <p:knob min="#{product.indexMin}" max="#{product.indexMax}" step="#{product.indexStep}" value="#{product.indexMin}"/> 
+                    </p:panel>
                 </p:repeat>
-                
+
                 <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
                     <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
                                  selection="#{scoreboardView.selectedDecisionchoice}" 
@@ -104,7 +95,7 @@
                         </p:column>
                     </p:dataTable>
                 </p:repeat>
-                
+
                 <p:repeat var="product" value="#{productView.fetchAllRecords()}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
                     <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
                                  selection="#{scoreboardView.selectedDecisionchoice}" 
