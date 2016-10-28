@@ -38,7 +38,6 @@ public class UserEntity extends AbstractEntity {
     @NotNull
     @Column(nullable = false)
     private String locale;
-    private String timezone;
 
     @NotNull
     @Column(nullable = false)
@@ -97,14 +96,6 @@ public class UserEntity extends AbstractEntity {
 
     public void setLocale(String locale) {
         this.locale = locale;
-    }
-
-    public String getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
     }
 
     public String getFirstname() {
