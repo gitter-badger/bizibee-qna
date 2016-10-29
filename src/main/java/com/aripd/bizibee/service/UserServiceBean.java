@@ -1,5 +1,6 @@
 package com.aripd.bizibee.service;
 
+import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserEntity_;
 import com.aripd.bizibee.entity.UserGroup;
@@ -128,6 +129,20 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
         Predicate predicate = cb.equal(root.get(UserEntity_.userGroup), userGroup);
         cq.where(predicate);
+
+        Query q = getEntityManager().createQuery(cq);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<UserEntity> findAllBySimulationAndNoTeamAssigned(SimulationEntity simulation) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        Predicate predicate1 = cb.equal(root.get(UserEntity_.simulation), simulation);
+        Predicate predicate2 = cb.isNull(root.get(UserEntity_.team));
+        cq.where(cb.and(predicate1, predicate2));
 
         Query q = getEntityManager().createQuery(cq);
         return q.getResultList();

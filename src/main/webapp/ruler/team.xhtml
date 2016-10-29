@@ -46,8 +46,8 @@
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{teamView.selectedRecord.name}" required="true"/>
 
-                    <p:outputLabel for="pickList" value="#{i18n['Name']}"/>
-                    <p:pickList id="pickList" value="#{teamView.cities}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" />
+                    <p:outputLabel for="users" value="#{i18n['Users']}"/>
+                    <p:pickList id="users" value="#{teamView.users}" var="user" itemLabel="#{user.username}" itemValue="#{user}" />
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamView.doUpdateRecord}"/>

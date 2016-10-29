@@ -1,10 +1,12 @@
 package com.aripd.bizibee.entity;
 
+import java.util.List;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -24,6 +26,9 @@ public class TeamEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "team", orphanRemoval = true)
+    private List<UserEntity> users;
+
     public TeamEntity() {
     }
 
@@ -41,6 +46,14 @@ public class TeamEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserEntity> users) {
+        this.users = users;
     }
 
 }

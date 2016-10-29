@@ -1,5 +1,6 @@
 package com.aripd.bizibee.service;
 
+import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserGroup;
 import java.util.List;
@@ -17,5 +18,7 @@ public interface UserService extends CrudService<UserEntity, Long> {
     public UserEntity findOneByUsername(String username);
 
     public List<UserEntity> findAllByUserGroup(UserGroup userGroup);
+
+    public List<UserEntity> findAllBySimulationAndNoTeamAssigned(SimulationEntity simulation);
 
 }

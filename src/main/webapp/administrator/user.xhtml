@@ -58,10 +58,12 @@
         <h:form id="editForm">
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
-                    <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{userController.selectedRecord.email}" required="true"/>
+                    <p:outputLabel for="username" value="#{i18n['Username']}"/>
+                    <p:inputText id="username" value="#{userController.selectedRecord.username}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
                     <p:inputText id="password" value="#{userController.selectedRecord.password}" required="true"/>
+                    <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
+                    <p:inputText id="email" value="#{userController.selectedRecord.email}" required="true"/>
                     <p:outputLabel for="locale" value="#{i18n['Locale']}"/>
                     <p:selectOneMenu id="locale" value="#{userController.selectedRecord.locale}" label="#{i18n['Locale']}" required="true">
                         <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
@@ -93,10 +95,12 @@
         <h:form id="newForm">
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
                 <p:panelGrid columns="2">
-                    <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{userController.newRecord.email}" required="true"/>
+                    <p:outputLabel for="username" value="#{i18n['Username']}"/>
+                    <p:inputText id="username" value="#{userController.newRecord.username}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
                     <p:inputText id="password" value="#{userController.newRecord.password}" required="true"/>
+                    <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
+                    <p:inputText id="email" value="#{userController.newRecord.email}" required="true"/>
                     <p:outputLabel for="locale" value="#{i18n['Locale']}"/>
                     <p:selectOneMenu id="locale" value="#{userController.newRecord.locale}" label="#{i18n['Locale']}" required="true">
                         <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>

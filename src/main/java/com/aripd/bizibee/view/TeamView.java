@@ -1,10 +1,14 @@
 package com.aripd.bizibee.view;
 
+import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyTeamDataModel;
 import com.aripd.bizibee.entity.TeamEntity;
+import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.TeamService;
+import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -13,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
+import org.primefaces.model.DualListModel;
 
 @Named
 @ViewScoped
@@ -28,6 +33,11 @@ public class TeamView implements Serializable {
     private LazyDataModel<TeamEntity> lazyModel;
 
     @Inject
+    private UserService userService;
+
+    private DualListModel<UserEntity> users;
+
+    @Inject
     MessageUtil messageUtil;
 
     public TeamView() {
@@ -38,6 +48,13 @@ public class TeamView implements Serializable {
     @PostConstruct
     public void init() {
         lazyModel = new LazyTeamDataModel(teamService);
+
+        UserEntity user = userService.getCurrentUser();
+        SimulationEntity simulation = user.getSimulation();
+
+        List<UserEntity> usersSource = userService.findAllBySimulationAndNoTeamAssigned(simulation);
+        List<UserEntity> usersTarget = new ArrayList<>();
+        users = new DualListModel<>(usersSource, usersTarget);
     }
 
     public List<TeamEntity> fetchAllRecords() {
@@ -45,11 +62,13 @@ public class TeamView implements Serializable {
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
+        newRecord.setUsers(users.getTarget());
         teamService.create(newRecord);
         messageUtil.addGlobalInfoFlashMessage("Created");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
+        selectedRecord.setUsers(users.getTarget());
         teamService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
@@ -90,6 +109,14 @@ public class TeamView implements Serializable {
 
     public LazyDataModel<TeamEntity> getLazyModel() {
         return lazyModel;
+    }
+
+    public DualListModel<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(DualListModel<UserEntity> users) {
+        this.users = users;
     }
 
 }
