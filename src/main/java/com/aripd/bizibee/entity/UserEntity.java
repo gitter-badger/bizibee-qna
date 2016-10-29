@@ -24,11 +24,6 @@ public class UserEntity extends AbstractEntity {
     private UserGroup userGroup;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UserStatus userStatus;
-
-    @NotNull
     @Column(unique = true, nullable = false)
     private String username;
     @NotNull
@@ -134,14 +129,6 @@ public class UserEntity extends AbstractEntity {
 
     public void setUserGroup(UserGroup userGroup) {
         this.userGroup = userGroup;
-    }
-
-    public UserStatus getUserStatus() {
-        return userStatus;
-    }
-
-    public void setUserStatus(UserStatus userStatus) {
-        this.userStatus = userStatus;
     }
 
     public String getUsername() {

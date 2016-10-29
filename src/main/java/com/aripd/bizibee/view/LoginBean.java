@@ -2,7 +2,6 @@ package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.service.UserService;
 import com.aripd.bizibee.entity.UserEntity;
-import com.aripd.bizibee.entity.UserStatus;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.RequestUtil;
 import com.aripd.util.locale.LocaleBean;
@@ -67,11 +66,14 @@ public class LoginBean implements Serializable {
      */
     public void doLogin(ActionEvent actionEvent) {
         user = userService.findOneByUsername(username);
+        Date now = new Date();
         if (user == null) {
             messageUtil.addGlobalErrorFlashMessage("User is not exist");
-        } else if (user.getUserStatus().equals(UserStatus.Unconfirmed)) {
-            messageUtil.addGlobalErrorFlashMessage("Your account has not been confirmed yet");
-        } else if (user.getUserStatus().equals(UserStatus.Confirmed)) {
+        } else if (now.before(user.getSimulation().getDateStart())) {
+            messageUtil.addGlobalErrorFlashMessage("Simulation is not started yet");
+        } else if (now.after(user.getSimulation().getDateEnd())) {
+            messageUtil.addGlobalErrorFlashMessage("Simulation is expired");
+        } else if (now.after(user.getSimulation().getDateStart()) && now.before(user.getSimulation().getDateEnd())) {
             login();
         }
     }

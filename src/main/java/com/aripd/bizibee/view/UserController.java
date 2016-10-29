@@ -5,7 +5,6 @@ import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyUserDataModel;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserGroup;
-import com.aripd.bizibee.entity.UserStatus;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import java.text.Collator;
@@ -49,10 +48,6 @@ public class UserController implements Serializable {
 
     public List<UserGroup> getUserGroups() {
         return Arrays.asList(UserGroup.values());
-    }
-
-    public List<UserStatus> getUserStatuses() {
-        return Arrays.asList(UserStatus.values());
     }
 
     public List<SimulationEntity> getSimulations() {

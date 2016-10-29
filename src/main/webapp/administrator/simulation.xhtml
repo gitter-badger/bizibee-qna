@@ -33,6 +33,11 @@
                 <p:column headerText="#{i18n['Name']}" sortBy="#{simulation.name}" filterBy="#{simulation.name}">
                     <h:outputText value="#{simulation.name}"/>
                 </p:column>
+                <p:column headerText="#{i18n['Date Start']}">
+                    <h:outputFormat value="#{simulation.dateStart}">
+                        <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
+                    </h:outputFormat>
+                </p:column>
                 <p:column headerText="#{i18n['Date End']}">
                     <h:outputFormat value="#{simulation.dateEnd}">
                         <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
@@ -52,6 +57,8 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{simulationController.selectedRecord.name}" required="true"/>
+                    <p:outputLabel for="dateStart" value="#{i18n['Date Start']}"/>
+                    <p:calendar id="dateStart" value="#{simulationController.selectedRecord.dateStart}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
                     <p:calendar id="dateEnd" value="#{simulationController.selectedRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                 </p:panelGrid>
@@ -65,6 +72,8 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{simulationController.newRecord.name}" required="true"/>
+                    <p:outputLabel for="dateStart" value="#{i18n['Date Start']}"/>
+                    <p:calendar id="dateStart" value="#{simulationController.newRecord.dateStart}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
                     <p:calendar id="dateEnd" value="#{simulationController.newRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                 </p:panelGrid>

@@ -15,6 +15,11 @@ public class SimulationEntity extends AbstractEntity {
     @NotNull
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    private Date dateStart;
+
+    @NotNull
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateEnd;
 
     @NotNull
@@ -34,6 +39,14 @@ public class SimulationEntity extends AbstractEntity {
     private List<UserEntity> users;
 
     public SimulationEntity() {
+    }
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
     }
 
     public Date getDateEnd() {
