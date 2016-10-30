@@ -42,6 +42,9 @@
                 <p:column headerText="#{i18n['Group']}" sortBy="#{user.userGroup}">
                     <h:outputText value="#{i18n[user.userGroup.label]}"/>
                 </p:column>
+                <p:column headerText="#{i18n['Simulation']}">
+                    <h:outputText value="#{user.simulation.name}"/>
+                </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                         <f:setPropertyActionListener value="#{user}" target="#{userController.selectedRecord}" />

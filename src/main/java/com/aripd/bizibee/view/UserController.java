@@ -18,10 +18,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.SimulationService;
+import com.aripd.util.locale.LocaleProvider;
+import org.apache.log4j.Logger;
 
 @Named
 @ViewScoped
 public class UserController implements Serializable {
+
+    static final Logger LOG = Logger.getLogger(UserController.class.getName());
 
     @Inject
     private UserService userService;
@@ -55,8 +59,8 @@ public class UserController implements Serializable {
     }
 
     public int fullnameSorter(UserEntity e1, UserEntity e2) {
-        Collator trCollator = Collator.getInstance(new Locale("tr", "TR"));
-        return trCollator.compare(e1.getFullname(), e2.getFullname());
+        Collator collator = Collator.getInstance(LocaleProvider.getLocale());
+        return collator.compare(e1.getFullname(), e2.getFullname());
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
