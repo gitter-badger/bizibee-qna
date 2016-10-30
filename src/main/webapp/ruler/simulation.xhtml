@@ -9,7 +9,7 @@
             <p:breadCrumb>
                 <p:menuitem value="#{i18n['Home']}" outcome="/index" />
                 <p:menuitem value="#{i18n['Settings']}" />
-                <p:menuitem value="#{i18n['Simulation']}" outcome="/ruler/simulation" />
+                <p:menuitem value="#{simulationView.selectedRecord.name}" outcome="/ruler/simulation" />
             </p:breadCrumb>
         </h:form>
     </ui:define>
