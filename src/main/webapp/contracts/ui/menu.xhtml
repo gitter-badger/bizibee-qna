@@ -18,10 +18,9 @@
                 <p:menuitem value="#{i18n['Decisions']}" outcome="/ruler/decision"/>
                 <p:menuitem value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice"/>
             </p:submenu>
-            <p:submenu label="#{i18n['Leader']}" rendered="#{request.isUserInRole('Leader')}">
-                <p:menuitem value="#{i18n['Form']}" outcome="/leader/form"/>
+            <p:submenu label="#{i18n['Member']}" rendered="#{request.isUserInRole('Member')}">
+                <p:menuitem value="#{i18n['Result']}" outcome="/member/result"/>
             </p:submenu>
-            <p:menuitem value="#{i18n['Result']}" outcome="/member/result"/>
         </p:menu>
     </h:form>
 

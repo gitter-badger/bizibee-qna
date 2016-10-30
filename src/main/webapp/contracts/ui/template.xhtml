@@ -33,17 +33,21 @@
 
                 <p:layoutUnit position="north">
                     <div class="ui-g">
-                        <div class="ui-g-2" style="text-align: left;">
+                        <div class="ui-g-4" style="text-align: left;">
                             <h:link outcome="/index">
                                 <composite:logo/>
                             </h:link>                                
                         </div>
-                        <div class="ui-g-8" style="text-align: center;">
+                        <div class="ui-g-4" style="text-align: center;">
                         </div>
-                        <div class="ui-g-2" style="text-align: right;">
+                        <div class="ui-g-4" style="text-align: right;">
                             <h:form>
                                 <p:link value="#{i18n['Profile']}" outcome="/member/profile" style="margin-left: 10px;"/>
                                 <p:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" style="margin-left: 10px;"/>
+                                <p:selectOneMenu value="#{localeBean.locale}" converter="#{localeConverter}" style="margin-left: 10px;">
+                                    <p:ajax listener="#{localeBean.onChange}" oncomplete="location.reload()"/>
+                                    <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
+                                </p:selectOneMenu>
                             </h:form>
                         </div>
                     </div>
