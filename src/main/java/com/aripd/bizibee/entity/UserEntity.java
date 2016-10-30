@@ -1,18 +1,12 @@
 package com.aripd.bizibee.entity;
 
-import com.aripd.util.RequestUtil;
-import com.aripd.util.SHA512;
-import java.net.URL;
-import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import org.apache.commons.lang3.LocaleUtils;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
@@ -35,14 +29,7 @@ public class UserEntity extends AbstractEntity {
     private String email;
     @NotNull
     @Column(nullable = false)
-    private String locale;
-
-    @NotNull
-    @Column(nullable = false)
-    private String firstname;
-    @NotNull
-    @Column(nullable = false)
-    private String lastname;
+    private String name;
 
     @ManyToOne
     private TeamEntity team;
@@ -53,34 +40,6 @@ public class UserEntity extends AbstractEntity {
     private SimulationEntity simulation;
 
     public UserEntity() {
-    }
-
-    @Transient
-    public String getLocaleString() {
-        Locale l = LocaleUtils.toLocale(locale);
-        return l.getDisplayName(new Locale(l.getLanguage(), l.getCountry()));
-    }
-
-    @Transient
-    public String getToken() {
-        return SHA512.hashText(password + username);
-    }
-
-    @Transient
-    public String getFullname() {
-        return String.format("%s %s", firstname, lastname);
-    }
-
-    @Transient
-    public URL getValidationUrl() {
-        String file = String.format("/api/v2/users/validate/?token=%s", getToken());
-        return RequestUtil.getFullAddress(file);
-    }
-
-    @Transient
-    public URL getNewPasswordRequestUrl() {
-        String file = String.format("/api/v2/users/newPasswordRequest/?token=%s", getToken());
-        return RequestUtil.getFullAddress(file);
     }
 
     public String getPassword() {
@@ -99,28 +58,12 @@ public class UserEntity extends AbstractEntity {
         this.email = email;
     }
 
-    public String getLocale() {
-        return locale;
+    public String getName() {
+        return name;
     }
 
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public UserGroup getUserGroup() {

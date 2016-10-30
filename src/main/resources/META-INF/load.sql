@@ -2,10 +2,10 @@ INSERT INTO `SIMULATIONENTITY` VALUES
 (1,0,NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,0,0,0,0,'Capsim Türkiye',0,0),
 (2,100000,NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,0.4,0.25,0.4,0.55,'Unilever 2016',5000000,0.2);
 
-INSERT INTO `USERENTITY` (`ID`,`EMAIL`,`FIRSTNAME`,`LASTNAME`,`LOCALE`,`PASSWORD`,`USERGROUP`,`USERNAME`,`SIMULATION_ID`) VALUES 
-(1,'cem@aripd.com','cem','aripd','tr_TR','cem','Administrators','cem',1),
-(2,'ruler@aripd.com','ruler','Unilever','tr_TR','ruler','Rulers','ruler',2),
-(3,'member@aripd.com','member','Unilever','en_US','member','Members','member',2);
+INSERT INTO `USERENTITY` (`ID`,`EMAIL`,`NAME`,`PASSWORD`,`USERGROUP`,`USERNAME`,`SIMULATION_ID`) VALUES 
+(1,'cem@aripd.com','cem aripd','cem','Administrators','cem',1),
+(2,'ruler@aripd.com','ruler Unilever','ruler','Rulers','ruler',2),
+(3,'member@aripd.com','member Unilever','member','Members','member',2);
 
 INSERT INTO `TEAMENTITY` VALUES 
 (1,2,'Team1'),

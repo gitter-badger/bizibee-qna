@@ -14,9 +14,9 @@
     </ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="user" value="#{userController.lazyModel}" emptyMessage="#{i18n['No records found']}"
+            <p:dataTable id="dataTable" var="user" value="#{userView.lazyModel}" emptyMessage="#{i18n['No records found']}"
                          paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{user.id}" selectionMode="single" selection="#{userController.selectedRecord}"
+                         rowKey="#{user.id}" selectionMode="single" selection="#{userView.selectedRecord}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                          sortMode="multiple" 
@@ -27,9 +27,6 @@
                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                     </p:commandButton>
                 </f:facet>
-                <p:column headerText="#{i18n['Id']}" sortBy="#{user.id}" filterBy="#{user.id}">
-                    <h:outputText value="#{user.id}"/>
-                </p:column>
                 <p:column headerText="#{i18n['Username']}" sortBy="#{user.username}" filterBy="#{user.username}">
                     <h:outputText value="#{user.username}"/>
                 </p:column>
@@ -42,15 +39,12 @@
                 <p:column headerText="#{i18n['Name']}" sortBy="#{user.name}" filterBy="#{user.name}">
                     <h:outputText value="#{user.name}"/>
                 </p:column>
-                <p:column headerText="#{i18n['Group']}" sortBy="#{user.userGroup}">
-                    <h:outputText value="#{i18n[user.userGroup.label]}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Simulation']}">
-                    <h:outputText value="#{user.simulation.name}"/>
+                <p:column headerText="#{i18n['Team']}">
+                    <h:outputText value="#{user.team.name}"/>
                 </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{user}" target="#{userController.selectedRecord}" />
+                        <f:setPropertyActionListener value="#{user}" target="#{userView.selectedRecord}" />
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
@@ -61,26 +55,22 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                    <p:inputText id="username" value="#{userController.selectedRecord.username}" required="true"/>
+                    <p:inputText id="username" value="#{userView.selectedRecord.username}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                    <p:inputText id="password" value="#{userController.selectedRecord.password}" required="true"/>
+                    <p:inputText id="password" value="#{userView.selectedRecord.password}" required="true"/>
                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{userController.selectedRecord.email}" required="true"/>
-                    <p:outputLabel for="userGroup" value="#{i18n['Group']}"/>
-                    <p:selectOneMenu id="userGroup" value="#{userController.selectedRecord.userGroup}" required="true">
-                        <f:selectItems value="#{userController.userGroups}" var="group" itemValue="#{userGroup}" itemLabel="#{i18n[userGroup.label]}"/>
-                    </p:selectOneMenu>
+                    <p:inputText id="email" value="#{userView.selectedRecord.email}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{userController.selectedRecord.name}" required="true"/>
-                    <p:outputLabel for="simulation" value="#{i18n['Simulation']}"/>
-                    <p:selectOneMenu id="simulation" value="#{userController.selectedRecord.simulation}" converter="#{simulationConverter}" required="true"
+                    <p:inputText id="name" value="#{userView.selectedRecord.name}" required="true"/>
+                    <p:outputLabel for="team" value="#{i18n['Team']}"/>
+                    <p:selectOneMenu id="team" value="#{userView.selectedRecord.team}" converter="#{teamConverter}" required="true"
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{userController.simulations}" var="simulation" itemValue="#{simulation}" itemLabel="#{simulation.name}"/>
+                        <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{userController.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{userView.doUpdateRecord}"/>
                 </f:facet>
             </p:dialog>
         </h:form>
@@ -88,26 +78,22 @@
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
                 <p:panelGrid columns="2">
                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                    <p:inputText id="username" value="#{userController.newRecord.username}" required="true"/>
+                    <p:inputText id="username" value="#{userView.newRecord.username}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                    <p:inputText id="password" value="#{userController.newRecord.password}" required="true"/>
+                    <p:inputText id="password" value="#{userView.newRecord.password}" required="true"/>
                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{userController.newRecord.email}" required="true"/>
-                    <p:outputLabel for="group" value="#{i18n['Group']}"/>
-                    <p:selectOneMenu id="group" value="#{userController.newRecord.userGroup}" required="true">
-                        <f:selectItems value="#{userController.userGroups}" var="userGroup" itemValue="#{userGroup}" itemLabel="#{i18n[userGroup.label]}"/>
-                    </p:selectOneMenu>
+                    <p:inputText id="email" value="#{userView.newRecord.email}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{userController.newRecord.name}" required="true"/>
-                    <p:outputLabel for="simulation" value="#{i18n['Simulation']}"/>
-                    <p:selectOneMenu id="simulation" value="#{userController.newRecord.simulation}" converter="#{simulationConverter}" required="true"
+                    <p:inputText id="name" value="#{userView.newRecord.name}" required="true"/>
+                    <p:outputLabel for="team" value="#{i18n['Team']}"/>
+                    <p:selectOneMenu id="team" value="#{userView.newRecord.team}" converter="#{teamConverter}" required="true"
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{userController.simulations}" var="simulation" itemValue="#{simulation}" itemLabel="#{simulation.name}"/>
+                        <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{userController.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{userView.doCreateRecord}"/>
                 </f:facet>
             </p:dialog>
         </h:form>

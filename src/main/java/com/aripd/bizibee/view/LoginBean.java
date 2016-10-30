@@ -4,10 +4,8 @@ import com.aripd.bizibee.service.UserService;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.RequestUtil;
-import com.aripd.util.locale.LocaleBean;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Locale;
 import javax.annotation.PostConstruct;
 import org.apache.log4j.Logger;
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +15,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.LocaleUtils;
 
 @Named
 @SessionScoped
@@ -29,13 +26,8 @@ public class LoginBean implements Serializable {
     private UserService userService;
     private UserEntity user;
 
-    private String token;
-
     private String username;
     private String password;
-
-    @Inject
-    private LocaleBean localeBean;
 
     @Inject
     MessageUtil messageUtil;
@@ -45,18 +37,6 @@ public class LoginBean implements Serializable {
 
     @PostConstruct
     public void init() {
-    }
-
-    public void onLoad() {
-        if (token != null) {
-            user = userService.findOneByToken(token);
-
-            if (user != null) {
-                username = user.getUsername();
-                password = user.getPassword();
-                login();
-            }
-        }
     }
 
     /**
@@ -84,9 +64,6 @@ public class LoginBean implements Serializable {
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
             request.login(username, password);
             LOG.info(String.format("User (%s) has logged in %s", request.getUserPrincipal().getName(), new Date()));
-            Locale locale = LocaleUtils.toLocale(user.getLocale());
-            localeBean.doChange(locale);
-            LOG.info(String.format("Locale is set to %s for %s", locale, user.getUsername()));
 
             String navigation = "/member/index?faces-redirect=true";
             RequestUtil.doNavigate(navigation);
@@ -123,14 +100,6 @@ public class LoginBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public UserEntity getUser() {

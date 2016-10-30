@@ -3,9 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.UserService;
-import com.aripd.util.locale.LocaleBean;
 import java.io.Serializable;
-import java.util.Locale;
 import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.NavigationHandler;
@@ -17,7 +15,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.LocaleUtils;
 
 @Named
 @ViewScoped
@@ -28,9 +25,6 @@ public class ProfileBean implements Serializable {
     @Inject
     private UserService userService;
     private UserEntity selectedRecord;
-
-    @Inject
-    private LocaleBean localeBean;
 
     @Inject
     MessageUtil messageUtil;
@@ -49,10 +43,6 @@ public class ProfileBean implements Serializable {
 
         userService.update(selectedRecord);
 
-        Locale locale = LocaleUtils.toLocale(selectedRecord.getLocale());
-        localeBean.doChange(locale);
-        LOG.info(String.format("Locale has been set to {0} for {1}", locale, selectedRecord.getUsername()));
-
         String navigation = "/member/profile.xhtml?faces-redirect=true";
         navigationHandler.handleNavigation(context, null, navigation);
     }
@@ -64,26 +54,11 @@ public class ProfileBean implements Serializable {
         UserEntity user = userService.getCurrentUser();
         if (selectedRecord.getUsername().equalsIgnoreCase(user.getUsername())) {
             userService.update(selectedRecord);
-
-            if (!selectedRecord.getLocale().equalsIgnoreCase(user.getLocale())) {
-                Locale locale = LocaleUtils.toLocale(selectedRecord.getLocale());
-                localeBean.doChange(locale);
-                LOG.info(String.format("Locale has been set to {0} for {1}", locale, selectedRecord.getUsername()));
-
-                navigation = "/member/profile.xhtml?faces-redirect=true";
-                navigationHandler.handleNavigation(context, null, navigation);
-            }
-
             messageUtil.addGlobalInfoFlashMessage("Updated");
         } else if (userService.isExistByUsernameExceptUsername(selectedRecord.getUsername(), user.getUsername())) {
             messageUtil.addGlobalErrorFlashMessage("Username {0} is available. Please try another one.", new Object[]{selectedRecord.getUsername()});
         } else {
             userService.update(selectedRecord);
-
-            Locale locale = LocaleUtils.toLocale(selectedRecord.getLocale());
-            localeBean.doChange(locale);
-            LOG.info(String.format("Locale has been set to {0} for {1}", locale, selectedRecord.getUsername()));
-
             messageUtil.addGlobalInfoFlashMessage("Updated");
 
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();

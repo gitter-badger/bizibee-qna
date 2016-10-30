@@ -45,9 +45,11 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{teamView.selectedRecord.name}" required="true"/>
-
                     <p:outputLabel for="users" value="#{i18n['Users']}"/>
-                    <p:pickList id="users" value="#{teamView.users}" var="user" itemLabel="#{user.username}" itemValue="#{user}" />
+                    <p:selectManyMenu id="users" value="#{teamView.selectedRecord.users}" converter="#{userConverter}"
+                                      filter="true" filterMatchMode="contains" showCheckbox="true">
+                        <f:selectItems value="#{teamView.users}" var="user" itemValue="#{user}" itemLabel="#{user.name}" />
+                    </p:selectManyMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamView.doUpdateRecord}"/>
@@ -63,6 +65,11 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{teamView.newRecord.name}" required="true"/>
+                    <p:outputLabel for="users" value="#{i18n['Users']}"/>
+                    <p:selectManyMenu id="users" value="#{teamView.newRecord.users}" converter="#{userConverter}"
+                                      filter="true" filterMatchMode="contains" showCheckbox="true">
+                        <f:selectItems value="#{teamView.users}" var="user" itemValue="#{user}" itemLabel="#{user.name}" />
+                    </p:selectManyMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{teamView.doCreateRecord}"/>

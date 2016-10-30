@@ -5,7 +5,9 @@ import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserEntity_;
 import com.aripd.bizibee.entity.UserGroup;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.apache.log4j.Logger;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -17,8 +19,11 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.primefaces.model.SortMeta;
+import org.primefaces.model.SortOrder;
 
 @Stateless
 public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implements UserService {
@@ -135,6 +140,19 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
     }
 
     @Override
+    public List<UserEntity> findAllBySimulation(SimulationEntity simulation) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        Predicate predicate = cb.equal(root.get(UserEntity_.simulation), simulation);
+        cq.where(predicate);
+
+        Query q = getEntityManager().createQuery(cq);
+        return q.getResultList();
+    }
+
+    @Override
     public List<UserEntity> findAllBySimulationAndNoTeamAssigned(SimulationEntity simulation) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
@@ -146,6 +164,84 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
         Query q = getEntityManager().createQuery(cq);
         return q.getResultList();
+    }
+
+    @Override
+    public List<UserEntity> getResultList(SimulationEntity simulation, int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        Predicate predicate1 = cb.equal(root.get(UserEntity_.simulation), simulation);
+        Predicate predicate2 = this.getFilterCondition(cb, root, filters);
+
+        Predicate predicate = cb.and(predicate1, predicate2);
+        cq.where(predicate);
+
+        if (sortField != null) {
+            if (sortOrder == SortOrder.ASCENDING) {
+                cq.orderBy(cb.asc(root.get(sortField)));
+            } else if (sortOrder == SortOrder.DESCENDING) {
+                cq.orderBy(cb.desc(root.get(sortField)));
+            }
+        }
+
+        cq.orderBy(cb.desc(root.get(UserEntity_.id)));
+
+        Query q = em.createQuery(cq);
+        return q.setFirstResult(first).setMaxResults(pageSize).getResultList();
+    }
+
+    @Override
+    public List<UserEntity> getResultList(SimulationEntity simulation, int first, int pageSize, List<SortMeta> multiSortMeta, Map<String, Object> filters) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        Predicate predicate1 = cb.equal(root.get(UserEntity_.simulation), simulation);
+        Predicate predicate2 = this.getFilterCondition(cb, root, filters);
+
+        Predicate predicate = cb.and(predicate1, predicate2);
+        cq.where(predicate);
+
+        if (multiSortMeta != null) {
+            List<Order> orders = new ArrayList<>();
+            for (SortMeta sortMeta : multiSortMeta) {
+                String sortField = sortMeta.getSortField();
+                SortOrder sortOrder = sortMeta.getSortOrder();
+                if (sortField != null) {
+                    Order order = null;
+                    if (sortOrder == SortOrder.ASCENDING) {
+                        order = cb.asc(root.get(sortField));
+                    } else if (sortOrder == SortOrder.DESCENDING) {
+                        order = cb.desc(root.get(sortField));
+                    }
+                    orders.add(order);
+                }
+            }
+            cq.orderBy(orders);
+        }
+
+        Query q = em.createQuery(cq);
+        return q.setFirstResult(first).setMaxResults(pageSize).getResultList();
+    }
+
+    @Override
+    public int count(SimulationEntity simulation, Map<String, Object> filters) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        Predicate predicate1 = cb.equal(root.get(UserEntity_.simulation), simulation);
+        Predicate predicate2 = this.getFilterCondition(cb, root, filters);
+
+        Predicate predicate = cb.and(predicate1, predicate2);
+        cq.where(predicate);
+
+        cq.select(cb.count(root));
+
+        Query q = em.createQuery(cq);
+        return ((Long) q.getSingleResult()).intValue();
     }
 
 }

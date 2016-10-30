@@ -25,17 +25,8 @@
                 <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
                 <p:inputText id="email" value="#{profileBean.selectedRecord.email}" placeholder="#{i18n['E-mail Address']}" required="true"/>
 
-                <p:outputLabel for="firstname" value="#{i18n['Firstname']}"/>
-                <p:inputText id="firstname" value="#{profileBean.selectedRecord.firstname}" placeholder="#{i18n['Firstname']}"/>
-
-                <p:outputLabel for="lastname" value="#{i18n['Lastname']}"/>
-                <p:inputText id="lastname" value="#{profileBean.selectedRecord.lastname}" placeholder="#{i18n['Lastname']}"/>
-
-                <p:outputLabel for="locale" value="#{i18n['Locale']}"/>
-                <p:selectOneMenu id="locale" value="#{profileBean.selectedRecord.locale}" label="#{i18n['Locale']}" required="true">
-                    <p:ajax listener="#{profileBean.doUpdateLocale}"/>
-                    <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
-                </p:selectOneMenu>
+                <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                <p:inputText id="name" value="#{profileBean.selectedRecord.name}" placeholder="#{i18n['Name']}" required="true"/>
 
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" actionListener="#{profileBean.doUpdateRecord}" update=":growl"/>
