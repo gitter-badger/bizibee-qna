@@ -29,7 +29,8 @@
 
                     <div class="col-sm-4 col-sm-offset-2">
                         <div class="home-wrapper">
-                            <h:form role="form" styleClass="intro-form">
+                            <h:form id="login" role="form" styleClass="intro-form">
+                                <p:focus context="login"/>
                                 <h3 class="text-center">#{i18n['Sign in']}</h3>
                                 <div class="form-group">
                                     <h:inputText id="j_username" value="#{loginBean.username}" autocomplete="off" pt:placeholder="#{i18n['Username']}" label="#{i18n['Username']}" styleClass="form-control" required="true"/>
