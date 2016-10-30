@@ -33,6 +33,9 @@
                 <p:column headerText="#{i18n['Username']}" sortBy="#{user.username}" filterBy="#{user.username}">
                     <h:outputText value="#{user.username}"/>
                 </p:column>
+                <p:column headerText="#{i18n['Password']}">
+                    <h:outputText value="#{user.password}"/>
+                </p:column>
                 <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{user.email}" filterBy="#{user.email}">
                     <h:outputText value="#{user.email}"/>
                 </p:column>
