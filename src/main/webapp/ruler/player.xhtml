@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/template.xhtml">
+    <ui:define name="breadCrumb">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="#{i18n['Home']}" outcome="/index" />
+                <p:menuitem value="#{i18n['Players']}" outcome="/ruler/player" />
+            </p:breadCrumb>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="player" value="#{playerView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                         paginator="true" paginatorPosition="bottom" rows="10" 
+                         rowKey="#{player.id}" selectionMode="single" selection="#{playerView.selectedRecord}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                         sortMode="multiple" 
+                         lazy="true" rowsPerPageTemplate="10,15,50">
+                <f:facet name="header">
+                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
+                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
+                    </p:commandButton>
+                </f:facet>
+                <p:column headerText="#{i18n['Name']}" sortBy="#{player.name}" filterBy="#{player.name}">
+                    <h:outputText value="#{player.name}"/>
+                </p:column>
+                <p:column headerText="#{i18n['Team']}">
+                    <h:outputText value="#{player.team.name}"/>
+                </p:column>
+                <p:column exportable="false" width="100">
+                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
+                        <f:setPropertyActionListener value="#{player}" target="#{playerView.selectedRecord}" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+    <ui:define name="dialog">
+        <h:form id="editForm">
+            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                    <p:inputText id="name" value="#{playerView.selectedRecord.name}" required="true"/>
+                    <p:outputLabel for="team" value="#{i18n['Team']}"/>
+                    <p:selectOneMenu id="team" value="#{playerView.selectedRecord.team}" converter="#{teamConverter}" required="true"
+                                     filter="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                        <f:selectItems value="#{playerView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{playerView.doUpdateRecord}"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+        <h:form id="newForm">
+            <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                    <p:inputText id="name" value="#{playerView.newRecord.name}" required="true"/>
+                    <p:outputLabel for="team" value="#{i18n['Team']}"/>
+                    <p:selectOneMenu id="team" value="#{playerView.newRecord.team}" converter="#{teamConverter}" required="true"
+                                     filter="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                        <f:selectItems value="#{playerView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{playerView.doCreateRecord}"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

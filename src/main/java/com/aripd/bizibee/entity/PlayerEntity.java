@@ -1,12 +1,10 @@
 package com.aripd.bizibee.entity;
 
-import java.util.List;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -16,7 +14,7 @@ import org.eclipse.persistence.annotations.TenantDiscriminatorColumn;
 @Multitenant(value = MultitenantType.SINGLE_TABLE)
 @TenantDiscriminatorColumn(name = "SIMULATION_ID", contextProperty = "eclipselink.tenant-id")
 @Cacheable(false)
-public class TeamEntity extends AbstractEntity {
+public class PlayerEntity extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "SIMULATION_ID", insertable = false, updatable = false)
@@ -26,13 +24,10 @@ public class TeamEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "team", orphanRemoval = true)
-    private List<UserEntity> users;
+    @ManyToOne
+    private TeamEntity team;
 
-    @OneToMany(mappedBy = "team", orphanRemoval = true)
-    private List<PlayerEntity> players;
-
-    public TeamEntity() {
+    public PlayerEntity() {
     }
 
     public SimulationEntity getSimulation() {
@@ -51,20 +46,12 @@ public class TeamEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public List<UserEntity> getUsers() {
-        return users;
+    public TeamEntity getTeam() {
+        return team;
     }
 
-    public void setUsers(List<UserEntity> users) {
-        this.users = users;
-    }
-
-    public List<PlayerEntity> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<PlayerEntity> players) {
-        this.players = players;
+    public void setTeam(TeamEntity team) {
+        this.team = team;
     }
 
 }
