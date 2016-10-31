@@ -63,7 +63,7 @@
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{userView.selectedRecord.name}" required="true"/>
                     <p:outputLabel for="team" value="#{i18n['Team']}"/>
-                    <p:selectOneMenu id="team" value="#{userView.selectedRecord.team}" converter="#{teamConverter}" required="true"
+                    <p:selectOneMenu id="team" value="#{userView.selectedRecord.team}" converter="#{teamConverter}" 
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
@@ -90,7 +90,7 @@
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{userView.newRecord.name}" required="true"/>
                     <p:outputLabel for="team" value="#{i18n['Team']}"/>
-                    <p:selectOneMenu id="team" value="#{userView.newRecord.team}" converter="#{teamConverter}" required="true"
+                    <p:selectOneMenu id="team" value="#{userView.newRecord.team}" converter="#{teamConverter}" 
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>

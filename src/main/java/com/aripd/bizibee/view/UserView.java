@@ -4,6 +4,7 @@ import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.TeamEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
+import com.aripd.bizibee.entity.UserGroup;
 import com.aripd.bizibee.model.data.LazyUserDataModelBySimulation;
 import com.aripd.bizibee.service.TeamService;
 import com.aripd.bizibee.service.UserService;
@@ -47,6 +48,7 @@ public class UserView implements Serializable {
         SimulationEntity simulation = user.getSimulation();
         lazyModel = new LazyUserDataModelBySimulation(userService, simulation);
         
+        newRecord.setUserGroup(UserGroup.Members);
         newRecord.setSimulation(simulation);
     }
 

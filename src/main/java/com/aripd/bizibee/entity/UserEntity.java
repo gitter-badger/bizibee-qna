@@ -13,6 +13,11 @@ import org.hibernate.validator.constraints.Email;
 public class UserEntity extends AbstractEntity {
 
     @NotNull
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private SimulationEntity simulation;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserGroup userGroup;
@@ -33,11 +38,6 @@ public class UserEntity extends AbstractEntity {
 
     @ManyToOne
     private TeamEntity team;
-
-    @NotNull
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    private SimulationEntity simulation;
 
     public UserEntity() {
     }
