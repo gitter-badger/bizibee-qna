@@ -1,12 +1,9 @@
 package com.aripd.bizibee.view;
 
-import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyTeamDataModel;
 import com.aripd.bizibee.entity.TeamEntity;
-import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.TeamService;
-import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -31,9 +28,6 @@ public class TeamView implements Serializable {
     private LazyDataModel<TeamEntity> lazyModel;
 
     @Inject
-    private UserService userService;
-
-    @Inject
     MessageUtil messageUtil;
 
     public TeamView() {
@@ -44,16 +38,6 @@ public class TeamView implements Serializable {
     @PostConstruct
     public void init() {
         lazyModel = new LazyTeamDataModel(teamService);
-    }
-
-    public List<TeamEntity> fetchAllRecords() {
-        return teamService.findAll();
-    }
-
-    public List<UserEntity> getUsers() {
-        UserEntity user = userService.getCurrentUser();
-        SimulationEntity simulation = user.getSimulation();
-        return userService.findAllBySimulation(simulation);
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
