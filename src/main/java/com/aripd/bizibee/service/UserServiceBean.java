@@ -18,7 +18,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -85,27 +84,6 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
         TypedQuery<UserEntity> typedQuery = em.createQuery(cq);
         List<UserEntity> resultList = typedQuery.getResultList();
         return !resultList.isEmpty();
-    }
-
-    @Override
-    public UserEntity findOneByToken(String token) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
-        Root<UserEntity> root = cq.from(UserEntity.class);
-
-        Expression<String> eConcat = cb.concat(root.get(UserEntity_.password), root.get(UserEntity_.username));
-        Expression<String> eToken = cb.function("SHA2", String.class, eConcat, cb.literal("512"));
-
-        Predicate predicate = cb.equal(eToken, token);
-        cq.where(predicate);
-
-        Query q = getEntityManager().createQuery(cq);
-        List<UserEntity> results = q.getResultList();
-        UserEntity entity = null;
-        if (!results.isEmpty()) {
-            entity = results.get(0);
-        }
-        return entity;
     }
 
     @Override
