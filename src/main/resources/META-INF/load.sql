@@ -13,6 +13,12 @@ INSERT INTO `TEAMENTITY` VALUES
 (3,2,'Team3'),
 (4,2,'Team4');
 
+INSERT INTO `PLAYERENTITY` VALUES 
+(1,2,'player1@aripd.com','Player1','player1','player1',null),
+(2,2,'player2@aripd.com','Player2','player2','player2',null),
+(3,2,'player3@aripd.com','Player3','player3','player3',null),
+(4,2,'player4@aripd.com','Player4','player4','player4',null);
+
 INSERT INTO `PRODUCTENTITY` VALUES 
 (1,2,0,120,75,1,0,'Product1',0),
 (2,2,0,120,75,1,0,'Product2',0),
