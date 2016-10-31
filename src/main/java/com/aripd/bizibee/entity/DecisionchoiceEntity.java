@@ -35,6 +35,10 @@ public class DecisionchoiceEntity extends AbstractEntity {
     private double ms;
     private double usg;
 
+    private int indexMin;
+    private int indexMax;
+    private int indexStep;
+
     public DecisionchoiceEntity() {
     }
 
@@ -92,6 +96,30 @@ public class DecisionchoiceEntity extends AbstractEntity {
 
     public void setMs(double ms) {
         this.ms = ms;
+    }
+
+    public int getIndexMin() {
+        return indexMin;
+    }
+
+    public void setIndexMin(int indexMin) {
+        this.indexMin = indexMin;
+    }
+
+    public int getIndexMax() {
+        return indexMax;
+    }
+
+    public void setIndexMax(int indexMax) {
+        this.indexMax = indexMax;
+    }
+
+    public int getIndexStep() {
+        return indexStep;
+    }
+
+    public void setIndexStep(int indexStep) {
+        this.indexStep = indexStep;
     }
 
 }

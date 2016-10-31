@@ -12,6 +12,7 @@ import javax.inject.Named;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import java.util.ArrayList;
+import javax.faces.event.ActionEvent;
 
 @Named
 @ViewScoped
@@ -38,6 +39,10 @@ public class ScoreboardView implements Serializable {
     @PostConstruct
     public void init() {
         decisions = decisionService.findAll();
+    }
+
+    public void doUpdate(ActionEvent actionEvent) {
+        messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
     public List<DecisionEntity> getDecisions() {

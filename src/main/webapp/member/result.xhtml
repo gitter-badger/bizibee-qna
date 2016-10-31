@@ -34,6 +34,9 @@
                             <h:outputText value="#{decisionchoice.ms}" />
                         </p:column>
                     </p:dataTable>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{i18n['Submit']}" update=":growl" process="@this" actionListener="#{scoreboardView.doUpdate}"/>
+                    </f:facet>
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
@@ -54,6 +57,9 @@
                             <h:outputText value="#{decisionchoice.ms}" />
                         </p:column>
                     </p:dataTable>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{i18n['Submit']}" update=":growl" process="@this" actionListener="#{scoreboardView.doUpdate}"/>
+                    </f:facet>
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
@@ -69,6 +75,9 @@
                             <p:knob min="#{product.indexMin}" max="#{product.indexMax}" step="#{product.indexStep}" value="#{product.indexMin}"/> 
                         </p:panel>
                     </p:repeat>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{i18n['Submit']}" update=":growl" process="@this" actionListener="#{scoreboardView.doUpdate}"/>
+                    </f:facet>
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
@@ -94,6 +103,9 @@
                             </p:column>
                         </p:dataTable>
                     </p:repeat>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{i18n['Submit']}" update=":growl" process="@this" actionListener="#{scoreboardView.doUpdate}"/>
+                    </f:facet>
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
@@ -119,6 +131,9 @@
                             </p:column>
                         </p:dataTable>
                     </p:repeat>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{i18n['Submit']}" update=":growl" process="@this" actionListener="#{scoreboardView.doUpdate}"/>
+                    </f:facet>
                 </p:panel>
 
             </p:repeat>
