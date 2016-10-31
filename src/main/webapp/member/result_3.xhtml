@@ -17,15 +17,43 @@
             <p:repeat var="decision" value="#{scoreboardView.decisions}">
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
-                    <p:selectOneRadio value="#{scoreboardView.map[decision]}" converter="#{decisionchoiceConverter}">
-                        <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                    </p:selectOneRadio>
+                    <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                                 selection="#{scoreboardView.selectedDecisionchoice}" 
+                                 rowKey="#{decisionchoice.id}">
+                        <p:column selectionMode="single" style="width:16px;text-align:center;" />
+                        <p:column headerText="#{i18n['Decision']}">
+                            <h:outputText value="#{decisionchoice.name}" />
+                        </p:column>
+                        <p:column headerText="#{i18n['USG']}">
+                            <h:outputText value="#{decisionchoice.usg}" />
+                        </p:column>
+                        <p:column headerText="#{i18n['GM']}">
+                            <h:outputText value="#{decisionchoice.gm}" />
+                        </p:column>
+                        <p:column headerText="#{i18n['MS']}">
+                            <h:outputText value="#{decisionchoice.ms}" />
+                        </p:column>
+                    </p:dataTable>
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
-                    <p:selectManyCheckbox value="#{scoreboardView.map[decision]}" converter="#{decisionchoiceConverter}">
-                        <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                    </p:selectManyCheckbox>
+                    <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
+                                 selection="#{scoreboardView.selectedDecisionchoices}" 
+                                 rowKey="#{decisionchoice.id}">
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center;" />
+                        <p:column headerText="#{i18n['Decision']}">
+                            <h:outputText value="#{decisionchoice.name}" />
+                        </p:column>
+                        <p:column headerText="#{i18n['USG']}">
+                            <h:outputText value="#{decisionchoice.usg}" />
+                        </p:column>
+                        <p:column headerText="#{i18n['GM']}">
+                            <h:outputText value="#{decisionchoice.gm}" />
+                        </p:column>
+                        <p:column headerText="#{i18n['MS']}">
+                            <h:outputText value="#{decisionchoice.ms}" />
+                        </p:column>
+                    </p:dataTable>
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
@@ -94,8 +122,6 @@
                 </p:panel>
 
             </p:repeat>
-
-            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{scoreboardView.doUpdate}"/>
         </h:form>
     </ui:define>
 </ui:composition>

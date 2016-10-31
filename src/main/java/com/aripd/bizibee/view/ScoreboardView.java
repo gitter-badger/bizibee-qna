@@ -12,6 +12,8 @@ import javax.inject.Named;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.faces.event.ActionEvent;
 
 @Named
@@ -24,6 +26,7 @@ public class ScoreboardView implements Serializable {
     private DecisionService decisionService;
     private List<DecisionEntity> decisions;
 
+    private Map<DecisionEntity, DecisionchoiceEntity> map = new HashMap<>();
     private DecisionchoiceEntity selectedDecisionchoice;
     private List<DecisionchoiceEntity> selectedDecisionchoices;
 
@@ -42,6 +45,7 @@ public class ScoreboardView implements Serializable {
     }
 
     public void doUpdate(ActionEvent actionEvent) {
+        LOG.info("map: " + map);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
@@ -71,6 +75,14 @@ public class ScoreboardView implements Serializable {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public Map<DecisionEntity, DecisionchoiceEntity> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<DecisionEntity, DecisionchoiceEntity> map) {
+        this.map = map;
     }
 
 }
