@@ -34,8 +34,8 @@
                 <p:layoutUnit position="north">
                     <div class="ui-g">
                         <div class="ui-g-4" style="text-align: left;">
-                            <h:link outcome="/index">
-                                <composite:logo/>
+                            <h:link outcome="/index" style="text-decoration: none;">
+                                <composite:logo text="BiZiBee" width="60" height="30" fill="#000000" stroke="#000000"/>
                             </h:link>                                
                         </div>
                         <div class="ui-g-4" style="text-align: center;">
@@ -59,7 +59,7 @@
                             <h:outputText value="#{session.lastAccessedTime}">
                                 <f:convertDateTime pattern="yyyy" type="date"/>
                             </h:outputText>
-                            <composite:logo width="33.66" height="10"/>
+                            <composite:logo text="BiZiBee" width="40" height="20" fill="#000000" stroke="#000000"/>
                         </div>
                     </div>
                 </p:layoutUnit>

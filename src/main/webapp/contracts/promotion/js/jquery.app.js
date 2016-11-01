@@ -17,19 +17,6 @@ $(function () {
         fixedContentPos: false
     });
 
-    $("form").hide();
-    $("form").first().show();
-    $("form a").click(function () {
-        $("form").hide('slow', function () {
-            // Animation complete.
-        });
-        $("#" + $(this).attr('target')).show('slow', function () {
-            // Animation complete.
-        });
-        console.log($(this).attr('target'));
-        return false;
-    });
-
 });
 
 

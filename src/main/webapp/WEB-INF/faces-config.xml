@@ -7,7 +7,7 @@
 
     <application>
         <locale-config>
-            <default-locale>tr_TR</default-locale>
+            <default-locale>en_US</default-locale>
             <supported-locale>en_US</supported-locale>
             <supported-locale>tr_TR</supported-locale>
         </locale-config>
