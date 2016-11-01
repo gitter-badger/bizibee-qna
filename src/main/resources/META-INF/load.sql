@@ -64,12 +64,16 @@ INSERT INTO `DECISIONCHOICEENTITY` VALUES
 (21,2,1000,0,120,75,1,0,'Gondola',0,6),
 (22,2,1500,0,120,75,1,0,'Checkout stand',0,6),
 
-(23,2,0,0,120,75,1,0,'Gift Promotion(off pack)',0,8),
-(24,2,0,0,120,75,1,0,'Copack Promotion',0,8),
-(25,2,0,0,120,75,1,0,'Price Promotion',0,8),
+(23,2,0,0,120,75,1,0,'No assortment',0,7),
+(24,2,2000,0,120,75,1,0,'Assortment1',0,7),
+(25,2,1000,0,120,75,1,0,'Assortmen2',0,7),
+(26,2,1500,0,120,75,1,0,'Assortmen3',0,7),
 
-(26,2,0,0,120,75,1,0,'No event nor improvement',0,9),
-(27,2,10000,0,120,75,1,0,'Motivational event',0,9),
-(28,2,15000,0,120,75,1,0,'Training',0,9),
-(29,2,24000,0,120,75,1,0,'Providing tablets integrated to inventory system',0,9);
+(27,2,0,0,120,75,1,0,'Gift Promotion(off pack)',0,8),
+(28,2,0,0,120,75,1,0,'Copack Promotion',0,8),
+(29,2,0,0,120,75,1,0,'Price Promotion',0,8),
 
+(30,2,0,0,120,75,1,0,'No event nor improvement',0,9),
+(31,2,10000,0,120,75,1,0,'Motivational event',0,9),
+(32,2,15000,0,120,75,1,0,'Training',0,9),
+(33,2,24000,0,120,75,1,0,'Providing tablets integrated to inventory system',0,9);

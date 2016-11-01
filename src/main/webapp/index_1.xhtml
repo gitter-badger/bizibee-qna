@@ -1,0 +1,244 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name="content">
+        <section class="section home home-register bg-dark" id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <div class="home-wrapper">
+
+                            <div class="text-tran-box text-tran-box-dark">
+                                <h1 class="text-transparent">Here is the best way to present your apps</h1>
+                            </div>
+
+                            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit.</h4>
+
+                            <a href="" class="btn btn-white">Learn more</a>
+
+                            <div class="clearfix"></div>
+
+                            <a href="http://vimeo.com/99025203" class="video-btn btn popup-video"><i class="pe-7s-play"></i>Watch Video</a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <div class="home-wrapper">
+                            <h:form id="login" role="form" styleClass="intro-form">
+                                <p:focus context="login"/>
+                                <h3 class="text-center">#{i18n['Sign in']}</h3>
+                                <div class="form-group">
+                                    <h:inputText id="j_username" value="#{loginBean.username}" autocomplete="off" pt:placeholder="#{i18n['Username']}" label="#{i18n['Username']}" styleClass="form-control" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:inputSecret id="j_password" value="#{loginBean.password}" autocomplete="off" pt:placeholder="#{i18n['Password']}" label="#{i18n['Password']}" styleClass="form-control" required="true"/>
+                                </div>
+                                <div class="form-group text-center">
+                                    <h:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" styleClass="btn btn-custom btn-sm">
+                                        <f:ajax execute="@form" render=":growl"/>
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="facts-box text-center">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-6">
+                                    <h2>687</h2>
+                                    <p class="text-muted">Completed Projects</p>
+                                </div>
+
+                                <div class="col-sm-3 col-xs-6">
+                                    <h2>142</h2>
+                                    <p class="text-muted">Happy Clients</p>
+                                </div>
+
+                                <div class="col-sm-3 col-xs-6">
+                                    <h2>742</h2>
+                                    <p class="text-muted">Total Download</p>
+                                </div>
+
+                                <div class="col-sm-3 col-xs-6">
+                                    <h2>1548</h2>
+                                    <p class="text-muted">Cup Of Coffee</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="clearfix"></div>
+
+
+        <section class="section" id="features">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="features-box text-center">
+                            <div class="feature-icon">
+                                <i class="pe-7s-science"></i>
+                            </div>
+                            <h3>Strategy Solutions</h3>
+
+                            <p class="text-muted">We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste natus error sit.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="features-box text-center">
+                            <div class="feature-icon">
+                                <i class="pe-7s-light"></i>
+                            </div>
+                            <h3>Dedicated Support</h3>
+
+                            <p class="text-muted">We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste natus error sit.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="features-box text-center">
+                            <div class="feature-icon">
+                                <i class="pe-7s-display1"></i>
+                            </div>
+                            <h3>Digital Design</h3>
+
+                            <p class="text-muted">We put a lot of effort in design, as it’s the most important ingredient of successful website.Sed ut perspiciatis unde omnis iste natus error sit.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <h:graphicImage name="images/ipad.png" styleClass="img-responsive"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section bg-white" id="pricing">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2 class="title">Simple Pricing</h2>
+                        <p class="title-alt">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons, Fonts &amp; all <br/> others graphics are optimized.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="row">
+
+                            <!--Pricing Column-->
+                            <article class="pricing-column col-lg-4 col-md-4">
+                                <div class="inner-box">
+                                    <div class="plan-header text-center">
+                                        <h3 class="plan-title">1 Aylık Paket</h3>
+                                        <h2 class="plan-price">$15 + KDV</h2>
+                                        <div class="plan-duration">Per Month</div>
+                                    </div>
+                                    <ul class="plan-stats list-unstyled">
+                                        <li> <i class="pe-7s-server"></i>10 GB Storege</li>
+                                        <li> <i class="pe-7s-graph"></i>500 GB Bandwidth</li>
+                                        <li> <i class="pe-7s-mail-open"></i>Email Support</li>
+                                        <li> <i class="pe-7s-tools"></i>24x7 Support</li>
+                                    </ul>
+
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-sm btn-dark">Signup Now</a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!--Pricing Column-->
+                            <article class="pricing-column col-lg-4 col-md-4">
+                                <div class="inner-box active">
+                                    <div class="plan-header text-center">
+                                        <h3 class="plan-title">6 Aylık Paket</h3>
+                                        <h2 class="plan-price">$12 + KDV</h2>
+                                        <div class="plan-duration">Per Month</div>
+                                    </div>
+                                    <ul class="plan-stats list-unstyled">
+                                        <li> <i class="pe-7s-server"></i>10 GB Storege</li>
+                                        <li> <i class="pe-7s-graph"></i>500 GB Bandwidth</li>
+                                        <li> <i class="pe-7s-mail-open"></i>Email Support</li>
+                                        <li> <i class="pe-7s-tools"></i>24x7 Support</li>
+                                    </ul>
+
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-sm btn-custom">Signup Now</a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!--Pricing Column-->
+                            <article class="pricing-column col-lg-4 col-md-4">
+                                <div class="inner-box">
+                                    <div class="plan-header text-center">
+                                        <h3 class="plan-title">12 Aylık Paket</h3>
+                                        <h2 class="plan-price">$10 + KDV</h2>
+                                        <div class="plan-duration">Per Month</div>
+                                    </div>
+                                    <ul class="plan-stats list-unstyled">
+                                        <li> <i class="pe-7s-server"></i>10 GB Storege</li>
+                                        <li> <i class="pe-7s-graph"></i>500 GB Bandwidth</li>
+                                        <li> <i class="pe-7s-mail-open"></i>Email Support</li>
+                                        <li> <i class="pe-7s-tools"></i>24x7 Support</li>
+                                    </ul>
+
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-sm btn-dark">Signup Now</a>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                    </div><!-- end col -->
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="clients">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-sm-12">
+                        <h2 class="title">Trusted by Thousands</h2>
+                        <p class="slogan">Lorem ipsum dolor sit amet, consectetur adipis.</p>
+                        <ul class="list-inline client-list">
+                            <li><a href="" title="Microsoft"><h:graphicImage name="images/clients/microsoft.png" alt="clients"/></a></li>
+                            <li><a href="" title="Google"><h:graphicImage name="images/clients/google.png" alt="clients"/></a></li>
+                            <li><a href="" title="Instagram"><h:graphicImage name="images/clients/instagram.png" alt="clients"/></a></li>
+                            <li><a href="" title="Converse"><h:graphicImage name="images/clients/converse.png" alt="clients"/></a></li>
+                        </ul>
+                    </div> <!-- end Col -->
+                </div>
+
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

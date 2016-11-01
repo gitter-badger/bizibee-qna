@@ -13,13 +13,9 @@ import javax.inject.Named;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import javax.faces.component.UIOutput;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 
 @Named
 @ViewScoped
@@ -49,45 +45,62 @@ public class ScoreboardView implements Serializable {
         decisions = decisionService.findAll();
     }
 
-    public void onChange1(AjaxBehaviorEvent event) {
-        DecisionchoiceEntity entity = (DecisionchoiceEntity) ((UIOutput) event.getSource()).getValue();
-        LOG.info(entity);
-        messageUtil.addGlobalCustomFlashMessage("Changed");
-    }
-
-    private DecisionchoiceEntity selectedItem;
-    private boolean selectedItemRemoved;
-
-    public void selectedItemsChanged(ValueChangeEvent event) {
-        List<DecisionchoiceEntity> oldValue = (List<DecisionchoiceEntity>) event.getOldValue();
-        List<DecisionchoiceEntity> newValue = (List<DecisionchoiceEntity>) event.getNewValue();
-        LOG.info("oldValue: " + oldValue);
-        LOG.info("newValue: " + newValue);
-
-        if (oldValue == null) {
-            oldValue = Collections.emptyList();
-        }
-
-        if (oldValue.size() > newValue.size()) {
-            oldValue = new ArrayList<>(oldValue);
-            oldValue.removeAll(newValue);
-            selectedItem = oldValue.iterator().next();
-            selectedItemRemoved = true;
-        } else {
-            newValue = new ArrayList<>(newValue);
-            newValue.removeAll(oldValue);
-            selectedItem = newValue.iterator().next();
-            selectedItemRemoved = false;
-        }
-    }
-
-    public void itemSelected(AjaxBehaviorEvent event) {
-        LOG.info("Selected item: " + selectedItem);
-        LOG.info("Selected item removed? " + selectedItemRemoved);
-    }
-
     public void doUpdate(ActionEvent actionEvent) {
         LOG.info("map1: " + map1);
+        LOG.info("map2: " + map2);
+        LOG.info("map3: " + map3);
+        LOG.info("map4: " + map4);
+        LOG.info("map5: " + map5);
+
+        for (Map.Entry<DecisionEntity, DecisionchoiceEntity> map : map1.entrySet()) {
+            DecisionEntity key = map.getKey();
+            DecisionchoiceEntity value = map.getValue();
+            LOG.info("map1 DecisionEntity: " + key);
+            LOG.info("map1 DecisionchoiceEntity: " + value);
+        }
+
+        for (Map.Entry<DecisionEntity, List<DecisionchoiceEntity>> map : map2.entrySet()) {
+            DecisionEntity key = map.getKey();
+            List<DecisionchoiceEntity> value = map.getValue();
+            LOG.info("map2 DecisionEntity: " + key);
+            for (DecisionchoiceEntity e : value) {
+                LOG.info("map2 DecisionchoiceEntity: " + e);
+            }
+        }
+
+        for (Map.Entry<DecisionEntity, Map<ProductEntity, Integer>> map : map3.entrySet()) {
+            DecisionEntity key = map.getKey();
+            Map<ProductEntity, Integer> value = map.getValue();
+            LOG.info("map3 DecisionEntity: " + key);
+            for (Map.Entry<ProductEntity, Integer> m : value.entrySet()) {
+                LOG.info("map3 DecisionchoiceEntity ProductEntity: " + m.getKey());
+                LOG.info("map3 DecisionchoiceEntity Integer: " + m.getValue());
+            }
+        }
+
+        for (Map.Entry<DecisionEntity, Map<ProductEntity, DecisionchoiceEntity>> map : map4.entrySet()) {
+            DecisionEntity key = map.getKey();
+            Map<ProductEntity, DecisionchoiceEntity> value = map.getValue();
+            LOG.info("map4 DecisionEntity: " + key);
+            for (Map.Entry<ProductEntity, DecisionchoiceEntity> m : value.entrySet()) {
+                LOG.info("map4 DecisionchoiceEntity ProductEntity: " + m.getKey());
+                LOG.info("map4 DecisionchoiceEntity DecisionchoiceEntity: " + m.getValue());
+            }
+        }
+
+        for (Map.Entry<DecisionEntity, Map<ProductEntity, List<DecisionchoiceEntity>>> map : map5.entrySet()) {
+            DecisionEntity key = map.getKey();
+            Map<ProductEntity, List<DecisionchoiceEntity>> value = map.getValue();
+            LOG.info("map5 DecisionEntity: " + key);
+            for (Map.Entry<ProductEntity, List<DecisionchoiceEntity>> m : value.entrySet()) {
+                LOG.info("map5 DecisionchoiceEntity ProductEntity: " + m.getKey());
+                List<DecisionchoiceEntity> v = m.getValue();
+                for (DecisionchoiceEntity d : v) {
+                    LOG.info("map5 DecisionchoiceEntity DecisionchoiceEntity: " + d);
+                }
+            }
+        }
+
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
