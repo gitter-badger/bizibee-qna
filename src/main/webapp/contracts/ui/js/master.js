@@ -13,31 +13,6 @@ function clearForm(formId) {
     });
 }
 
-function reform(e) {
-    if (event.keyCode == 32) {
-        e.value = e.value.replace(/\s+/g, '');
-        return false;
-    }
-    e.value = e.value.toUpperCase();
-}
-
-$(document).keydown(function (evt) {
-    if (evt.keyCode == 83 && (evt.ctrlKey)) {
-        evt.preventDefault();
-        alert('CTRL-S');
-    }
-    if (evt.keyCode == 67 && (evt.ctrlKey)) {
-        evt.preventDefault();
-        alert('CTRL-C');
-    }
-    if (evt.keyCode == 112) {
-        evt.preventDefault();
-        alert('F1');
-    }
-});
-
-
-
 
 /**
  * https://code.google.com/p/primefaces/wiki/PrimeFacesLocales
