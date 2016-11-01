@@ -49,7 +49,7 @@ a{
 }
 
 .btn-custom,.btn-custom:hover,.btn-custom:focus {
-    background-color: #2398e5;
+    background-color: #43cea2;
     color: #fff !important;
     padding: 9px 20px !important;
     text-transform: uppercase;
@@ -63,7 +63,7 @@ a{
 }
 
 .btn-dark:hover,.btn-white:hover {
-    background-color: #2398e5;
+    background-color: #43cea2;
     color: #fff !important;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
@@ -105,9 +105,9 @@ a{
 .btn-app-download {
     padding: 10px 22px 10px 65px;
     position: relative;
-    border: 2px solid #2398e5;
+    border: 2px solid #43cea2;
     display: inline-block;
-    color: #2398e5;
+    color: #43cea2;
     margin-right: 10px;
     text-align: left;
 }
@@ -115,7 +115,7 @@ a{
 .btn-app-download:hover,.btn-app-download:focus{
     color: #fff;
     outline: none;
-    background: #2398e5;
+    background: #43cea2;
 }
 
 .btn-app-download i {
@@ -282,7 +282,7 @@ a{
 }
 
 .text-colored {
-    color: #2398e5;
+    color: #43cea2;
 }
 
 iframe {
@@ -307,7 +307,7 @@ iframe {
 }
 
 .navbar-default .navbar-nav>li>a:hover,.navbar-custom-dark.navbar-default .navbar-nav>li>a {
-    color: #2398e5;
+    color: #43cea2;
 }
 
 .navbar-custom {
@@ -343,7 +343,7 @@ iframe {
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     background-color: transparent;
-    color: #2398e5;
+    color: #43cea2;
 }
 
 
@@ -440,9 +440,9 @@ iframe {
 }
 
 .text-tran-box {
-    background: #2398e5; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #2398e5 , #185a9d); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #2398e5 , #185a9d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #43cea2; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #43cea2 , #185a9d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .text-tran-box-dark {
@@ -583,7 +583,7 @@ iframe {
 }
 
 .feat-facts .feat-facts-box h2 {
-    color: #2398e5;
+    color: #43cea2;
 }
 
 .feat-facts .feat-facts-box h4 {
@@ -633,7 +633,7 @@ iframe {
 .pricing-column .plan-title {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #2398e5;
+    color: #43cea2;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
@@ -713,7 +713,7 @@ iframe {
     border: none;
     color: #fff;
     font-size: 17px;
-    background: #2398e5;
+    background: #43cea2;
     padding: 11px 30px;
 }
 
@@ -768,7 +768,7 @@ iframe {
     font-size: 16px;
 }
 .gal-detail h4 a{
-    color: #2398e5;
+    color: #43cea2;
 }
 .gal-detail p {
     font-size: 13px;
@@ -805,7 +805,7 @@ iframe {
 }
 
 .team-member-social a:hover {
-    background-color: #2398e5 !important;
+    background-color: #43cea2 !important;
 }
 
 
@@ -945,7 +945,7 @@ textarea.form-control {
 }
 
 .footer-one a:hover{
-    color: #2398e5;
+    color: #43cea2;
 }
 
 .footer-one ul li {
@@ -984,7 +984,7 @@ textarea.form-control {
 }
 .footer-social-one a:hover {
     color: #ffffff;
-    background-color: #2398e5;
+    background-color: #43cea2;
 }
 
 
@@ -1031,7 +1031,7 @@ textarea.form-control {
     width: 42px;
     line-height: 30px;
     color: #fff;
-    background: #2398e5;
+    background: #43cea2;
     text-align: center;
     border-radius: 50%;
     position: absolute;
