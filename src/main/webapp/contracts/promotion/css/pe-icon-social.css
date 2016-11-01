@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'pe-icon-social';
-    src:url("#{resource['fonts/pe-icon-social.eot?-96eskg']}");
-    src:url("#{resource['fonts/pe-icon-social.eot?#iefix-96eskg']}") format('embedded-opentype'),
-        url("#{resource['fonts/pe-icon-social.woff?-96eskg']}") format('woff'),
-        url("#{resource['fonts/pe-icon-social.ttf?-96eskg']}") format('truetype'),
-        url("#{resource['fonts/pe-icon-social.svg?-96eskg#pe-icon-social']}") format('svg');
+    src:url("#{resource['fonts/pe-icon-social.eot']}&-96eskg");
+    src:url("#{resource['fonts/pe-icon-social.eot']}#iefix-96eskg") format('embedded-opentype'),
+        url("#{resource['fonts/pe-icon-social.woff']}&-96eskg") format('woff'),
+        url("#{resource['fonts/pe-icon-social.ttf']}&-96eskg") format('truetype'),
+        url("#{resource['fonts/pe-icon-social.svg']}&-96eskg#pe-icon-social") format('svg');
     font-weight: normal;
     font-style: normal;
 }
