@@ -2,41 +2,26 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
     <ui:define name="title">#{i18n['Login']}</ui:define>
     <ui:define name="content">
-        <section class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 text-left">
-                        <div class="home-wrapper">
-                            <h4>#{i18n['Sign in and access your account.']}</h4>
-                            <p>#{i18n['To continue your transaction you must login.']}</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-sm-offset-2">
-                        <div class="home-wrapper">
-                            <h:form id="login" role="form" styleClass="intro-form">
-                                <p:focus context="login"/>
-                                <h3 class="text-center">#{i18n['Sign in']}</h3>
-                                <div class="form-group">
-                                    <h:inputText id="j_username" value="#{loginBean.username}" autocomplete="off" pt:placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <h:inputSecret id="j_password" value="#{loginBean.password}" autocomplete="off" pt:placeholder="#{i18n['Password']}" label="#{i18n['Password']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" styleClass="btn btn-custom btn-sm">
-                                        <f:ajax execute="@form" render=":growl"/>
-                                    </h:commandButton>
-                                </div>
-                            </h:form>
-                        </div>
-                    </div>
-                </div>
+        <div class="ui-g">
+            <div class="ui-g-4">
             </div>
-        </section>
+            <div class="ui-g-4">
+                <h3>#{i18n['Sign in']}</h3>
+                <h:form id="login">
+                    <p:focus context="login"/>
+                    <h:panelGrid columns="1">
+                        <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true"/>
+                        <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true"/>
+                        <p:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" update=":growl"/>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+            <div class="ui-g-4">
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
