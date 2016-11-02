@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name="breadCrumb">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="#{i18n['Home']}" outcome="/index" />
+                <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
+            </p:breadCrumb>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{responseView.id}"/>
+            <f:event type="preRenderView" listener="#{responseView.onLoad}"/>
+        </f:metadata>
+        
+        Decision #{responseView.selectedRecord.id} #{responseView.selectedRecord.name}
+    </ui:define>
+</ui:composition>

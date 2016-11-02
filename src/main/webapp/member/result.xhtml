@@ -17,6 +17,13 @@
             <p:repeat var="decision" value="#{scoreboardView.decisions}">
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                         - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
                     <p:selectOneRadio value="#{scoreboardView.map1[decision]}" 
                                       layout="pageDirection" columns="1"
                                       converter="#{decisionchoiceConverter}">
