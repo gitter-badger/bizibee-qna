@@ -17,13 +17,16 @@
             <p:repeat var="decision" value="#{scoreboardView.decisions}">
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
-                    <p:selectOneRadio value="#{scoreboardView.map1[decision]}" converter="#{decisionchoiceConverter}">
+                    <p:selectOneRadio value="#{scoreboardView.map1[decision]}" 
+                                      layout="pageDirection" columns="1"
+                                      converter="#{decisionchoiceConverter}">
                         <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                     </p:selectOneRadio>
                 </p:panel>
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
                     <p:selectManyCheckbox value="#{scoreboardView.map2[decision]}" 
+                                          layout="pageDirection" columns="1"
                                           converter="#{decisionchoiceConverter}">
                         <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                     </p:selectManyCheckbox>
