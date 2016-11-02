@@ -31,7 +31,14 @@
                     </p:selectOneRadio>
                 </p:panel>
 
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
+                <p:panel rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                         - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
                     <p:selectManyCheckbox value="#{scoreboardView.map2[decision]}" 
                                           layout="pageDirection" columns="1"
                                           converter="#{decisionchoiceConverter}">
