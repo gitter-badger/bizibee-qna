@@ -4,6 +4,7 @@ import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import com.aripd.bizibee.entity.ProductEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +18,8 @@ import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.DecisionchoiceService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
@@ -27,7 +30,7 @@ public class ResponseView implements Serializable {
 
     static final Logger LOG = Logger.getLogger(ResponseView.class.getName());
 
-    private MenuModel model;
+    private MenuModel menuModel;
 
     @Inject
     private DecisionService decisionService;
@@ -40,8 +43,11 @@ public class ResponseView implements Serializable {
 
     @Inject
     private DecisionchoiceService decisionchoiceService;
-    private DecisionchoiceEntity decisionchoice;
-    private List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
+    private DecisionchoiceEntity model1;
+    private List<DecisionchoiceEntity> model2 = new ArrayList<>();
+    private Map<ProductEntity, Integer> model3 = new HashMap<>();
+    private Map<ProductEntity, DecisionchoiceEntity> model4 = new HashMap<>();
+    private Map<ProductEntity, List<DecisionchoiceEntity>> model5 = new HashMap<>();
 
     @Inject
     MessageUtil messageUtil;
@@ -55,13 +61,13 @@ public class ResponseView implements Serializable {
     public void init() {
         lazyModel = new LazyDecisionDataModel(decisionService);
 
-        model = new DefaultMenuModel();
+        menuModel = new DefaultMenuModel();
         for (DecisionEntity decision : decisionService.findAll()) {
             DefaultMenuItem item = new DefaultMenuItem();
             item.setValue(decision.getName());
             item.setOutcome("/member/response");
             item.setParam("id", decision.getId());
-            model.addElement(item);
+            menuModel.addElement(item);
         }
     }
 
@@ -81,8 +87,11 @@ public class ResponseView implements Serializable {
     }
 
     public void doUpdate(ActionEvent actionEvent) {
-        LOG.info("decisionchoice: " + decisionchoice);
-        LOG.info("decisionchoices: " + decisionchoices);
+        LOG.info("model1: " + model1);
+        LOG.info("model2: " + model2);
+        LOG.info("model3: " + model3);
+        LOG.info("model4: " + model4);
+        LOG.info("model5: " + model5);
         messageUtil.addGlobalInfoFlashMessage("Updated");
 
         /**
@@ -156,24 +165,48 @@ public class ResponseView implements Serializable {
         this.id = id;
     }
 
-    public DecisionchoiceEntity getDecisionchoice() {
-        return decisionchoice;
+    public MenuModel getMenuModel() {
+        return menuModel;
     }
 
-    public void setDecisionchoice(DecisionchoiceEntity decisionchoice) {
-        this.decisionchoice = decisionchoice;
+    public DecisionchoiceEntity getModel1() {
+        return model1;
     }
 
-    public List<DecisionchoiceEntity> getDecisionchoices() {
-        return decisionchoices;
+    public void setModel1(DecisionchoiceEntity model1) {
+        this.model1 = model1;
     }
 
-    public void setDecisionchoices(List<DecisionchoiceEntity> decisionchoices) {
-        this.decisionchoices = decisionchoices;
+    public List<DecisionchoiceEntity> getModel2() {
+        return model2;
     }
 
-    public MenuModel getModel() {
-        return model;
+    public void setModel2(List<DecisionchoiceEntity> model2) {
+        this.model2 = model2;
+    }
+
+    public Map<ProductEntity, Integer> getModel3() {
+        return model3;
+    }
+
+    public void setModel3(Map<ProductEntity, Integer> model3) {
+        this.model3 = model3;
+    }
+
+    public Map<ProductEntity, DecisionchoiceEntity> getModel4() {
+        return model4;
+    }
+
+    public void setModel4(Map<ProductEntity, DecisionchoiceEntity> model4) {
+        this.model4 = model4;
+    }
+
+    public Map<ProductEntity, List<DecisionchoiceEntity>> getModel5() {
+        return model5;
+    }
+
+    public void setModel5(Map<ProductEntity, List<DecisionchoiceEntity>> model5) {
+        this.model5 = model5;
     }
 
 }

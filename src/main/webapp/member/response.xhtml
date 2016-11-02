@@ -18,12 +18,12 @@
             <f:event type="preRenderView" listener="#{responseView.onLoad}"/>
         </f:metadata>
 
-        <p:steps activeIndex="#{responseView.selectedRecord.id-1}" readonly="false" model="#{responseView.model}"/>
+        <p:steps activeIndex="#{responseView.selectedRecord.id-1}" readonly="false" model="#{responseView.menuModel}"/>
 
         Decision #{responseView.selectedRecord.id} #{responseView.selectedRecord.name}
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
-            <p:selectOneRadio value="#{responseView.decisionchoice}" 
+            <p:selectOneRadio value="#{responseView.model1}" 
                               layout="pageDirection" columns="1"
                               converter="#{decisionchoiceConverter}">
                 <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
@@ -32,11 +32,46 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
-            <p:selectManyCheckbox value="#{responseView.decisionchoices}" 
+            <p:selectManyCheckbox value="#{responseView.model2}" 
                                   layout="pageDirection" columns="1"
                                   converter="#{decisionchoiceConverter}">
                 <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
             </p:selectManyCheckbox>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+            <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                <h:outputText value="#{product.name}"/>
+                <h:panelGrid columns="2">
+                    <p:spinner value="#{responseView.model3[product]}" min="#{product.indexMin}" max="#{product.indexMax}" stepFactor="#{product.indexStep}" />
+                    <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
+                        <f:param value="#{product.name}"/>
+                        <f:param value="#{product.indexMin}"/>
+                        <f:param value="#{product.indexMax}"/>
+                    </h:outputFormat>
+                </h:panelGrid>
+            </p:repeat>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
+            <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                <h:outputText value="#{product.name}"/>
+                <p:selectOneRadio value="#{responseView.model4[product]}" converter="#{decisionchoiceConverter}">
+                    <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                </p:selectOneRadio>
+            </p:repeat>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
+            <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                <h:outputText value="#{product.name}"/>
+                <p:selectManyCheckbox value="#{responseView.model5[product]}" converter="#{decisionchoiceConverter}">
+                    <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                </p:selectManyCheckbox>
+            </p:repeat>
             <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
 
