@@ -20,8 +20,6 @@
 
         <p:steps activeIndex="#{responseView.selectedRecord.id-1}" readonly="false" model="#{responseView.menuModel}"/>
 
-        Decision #{responseView.selectedRecord.id} #{responseView.selectedRecord.name}
-
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
             <p:selectOneRadio value="#{responseView.model1}" 
                               layout="pageDirection" columns="1"
