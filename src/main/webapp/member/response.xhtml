@@ -17,7 +17,18 @@
             <f:viewParam name="id" value="#{responseView.id}"/>
             <f:event type="preRenderView" listener="#{responseView.onLoad}"/>
         </f:metadata>
-        
+
         Decision #{responseView.selectedRecord.id} #{responseView.selectedRecord.name}
+
+        <h:form>
+            <p:outputLabel value="#{i18n['Decision Choices']}"/>
+            <p:selectManyCheckbox value="#{responseView.decisionchoices}" 
+                                  layout="pageDirection" columns="1"
+                                  converter="#{decisionchoiceConverter}">
+                <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+            </p:selectManyCheckbox>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
     </ui:define>
 </ui:composition>

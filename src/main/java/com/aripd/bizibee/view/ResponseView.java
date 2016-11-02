@@ -3,6 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
+import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -13,6 +14,8 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
+import com.aripd.bizibee.service.DecisionchoiceService;
+import java.util.ArrayList;
 
 @Named
 @ViewScoped
@@ -28,6 +31,10 @@ public class ResponseView implements Serializable {
     private LazyDataModel<DecisionEntity> lazyModel;
 
     private Long id;
+
+    @Inject
+    private DecisionchoiceService decisionchoiceService;
+    private List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
 
     @Inject
     MessageUtil messageUtil;
@@ -55,6 +62,15 @@ public class ResponseView implements Serializable {
             return;
         }
 
+    }
+
+    public void doUpdate(ActionEvent actionEvent) {
+        LOG.info("decisionchoices: " + decisionchoices);
+        messageUtil.addGlobalInfoFlashMessage("Updated");
+    }
+
+    public List<DecisionchoiceEntity> fetchDecisionchoices(DecisionEntity decision) {
+        return decisionchoiceService.findByDecision(decision);
     }
 
     public List<DecisionEntity> fetchAllRecords() {
@@ -115,6 +131,14 @@ public class ResponseView implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<DecisionchoiceEntity> getDecisionchoices() {
+        return decisionchoices;
+    }
+
+    public void setDecisionchoices(List<DecisionchoiceEntity> decisionchoices) {
+        this.decisionchoices = decisionchoices;
     }
 
 }
