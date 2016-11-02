@@ -15,13 +15,19 @@ import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.DecisionchoiceService;
+import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.MenuModel;
 
 @Named
 @ViewScoped
 public class ResponseView implements Serializable {
 
     static final Logger LOG = Logger.getLogger(ResponseView.class.getName());
+
+    private MenuModel model;
 
     @Inject
     private DecisionService decisionService;
@@ -48,6 +54,15 @@ public class ResponseView implements Serializable {
     @PostConstruct
     public void init() {
         lazyModel = new LazyDecisionDataModel(decisionService);
+
+        model = new DefaultMenuModel();
+        for (DecisionEntity decision : decisionService.findAll()) {
+            DefaultMenuItem item = new DefaultMenuItem();
+            item.setValue(decision.getName());
+            item.setOutcome("/member/response");
+            item.setParam("id", decision.getId());
+            model.addElement(item);
+        }
     }
 
     public void onLoad() {
@@ -69,6 +84,12 @@ public class ResponseView implements Serializable {
         LOG.info("decisionchoice: " + decisionchoice);
         LOG.info("decisionchoices: " + decisionchoices);
         messageUtil.addGlobalInfoFlashMessage("Updated");
+
+        /**
+         * TODO +1 hesaplamasının mantığı yanlış, acil düzelt.
+         */
+        String navigation = "/member/response?id=" + (selectedRecord.getId() + 1) + "&amp;faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public List<DecisionchoiceEntity> fetchDecisionchoices(DecisionEntity decision) {
@@ -149,6 +170,10 @@ public class ResponseView implements Serializable {
 
     public void setDecisionchoices(List<DecisionchoiceEntity> decisionchoices) {
         this.decisionchoices = decisionchoices;
+    }
+
+    public MenuModel getModel() {
+        return model;
     }
 
 }

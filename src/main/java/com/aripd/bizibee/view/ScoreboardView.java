@@ -16,17 +16,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.faces.event.ActionEvent;
-import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.MenuModel;
 
 @Named
 @ViewScoped
 public class ScoreboardView implements Serializable {
 
     static final Logger LOG = Logger.getLogger(ScoreboardView.class.getName());
-
-    private MenuModel model;
 
     @Inject
     private DecisionService decisionService;
@@ -48,15 +43,6 @@ public class ScoreboardView implements Serializable {
     @PostConstruct
     public void init() {
         decisions = decisionService.findAll();
-
-        model = new DefaultMenuModel();
-        for (DecisionEntity decision : decisions) {
-            DefaultMenuItem item = new DefaultMenuItem();
-            item.setValue(decision.getName());
-            item.setOutcome("/member/response");
-            item.setParam("id", decision.getId());
-            model.addElement(item);
-        }
     }
 
     public void doUpdate(ActionEvent actionEvent) {
@@ -160,10 +146,6 @@ public class ScoreboardView implements Serializable {
 
     public void setMap5(Map<DecisionEntity, Map<ProductEntity, List<DecisionchoiceEntity>>> map5) {
         this.map5 = map5;
-    }
-
-    public MenuModel getModel() {
-        return model;
     }
 
 }

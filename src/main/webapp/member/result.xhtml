@@ -14,9 +14,6 @@
     </ui:define>
     <ui:define name="content">
         <h:form>
-
-            <p:steps activeIndex="1" readonly="false" model="#{scoreboardView.model}"/>
-
             <p:repeat var="decision" value="#{scoreboardView.decisions}">
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
