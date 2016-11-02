@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import javax.faces.event.ActionEvent;
 
 @Named
@@ -70,7 +69,7 @@ public class ScoreboardView implements Serializable {
 
         for (HashMap.Entry<DecisionEntity, HashMap<ProductEntity, Integer>> map : map3.entrySet()) {
             DecisionEntity key = map.getKey();
-            Map<ProductEntity, Integer> value = map.getValue();
+            HashMap<ProductEntity, Integer> value = map.getValue();
             LOG.info("map3 DecisionEntity: " + key);
             for (HashMap.Entry<ProductEntity, Integer> m : value.entrySet()) {
                 LOG.info("map3 DecisionchoiceEntity ProductEntity: " + m.getKey());
@@ -80,7 +79,7 @@ public class ScoreboardView implements Serializable {
 
         for (HashMap.Entry<DecisionEntity, HashMap<ProductEntity, DecisionchoiceEntity>> map : map4.entrySet()) {
             DecisionEntity key = map.getKey();
-            Map<ProductEntity, DecisionchoiceEntity> value = map.getValue();
+            HashMap<ProductEntity, DecisionchoiceEntity> value = map.getValue();
             LOG.info("map4 DecisionEntity: " + key);
             for (HashMap.Entry<ProductEntity, DecisionchoiceEntity> m : value.entrySet()) {
                 LOG.info("map4 DecisionchoiceEntity ProductEntity: " + m.getKey());
@@ -90,7 +89,7 @@ public class ScoreboardView implements Serializable {
 
         for (HashMap.Entry<DecisionEntity, HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>>> map : map5.entrySet()) {
             DecisionEntity key = map.getKey();
-            Map<ProductEntity, ArrayList<DecisionchoiceEntity>> value = map.getValue();
+            HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>> value = map.getValue();
             LOG.info("map5 DecisionEntity: " + key);
             for (HashMap.Entry<ProductEntity, ArrayList<DecisionchoiceEntity>> m : value.entrySet()) {
                 LOG.info("map5 DecisionchoiceEntity ProductEntity: " + m.getKey());
@@ -108,7 +107,7 @@ public class ScoreboardView implements Serializable {
         return decisions;
     }
 
-    public Map<DecisionEntity, DecisionchoiceEntity> getMap1() {
+    public HashMap<DecisionEntity, DecisionchoiceEntity> getMap1() {
         return map1;
     }
 
