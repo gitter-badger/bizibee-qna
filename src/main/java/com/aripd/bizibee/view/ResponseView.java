@@ -34,6 +34,7 @@ public class ResponseView implements Serializable {
 
     @Inject
     private DecisionchoiceService decisionchoiceService;
+    private DecisionchoiceEntity decisionchoice;
     private List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
 
     @Inject
@@ -65,6 +66,7 @@ public class ResponseView implements Serializable {
     }
 
     public void doUpdate(ActionEvent actionEvent) {
+        LOG.info("decisionchoice: " + decisionchoice);
         LOG.info("decisionchoices: " + decisionchoices);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
@@ -131,6 +133,14 @@ public class ResponseView implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public DecisionchoiceEntity getDecisionchoice() {
+        return decisionchoice;
+    }
+
+    public void setDecisionchoice(DecisionchoiceEntity decisionchoice) {
+        this.decisionchoice = decisionchoice;
     }
 
     public List<DecisionchoiceEntity> getDecisionchoices() {

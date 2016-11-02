@@ -20,8 +20,16 @@
 
         Decision #{responseView.selectedRecord.id} #{responseView.selectedRecord.name}
 
-        <h:form>
-            <p:outputLabel value="#{i18n['Decision Choices']}"/>
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
+            <p:selectOneRadio value="#{responseView.decisionchoice}" 
+                              layout="pageDirection" columns="1"
+                              converter="#{decisionchoiceConverter}">
+                <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+            </p:selectOneRadio>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
             <p:selectManyCheckbox value="#{responseView.decisionchoices}" 
                                   layout="pageDirection" columns="1"
                                   converter="#{decisionchoiceConverter}">
