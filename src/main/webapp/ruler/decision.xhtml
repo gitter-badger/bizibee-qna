@@ -46,7 +46,14 @@
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.selectedRecord.name}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:editor id="description" value="#{decisionView.selectedRecord.description}"/>
+                    <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}"/>
+                    <p:outputLabel for="products" value="#{i18n['Products']}"/>
+                    <p:selectCheckboxMenu id="products" value="#{decisionView.selectedRecord.products}" 
+                                          label="#{i18n['Products']}"
+                                          filter="true" filterMatchMode="contains"
+                                          converter="#{productConverter}">
+                        <f:selectItems value="#{productView.fetchAllRecords()}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
+                    </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}"/>
@@ -63,7 +70,14 @@
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:editor id="description" value="#{decisionView.newRecord.description}"/>
+                    <p:inputTextarea id="description" value="#{decisionView.newRecord.description}"/>
+                    <p:outputLabel for="products" value="#{i18n['Products']}"/>
+                    <p:selectCheckboxMenu id="products" value="#{decisionView.newRecord.products}" 
+                                          label="#{i18n['Products']}"
+                                          filter="true" filterMatchMode="contains"
+                                          converter="#{productConverter}">
+                        <f:selectItems value="#{productView.fetchAllRecords()}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
+                    </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}"/>

@@ -54,7 +54,7 @@
                             <f:param name="id" value="#{decision.id}"/>
                         </h:link>
                     </f:facet>
-                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                    <p:repeat var="product" value="#{decision.products}">
                         <h:outputText value="#{product.name}"/>
                         <h:panelGrid columns="2">
                             <p:spinner value="#{scoreboardView.map3[decision]}" min="#{product.indexMin}" max="#{product.indexMax}" stepFactor="#{product.indexStep}" />
@@ -75,7 +75,7 @@
                             <f:param name="id" value="#{decision.id}"/>
                         </h:link>
                     </f:facet>
-                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                    <p:repeat var="product" value="#{decision.products}">
                         <h:outputText value="#{product.name}"/>
                         <p:selectOneRadio value="#{scoreboardView.map4[decision]}" converter="#{decisionchoiceConverter}">
                             <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
@@ -91,7 +91,7 @@
                             <f:param name="id" value="#{decision.id}"/>
                         </h:link>
                     </f:facet>
-                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                    <p:repeat var="product" value="#{decision.products}">
                         <h:outputText value="#{product.name}"/>
                         <p:selectManyCheckbox value="#{scoreboardView.map5[decision]}" converter="#{decisionchoiceConverter}">
                             <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>

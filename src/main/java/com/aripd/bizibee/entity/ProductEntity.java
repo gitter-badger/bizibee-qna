@@ -1,9 +1,13 @@
 package com.aripd.bizibee.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
@@ -27,10 +31,13 @@ public class ProductEntity extends AbstractEntity {
     private double gm;
     private double ms;
     private double usg;
-    
+
     private int indexMin;
     private int indexMax;
     private int indexStep;
+
+    @ManyToMany(mappedBy = "products", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
+    private List<DecisionEntity> decisions = new ArrayList<>();
 
     public ProductEntity() {
     }
@@ -97,6 +104,14 @@ public class ProductEntity extends AbstractEntity {
 
     public void setIndexStep(int indexStep) {
         this.indexStep = indexStep;
+    }
+
+    public List<DecisionEntity> getDecisions() {
+        return decisions;
+    }
+
+    public void setDecisions(List<DecisionEntity> decisions) {
+        this.decisions = decisions;
     }
 
 }

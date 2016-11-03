@@ -42,7 +42,7 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'RANGE_PRODUCT_LISTING'}">
-            <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+            <p:repeat var="product" value="#{responseView.selectedRecord.products}">
                 <h:outputText value="#{product.name}"/>
                 <h:panelGrid columns="2">
                     <p:spinner value="#{responseView.model3[product]}" min="#{product.indexMin}" max="#{product.indexMax}" stepFactor="#{product.indexStep}" />
@@ -57,7 +57,7 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
-            <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+            <p:repeat var="product" value="#{responseView.selectedRecord.products}">
                 <h:outputText value="#{product.name}"/>
                 <p:selectOneRadio value="#{responseView.model4[product]}" converter="#{decisionchoiceConverter}">
                     <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
@@ -67,7 +67,7 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
-            <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+            <p:repeat var="product" value="#{responseView.selectedRecord.products}">
                 <h:outputText value="#{product.name}"/>
                 <p:selectManyCheckbox value="#{responseView.model5[product]}" converter="#{decisionchoiceConverter}">
                     <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>

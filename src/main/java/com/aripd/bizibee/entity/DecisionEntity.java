@@ -1,5 +1,6 @@
 package com.aripd.bizibee.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -44,6 +47,17 @@ public class DecisionEntity extends AbstractEntity {
 
     @OneToMany(mappedBy = "decision", orphanRemoval = true)
     private List<DecisionchoiceEntity> decisionchoices;
+
+    @ManyToMany
+    @JoinTable(
+            name = "decisions_products",
+            joinColumns = {
+                @JoinColumn(name = "DECISION_ID")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "PRODUCT_ID")
+            }
+    )
+    private List<ProductEntity> products = new ArrayList<>();
 
     public DecisionEntity() {
     }
@@ -151,6 +165,14 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setDecisionchoices(List<DecisionchoiceEntity> decisionchoices) {
         this.decisionchoices = decisionchoices;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
     }
 
 }
