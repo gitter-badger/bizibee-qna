@@ -45,6 +45,8 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.selectedRecord.name}" required="true"/>
+                    <p:outputLabel for="description" value="#{i18n['Description']}"/>
+                    <p:editor id="description" value="#{decisionView.selectedRecord.description}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}"/>
@@ -60,6 +62,8 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
+                    <p:outputLabel for="description" value="#{i18n['Description']}"/>
+                    <p:editor id="description" value="#{decisionView.newRecord.description}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}"/>

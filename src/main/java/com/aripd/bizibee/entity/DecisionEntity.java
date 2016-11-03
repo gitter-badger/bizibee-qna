@@ -34,6 +34,8 @@ public class DecisionEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
+    private String description;
+
     private double budget;
 
     private double gm;
@@ -93,6 +95,14 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setDecisionType(DecisionType decisionType) {
         this.decisionType = decisionType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
