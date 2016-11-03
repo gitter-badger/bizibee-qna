@@ -13,6 +13,15 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        
+        <h:panelGrid columns="2">
+            <h:outputLabel value="#{i18n['Simulation']}"/>
+            <h:outputText value="#{profileBean.selectedRecord.simulation.name}"/>
+            <h:outputLabel value="#{i18n['Team']}"/>
+            <h:outputText value="#{profileBean.selectedRecord.teamName}"/>
+            <h:outputLabel value="#{i18n['Name']}"/>
+            <h:outputText value="#{profileBean.selectedRecord.name}"/>
+            <h:outputLabel value="#{i18n['E-mail Address']}"/>
+            <h:outputText value="#{profileBean.selectedRecord.email}"/>
+        </h:panelGrid>
     </ui:define>
 </ui:composition>

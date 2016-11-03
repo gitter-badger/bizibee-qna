@@ -8,7 +8,7 @@
         <h:form>
             <p:breadCrumb>
                 <p:menuitem value="#{i18n['Home']}" outcome="/index" />
-                <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user" />
+                <p:menuitem value="#{i18n['Users']}" outcome="/ruler/user" />
             </p:breadCrumb>
         </h:form>
     </ui:define>
@@ -42,6 +42,9 @@
                 <p:column headerText="#{i18n['Team']}">
                     <h:outputText value="#{user.team.name}"/>
                 </p:column>
+                <p:column headerText="#{i18n['Team']}">
+                    <h:outputText value="#{user.teamName}"/>
+                </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                         <f:setPropertyActionListener value="#{user}" target="#{userView.selectedRecord}" />
@@ -68,6 +71,8 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="teamName" value="#{i18n['Team']}"/>
+                    <p:inputText id="teamName" value="#{userView.selectedRecord.teamName}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{userView.doUpdateRecord}"/>
@@ -95,6 +100,8 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="teamName" value="#{i18n['Team']}"/>
+                    <p:inputText id="teamName" value="#{userView.newRecord.teamName}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{userView.doCreateRecord}"/>

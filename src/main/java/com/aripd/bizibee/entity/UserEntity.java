@@ -36,6 +36,8 @@ public class UserEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
+    private String teamName;
+
     @ManyToOne
     private TeamEntity team;
 
@@ -96,6 +98,14 @@ public class UserEntity extends AbstractEntity {
 
     public void setSimulation(SimulationEntity simulation) {
         this.simulation = simulation;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
 }
