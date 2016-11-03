@@ -31,7 +31,7 @@
                     </p:selectOneRadio>
                 </p:panel>
 
-                <p:panel rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
+                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
                     <f:facet name="header">
                         <h:outputText value="#{decision.id}. #{decision.name}"/>
                         - 
@@ -47,6 +47,13 @@
                 </p:panel>
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                        - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
                     <p:repeat var="product" value="#{productView.fetchAllRecords()}">
                         <h:outputText value="#{product.name}"/>
                         <h:panelGrid columns="2">
@@ -61,6 +68,13 @@
                 </p:panel>
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                        - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
                     <p:repeat var="product" value="#{productView.fetchAllRecords()}">
                         <h:outputText value="#{product.name}"/>
                         <p:selectOneRadio value="#{scoreboardView.map4[decision]}" converter="#{decisionchoiceConverter}">
@@ -70,6 +84,13 @@
                 </p:panel>
 
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                        - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
                     <p:repeat var="product" value="#{productView.fetchAllRecords()}">
                         <h:outputText value="#{product.name}"/>
                         <p:selectManyCheckbox value="#{scoreboardView.map5[decision]}" converter="#{decisionchoiceConverter}">

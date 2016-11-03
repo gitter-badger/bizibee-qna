@@ -18,6 +18,7 @@
             <f:event type="preRenderView" listener="#{responseView.onLoad}"/>
         </f:metadata>
 
+        <!--TODO burayı başka nasıl yaparız-->
         <p:steps activeIndex="#{responseView.selectedRecord.id-1}" readonly="false" model="#{responseView.menuModel}"/>
 
         <h3><h:outputText value="#{responseView.selectedRecord.description}"/></h3>
