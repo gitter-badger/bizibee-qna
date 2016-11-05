@@ -95,3 +95,33 @@ INSERT INTO `DECISIONCHOICEENTITY` VALUES
 (31,2,10000,0,120,75,1,0,'Motivational event',0,9),
 (32,2,15000,0,120,75,1,0,'Training',0,9),
 (33,2,24000,0,120,75,1,0,'Providing tablets integrated to inventory system',0,9);
+
+INSERT INTO `decisions_skus` (`SKU_ID`, `DECISION_ID`)
+VALUES
+	(9,1),
+	(14,1),
+	(17,1),
+	(19,1),
+	(21,1),
+	(3,2),
+	(4,2),
+	(5,2),
+	(7,2),
+	(10,2),
+	(22,3),
+	(23,3),
+	(17,4),
+	(19,4),
+	(20,4),
+	(21,4),
+	(9,6),
+	(13,6),
+	(14,6),
+	(17,6),
+	(21,6),
+	(5,8),
+	(7,8),
+	(10,8),
+	(16,8),
+	(17,8),
+	(21,8);

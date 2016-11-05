@@ -52,7 +52,7 @@
                                           label="#{i18n['Skus']}"
                                           filter="true" filterMatchMode="contains"
                                           converter="#{skuConverter}">
-                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.name}" itemValue="#{sku}"/>
+                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
@@ -76,7 +76,7 @@
                                           label="#{i18n['Skus']}"
                                           filter="true" filterMatchMode="contains"
                                           converter="#{skuConverter}">
-                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.name}" itemValue="#{sku}"/>
+                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
