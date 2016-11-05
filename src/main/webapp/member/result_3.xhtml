@@ -57,7 +57,7 @@
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
-                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                    <p:repeat var="product" value="#{scoreboardView.products}">
                         <p:panel>
                             <f:facet name="header">
                                 <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
@@ -72,7 +72,7 @@
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
-                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                    <p:repeat var="product" value="#{scoreboardView.products}">
                         <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
                                      selection="#{scoreboardView.selectedDecisionchoice}" 
                                      rowKey="#{decisionchoice.id}">
@@ -97,7 +97,7 @@
                 </p:panel>
 
                 <p:panel header="#{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
-                    <p:repeat var="product" value="#{productView.fetchAllRecords()}">
+                    <p:repeat var="product" value="#{scoreboardView.products}">
                         <p:dataTable var="decisionchoice" value="#{decision.decisionchoices}" 
                                      selection="#{scoreboardView.selectedDecisionchoices}" 
                                      rowKey="#{decisionchoice.id}">

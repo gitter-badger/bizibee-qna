@@ -1,8 +1,10 @@
 package com.aripd.bizibee.view;
 
+import com.aripd.bizibee.entity.BrandEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyProductDataModel;
 import com.aripd.bizibee.entity.ProductEntity;
+import com.aripd.bizibee.service.BrandService;
 import com.aripd.bizibee.service.ProductService;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +30,9 @@ public class ProductView implements Serializable {
     private LazyDataModel<ProductEntity> lazyModel;
 
     @Inject
+    private BrandService brandService;
+
+    @Inject
     MessageUtil messageUtil;
 
     public ProductView() {
@@ -40,8 +45,8 @@ public class ProductView implements Serializable {
         lazyModel = new LazyProductDataModel(productService);
     }
 
-    public List<ProductEntity> fetchAllRecords() {
-        return productService.findAll();
+    public List<BrandEntity> getBrands() {
+        return brandService.findAll();
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {

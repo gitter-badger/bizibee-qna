@@ -52,7 +52,7 @@
                                           label="#{i18n['Products']}"
                                           filter="true" filterMatchMode="contains"
                                           converter="#{productConverter}">
-                        <f:selectItems value="#{productView.fetchAllRecords()}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
+                        <f:selectItems value="#{decisionView.products}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
                     </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
@@ -76,7 +76,7 @@
                                           label="#{i18n['Products']}"
                                           filter="true" filterMatchMode="contains"
                                           converter="#{productConverter}">
-                        <f:selectItems value="#{productView.fetchAllRecords()}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
+                        <f:selectItems value="#{decisionView.products}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
                     </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">

@@ -1,7 +1,7 @@
 package com.aripd.bizibee.service;
 
 import com.aripd.bizibee.entity.SimulationEntity;
-import com.aripd.bizibee.entity.PlayerEntity;
+import com.aripd.bizibee.entity.BrandEntity;
 import com.aripd.bizibee.entity.UserEntity;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class PlayerServiceBean extends CrudServiceBean<PlayerEntity, Long> implements PlayerService {
+public class BrandServiceBean extends CrudServiceBean<BrandEntity, Long> implements BrandService {
 
     @PersistenceContext
     private EntityManager em;
@@ -25,8 +25,8 @@ public class PlayerServiceBean extends CrudServiceBean<PlayerEntity, Long> imple
         return em;
     }
 
-    public PlayerServiceBean() {
-        super(PlayerEntity.class);
+    public BrandServiceBean() {
+        super(BrandEntity.class);
     }
 
 }

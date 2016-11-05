@@ -52,7 +52,7 @@
                     <p:selectOneMenu id="decision" value="#{decisionchoiceView.selectedRecord.decision}" converter="#{decisionConverter}"
                                      filter="true" filterMatchMode="contains" required="true">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
-                        <f:selectItems value="#{decisionView.fetchAllRecords()}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
+                        <f:selectItems value="#{decisionchoiceView.decisions}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
@@ -73,7 +73,7 @@
                     <p:selectOneMenu id="decision" value="#{decisionchoiceView.newRecord.decision}" converter="#{decisionConverter}"
                                      filter="true" filterMatchMode="contains" required="true">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
-                        <f:selectItems value="#{decisionView.fetchAllRecords()}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
+                        <f:selectItems value="#{decisionchoiceView.decisions}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">

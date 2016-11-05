@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
+import com.aripd.bizibee.service.ProductService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.faces.event.ActionEvent;
@@ -31,6 +32,9 @@ public class ScoreboardView implements Serializable {
     private HashMap<DecisionEntity, HashMap<ProductEntity, Integer>> map3 = new HashMap<>();
     private HashMap<DecisionEntity, HashMap<ProductEntity, DecisionchoiceEntity>> map4 = new HashMap<>();
     private HashMap<DecisionEntity, HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>>> map5 = new HashMap<>();
+
+    @Inject
+    private ProductService productService;
 
     @Inject
     MessageUtil messageUtil;
@@ -101,6 +105,10 @@ public class ScoreboardView implements Serializable {
         }
 
         messageUtil.addGlobalInfoFlashMessage("Updated");
+    }
+
+    public List<ProductEntity> getProducts() {
+        return productService.findAll();
     }
 
     public List<DecisionEntity> getDecisions() {

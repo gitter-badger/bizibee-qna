@@ -104,10 +104,6 @@ public class ResponseView implements Serializable {
         return decisionchoiceService.findByDecision(decision);
     }
 
-    public List<DecisionEntity> fetchAllRecords() {
-        return decisionService.findAll();
-    }
-
     public void doCreateRecord(ActionEvent actionEvent) {
         decisionService.create(newRecord);
         messageUtil.addGlobalInfoFlashMessage("Created");

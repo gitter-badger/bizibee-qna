@@ -13,27 +13,35 @@ INSERT INTO `TEAMENTITY` VALUES
 (3,2,'Team3'),
 (4,2,'Team4');
 
-INSERT INTO `PLAYERENTITY` VALUES 
-(1,2,'player1@aripd.com','Player1','player1','player1',null),
-(2,2,'player2@aripd.com','Player2','player2','player2',null),
-(3,2,'player3@aripd.com','Player3','player3','player3',null),
-(4,2,'player4@aripd.com','Player4','player4','player4',null);
+INSERT INTO `BRANDENTITY` VALUES 
+(1,2,'A Brand'),
+(2,2,'B Brand'),
+(3,2,'C Brand');
 
 INSERT INTO `PRODUCTENTITY` VALUES 
-(1,2,0,120,75,1,0,'B 350 ml bakım şampuanı',0),
-(2,2,0,120,75,1,0,'B 350 ml dökülme karşıtı şampuan',0),
-(3,2,0,120,75,1,0,'A 350 ml güzellik',0),
-(4,2,0,120,75,1,0,'C 400 ml bakım şampuanı',0),
-(5,2,0,120,75,1,0,'B 500 ml bakım şampuanı',0),
-(6,2,0,120,75,1,0,'B 500 ml dökülme karşıtı şampuan',0),
-(7,2,0,120,75,1,0,'C 600 ml bakım şampuanı',0),
-(8,2,0,120,75,1,0,'C 600 ml güzellik',0),
-(9,2,0,120,75,1,0,'A 600 ml kepek şampuanı',0),
-(10,2,0,120,75,1,0,'A 600+200 ml kepek-güzellik copack',0),
-(11,2,0,120,75,1,0,'B 900 ml bakım',0),
-(12,2,0,120,75,1,0,'B 900 ml dökülme karşıtı şampuan',0),
-(13,2,0,120,75,1,0,'TG',0),
-(14,2,0,120,75,1,0,'DH',0);
+(1,2,0,120,75,1,0,'200 ml güzellik',0,1),
+(2,2,0,120,75,1,0,'200 ml kepek',0,1),
+(3,2,0,120,75,1,0,'350 ml bakım',0,2),
+(4,2,0,120,75,1,0,'350 ml dökülme karşıtı',0,2),
+(5,2,0,120,75,1,0,'350 ml güzellik',0,1),
+(6,2,0,120,75,1,0,'350 ml kepek',0,1),
+(7,2,0,120,75,1,0,'400 ml bakım',0,3),
+(8,2,0,120,75,1,0,'400 ml güzellik',0,3),
+(9,2,0,120,75,1,0,'500 ml bakım',0,2),
+(10,2,0,120,75,1,0,'500 ml dökülme karşıtı',0,2),
+(11,2,0,120,75,1,0,'500ml+350ml bakım+dökülme karşıtı',0,2),
+(12,2,0,120,75,1,0,'600 ml + 200ml bakım + güzellik copack',0,3),
+(13,2,0,120,75,1,0,'600 ml + 200ml güzellik + kepek copack',0,1),
+(14,2,0,120,75,1,0,'600 ml bakım şampuanı',0,3),
+(15,2,0,120,75,1,0,'600 ml güzellik şampuanı',0,1),
+(16,2,0,120,75,1,0,'600 ml güzellik şampuanı',0,3),
+(17,2,0,120,75,1,0,'600 ml kepek şampuanı',0,1),
+(18,2,0,120,75,1,0,'600ml+200ml güzellik + bakım copack',0,3),
+(19,2,0,120,75,1,0,'600ml+200ml kepek+güzellik copack',0,1),
+(20,2,0,120,75,1,0,'900 ml bakım şampuanı',0,2),
+(21,2,0,120,75,1,0,'900 ml dökülme karşıtı şampuanı',0,2),
+(22,2,0,120,75,1,0,'TG',0,null),
+(23,2,0,120,75,1,0,'DH',0,null);
 
 INSERT INTO `DECISIONENTITY` VALUES 
 (1,2,0,'SINGLE_CHOICE','Lorem ipsum',0,0,'Volume Hunting Mechanism',0),
@@ -87,33 +95,3 @@ INSERT INTO `DECISIONCHOICEENTITY` VALUES
 (31,2,10000,0,120,75,1,0,'Motivational event',0,9),
 (32,2,15000,0,120,75,1,0,'Training',0,9),
 (33,2,24000,0,120,75,1,0,'Providing tablets integrated to inventory system',0,9);
-
-INSERT INTO `decisions_products` (`PRODUCT_ID`, `DECISION_ID`)
-VALUES
-	(5,1),
-	(7,1),
-	(9,1),
-	(10,1),
-	(12,1),
-	(1,2),
-	(2,2),
-	(3,2),
-	(4,2),
-	(6,2),
-	(13,3),
-	(14,3),
-	(8,4),
-	(9,4),
-	(11,4),
-	(12,4),
-	(5,6),
-	(7,6),
-	(9,6),
-	(10,6),
-	(12,6),
-	(3,8),
-	(4,8),
-	(6,8),
-	(8,8),
-	(9,8),
-	(12,8);

@@ -36,6 +36,9 @@ public class ProductEntity extends AbstractEntity {
     private int indexMax;
     private int indexStep;
 
+    @ManyToOne
+    private BrandEntity brand;
+
     @ManyToMany(mappedBy = "products", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
     private List<DecisionEntity> decisions = new ArrayList<>();
 
@@ -112,6 +115,14 @@ public class ProductEntity extends AbstractEntity {
 
     public void setDecisions(List<DecisionEntity> decisions) {
         this.decisions = decisions;
+    }
+
+    public BrandEntity getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandEntity brand) {
+        this.brand = brand;
     }
 
 }

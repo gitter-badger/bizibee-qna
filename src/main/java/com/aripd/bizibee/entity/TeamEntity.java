@@ -29,9 +29,6 @@ public class TeamEntity extends AbstractEntity {
     @OneToMany(mappedBy = "team", orphanRemoval = true)
     private List<UserEntity> users;
 
-    @OneToMany(mappedBy = "team", orphanRemoval = true)
-    private List<PlayerEntity> players;
-
     public TeamEntity() {
     }
 
@@ -57,14 +54,6 @@ public class TeamEntity extends AbstractEntity {
 
     public void setUsers(List<UserEntity> users) {
         this.users = users;
-    }
-
-    public List<PlayerEntity> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<PlayerEntity> players) {
-        this.players = players;
     }
 
 }

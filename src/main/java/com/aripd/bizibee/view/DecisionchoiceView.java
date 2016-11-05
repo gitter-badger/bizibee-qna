@@ -1,8 +1,10 @@
 package com.aripd.bizibee.view;
 
+import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionchoiceDataModel;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import com.aripd.bizibee.service.DecisionService;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -28,6 +30,9 @@ public class DecisionchoiceView implements Serializable {
     private LazyDataModel<DecisionchoiceEntity> lazyModel;
 
     @Inject
+    private DecisionService decisionService;
+
+    @Inject
     MessageUtil messageUtil;
 
     public DecisionchoiceView() {
@@ -40,8 +45,8 @@ public class DecisionchoiceView implements Serializable {
         lazyModel = new LazyDecisionchoiceDataModel(decisionchoiceService);
     }
 
-    public List<DecisionchoiceEntity> fetchAllRecords() {
-        return decisionchoiceService.findAll();
+    public List<DecisionEntity> getDecisions() {
+        return decisionService.findAll();
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {

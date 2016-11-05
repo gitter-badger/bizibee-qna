@@ -9,15 +9,15 @@
             <p:breadCrumb>
                 <p:menuitem value="#{i18n['Home']}" outcome="/index" />
                 <p:menuitem value="#{i18n['Settings']}" />
-                <p:menuitem value="#{i18n['Products']}" outcome="/ruler/product" />
+                <p:menuitem value="#{i18n['Brands']}" outcome="/ruler/brand" />
             </p:breadCrumb>
         </h:form>
     </ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="product" value="#{productView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+            <p:dataTable id="dataTable" var="brand" value="#{brandView.lazyModel}" emptyMessage="#{i18n['No records found']}"
                          paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{product.id}" selectionMode="single" selection="#{productView.selectedRecord}"
+                         rowKey="#{brand.id}" selectionMode="single" selection="#{brandView.selectedRecord}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                          sortMode="multiple" 
@@ -28,15 +28,12 @@
                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                     </p:commandButton>
                 </f:facet>
-                <p:column headerText="#{i18n['Brand']}">
-                    <h:outputText value="#{product.brand.name}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Name']}" sortBy="#{product.name}" filterBy="#{product.name}">
-                    <h:outputText value="#{product.name}"/>
+                <p:column headerText="#{i18n['Name']}" sortBy="#{brand.name}" filterBy="#{brand.name}">
+                    <h:outputText value="#{brand.name}"/>
                 </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{product}" target="#{productView.selectedRecord}" />
+                        <f:setPropertyActionListener value="#{brand}" target="#{brandView.selectedRecord}" />
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
@@ -47,17 +44,11 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{productView.selectedRecord.name}" required="true"/>
-                    <p:outputLabel for="brand" value="#{i18n['Brand']}"/>
-                    <p:selectOneMenu id="brand" value="#{productView.selectedRecord.brand}" converter="#{brandConverter}"
-                                     filter="true" filterMatchMode="contains" required="true">
-                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
-                        <f:selectItems value="#{productView.brands}" var="brand" itemValue="#{brand}" itemLabel="#{brand.name}"/>
-                    </p:selectOneMenu>
+                    <p:inputText id="name" value="#{brandView.selectedRecord.name}" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{productView.doUpdateRecord}"/>
-                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{productView.doDeleteRecord}">
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{brandView.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{brandView.doDeleteRecord}">
                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
@@ -68,16 +59,10 @@
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{productView.newRecord.name}" required="true"/>
-                    <p:outputLabel for="brand" value="#{i18n['Brand']}"/>
-                    <p:selectOneMenu id="brand" value="#{productView.newRecord.brand}" converter="#{brandConverter}"
-                                     filter="true" filterMatchMode="contains" required="true">
-                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
-                        <f:selectItems value="#{productView.brands}" var="brand" itemValue="#{brand}" itemLabel="#{brand.name}"/>
-                    </p:selectOneMenu>
+                    <p:inputText id="name" value="#{brandView.newRecord.name}" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{productView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{brandView.doCreateRecord}"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>
