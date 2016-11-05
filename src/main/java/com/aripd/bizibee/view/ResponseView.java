@@ -4,7 +4,7 @@ import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
-import com.aripd.bizibee.entity.ProductEntity;
+import com.aripd.bizibee.entity.SkuEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -44,9 +44,9 @@ public class ResponseView implements Serializable {
     private DecisionchoiceService decisionchoiceService;
     private DecisionchoiceEntity model1;
     private List<DecisionchoiceEntity> model2 = new ArrayList<>();
-    private HashMap<ProductEntity, Integer> model3 = new HashMap<>();
-    private HashMap<ProductEntity, DecisionchoiceEntity> model4 = new HashMap<>();
-    private HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>> model5 = new HashMap<>();
+    private HashMap<SkuEntity, Integer> model3 = new HashMap<>();
+    private HashMap<SkuEntity, DecisionchoiceEntity> model4 = new HashMap<>();
+    private HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model5 = new HashMap<>();
 
     @Inject
     MessageUtil messageUtil;
@@ -180,27 +180,27 @@ public class ResponseView implements Serializable {
         this.model2 = model2;
     }
 
-    public HashMap<ProductEntity, Integer> getModel3() {
+    public HashMap<SkuEntity, Integer> getModel3() {
         return model3;
     }
 
-    public void setModel3(HashMap<ProductEntity, Integer> model3) {
+    public void setModel3(HashMap<SkuEntity, Integer> model3) {
         this.model3 = model3;
     }
 
-    public HashMap<ProductEntity, DecisionchoiceEntity> getModel4() {
+    public HashMap<SkuEntity, DecisionchoiceEntity> getModel4() {
         return model4;
     }
 
-    public void setModel4(HashMap<ProductEntity, DecisionchoiceEntity> model4) {
+    public void setModel4(HashMap<SkuEntity, DecisionchoiceEntity> model4) {
         this.model4 = model4;
     }
 
-    public HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>> getModel5() {
+    public HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> getModel5() {
         return model5;
     }
 
-    public void setModel5(HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>> model5) {
+    public void setModel5(HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model5) {
         this.model5 = model5;
     }
 

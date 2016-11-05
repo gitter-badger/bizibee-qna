@@ -1,11 +1,11 @@
 package com.aripd.bizibee.converter;
 
-import com.aripd.bizibee.entity.ProductEntity;
+import com.aripd.bizibee.entity.SkuEntity;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 @Named
 @ApplicationScoped
-public class ProductConverter extends AbstractConverter<ProductEntity> {
+public class SkuConverter extends AbstractConverter<SkuEntity> {
 
 }

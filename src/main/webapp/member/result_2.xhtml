@@ -21,9 +21,9 @@
                     </f:facet>
                     <p:column selectionMode="single" style="width:16px;text-align:center;" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}"/>
                     <p:column selectionMode="multiple" style="width:16px;text-align:center;" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}"/>
-                    <p:column rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}"/>
-                    <p:column rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}"/>
-                    <p:column rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}"/>
+                    <p:column rendered="#{decision.decisionType eq 'RANGE_SKU_LISTING'}"/>
+                    <p:column rendered="#{decision.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}"/>
+                    <p:column rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}"/>
                     <p:column>
                         <h:outputText value="#{decisionchoice.name}" />
                     </p:column>

@@ -47,12 +47,12 @@
                     <p:inputText id="name" value="#{decisionView.selectedRecord.name}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}"/>
-                    <p:outputLabel for="products" value="#{i18n['Products']}"/>
-                    <p:selectCheckboxMenu id="products" value="#{decisionView.selectedRecord.products}" 
-                                          label="#{i18n['Products']}"
+                    <p:outputLabel for="skus" value="#{i18n['Skus']}"/>
+                    <p:selectCheckboxMenu id="skus" value="#{decisionView.selectedRecord.skus}" 
+                                          label="#{i18n['Skus']}"
                                           filter="true" filterMatchMode="contains"
-                                          converter="#{productConverter}">
-                        <f:selectItems value="#{decisionView.products}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
+                                          converter="#{skuConverter}">
+                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
@@ -71,12 +71,12 @@
                     <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.newRecord.description}"/>
-                    <p:outputLabel for="products" value="#{i18n['Products']}"/>
-                    <p:selectCheckboxMenu id="products" value="#{decisionView.newRecord.products}" 
-                                          label="#{i18n['Products']}"
+                    <p:outputLabel for="skus" value="#{i18n['Skus']}"/>
+                    <p:selectCheckboxMenu id="skus" value="#{decisionView.newRecord.skus}" 
+                                          label="#{i18n['Skus']}"
                                           filter="true" filterMatchMode="contains"
-                                          converter="#{productConverter}">
-                        <f:selectItems value="#{decisionView.products}" var="product" itemLabel="#{product.name}" itemValue="#{product}"/>
+                                          converter="#{skuConverter}">
+                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
                 </p:panelGrid>
                 <f:facet name="footer">

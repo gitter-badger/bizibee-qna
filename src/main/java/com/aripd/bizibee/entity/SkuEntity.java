@@ -18,7 +18,7 @@ import org.eclipse.persistence.annotations.TenantDiscriminatorColumn;
 @Multitenant(value = MultitenantType.SINGLE_TABLE)
 @TenantDiscriminatorColumn(name = "SIMULATION_ID", contextProperty = "eclipselink.tenant-id")
 @Cacheable(false)
-public class ProductEntity extends AbstractEntity {
+public class SkuEntity extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "SIMULATION_ID", insertable = false, updatable = false)
@@ -39,10 +39,10 @@ public class ProductEntity extends AbstractEntity {
     @ManyToOne
     private BrandEntity brand;
 
-    @ManyToMany(mappedBy = "products", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
+    @ManyToMany(mappedBy = "skus", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
     private List<DecisionEntity> decisions = new ArrayList<>();
 
-    public ProductEntity() {
+    public SkuEntity() {
     }
 
     public SimulationEntity getSimulation() {

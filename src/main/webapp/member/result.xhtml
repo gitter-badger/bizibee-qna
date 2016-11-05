@@ -46,7 +46,7 @@
                     </p:selectManyCheckbox>
                 </p:panel>
 
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'RANGE_PRODUCT_LISTING'}">
+                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'RANGE_SKU_LISTING'}">
                     <f:facet name="header">
                         <h:outputText value="#{decision.id}. #{decision.name}"/>
                         - 
@@ -54,20 +54,20 @@
                             <f:param name="id" value="#{decision.id}"/>
                         </h:link>
                     </f:facet>
-                    <p:repeat var="product" value="#{decision.products}">
-                        <h:outputText value="#{product.name}"/>
+                    <p:repeat var="sku" value="#{decision.skus}">
+                        <h:outputText value="#{sku.name}"/>
                         <h:panelGrid columns="2">
-                            <p:spinner value="#{scoreboardView.map3[decision]}" min="#{product.indexMin}" max="#{product.indexMax}" stepFactor="#{product.indexStep}" />
+                            <p:spinner value="#{scoreboardView.map3[decision]}" min="#{sku.indexMin}" max="#{sku.indexMax}" stepFactor="#{sku.indexStep}" />
                             <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
-                                <f:param value="#{product.name}"/>
-                                <f:param value="#{product.indexMin}"/>
-                                <f:param value="#{product.indexMax}"/>
+                                <f:param value="#{sku.name}"/>
+                                <f:param value="#{sku.indexMin}"/>
+                                <f:param value="#{sku.indexMax}"/>
                             </h:outputFormat>
                         </h:panelGrid>
                     </p:repeat>
                 </p:panel>
 
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_PRODUCT_LISTING'}">
+                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
                     <f:facet name="header">
                         <h:outputText value="#{decision.id}. #{decision.name}"/>
                         - 
@@ -75,15 +75,15 @@
                             <f:param name="id" value="#{decision.id}"/>
                         </h:link>
                     </f:facet>
-                    <p:repeat var="product" value="#{decision.products}">
-                        <h:outputText value="#{product.name}"/>
+                    <p:repeat var="sku" value="#{decision.skus}">
+                        <h:outputText value="#{sku.name}"/>
                         <p:selectOneRadio value="#{scoreboardView.map4[decision]}" converter="#{decisionchoiceConverter}">
                             <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectOneRadio>
                     </p:repeat>
                 </p:panel>
 
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_PRODUCT_LISTING'}">
+                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
                     <f:facet name="header">
                         <h:outputText value="#{decision.id}. #{decision.name}"/>
                         - 
@@ -91,8 +91,8 @@
                             <f:param name="id" value="#{decision.id}"/>
                         </h:link>
                     </f:facet>
-                    <p:repeat var="product" value="#{decision.products}">
-                        <h:outputText value="#{product.name}"/>
+                    <p:repeat var="sku" value="#{decision.skus}">
+                        <h:outputText value="#{sku.name}"/>
                         <p:selectManyCheckbox value="#{scoreboardView.map5[decision]}" converter="#{decisionchoiceConverter}">
                             <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectManyCheckbox>

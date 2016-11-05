@@ -3,7 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
-import com.aripd.bizibee.entity.ProductEntity;
+import com.aripd.bizibee.entity.SkuEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -12,10 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
-import com.aripd.bizibee.service.ProductService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.faces.event.ActionEvent;
+import com.aripd.bizibee.service.SkuService;
 
 @Named
 @ViewScoped
@@ -29,12 +29,12 @@ public class ScoreboardView implements Serializable {
 
     private HashMap<DecisionEntity, DecisionchoiceEntity> map1 = new HashMap<>();
     private HashMap<DecisionEntity, ArrayList<DecisionchoiceEntity>> map2 = new HashMap<>();
-    private HashMap<DecisionEntity, HashMap<ProductEntity, Integer>> map3 = new HashMap<>();
-    private HashMap<DecisionEntity, HashMap<ProductEntity, DecisionchoiceEntity>> map4 = new HashMap<>();
-    private HashMap<DecisionEntity, HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>>> map5 = new HashMap<>();
+    private HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> map3 = new HashMap<>();
+    private HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map4 = new HashMap<>();
+    private HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map5 = new HashMap<>();
 
     @Inject
-    private ProductService productService;
+    private SkuService skuService;
 
     @Inject
     MessageUtil messageUtil;
@@ -71,32 +71,32 @@ public class ScoreboardView implements Serializable {
             }
         }
 
-        for (HashMap.Entry<DecisionEntity, HashMap<ProductEntity, Integer>> map : map3.entrySet()) {
+        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, Integer>> map : map3.entrySet()) {
             DecisionEntity key = map.getKey();
-            HashMap<ProductEntity, Integer> value = map.getValue();
+            HashMap<SkuEntity, Integer> value = map.getValue();
             LOG.info("map3 DecisionEntity: " + key);
-            for (HashMap.Entry<ProductEntity, Integer> m : value.entrySet()) {
-                LOG.info("map3 DecisionchoiceEntity ProductEntity: " + m.getKey());
+            for (HashMap.Entry<SkuEntity, Integer> m : value.entrySet()) {
+                LOG.info("map3 DecisionchoiceEntity SkuEntity: " + m.getKey());
                 LOG.info("map3 DecisionchoiceEntity Integer: " + m.getValue());
             }
         }
 
-        for (HashMap.Entry<DecisionEntity, HashMap<ProductEntity, DecisionchoiceEntity>> map : map4.entrySet()) {
+        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map : map4.entrySet()) {
             DecisionEntity key = map.getKey();
-            HashMap<ProductEntity, DecisionchoiceEntity> value = map.getValue();
+            HashMap<SkuEntity, DecisionchoiceEntity> value = map.getValue();
             LOG.info("map4 DecisionEntity: " + key);
-            for (HashMap.Entry<ProductEntity, DecisionchoiceEntity> m : value.entrySet()) {
-                LOG.info("map4 DecisionchoiceEntity ProductEntity: " + m.getKey());
+            for (HashMap.Entry<SkuEntity, DecisionchoiceEntity> m : value.entrySet()) {
+                LOG.info("map4 DecisionchoiceEntity SkuEntity: " + m.getKey());
                 LOG.info("map4 DecisionchoiceEntity DecisionchoiceEntity: " + m.getValue());
             }
         }
 
-        for (HashMap.Entry<DecisionEntity, HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>>> map : map5.entrySet()) {
+        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map : map5.entrySet()) {
             DecisionEntity key = map.getKey();
-            HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>> value = map.getValue();
+            HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> value = map.getValue();
             LOG.info("map5 DecisionEntity: " + key);
-            for (HashMap.Entry<ProductEntity, ArrayList<DecisionchoiceEntity>> m : value.entrySet()) {
-                LOG.info("map5 DecisionchoiceEntity ProductEntity: " + m.getKey());
+            for (HashMap.Entry<SkuEntity, ArrayList<DecisionchoiceEntity>> m : value.entrySet()) {
+                LOG.info("map5 DecisionchoiceEntity SkuEntity: " + m.getKey());
                 ArrayList<DecisionchoiceEntity> v = m.getValue();
                 for (DecisionchoiceEntity d : v) {
                     LOG.info("map5 DecisionchoiceEntity DecisionchoiceEntity: " + d);
@@ -107,8 +107,8 @@ public class ScoreboardView implements Serializable {
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
-    public List<ProductEntity> getProducts() {
-        return productService.findAll();
+    public List<SkuEntity> getSkus() {
+        return skuService.findAll();
     }
 
     public List<DecisionEntity> getDecisions() {
@@ -131,27 +131,27 @@ public class ScoreboardView implements Serializable {
         this.map2 = map2;
     }
 
-    public HashMap<DecisionEntity, HashMap<ProductEntity, Integer>> getMap3() {
+    public HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> getMap3() {
         return map3;
     }
 
-    public void setMap3(HashMap<DecisionEntity, HashMap<ProductEntity, Integer>> map3) {
+    public void setMap3(HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> map3) {
         this.map3 = map3;
     }
 
-    public HashMap<DecisionEntity, HashMap<ProductEntity, DecisionchoiceEntity>> getMap4() {
+    public HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> getMap4() {
         return map4;
     }
 
-    public void setMap4(HashMap<DecisionEntity, HashMap<ProductEntity, DecisionchoiceEntity>> map4) {
+    public void setMap4(HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map4) {
         this.map4 = map4;
     }
 
-    public HashMap<DecisionEntity, HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>>> getMap5() {
+    public HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> getMap5() {
         return map5;
     }
 
-    public void setMap5(HashMap<DecisionEntity, HashMap<ProductEntity, ArrayList<DecisionchoiceEntity>>> map5) {
+    public void setMap5(HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map5) {
         this.map5 = map5;
     }
 

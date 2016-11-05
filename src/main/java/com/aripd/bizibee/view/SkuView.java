@@ -2,10 +2,9 @@ package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.entity.BrandEntity;
 import com.aripd.util.MessageUtil;
-import com.aripd.bizibee.model.data.LazyProductDataModel;
-import com.aripd.bizibee.entity.ProductEntity;
+import com.aripd.bizibee.model.data.LazySkuDataModel;
+import com.aripd.bizibee.entity.SkuEntity;
 import com.aripd.bizibee.service.BrandService;
-import com.aripd.bizibee.service.ProductService;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -15,19 +14,20 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
+import com.aripd.bizibee.service.SkuService;
 
 @Named
 @ViewScoped
-public class ProductView implements Serializable {
+public class SkuView implements Serializable {
 
-    static final Logger LOG = Logger.getLogger(ProductView.class.getName());
+    static final Logger LOG = Logger.getLogger(SkuView.class.getName());
 
     @Inject
-    private ProductService productService;
-    private ProductEntity newRecord;
-    private ProductEntity selectedRecord;
-    private List<ProductEntity> selectedRecords;
-    private LazyDataModel<ProductEntity> lazyModel;
+    private SkuService skuService;
+    private SkuEntity newRecord;
+    private SkuEntity selectedRecord;
+    private List<SkuEntity> selectedRecords;
+    private LazyDataModel<SkuEntity> lazyModel;
 
     @Inject
     private BrandService brandService;
@@ -35,14 +35,14 @@ public class ProductView implements Serializable {
     @Inject
     MessageUtil messageUtil;
 
-    public ProductView() {
-        newRecord = new ProductEntity();
-        selectedRecord = new ProductEntity();
+    public SkuView() {
+        newRecord = new SkuEntity();
+        selectedRecord = new SkuEntity();
     }
 
     @PostConstruct
     public void init() {
-        lazyModel = new LazyProductDataModel(productService);
+        lazyModel = new LazySkuDataModel(skuService);
     }
 
     public List<BrandEntity> getBrands() {
@@ -50,50 +50,50 @@ public class ProductView implements Serializable {
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
-        productService.create(newRecord);
+        skuService.create(newRecord);
         messageUtil.addGlobalInfoFlashMessage("Created");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
-        productService.update(selectedRecord);
+        skuService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
     public void doDeleteRecord(ActionEvent actionEvent) {
-        productService.delete(selectedRecord);
+        skuService.delete(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Deleted");
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        productService.deleteItems(selectedRecords);
+        skuService.deleteItems(selectedRecords);
         messageUtil.addGlobalInfoFlashMessage("Deleted");
     }
 
-    public ProductEntity getSelectedRecord() {
+    public SkuEntity getSelectedRecord() {
         return selectedRecord;
     }
 
-    public void setSelectedRecord(ProductEntity selectedRecord) {
+    public void setSelectedRecord(SkuEntity selectedRecord) {
         this.selectedRecord = selectedRecord;
     }
 
-    public List<ProductEntity> getSelectedRecords() {
+    public List<SkuEntity> getSelectedRecords() {
         return selectedRecords;
     }
 
-    public void setSelectedRecords(List<ProductEntity> selectedRecords) {
+    public void setSelectedRecords(List<SkuEntity> selectedRecords) {
         this.selectedRecords = selectedRecords;
     }
 
-    public ProductEntity getNewRecord() {
+    public SkuEntity getNewRecord() {
         return newRecord;
     }
 
-    public void setNewRecord(ProductEntity newRecord) {
+    public void setNewRecord(SkuEntity newRecord) {
         this.newRecord = newRecord;
     }
 
-    public LazyDataModel<ProductEntity> getLazyModel() {
+    public LazyDataModel<SkuEntity> getLazyModel() {
         return lazyModel;
     }
 

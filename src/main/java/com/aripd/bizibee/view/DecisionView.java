@@ -3,7 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
-import com.aripd.bizibee.entity.ProductEntity;
+import com.aripd.bizibee.entity.SkuEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,7 +14,7 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
-import com.aripd.bizibee.service.ProductService;
+import com.aripd.bizibee.service.SkuService;
 
 @Named
 @ViewScoped
@@ -30,7 +30,7 @@ public class DecisionView implements Serializable {
     private LazyDataModel<DecisionEntity> lazyModel;
 
     @Inject
-    private ProductService productService;
+    private SkuService skuService;
 
     @Inject
     MessageUtil messageUtil;
@@ -45,8 +45,8 @@ public class DecisionView implements Serializable {
         lazyModel = new LazyDecisionDataModel(decisionService);
     }
 
-    public List<ProductEntity> getProducts() {
-        return productService.findAll();
+    public List<SkuEntity> getSkus() {
+        return skuService.findAll();
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {

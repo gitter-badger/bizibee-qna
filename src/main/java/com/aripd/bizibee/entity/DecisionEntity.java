@@ -50,14 +50,14 @@ public class DecisionEntity extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "decisions_products",
+            name = "decisions_skus",
             joinColumns = {
                 @JoinColumn(name = "DECISION_ID")},
             inverseJoinColumns = {
-                @JoinColumn(name = "PRODUCT_ID")
+                @JoinColumn(name = "SKU_ID")
             }
     )
-    private List<ProductEntity> products = new ArrayList<>();
+    private List<SkuEntity> skus = new ArrayList<>();
 
     public DecisionEntity() {
     }
@@ -167,12 +167,12 @@ public class DecisionEntity extends AbstractEntity {
         this.decisionchoices = decisionchoices;
     }
 
-    public List<ProductEntity> getProducts() {
-        return products;
+    public List<SkuEntity> getSkus() {
+        return skus;
     }
 
-    public void setProducts(List<ProductEntity> products) {
-        this.products = products;
+    public void setSkus(List<SkuEntity> skus) {
+        this.skus = skus;
     }
 
 }
