@@ -29,9 +29,11 @@ public class ScoreboardView implements Serializable {
 
     private HashMap<DecisionEntity, DecisionchoiceEntity> map1 = new HashMap<>();
     private HashMap<DecisionEntity, ArrayList<DecisionchoiceEntity>> map2 = new HashMap<>();
-    private HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> map3 = new HashMap<>();
-    private HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map4 = new HashMap<>();
-    private HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map5 = new HashMap<>();
+    private HashMap<DecisionEntity, SkuEntity> map3 = new HashMap<>();
+    private HashMap<DecisionEntity, ArrayList<SkuEntity>> map4 = new HashMap<>();
+    private HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> map5 = new HashMap<>();
+    private HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map6 = new HashMap<>();
+    private HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map7 = new HashMap<>();
 
     @Inject
     private SkuService skuService;
@@ -54,6 +56,8 @@ public class ScoreboardView implements Serializable {
         LOG.info("map3: " + map3);
         LOG.info("map4: " + map4);
         LOG.info("map5: " + map5);
+        LOG.info("map6: " + map6);
+        LOG.info("map7: " + map7);
 
         for (HashMap.Entry<DecisionEntity, DecisionchoiceEntity> map : map1.entrySet()) {
             DecisionEntity key = map.getKey();
@@ -71,7 +75,23 @@ public class ScoreboardView implements Serializable {
             }
         }
 
-        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, Integer>> map : map3.entrySet()) {
+        for (HashMap.Entry<DecisionEntity, SkuEntity> map : map3.entrySet()) {
+            DecisionEntity key = map.getKey();
+            SkuEntity value = map.getValue();
+            LOG.info("map1 DecisionEntity: " + key);
+            LOG.info("map1 SkuEntity: " + value);
+        }
+
+        for (HashMap.Entry<DecisionEntity, ArrayList<SkuEntity>> map : map4.entrySet()) {
+            DecisionEntity key = map.getKey();
+            ArrayList<SkuEntity> value = map.getValue();
+            LOG.info("map2 DecisionEntity: " + key);
+            for (SkuEntity e : value) {
+                LOG.info("map2 SkuEntity: " + e);
+            }
+        }
+
+        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, Integer>> map : map5.entrySet()) {
             DecisionEntity key = map.getKey();
             HashMap<SkuEntity, Integer> value = map.getValue();
             LOG.info("map3 DecisionEntity: " + key);
@@ -81,7 +101,7 @@ public class ScoreboardView implements Serializable {
             }
         }
 
-        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map : map4.entrySet()) {
+        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map : map6.entrySet()) {
             DecisionEntity key = map.getKey();
             HashMap<SkuEntity, DecisionchoiceEntity> value = map.getValue();
             LOG.info("map4 DecisionEntity: " + key);
@@ -91,7 +111,7 @@ public class ScoreboardView implements Serializable {
             }
         }
 
-        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map : map5.entrySet()) {
+        for (HashMap.Entry<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map : map7.entrySet()) {
             DecisionEntity key = map.getKey();
             HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> value = map.getValue();
             LOG.info("map5 DecisionEntity: " + key);
@@ -131,28 +151,44 @@ public class ScoreboardView implements Serializable {
         this.map2 = map2;
     }
 
-    public HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> getMap3() {
+    public HashMap<DecisionEntity, SkuEntity> getMap3() {
         return map3;
     }
 
-    public void setMap3(HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> map3) {
+    public void setMap3(HashMap<DecisionEntity, SkuEntity> map3) {
         this.map3 = map3;
     }
 
-    public HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> getMap4() {
+    public HashMap<DecisionEntity, ArrayList<SkuEntity>> getMap4() {
         return map4;
     }
 
-    public void setMap4(HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map4) {
+    public void setMap4(HashMap<DecisionEntity, ArrayList<SkuEntity>> map4) {
         this.map4 = map4;
     }
 
-    public HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> getMap5() {
+    public HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> getMap5() {
         return map5;
     }
 
-    public void setMap5(HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map5) {
+    public void setMap5(HashMap<DecisionEntity, HashMap<SkuEntity, Integer>> map5) {
         this.map5 = map5;
+    }
+
+    public HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> getMap6() {
+        return map6;
+    }
+
+    public void setMap6(HashMap<DecisionEntity, HashMap<SkuEntity, DecisionchoiceEntity>> map6) {
+        this.map6 = map6;
+    }
+
+    public HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> getMap7() {
+        return map7;
+    }
+
+    public void setMap7(HashMap<DecisionEntity, HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>>> map7) {
+        this.map7 = map7;
     }
 
 }
