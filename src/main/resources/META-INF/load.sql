@@ -44,15 +44,15 @@ INSERT INTO `SKUENTITY` VALUES
 (23,2,0,120,75,1,0,'DH',0,null);
 
 INSERT INTO `DECISIONENTITY` VALUES 
-(1,2,0,'SINGLE_SKU_LISTING','Description about Volume Hunting',0,0,'Volume Hunting',0),
-(2,2,0,'SINGLE_SKU_LISTING','Description about Delisting',0,0,'Delisting',0),
-(3,2,0,'MULTIPLE_SKU_LISTING','Description about Listing',0,0,'Listing',0),
-(4,2,0,'RANGE_SKU_LISTING','Description about Price Positioning',0,0,'Price Positioning',0),
-(5,2,0,'MULTIPLE_CHOICE','Description about E-Commerce Investment',0,0,'E-Commerce Investment',0),
-(6,2,0,'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',0,0,'Display',0),
-(7,2,0,'SINGLE_CHOICE','Description about Assortment',0,0,'Assortment',0),
-(8,2,0,'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',0,0,'Promotion',0),
-(9,2,0,'MULTIPLE_CHOICE','Description about Team Management',0,0,'Team Management',0);
+(1,2,0,'SINGLE_SKU_LISTING','Description about Volume Hunting',0,0,'Volume Hunting',true,0),
+(2,2,0,'SINGLE_SKU_LISTING','Description about Delisting',0,0,'Delisting',false,0),
+(3,2,0,'MULTIPLE_SKU_LISTING','Description about Listing',0,0,'Listing',false,0),
+(4,2,0,'RANGE_SKU_LISTING','Description about Price Positioning',0,0,'Price Positioning',true,0),
+(5,2,0,'MULTIPLE_CHOICE','Description about E-Commerce Investment',0,0,'E-Commerce Investment',false,0),
+(6,2,0,'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',0,0,'Display',false,0),
+(7,2,0,'SINGLE_CHOICE','Description about Assortment',0,0,'Assortment',false,0),
+(8,2,0,'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',0,0,'Promotion',false,0),
+(9,2,0,'MULTIPLE_CHOICE','Description about Team Management',0,0,'Team Management',false,0);
 
 INSERT INTO `DECISIONCHOICEENTITY` VALUES 
 (1,2,0,0.0001,120,75,1,0.0003,'A 600+200 ml kepek-güzellik copack',0.0005,1),

@@ -39,6 +39,8 @@ public class DecisionEntity extends AbstractEntity {
 
     private String description;
 
+    private boolean required;
+
     private double budget;
 
     private double gm;
@@ -117,6 +119,14 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isRequired() {
+        return required;
+    }
+
+    public void setRequired(boolean required) {
+        this.required = required;
     }
 
     public String getName() {

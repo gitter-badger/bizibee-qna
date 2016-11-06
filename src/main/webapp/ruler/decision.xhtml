@@ -58,6 +58,8 @@
                                           converter="#{skuConverter}">
                         <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
+                    <p:outputLabel for="required" value="#{i18n['Required']}"/>
+                    <p:selectBooleanButton id="required" value="#{decisionView.selectedRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}"/>
@@ -86,6 +88,8 @@
                                           converter="#{skuConverter}">
                         <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
+                    <p:outputLabel for="required" value="#{i18n['Required']}"/>
+                    <p:selectBooleanButton id="required" value="#{decisionView.newRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}"/>
