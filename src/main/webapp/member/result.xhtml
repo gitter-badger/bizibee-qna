@@ -57,7 +57,7 @@
                         </h:link>
                     </f:facet>
                     <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:selectOneRadio value="#{scoreboardView.map4[decision]}" 
+                    <p:selectOneRadio value="#{scoreboardView.map3[decision]}" 
                                       layout="pageDirection" columns="1"
                                       converter="#{skuConverter}">
                         <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
@@ -92,7 +92,7 @@
                     <p:repeat var="sku" value="#{decision.skus}">
                         <h:outputText value="#{sku.brand.name} #{sku.name}"/>
                         <h:panelGrid columns="2">
-                            <p:spinner value="#{scoreboardView.map3[decision]}" min="#{sku.indexMin}" max="#{sku.indexMax}" stepFactor="#{sku.indexStep}" />
+                            <p:spinner value="#{scoreboardView.map5[decision]}" min="#{sku.indexMin}" max="#{sku.indexMax}" stepFactor="#{sku.indexStep}" />
                             <h:outputFormat value="{0} {1} ürünü için {2} index ile {3} index arasinda bir fiyat belirleyin">
                                 <f:param value="#{sku.brand.name}"/>
                                 <f:param value="#{sku.name}"/>
@@ -114,7 +114,7 @@
                     <h3><h:outputText value="#{decision.description}"/></h3>
                     <p:repeat var="sku" value="#{decision.skus}">
                         <h:outputText value="#{sku.brand.name} #{sku.name}"/>
-                        <p:selectOneRadio value="#{scoreboardView.map4[decision]}" converter="#{decisionchoiceConverter}">
+                        <p:selectOneRadio value="#{scoreboardView.map6[decision]}" converter="#{decisionchoiceConverter}">
                             <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectOneRadio>
                     </p:repeat>
@@ -131,7 +131,7 @@
                     <h3><h:outputText value="#{decision.description}"/></h3>
                     <p:repeat var="sku" value="#{decision.skus}">
                         <h:outputText value="#{sku.brand.name} #{sku.name}"/>
-                        <p:selectManyCheckbox value="#{scoreboardView.map5[decision]}" converter="#{decisionchoiceConverter}">
+                        <p:selectManyCheckbox value="#{scoreboardView.map7[decision]}" converter="#{decisionchoiceConverter}">
                             <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectManyCheckbox>
                     </p:repeat>
