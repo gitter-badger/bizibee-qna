@@ -42,11 +42,14 @@ public class ResponseView implements Serializable {
 
     @Inject
     private DecisionchoiceService decisionchoiceService;
+    
     private DecisionchoiceEntity model1;
     private List<DecisionchoiceEntity> model2 = new ArrayList<>();
-    private HashMap<SkuEntity, Integer> model3 = new HashMap<>();
-    private HashMap<SkuEntity, DecisionchoiceEntity> model4 = new HashMap<>();
-    private HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model5 = new HashMap<>();
+    private SkuEntity model3;
+    private List<SkuEntity> model4 = new ArrayList<>();
+    private HashMap<SkuEntity, Integer> model5 = new HashMap<>();
+    private HashMap<SkuEntity, DecisionchoiceEntity> model6 = new HashMap<>();
+    private HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model7 = new HashMap<>();
 
     @Inject
     MessageUtil messageUtil;
@@ -91,6 +94,8 @@ public class ResponseView implements Serializable {
         LOG.info("model3: " + model3);
         LOG.info("model4: " + model4);
         LOG.info("model5: " + model5);
+        LOG.info("model6: " + model6);
+        LOG.info("model7: " + model7);
         messageUtil.addGlobalInfoFlashMessage("Updated");
 
         /**
@@ -180,28 +185,45 @@ public class ResponseView implements Serializable {
         this.model2 = model2;
     }
 
-    public HashMap<SkuEntity, Integer> getModel3() {
+    public SkuEntity getModel3() {
         return model3;
     }
 
-    public void setModel3(HashMap<SkuEntity, Integer> model3) {
+    public void setModel3(SkuEntity model3) {
         this.model3 = model3;
     }
 
-    public HashMap<SkuEntity, DecisionchoiceEntity> getModel4() {
+    public List<SkuEntity> getModel4() {
         return model4;
     }
 
-    public void setModel4(HashMap<SkuEntity, DecisionchoiceEntity> model4) {
+    public void setModel4(List<SkuEntity> model4) {
         this.model4 = model4;
     }
 
-    public HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> getModel5() {
+    public HashMap<SkuEntity, Integer> getModel5() {
         return model5;
     }
 
-    public void setModel5(HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model5) {
+    public void setModel5(HashMap<SkuEntity, Integer> model5) {
         this.model5 = model5;
     }
+
+    public HashMap<SkuEntity, DecisionchoiceEntity> getModel6() {
+        return model6;
+    }
+
+    public void setModel6(HashMap<SkuEntity, DecisionchoiceEntity> model6) {
+        this.model6 = model6;
+    }
+
+    public HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> getModel7() {
+        return model7;
+    }
+
+    public void setModel7(HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model7) {
+        this.model7 = model7;
+    }
+
 
 }
