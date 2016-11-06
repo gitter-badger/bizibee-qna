@@ -44,9 +44,9 @@ INSERT INTO `SKUENTITY` VALUES
 (23,2,0,120,75,1,0,'DH',0,null);
 
 INSERT INTO `DECISIONENTITY` VALUES 
-(1,2,0,'SINGLE_CHOICE','Lorem ipsum',0,0,'Volume Hunting Mechanism',0),
-(2,2,0,'SINGLE_CHOICE','Lorem ipsum',0,0,'Delisting',0),
-(3,2,0,'MULTIPLE_CHOICE','Lorem ipsum',0,0,'Listing',0),
+(1,2,0,'SINGLE_SKU_LISTING','Lorem ipsum',0,0,'Volume Hunting Mechanism',0),
+(2,2,0,'SINGLE_SKU_LISTING','Lorem ipsum',0,0,'Delisting',0),
+(3,2,0,'MULTIPLE_SKU_LISTING','Lorem ipsum',0,0,'Listing',0),
 (4,2,0,'RANGE_SKU_LISTING','Lorem ipsum',0,0,'Price Positioning',0),
 (5,2,0,'MULTIPLE_CHOICE','Lorem ipsum',0,0,'E-Commerce Investment',0),
 (6,2,0,'MULTIPLE_CHOICE_SKU_LISTING','Lorem ipsum',0,0,'Display',0),

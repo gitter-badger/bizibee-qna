@@ -46,6 +46,36 @@
                     </p:selectManyCheckbox>
                 </p:panel>
 
+                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_SKU_LISTING'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                        - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
+                    <p:selectOneRadio value="#{scoreboardView.map4[decision]}" 
+                                      layout="pageDirection" columns="1"
+                                      converter="#{skuConverter}">
+                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+                    </p:selectOneRadio>
+                </p:panel>
+
+                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_SKU_LISTING'}">
+                    <f:facet name="header">
+                        <h:outputText value="#{decision.id}. #{decision.name}"/>
+                        - 
+                        <h:link value="Go" outcome="/member/response">
+                            <f:param name="id" value="#{decision.id}"/>
+                        </h:link>
+                    </f:facet>
+                    <p:selectManyCheckbox value="#{scoreboardView.map4[decision]}" 
+                                          layout="pageDirection" columns="1"
+                                          converter="#{skuConverter}">
+                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+                    </p:selectManyCheckbox>
+                </p:panel>
+
                 <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'RANGE_SKU_LISTING'}">
                     <f:facet name="header">
                         <h:outputText value="#{decision.id}. #{decision.name}"/>

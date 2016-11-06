@@ -41,6 +41,24 @@
             <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
 
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_SKU_LISTING'}">
+            <p:selectOneRadio value="#{responseView.model1}" 
+                              layout="pageDirection" columns="1"
+                              converter="#{skuConverter}">
+                <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+            </p:selectOneRadio>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
+        <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
+            <p:selectManyCheckbox value="#{responseView.model2}" 
+                                  layout="pageDirection" columns="1"
+                                  converter="#{skuConverter}">
+                <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+            </p:selectManyCheckbox>
+            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+        </h:form>
+
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
             <p:repeat var="sku" value="#{responseView.selectedRecord.skus}">
                 <h:outputText value="#{sku.name}"/>
