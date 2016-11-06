@@ -47,6 +47,10 @@
                     <p:inputText id="name" value="#{decisionView.selectedRecord.name}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}"/>
+                    <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
+                    <p:selectOneMenu id="decisionType" value="#{decisionView.selectedRecord.decisionType}" label="#{i18n['Decision Type']}" required="true">
+                        <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
+                    </p:selectOneMenu>
                     <p:outputLabel for="skus" value="#{i18n['Skus']}"/>
                     <p:selectCheckboxMenu id="skus" value="#{decisionView.selectedRecord.skus}" 
                                           label="#{i18n['Skus']}"
@@ -71,6 +75,10 @@
                     <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.newRecord.description}"/>
+                    <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
+                    <p:selectOneMenu id="decisionType" value="#{decisionView.newRecord.decisionType}" label="#{i18n['Decision Type']}" required="true">
+                        <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
+                    </p:selectOneMenu>
                     <p:outputLabel for="skus" value="#{i18n['Skus']}"/>
                     <p:selectCheckboxMenu id="skus" value="#{decisionView.newRecord.skus}" 
                                           label="#{i18n['Skus']}"

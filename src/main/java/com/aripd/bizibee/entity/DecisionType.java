@@ -2,8 +2,8 @@ package com.aripd.bizibee.entity;
 
 public enum DecisionType {
 
-    SINGLE_CHOICE("Single Choice"),
-    MULTIPLE_CHOICE("Multiple Choice"),
+    SINGLE_CHOICE("SINGLE_CHOICE"),
+    MULTIPLE_CHOICE("MULTIPLE_CHOICE"),
     SINGLE_SKU_LISTING("SINGLE_SKU_LISTING"),
     MULTIPLE_SKU_LISTING("MULTIPLE_SKU_LISTING"),
     RANGE_SKU_LISTING("RANGE_SKU_LISTING"),

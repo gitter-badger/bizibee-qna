@@ -3,6 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
+import com.aripd.bizibee.entity.DecisionType;
 import com.aripd.bizibee.entity.SkuEntity;
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.SkuService;
+import java.util.Arrays;
 
 @Named
 @ViewScoped
@@ -43,6 +45,10 @@ public class DecisionView implements Serializable {
     @PostConstruct
     public void init() {
         lazyModel = new LazyDecisionDataModel(decisionService);
+    }
+
+    public List<DecisionType> getDecisionTypes() {
+        return Arrays.asList(DecisionType.values());
     }
 
     public List<SkuEntity> getSkus() {
