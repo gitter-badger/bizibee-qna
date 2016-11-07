@@ -222,12 +222,12 @@ a{
 }
 
 .bg-img {
-    background: url("../images/bg-1.jpg") center;
+    background: url("#{resource['images/bg-1.jpg']}") center;
     position: relative;
     background-size: cover;
 }
 .bg-img-1 {
-    background: url("../images/bg-2.jpg") center;
+    background: url("#{resource['images/bg-2.jpg']}") center;
     position: relative;
     background-size: cover;
 }
@@ -246,19 +246,19 @@ a{
 
 .bg-solid {
     background-color: #28282e !important;
-    background-image: url("../images/bg-pattern.png");
+    background-image: url("#{resource['images/bg-pattern.png']}");
     background-repeat: repeat;
 }
 
 .bg-solid-1 {
     background-color: #6A76FC !important;
-    background-image: url("../images/bg-pattern.png");
+    background-image: url("#{resource['images/bg-pattern.png']}");
     background-repeat: repeat;
 }
 
 .bg-solid-2 {
     background-color: #43CEA2 !important;
-    background-image: url("../images/bg-pattern.png");
+    background-image: url("#{resource['images/bg-pattern.png']}");
     background-repeat: repeat;
 }
 
@@ -1078,7 +1078,7 @@ textarea.form-control {
 
 /* Home Showcase */
 #macbook {
-    background: url("../images/mac.png");
+    background: url("#{resource['images/mac.png']}");
     width: 967px;
     height: 484px;
     margin: 0px auto;
@@ -1175,7 +1175,7 @@ textarea.form-control {
 
 /* Home Construction */
 .home-construction {
-    background: url("../images/bg-construction.jpg") center;
+    background: url("#{resource['images/bg-construction.jpg']}") center;
     background-size: cover;
 }
 .feature-icon-const i{
@@ -1208,7 +1208,7 @@ textarea.form-control {
 
 /* Home Minimal */
 .home-minimal {
-    background: url("../images/bg-4.jpg") center;
+    background: url("#{resource['images/bg-4.jpg']}") center;
     background-size: cover;
 }
 
@@ -1222,7 +1222,7 @@ textarea.form-control {
 
 /* Home Carousel */
 .home-carousel {
-    background: url("../images/bg-5.jpg") center;
+    background: url("#{resource['images/bg-5.jpg']}") center;
     background-size: cover;
 }
 
