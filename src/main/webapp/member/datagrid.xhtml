@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml">
+    <ui:define name="breadCrumb">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="#{i18n['Home']}" outcome="/index" />
+                <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
+            </p:breadCrumb>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <script type="text/javascript">
+            function handleDrop(event, ui) {
+                var droppedSku = ui.draggable;
+
+                droppedSku.fadeOut('fast');
+            }
+        </script>
+
+        <h:form id="skuForm">
+            <p:fieldset id="availableSkusField" legend="AvailableSkus">
+                <p:dataGrid id="availableSkus" var="sku" value="#{DNDSkusView.skus}" columns="3">
+                    <p:panel id="pnl" header="#{sku.id} #{sku.brand.name} #{sku.name}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <p:graphicImage name="/demo/images/sku/#{sku.brand}.gif" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                </p:dataGrid>
+            </p:fieldset>
+
+            <p:fieldset id="selectedSkus" legend="Selected Skus" style="margin-top:20px">
+                <p:outputPanel id="dropArea">
+                    <h:outputText value="!!!Drop here!!!" rendered="#{empty DNDSkusView.droppedSkus}" style="font-size:24px;" />
+                    <p:dataTable id="selectedSkusTable" var="sku" value="#{DNDSkusView.droppedSkus}" rendered="#{not empty DNDSkusView.droppedSkus}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{sku.id}" />
+                        </p:column>
+
+                        <p:column headerText="Brand">
+                            <h:outputText value="#{sku.brand.name}" />
+                        </p:column>
+
+                        <p:column headerText="Name">
+                            <h:outputText value="#{sku.name}" />
+                        </p:column>
+
+                        <p:column headerText="Brand">
+                            <h:outputText value="#{sku.brand.name}" />
+                        </p:column>
+
+                        <p:column style="width:32px">
+                            <p:commandButton update=":skuForm:display" oncomplete="PF('skuDialog').show()" icon="ui-icon-search">
+                                <f:setPropertyActionListener value="#{sku}" target="#{DNDSkusView.selectedSku}" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </p:fieldset>
+
+            <p:droppable for="selectedSkus" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableSkus" onDrop="handleDrop">
+                <p:ajax listener="#{DNDSkusView.onSkuDrop}" update="dropArea availableSkus" />
+            </p:droppable>
+
+            <p:dialog header="Sku Detail" widgetVar="skuDialog" resizable="false" draggable="false"
+                      showEffect="fade" hideEffect="fade" modal="true">
+
+                <p:outputPanel id="display">
+                    <h:panelGrid columns="2" cellpadding="5" rendered="#{not empty DNDSkusView.selectedSku}">
+                        <f:facet name="header">
+                            <p:graphicImage name="/demo/images/sku/#{DNDSkusView.selectedSku.brand}.gif"/>
+                        </f:facet>
+
+                        <h:outputText value="Id" />
+                        <h:outputText value="#{DNDSkusView.selectedSku.id}" style="font-weight:bold"/>
+
+                        <h:outputText value="Year:" />
+                        <h:outputText value="#{DNDSkusView.selectedSku.brand.name}" style="font-weight:bold"/>
+
+                        <h:outputText value="Brand" />
+                        <h:outputText value="#{DNDSkusView.selectedSku.name}" style="font-weight:bold"/>
+
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{DNDSkusView.selectedSku.name}" style="font-weight:bold"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
