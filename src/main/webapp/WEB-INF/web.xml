@@ -158,12 +158,12 @@
         <mime-type>application/vnd.ms-fontobject</mime-type>
     </mime-mapping>
     <mime-mapping>
-        <extension>eot?#iefix</extension>
-        <mime-type>application/vnd.ms-fontobject</mime-type>
-    </mime-mapping>
-    <mime-mapping>
         <extension>svg</extension>
         <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>map</extension>
+        <mime-type>text/css</mime-type>
     </mime-mapping>
     <mime-mapping>
         <extension>sql</extension>
