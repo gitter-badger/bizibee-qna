@@ -29,11 +29,18 @@ public class DNDSkusView implements Serializable {
         droppedSkus = new ArrayList<>();
     }
      
-    public void onSkuDrop(DragDropEvent ddEvent) {
+    public void onSkuDrop1(DragDropEvent ddEvent) {
         SkuEntity sku = ((SkuEntity) ddEvent.getData());
   
         droppedSkus.add(sku);
         skus.remove(sku);
+    }
+     
+    public void onSkuDrop2(DragDropEvent ddEvent) {
+        SkuEntity sku = ((SkuEntity) ddEvent.getData());
+  
+        skus.add(sku);
+        droppedSkus.remove(sku);
     }
      
     public void setSkuService(SkuService skuService) {

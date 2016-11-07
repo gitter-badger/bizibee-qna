@@ -23,47 +23,44 @@
 
         <h:form id="skuForm">
             <p:fieldset id="availableSkusField" legend="AvailableSkus">
-                <p:dataGrid id="availableSkus" var="sku" value="#{DNDSkusView.skus}" columns="3">
-                    <p:panel id="pnl" header="#{sku.id} #{sku.brand.name} #{sku.name}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
-                            <p:graphicImage name="/demo/images/sku/#{sku.brand}.gif" />
-                        </h:panelGrid>
-                    </p:panel>
-                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
-                </p:dataGrid>
-            </p:fieldset>
-
-            <p:fieldset id="selectedSkus" legend="Selected Skus" style="margin-top:20px">
-                <p:outputPanel id="dropArea">
-                    <h:outputText value="!!!Drop here!!!" rendered="#{empty DNDSkusView.droppedSkus}" style="font-size:24px;" />
-                    <p:dataTable id="selectedSkusTable" var="sku" value="#{DNDSkusView.droppedSkus}" rendered="#{not empty DNDSkusView.droppedSkus}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{sku.id}" />
-                        </p:column>
-
-                        <p:column headerText="Brand">
-                            <h:outputText value="#{sku.brand.name}" />
-                        </p:column>
-
-                        <p:column headerText="Name">
-                            <h:outputText value="#{sku.name}" />
-                        </p:column>
-
-                        <p:column headerText="Brand">
-                            <h:outputText value="#{sku.brand.name}" />
-                        </p:column>
-
-                        <p:column style="width:32px">
-                            <p:commandButton update=":skuForm:display" oncomplete="PF('skuDialog').show()" icon="ui-icon-search">
-                                <f:setPropertyActionListener value="#{sku}" target="#{DNDSkusView.selectedSku}" />
-                            </p:commandButton>
-                        </p:column>
-                    </p:dataTable>
+                <p:outputPanel id="dropArea1">
+                    <h:outputText value="!!!Drop here!!!" rendered="#{empty DNDSkusView.skus}" style="font-size:24px;" />
+                    <p:dataGrid id="availableSkus" var="sku" value="#{DNDSkusView.skus}" columns="3">
+                        <p:panel id="pnl1" header="#{sku.id} #{sku.brand.name} #{sku.name}" style="text-align:center">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <p:graphicImage name="/demo/images/sku/#{sku.brand}.gif" />
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:draggable for="pnl1" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                    </p:dataGrid>
                 </p:outputPanel>
             </p:fieldset>
 
+            <p:fieldset id="selectedSkus" legend="Selected Skus" style="margin-top:20px">
+                <p:outputPanel id="dropArea2">
+                    <h:outputText value="!!!Drop here!!!" rendered="#{empty DNDSkusView.droppedSkus}" style="font-size:24px;" />
+                    <p:dataGrid id="selectedSkusTable" var="sku" value="#{DNDSkusView.droppedSkus}" columns="3" rendered="#{not empty DNDSkusView.droppedSkus}">
+                        <p:panel id="pnl2" header="#{sku.id} #{sku.brand.name} #{sku.name}" style="text-align:center">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <p:graphicImage name="/demo/images/sku/#{sku.brand}.gif" />
+                            </h:panelGrid>
+                            <f:facet name="footer">
+                                <p:commandButton update=":skuForm:display" oncomplete="PF('skuDialog').show()" icon="ui-icon-search">
+                                    <f:setPropertyActionListener value="#{sku}" target="#{DNDSkusView.selectedSku}" />
+                                </p:commandButton>
+                            </f:facet>
+                        </p:panel>
+                        <p:draggable for="pnl2" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                    </p:dataGrid>
+                </p:outputPanel>
+            </p:fieldset>
+
+            <p:droppable for="availableSkusField" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="selectedSkusTable" onDrop="handleDrop">
+                <p:ajax listener="#{DNDSkusView.onSkuDrop2}" update="dropArea1 selectedSkusTable" />
+            </p:droppable>
+
             <p:droppable for="selectedSkus" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableSkus" onDrop="handleDrop">
-                <p:ajax listener="#{DNDSkusView.onSkuDrop}" update="dropArea availableSkus" />
+                <p:ajax listener="#{DNDSkusView.onSkuDrop1}" update="dropArea2 availableSkus" />
             </p:droppable>
 
             <p:dialog header="Sku Detail" widgetVar="skuDialog" resizable="false" draggable="false"
