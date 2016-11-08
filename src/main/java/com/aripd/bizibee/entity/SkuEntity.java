@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,9 @@ public class SkuEntity extends AbstractEntity {
     @NotNull
     @Column(nullable = false)
     private String name;
+
+    @Lob
+    private byte[] bytes;
 
     private double gm;
     private double ms;
@@ -59,6 +63,14 @@ public class SkuEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 
     public double getUsg() {

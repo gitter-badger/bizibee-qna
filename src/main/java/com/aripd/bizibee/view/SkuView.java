@@ -15,6 +15,7 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.SkuService;
+import org.primefaces.model.UploadedFile;
 
 @Named
 @ViewScoped
@@ -28,6 +29,8 @@ public class SkuView implements Serializable {
     private SkuEntity selectedRecord;
     private List<SkuEntity> selectedRecords;
     private LazyDataModel<SkuEntity> lazyModel;
+
+    private UploadedFile file;
 
     @Inject
     private BrandService brandService;
@@ -50,11 +53,17 @@ public class SkuView implements Serializable {
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
+        if (file != null) {
+            newRecord.setBytes(file.getContents());
+        }
         skuService.create(newRecord);
         messageUtil.addGlobalInfoFlashMessage("Created");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
+        if (file != null) {
+            selectedRecord.setBytes(file.getContents());
+        }
         skuService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
@@ -65,8 +74,12 @@ public class SkuView implements Serializable {
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        skuService.deleteItems(selectedRecords);
-        messageUtil.addGlobalInfoFlashMessage("Deleted");
+        if (selectedRecords.isEmpty()) {
+            messageUtil.addGlobalErrorFlashMessage("Please select at least one item");
+        } else {
+            skuService.deleteItems(selectedRecords);
+            messageUtil.addGlobalInfoFlashMessage("Deleted");
+        }
     }
 
     public SkuEntity getSelectedRecord() {
@@ -95,6 +108,14 @@ public class SkuView implements Serializable {
 
     public LazyDataModel<SkuEntity> getLazyModel() {
         return lazyModel;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

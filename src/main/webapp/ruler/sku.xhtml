@@ -1,8 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
     <ui:define name="breadCrumb">
         <h:form>
@@ -35,6 +36,9 @@
                     <h:outputText value="#{sku.name}"/>
                 </p:column>
                 <p:column exportable="false" width="100">
+                    <p:commandLink value="#{i18n['Show']}" update="showForm" oncomplete="PF('showDialog').show()">
+                        <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
+                    </p:commandLink>
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                         <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
                     </p:commandLink>
@@ -43,7 +47,25 @@
         </h:form>
     </ui:define>
     <ui:define name="dialog">
-        <h:form id="editForm">
+        <h:form id="showForm">
+            <p:dialog id="showDlg" header="#{i18n['Show']}" widgetVar="showDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="#{i18n['Name']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.name}"/>
+                    <p:outputLabel value="#{i18n['Brand']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.brand.name}"/>
+                    <p:outputLabel value="#{i18n['Image']}"/>
+                    <o:graphicImage value="#{skuView.selectedRecord.bytes}" dataURI="true" alt="#{skuView.selectedRecord.name}" title="#{skuView.selectedRecord.name}" rendered="#{not empty skuView.selectedRecord.bytes}"/>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Edit']}" update=":editForm:editDlg" oncomplete="PF('showDialog').hide();PF('editDialog').show();" icon="ui-icon-pencil" title="#{i18n['Edit']}">
+                        <f:setPropertyActionListener value="#{skuView.selectedRecord}" target="#{sku}"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('showDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+        <h:form id="editForm" enctype="multipart/form-data">
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
@@ -54,9 +76,11 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
                         <f:selectItems value="#{skuView.brands}" var="brand" itemValue="#{brand}" itemLabel="#{brand.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="image" value="#{i18n['Image']}"/>
+                    <p:fileUpload id="image" value="#{skuView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{skuView.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{skuView.doUpdateRecord}" ajax="false"/>
                     <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{skuView.doDeleteRecord}">
                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                     </p:commandButton>
@@ -64,7 +88,7 @@
                 </f:facet>
             </p:dialog>
         </h:form>
-        <h:form id="newForm">
+        <h:form id="newForm" enctype="multipart/form-data">
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
@@ -75,9 +99,11 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
                         <f:selectItems value="#{skuView.brands}" var="brand" itemValue="#{brand}" itemLabel="#{brand.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="image" value="#{i18n['Image']}"/>
+                    <p:fileUpload id="image" value="#{skuView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{skuView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{skuView.doCreateRecord}" ajax="false"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>
