@@ -8,10 +8,12 @@ INSERT INTO `USERENTITY` (`ID`,`SIMULATION_ID`,`EMAIL`,`NAME`,`PASSWORD`,`USERGR
 (3,2,'member@aripd.com','member Unilever','member','Members','member');
 
 INSERT INTO `TEAMENTITY` VALUES 
-(1,2,'Team1'),
-(2,2,'Team2'),
-(3,2,'Team3'),
-(4,2,'Team4');
+(1,'A Team'),
+(2,'B Team'),
+(3,'C Team'),
+(4,'D Team'),
+(5,'E Team'),
+(6,'F Team');
 
 INSERT INTO `BRANDENTITY` VALUES 
 (1,2,'A Brand'),

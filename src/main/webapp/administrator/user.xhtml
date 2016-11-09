@@ -48,6 +48,9 @@
                 <p:column headerText="#{i18n['Simulation']}">
                     <h:outputText value="#{user.simulation.name}"/>
                 </p:column>
+                <p:column headerText="#{i18n['Team']}">
+                    <h:outputText value="#{user.team.name}"/>
+                </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                         <f:setPropertyActionListener value="#{user}" target="#{userController.selectedRecord}" />
@@ -78,6 +81,12 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{userController.simulations}" var="simulation" itemValue="#{simulation}" itemLabel="#{simulation.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="team" value="#{i18n['Team']}"/>
+                    <p:selectOneMenu id="team" value="#{userController.selectedRecord.team}" converter="#{teamConverter}" required="true"
+                                     filter="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                        <f:selectItems value="#{userController.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
+                    </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{userController.doUpdateRecord}"/>
@@ -104,6 +113,12 @@
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{userController.simulations}" var="simulation" itemValue="#{simulation}" itemLabel="#{simulation.name}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel for="team" value="#{i18n['Team']}"/>
+                    <p:selectOneMenu id="team" value="#{userController.newRecord.team}" converter="#{teamConverter}" required="true"
+                                     filter="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                        <f:selectItems value="#{userController.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">

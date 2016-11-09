@@ -16,9 +16,9 @@ import org.apache.log4j.Logger;
 
 @Named
 @ViewScoped
-public class TeamView implements Serializable {
+public class TeamController implements Serializable {
 
-    static final Logger LOG = Logger.getLogger(TeamView.class.getName());
+    static final Logger LOG = Logger.getLogger(TeamController.class.getName());
 
     @Inject
     private TeamService teamService;
@@ -30,7 +30,7 @@ public class TeamView implements Serializable {
     @Inject
     MessageUtil messageUtil;
 
-    public TeamView() {
+    public TeamController() {
         newRecord = new TeamEntity();
         selectedRecord = new TeamEntity();
     }

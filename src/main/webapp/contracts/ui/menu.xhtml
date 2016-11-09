@@ -10,10 +10,10 @@
             <p:submenu label="#{i18n['Administrator']}" rendered="#{request.isUserInRole('Administrator')}">
                 <p:menuitem value="#{i18n['Simulations']}" outcome="/administrator/simulation"/>
                 <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user"/>
+                <p:menuitem value="#{i18n['Teams']}" outcome="/administrator/team"/>
             </p:submenu>
             <p:submenu label="#{i18n['Ruler']}" rendered="#{request.isUserInRole('Ruler')}">
                 <p:menuitem value="#{i18n['Simulation']}" outcome="/ruler/simulation"/>
-                <p:menuitem value="#{i18n['Teams']}" outcome="/ruler/team"/>
                 <p:menuitem value="#{i18n['Users']}" outcome="/ruler/user"/>
                 <p:menuitem value="#{i18n['Brands']}" outcome="/ruler/brand"/>
                 <p:menuitem value="#{i18n['Skus']}" outcome="/ruler/sku"/>

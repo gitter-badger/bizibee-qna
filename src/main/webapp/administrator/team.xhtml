@@ -9,15 +9,15 @@
             <p:breadCrumb>
                 <p:menuitem value="#{i18n['Home']}" outcome="/index" />
                 <p:menuitem value="#{i18n['Settings']}" />
-                <p:menuitem value="#{i18n['Teams']}" outcome="/ruler/team" />
+                <p:menuitem value="#{i18n['Teams']}" outcome="/administrator/team" />
             </p:breadCrumb>
         </h:form>
     </ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="team" value="#{teamView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+            <p:dataTable id="dataTable" var="team" value="#{teamController.lazyModel}" emptyMessage="#{i18n['No records found']}"
                          paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{team.id}" selectionMode="single" selection="#{teamView.selectedRecord}"
+                         rowKey="#{team.id}" selectionMode="single" selection="#{teamController.selectedRecord}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                          sortMode="multiple" 
@@ -33,7 +33,7 @@
                 </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{team}" target="#{teamView.selectedRecord}" />
+                        <f:setPropertyActionListener value="#{team}" target="#{teamController.selectedRecord}" />
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
@@ -44,11 +44,11 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{teamView.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{teamController.selectedRecord.name}" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamView.doUpdateRecord}"/>
-                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamView.doDeleteRecord}">
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamController.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{teamController.doDeleteRecord}">
                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
@@ -59,10 +59,10 @@
             <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{teamView.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{teamController.newRecord.name}" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{teamView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{teamController.doCreateRecord}"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>

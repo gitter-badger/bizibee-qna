@@ -1,13 +1,13 @@
 package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.entity.SimulationEntity;
+import com.aripd.bizibee.entity.TeamEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyUserDataModel;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.entity.UserGroup;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
-import java.text.Collator;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.SimulationService;
-import com.aripd.util.locale.LocaleProvider;
+import com.aripd.bizibee.service.TeamService;
 import org.apache.log4j.Logger;
 
 @Named
@@ -35,6 +35,9 @@ public class UserController implements Serializable {
 
     @Inject
     private SimulationService simulationService;
+
+    @Inject
+    private TeamService teamService;
 
     @Inject
     MessageUtil messageUtil;
@@ -55,6 +58,10 @@ public class UserController implements Serializable {
 
     public List<SimulationEntity> getSimulations() {
         return simulationService.findAll();
+    }
+
+    public List<TeamEntity> getTeams() {
+        return teamService.findAll();
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
