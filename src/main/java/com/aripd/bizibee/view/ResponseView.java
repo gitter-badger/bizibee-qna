@@ -120,7 +120,9 @@ public class ResponseView implements Serializable {
                 LOG.info("model6: " + model6);
                 model6.forEach(c -> {
                     LOG.info("SKU Name: " + c.getSku().getName());
-                    LOG.info("Selected decisionchoice: " + c.getDecisionchoice().getName());
+                    if (c.getDecisionchoice() != null) {
+                        LOG.info("Selected decisionchoice: " + c.getDecisionchoice().getName());
+                    }
                 });
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
