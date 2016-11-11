@@ -29,7 +29,7 @@
                               required="#{responseView.selectedRecord.required}" 
                               layout="pageDirection" columns="1"
                               converter="#{decisionchoiceConverter}">
-                <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
             </p:selectOneRadio>
             <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
@@ -40,7 +40,7 @@
                                   required="#{responseView.selectedRecord.required}" 
                                   layout="pageDirection" columns="1"
                                   converter="#{decisionchoiceConverter}">
-                <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
             </p:selectManyCheckbox>
             <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
@@ -88,26 +88,26 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
-            <p:repeat var="sku" value="#{responseView.selectedRecord.skus}">
-                <h:outputText value="#{sku.name}"/>
-                <p:selectOneRadio value="#{responseView.model6[sku]}" 
+            <p:repeat var="model" value="#{responseView.model6}">
+                <h:outputText value="#{model.sku.name}"/>
+                <p:selectOneRadio value="#{model.decisionchoice}" 
                                   label="#{responseView.selectedRecord.name}" 
                                   required="#{responseView.selectedRecord.required}" 
                                   converter="#{decisionchoiceConverter}">
-                    <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                    <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                 </p:selectOneRadio>
             </p:repeat>
             <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
-            <p:repeat var="sku" value="#{responseView.selectedRecord.skus}">
-                <h:outputText value="#{sku.name}"/>
-                <p:selectManyCheckbox value="#{responseView.model7[sku]}" 
+            <p:repeat var="model" value="#{responseView.model7}">
+                <h:outputText value="#{model.sku.name}"/>
+                <p:selectManyCheckbox value="#{model.decisionchoices}" 
                                       label="#{responseView.selectedRecord.name}" 
                                       required="#{responseView.selectedRecord.required}" 
                                       converter="#{decisionchoiceConverter}">
-                    <f:selectItems value="#{responseView.fetchDecisionchoices(responseView.selectedRecord)}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                    <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                 </p:selectManyCheckbox>
             </p:repeat>
             <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>

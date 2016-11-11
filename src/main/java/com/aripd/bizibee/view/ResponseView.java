@@ -5,6 +5,8 @@ import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.SkuEntity;
+import com.aripd.bizibee.model.response.Response7Model;
+import com.aripd.bizibee.model.response.Response6Model;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -15,7 +17,6 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
-import com.aripd.bizibee.service.DecisionchoiceService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,16 +41,13 @@ public class ResponseView implements Serializable {
 
     private Long id;
 
-    @Inject
-    private DecisionchoiceService decisionchoiceService;
-    
     private DecisionchoiceEntity model1;
     private List<DecisionchoiceEntity> model2 = new ArrayList<>();
     private SkuEntity model3;
     private List<SkuEntity> model4 = new ArrayList<>();
     private HashMap<SkuEntity, Integer> model5 = new HashMap<>();
-    private HashMap<SkuEntity, DecisionchoiceEntity> model6 = new HashMap<>();
-    private HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model7 = new HashMap<>();
+    private List<Response6Model> model6 = new ArrayList<>();
+    private List<Response7Model> model7 = new ArrayList<>();
 
     @Inject
     MessageUtil messageUtil;
@@ -71,6 +69,7 @@ public class ResponseView implements Serializable {
             item.setParam("id", decision.getId());
             menuModel.addElement(item);
         }
+
     }
 
     public void onLoad() {
@@ -86,16 +85,55 @@ public class ResponseView implements Serializable {
             return;
         }
 
+        for (SkuEntity sku : selectedRecord.getSkus()) {
+            switch (selectedRecord.getDecisionType()) {
+                case SINGLE_CHOICE_SKU_LISTING:
+                    model6.add(new Response6Model(sku));
+                    break;
+                case MULTIPLE_CHOICE_SKU_LISTING:
+                    model7.add(new Response7Model(sku));
+                    break;
+            }
+        }
+
     }
 
     public void doUpdate(ActionEvent actionEvent) {
-        LOG.info("model1: " + model1);
-        LOG.info("model2: " + model2);
-        LOG.info("model3: " + model3);
-        LOG.info("model4: " + model4);
-        LOG.info("model5: " + model5);
-        LOG.info("model6: " + model6);
-        LOG.info("model7: " + model7);
+
+        switch (selectedRecord.getDecisionType()) {
+            case SINGLE_CHOICE:
+                LOG.info("model1: " + model1);
+                break;
+            case MULTIPLE_CHOICE:
+                LOG.info("model2: " + model2);
+                break;
+            case SINGLE_SKU_LISTING:
+                LOG.info("model3: " + model3);
+                break;
+            case MULTIPLE_SKU_LISTING:
+                LOG.info("model4: " + model4);
+                break;
+            case RANGE_SKU_LISTING:
+                LOG.info("model5: " + model5);
+                break;
+            case SINGLE_CHOICE_SKU_LISTING:
+                LOG.info("model6: " + model6);
+                model6.forEach(c -> {
+                    LOG.info("SKU Name: " + c.getSku().getName());
+                    LOG.info("Selected decisionchoice: " + c.getDecisionchoice().getName());
+                });
+                break;
+            case MULTIPLE_CHOICE_SKU_LISTING:
+                LOG.info("model7: " + model7);
+                model7.forEach(c -> {
+                    LOG.info("SKU Name: " + c.getSku().getName());
+                    for (DecisionchoiceEntity decisionchoice : c.getDecisionchoices()) {
+                        LOG.info("Selected decisionchoice: " + decisionchoice.getName());
+                    }
+                });
+                break;
+        }
+
         messageUtil.addGlobalInfoFlashMessage("Updated");
 
         /**
@@ -103,10 +141,6 @@ public class ResponseView implements Serializable {
          */
         String navigation = "/member/response?id=" + (selectedRecord.getId() + 1) + "&amp;faces-redirect=true";
         RequestUtil.doNavigate(navigation);
-    }
-
-    public List<DecisionchoiceEntity> fetchDecisionchoices(DecisionEntity decision) {
-        return decisionchoiceService.findByDecision(decision);
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
@@ -209,21 +243,20 @@ public class ResponseView implements Serializable {
         this.model5 = model5;
     }
 
-    public HashMap<SkuEntity, DecisionchoiceEntity> getModel6() {
+    public List<Response6Model> getModel6() {
         return model6;
     }
 
-    public void setModel6(HashMap<SkuEntity, DecisionchoiceEntity> model6) {
+    public void setModel6(List<Response6Model> model6) {
         this.model6 = model6;
     }
 
-    public HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> getModel7() {
+    public List<Response7Model> getModel7() {
         return model7;
     }
 
-    public void setModel7(HashMap<SkuEntity, ArrayList<DecisionchoiceEntity>> model7) {
+    public void setModel7(List<Response7Model> model7) {
         this.model7 = model7;
     }
-
 
 }
