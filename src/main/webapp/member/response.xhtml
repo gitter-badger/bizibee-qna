@@ -68,19 +68,19 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
-            <p:repeat var="sku" value="#{responseView.selectedRecord.skus}">
-                <h:outputText value="#{sku.brand.name} #{sku.name}"/>
+            <p:repeat var="model" value="#{responseView.model5}">
+                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                 <h:panelGrid columns="2">
-                    <p:spinner value="#{responseView.model5[sku]}" 
+                    <p:spinner value="#{model.value}" 
                                label="#{responseView.selectedRecord.name}" 
                                required="#{responseView.selectedRecord.required}" 
-                               min="#{sku.indexMin}" 
-                               max="#{sku.indexMax}" 
-                               stepFactor="#{sku.indexStep}"/>
+                               min="#{model.sku.indexMin}" 
+                               max="#{model.sku.indexMax}" 
+                               stepFactor="#{model.sku.indexStep}"/>
                     <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
-                        <f:param value="#{sku.name}"/>
-                        <f:param value="#{sku.indexMin}"/>
-                        <f:param value="#{sku.indexMax}"/>
+                        <f:param value="#{model.sku.name}"/>
+                        <f:param value="#{model.sku.indexMin}"/>
+                        <f:param value="#{model.sku.indexMax}"/>
                     </h:outputFormat>
                 </h:panelGrid>
             </p:repeat>

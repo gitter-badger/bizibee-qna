@@ -5,6 +5,7 @@ import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.SkuEntity;
+import com.aripd.bizibee.model.response.Response5Model;
 import com.aripd.bizibee.model.response.Response7Model;
 import com.aripd.bizibee.model.response.Response6Model;
 import java.io.Serializable;
@@ -19,7 +20,6 @@ import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
@@ -45,7 +45,7 @@ public class ResponseView implements Serializable {
     private List<DecisionchoiceEntity> model2 = new ArrayList<>();
     private SkuEntity model3;
     private List<SkuEntity> model4 = new ArrayList<>();
-    private HashMap<SkuEntity, Integer> model5 = new HashMap<>();
+    private List<Response5Model> model5 = new ArrayList<>();
     private List<Response6Model> model6 = new ArrayList<>();
     private List<Response7Model> model7 = new ArrayList<>();
 
@@ -87,6 +87,9 @@ public class ResponseView implements Serializable {
 
         for (SkuEntity sku : selectedRecord.getSkus()) {
             switch (selectedRecord.getDecisionType()) {
+                case RANGE_SKU_LISTING:
+                    model5.add(new Response5Model(sku));
+                    break;
                 case SINGLE_CHOICE_SKU_LISTING:
                     model6.add(new Response6Model(sku));
                     break;
@@ -115,22 +118,28 @@ public class ResponseView implements Serializable {
                 break;
             case RANGE_SKU_LISTING:
                 LOG.info("model5: " + model5);
+                model5.forEach(c -> {
+                    LOG.info("Sku: " + c.getSku().getName());
+                    if (c.getValue() != null) {
+                        LOG.info("Value: " + c.getValue());
+                    }
+                });
                 break;
             case SINGLE_CHOICE_SKU_LISTING:
                 LOG.info("model6: " + model6);
                 model6.forEach(c -> {
-                    LOG.info("SKU Name: " + c.getSku().getName());
+                    LOG.info("Sku: " + c.getSku().getName());
                     if (c.getDecisionchoice() != null) {
-                        LOG.info("Selected decisionchoice: " + c.getDecisionchoice().getName());
+                        LOG.info("Decisionchoice: " + c.getDecisionchoice().getName());
                     }
                 });
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
                 LOG.info("model7: " + model7);
                 model7.forEach(c -> {
-                    LOG.info("SKU Name: " + c.getSku().getName());
+                    LOG.info("Sku: " + c.getSku().getName());
                     for (DecisionchoiceEntity decisionchoice : c.getDecisionchoices()) {
-                        LOG.info("Selected decisionchoice: " + decisionchoice.getName());
+                        LOG.info("Decisionchoice: " + decisionchoice.getName());
                     }
                 });
                 break;
@@ -237,11 +246,11 @@ public class ResponseView implements Serializable {
         this.model4 = model4;
     }
 
-    public HashMap<SkuEntity, Integer> getModel5() {
+    public List<Response5Model> getModel5() {
         return model5;
     }
 
-    public void setModel5(HashMap<SkuEntity, Integer> model5) {
+    public void setModel5(List<Response5Model> model5) {
         this.model5 = model5;
     }
 
