@@ -60,7 +60,7 @@
                     <p:selectOneRadio value="#{scoreboardView.map3[decision]}" 
                                       layout="pageDirection" columns="1"
                                       converter="#{skuConverter}">
-                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectOneRadio>
                 </p:panel>
 
@@ -76,7 +76,7 @@
                     <p:selectManyCheckbox value="#{scoreboardView.map4[decision]}" 
                                           layout="pageDirection" columns="1"
                                           converter="#{skuConverter}">
-                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectManyCheckbox>
                 </p:panel>
 

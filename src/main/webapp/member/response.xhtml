@@ -51,7 +51,7 @@
                               required="#{responseView.selectedRecord.required}" 
                               layout="pageDirection" columns="1"
                               converter="#{skuConverter}">
-                <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+                <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
             </p:selectOneRadio>
             <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
@@ -62,14 +62,14 @@
                                   required="#{responseView.selectedRecord.required}" 
                                   layout="pageDirection" columns="1"
                                   converter="#{skuConverter}">
-                <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.name}"/>
+                <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
             </p:selectManyCheckbox>
             <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
             <p:repeat var="sku" value="#{responseView.selectedRecord.skus}">
-                <h:outputText value="#{sku.name}"/>
+                <h:outputText value="#{sku.brand.name} #{sku.name}"/>
                 <h:panelGrid columns="2">
                     <p:spinner value="#{responseView.model5[sku]}" 
                                label="#{responseView.selectedRecord.name}" 
@@ -89,7 +89,7 @@
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
             <p:repeat var="model" value="#{responseView.model6}">
-                <h:outputText value="#{model.sku.name}"/>
+                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                 <p:selectOneRadio value="#{model.decisionchoice}" 
                                   label="#{responseView.selectedRecord.name}" 
                                   required="#{responseView.selectedRecord.required}" 
@@ -102,7 +102,7 @@
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
             <p:repeat var="model" value="#{responseView.model7}">
-                <h:outputText value="#{model.sku.name}"/>
+                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                 <p:selectManyCheckbox value="#{model.decisionchoices}" 
                                       label="#{responseView.selectedRecord.name}" 
                                       required="#{responseView.selectedRecord.required}" 
