@@ -4,6 +4,7 @@ import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SkuEntity;
 import com.aripd.bizibee.model.response.Response5Model;
 import com.aripd.bizibee.model.response.Response7Model;
@@ -18,6 +19,8 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
+import com.aripd.bizibee.service.ResponseService;
+import com.aripd.bizibee.service.UserService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import org.primefaces.model.menu.DefaultMenuItem;
@@ -48,6 +51,12 @@ public class ResponseView implements Serializable {
     private List<Response5Model> model5 = new ArrayList<>();
     private List<Response6Model> model6 = new ArrayList<>();
     private List<Response7Model> model7 = new ArrayList<>();
+
+    @Inject
+    private ResponseService responseService;
+
+    @Inject
+    private UserService userService;
 
     @Inject
     MessageUtil messageUtil;
@@ -112,9 +121,15 @@ public class ResponseView implements Serializable {
                 break;
             case SINGLE_SKU_LISTING:
                 LOG.info("model3: " + model3);
+                LOG.info("Sku: " + model3.getName());
+                responseService.create(new ResponseEntity(userService.getCurrentUser(), selectedRecord, model3.toString()));
                 break;
             case MULTIPLE_SKU_LISTING:
                 LOG.info("model4: " + model4);
+                model4.forEach(c -> {
+                    LOG.info("Sku: " + c.getName());
+                });
+                responseService.create(new ResponseEntity(userService.getCurrentUser(), selectedRecord, model4.toString()));
                 break;
             case RANGE_SKU_LISTING:
                 LOG.info("model5: " + model5);
