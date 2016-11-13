@@ -20,7 +20,6 @@ import org.primefaces.model.LazyDataModel;
 import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.ResponseService;
-import com.aripd.bizibee.service.UserService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import org.primefaces.model.menu.DefaultMenuItem;
@@ -54,9 +53,6 @@ public class ResponseView implements Serializable {
 
     @Inject
     private ResponseService responseService;
-
-    @Inject
-    private UserService userService;
 
     @Inject
     MessageUtil messageUtil;
