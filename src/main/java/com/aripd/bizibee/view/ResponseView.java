@@ -115,21 +115,23 @@ public class ResponseView implements Serializable {
         switch (selectedRecord.getDecisionType()) {
             case SINGLE_CHOICE:
                 LOG.info("model1: " + model1);
+                responseService.create(new ResponseEntity(selectedRecord, model1.toString()));
                 break;
             case MULTIPLE_CHOICE:
                 LOG.info("model2: " + model2);
+                responseService.create(new ResponseEntity(selectedRecord, model2.toString()));
                 break;
             case SINGLE_SKU_LISTING:
                 LOG.info("model3: " + model3);
                 LOG.info("Sku: " + model3.getName());
-                responseService.create(new ResponseEntity(userService.getCurrentUser(), selectedRecord, model3.toString()));
+                responseService.create(new ResponseEntity(selectedRecord, model3.toString()));
                 break;
             case MULTIPLE_SKU_LISTING:
                 LOG.info("model4: " + model4);
                 model4.forEach(c -> {
                     LOG.info("Sku: " + c.getName());
                 });
-                responseService.create(new ResponseEntity(userService.getCurrentUser(), selectedRecord, model4.toString()));
+                responseService.create(new ResponseEntity(selectedRecord, model4.toString()));
                 break;
             case RANGE_SKU_LISTING:
                 LOG.info("model5: " + model5);
@@ -139,6 +141,7 @@ public class ResponseView implements Serializable {
                         LOG.info("Value: " + c.getValue());
                     }
                 });
+                responseService.create(new ResponseEntity(selectedRecord, model5.toString()));
                 break;
             case SINGLE_CHOICE_SKU_LISTING:
                 LOG.info("model6: " + model6);
