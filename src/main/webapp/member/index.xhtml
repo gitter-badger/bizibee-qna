@@ -23,5 +23,13 @@
             <h:outputLabel value="#{i18n['E-mail Address']}"/>
             <h:outputText value="#{profileBean.selectedRecord.email}"/>
         </h:panelGrid>
+
+        <!--TODO burayı başka nasıl yaparız-->
+        <h:form>
+            <p:button value="#{i18n['Go to the simulation']}" outcome="/member/response">
+                <f:param name="id" value="1"/>
+            </p:button>
+        </h:form>
+
     </ui:define>
 </ui:composition>

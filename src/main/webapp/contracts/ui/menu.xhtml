@@ -22,7 +22,6 @@
             </p:submenu>
             <p:submenu label="#{i18n['Member']}" rendered="#{request.isUserInRole('Member')}">
                 <p:menuitem value="#{i18n['Result']}" outcome="/member/result"/>
-                <p:menuitem value="#{i18n['Datagrid']}" outcome="/member/datagrid"/>
             </p:submenu>
         </p:menu>
     </h:form>
