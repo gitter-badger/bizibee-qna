@@ -151,6 +151,7 @@ public class ResponseView implements Serializable {
                         LOG.info("Decisionchoice: " + c.getDecisionchoice().getName());
                     }
                 });
+                responseService.updateOrCreate(selectedRecord, model6.toString());
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
                 LOG.info("model7: " + model7);
@@ -160,6 +161,7 @@ public class ResponseView implements Serializable {
                         LOG.info("Decisionchoice: " + decisionchoice.getName());
                     }
                 });
+                responseService.updateOrCreate(selectedRecord, model7.toString());
                 break;
         }
 
