@@ -28,6 +28,9 @@
                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                     </p:commandButton>
                 </f:facet>
+                <p:column headerText="#{i18n['Sort Order']}" sortBy="#{decision.sortOrder}" filterBy="#{decision.sortOrder}">
+                    <h:outputText value="#{decision.sortOrder}"/>
+                </p:column>
                 <p:column headerText="#{i18n['Name']}" sortBy="#{decision.name}" filterBy="#{decision.name}">
                     <h:outputText value="#{decision.name}"/>
                 </p:column>
@@ -45,6 +48,8 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.selectedRecord.name}" required="true"/>
+                    <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
+                    <p:inputText id="sortOrder" value="#{decisionView.selectedRecord.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}"/>
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
@@ -75,6 +80,8 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
+                    <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
+                    <p:inputText id="sortOrder" value="#{decisionView.newRecord.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.newRecord.description}"/>
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>

@@ -40,8 +40,6 @@ public class LoginBean implements Serializable {
     }
 
     /**
-     * TODO 403 substatus integration REF: http://en.wikipedia.org/wiki/HTTP_403
-     *
      * @param actionEvent ActionEvent
      */
     public void doLogin(ActionEvent actionEvent) {

@@ -13,133 +13,35 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:form>
-            <p:repeat var="decision" value="#{scoreboardView.decisions}">
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE'}">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <p:panelGrid columns="2">
                     <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
+                        <h:outputText value="#{i18n['Start of the year']}"/>
                     </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:selectOneRadio value="#{scoreboardView.map1[decision]}" 
-                                      layout="pageDirection" columns="1"
-                                      converter="#{decisionchoiceConverter}">
-                        <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                    </p:selectOneRadio>
-                </p:panel>
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE'}">
+                    <h:outputLabel value="#{i18n['Sales Start']}"/>
+                    <h:outputText value="#{resultView.simulation.salesStart}"/>
+                    <h:outputLabel value="#{i18n['Budget Start']}"/>
+                    <h:outputText value="#{resultView.simulation.budgetStart}"/>
+                    <h:outputLabel value="#{i18n['GM Start']}"/>
+                    <h:outputText value="#{resultView.simulation.gmStart}"/>
+                    <h:outputLabel value="#{i18n['MS Start']}"/>
+                    <h:outputText value="#{resultView.simulation.msStart}"/>
+                </p:panelGrid>
+            </div>
+            <div class="ui-g-12">
+                <p:dataList value="#{resultView.responses}" var="response" 
+                            type="definition"
+                            emptyMessage="#{i18n['No records found']}">
                     <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
+                        <h:outputText value="#{i18n['Responses']}"/>
                     </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:selectManyCheckbox value="#{scoreboardView.map2[decision]}" 
-                                          layout="pageDirection" columns="1"
-                                          converter="#{decisionchoiceConverter}">
-                        <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                    </p:selectManyCheckbox>
-                </p:panel>
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_SKU_LISTING'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
+                    <h:outputText value="#{response.decision.name}"/>
+                    <f:facet name="description">
+                        <h:outputText value="#{response.outcome}"/>
                     </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:selectOneRadio value="#{scoreboardView.map3[decision]}" 
-                                      layout="pageDirection" columns="1"
-                                      converter="#{skuConverter}">
-                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
-                    </p:selectOneRadio>
-                </p:panel>
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_SKU_LISTING'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
-                    </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:selectManyCheckbox value="#{scoreboardView.map4[decision]}" 
-                                          layout="pageDirection" columns="1"
-                                          converter="#{skuConverter}">
-                        <f:selectItems value="#{decision.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
-                    </p:selectManyCheckbox>
-                </p:panel>
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'RANGE_SKU_LISTING'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
-                    </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:repeat var="sku" value="#{decision.skus}">
-                        <h:outputText value="#{sku.brand.name} #{sku.name}"/>
-                        <h:panelGrid columns="2">
-                            <p:spinner value="#{scoreboardView.map5[decision]}" min="#{sku.indexMin}" max="#{sku.indexMax}" stepFactor="#{sku.indexStep}" />
-                            <h:outputFormat value="{0} {1} ürünü için {2} index ile {3} index arasinda bir fiyat belirleyin">
-                                <f:param value="#{sku.brand.name}"/>
-                                <f:param value="#{sku.name}"/>
-                                <f:param value="#{sku.indexMin}"/>
-                                <f:param value="#{sku.indexMax}"/>
-                            </h:outputFormat>
-                        </h:panelGrid>
-                    </p:repeat>
-                </p:panel>
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
-                    </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:repeat var="sku" value="#{decision.skus}">
-                        <h:outputText value="#{sku.brand.name} #{sku.name}"/>
-                        <p:selectOneRadio value="#{scoreboardView.map6[decision]}" converter="#{decisionchoiceConverter}">
-                            <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                        </p:selectOneRadio>
-                    </p:repeat>
-                </p:panel>
-
-                <p:panel header="#{decision.id}. #{decision.name}" rendered="#{decision.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
-                    <f:facet name="header">
-                        <h:outputText value="#{decision.id}. #{decision.name}"/>
-                        - 
-                        <h:link value="Go" outcome="/member/response">
-                            <f:param name="id" value="#{decision.id}"/>
-                        </h:link>
-                    </f:facet>
-                    <h3><h:outputText value="#{decision.description}"/></h3>
-                    <p:repeat var="sku" value="#{decision.skus}">
-                        <h:outputText value="#{sku.brand.name} #{sku.name}"/>
-                        <p:selectManyCheckbox value="#{scoreboardView.map7[decision]}" converter="#{decisionchoiceConverter}">
-                            <f:selectItems value="#{decision.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                        </p:selectManyCheckbox>
-                    </p:repeat>
-                </p:panel>
-
-            </p:repeat>
-
-            <p:commandButton value="#{i18n['Submit']}" update=":growl" actionListener="#{scoreboardView.doUpdate}"/>
-        </h:form>
+                </p:dataList>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>

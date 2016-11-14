@@ -37,6 +37,8 @@ public class DecisionEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
+    private int sortOrder;
+
     private String description;
 
     private boolean required;
@@ -127,6 +129,14 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setRequired(boolean required) {
         this.required = required;
+    }
+
+    public int getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
     public String getName() {

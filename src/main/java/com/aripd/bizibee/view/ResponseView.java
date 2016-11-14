@@ -4,7 +4,6 @@ import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
-import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SkuEntity;
 import com.aripd.bizibee.model.response.Response5Model;
 import com.aripd.bizibee.model.response.Response7Model;
@@ -35,6 +34,9 @@ public class ResponseView implements Serializable {
     private MenuModel menuModel;
 
     @Inject
+    private ResponseService responseService;
+
+    @Inject
     private DecisionService decisionService;
     private DecisionEntity newRecord;
     private DecisionEntity selectedRecord;
@@ -50,9 +52,6 @@ public class ResponseView implements Serializable {
     private List<Response5Model> model5 = new ArrayList<>();
     private List<Response6Model> model6 = new ArrayList<>();
     private List<Response7Model> model7 = new ArrayList<>();
-
-    @Inject
-    private ResponseService responseService;
 
     @Inject
     MessageUtil messageUtil;

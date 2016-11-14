@@ -1,5 +1,6 @@
 package com.aripd.bizibee.entity;
 
+import com.aripd.util.validator.EmailAddress;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class UserEntity extends AbstractEntity {
@@ -30,7 +30,7 @@ public class UserEntity extends AbstractEntity {
     @NotNull
     @Column(nullable = false)
     private String password;
-    @Email
+    @EmailAddress
     @NotNull
     @Column(nullable = false)
     private String email;
