@@ -38,6 +38,9 @@ public class SimulationEntity extends AbstractEntity {
     @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
 
+    @OneToMany(mappedBy = "simulation", orphanRemoval = true)
+    private List<DecisionEntity> decisions;
+
     public SimulationEntity() {
     }
 
@@ -127,6 +130,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setUsers(List<UserEntity> users) {
         this.users = users;
+    }
+
+    public List<DecisionEntity> getDecisions() {
+        return decisions;
+    }
+
+    public void setDecisions(List<DecisionEntity> decisions) {
+        this.decisions = decisions;
     }
 
 }

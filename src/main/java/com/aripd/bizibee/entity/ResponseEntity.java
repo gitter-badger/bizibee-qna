@@ -1,6 +1,7 @@
 package com.aripd.bizibee.entity;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +34,7 @@ public class ResponseEntity extends AbstractEntity {
     @ManyToOne
     private DecisionEntity decision;
 
+    @Column(columnDefinition = "TEXT")
     private String outcome;
 
     public ResponseEntity() {
