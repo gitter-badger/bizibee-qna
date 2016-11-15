@@ -1,25 +1,14 @@
 package com.aripd.bizibee.model.response;
 
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
-import com.aripd.bizibee.entity.SkuEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Response7Model {
+public class Response2Model {
 
-    private SkuEntity sku;
     private List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
 
-    public Response7Model(SkuEntity sku) {
-        this.sku = sku;
-    }
-
-    public SkuEntity getSku() {
-        return sku;
-    }
-
-    public void setSku(SkuEntity sku) {
-        this.sku = sku;
+    public Response2Model() {
     }
 
     public List<DecisionchoiceEntity> getDecisionchoices() {
@@ -32,7 +21,7 @@ public class Response7Model {
 
     @Override
     public String toString() {
-        return "Response7Model{" + "sku=" + sku + ", decisionchoices=" + decisionchoices + '}';
+        return "Response2Model{" + "decisionchoices=" + decisionchoices + '}';
     }
 
 }

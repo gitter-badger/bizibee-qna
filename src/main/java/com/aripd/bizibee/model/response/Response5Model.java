@@ -27,4 +27,9 @@ public class Response5Model {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Response5Model{" + "sku=" + sku + ", value=" + value + '}';
+    }
+
 }

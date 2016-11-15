@@ -5,6 +5,10 @@ import com.aripd.bizibee.model.data.LazyDecisionDataModel;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.SkuEntity;
+import com.aripd.bizibee.model.response.Response1Model;
+import com.aripd.bizibee.model.response.Response2Model;
+import com.aripd.bizibee.model.response.Response3Model;
+import com.aripd.bizibee.model.response.Response4Model;
 import com.aripd.bizibee.model.response.Response5Model;
 import com.aripd.bizibee.model.response.Response7Model;
 import com.aripd.bizibee.model.response.Response6Model;
@@ -45,10 +49,10 @@ public class ResponseView implements Serializable {
 
     private Long id;
 
-    private DecisionchoiceEntity model1;
-    private List<DecisionchoiceEntity> model2 = new ArrayList<>();
-    private SkuEntity model3;
-    private List<SkuEntity> model4 = new ArrayList<>();
+    private Response1Model model1 = new Response1Model();
+    private Response2Model model2 = new Response2Model();
+    private Response3Model model3 = new Response3Model();
+    private Response4Model model4 = new Response4Model();
     private List<Response5Model> model5 = new ArrayList<>();
     private List<Response6Model> model6 = new ArrayList<>();
     private List<Response7Model> model7 = new ArrayList<>();
@@ -110,25 +114,29 @@ public class ResponseView implements Serializable {
         switch (selectedRecord.getDecisionType()) {
             case SINGLE_CHOICE:
                 LOG.info("model1: " + model1);
+                if (model1 != null) {
+                    LOG.info("Decisionchoice: " + model1.getDecisionchoice().getName());
+                }
                 responseService.updateOrCreate(selectedRecord, model1.toString());
                 break;
             case MULTIPLE_CHOICE:
                 LOG.info("model2: " + model2);
+                model2.getDecisionchoices().forEach(c -> {
+                    LOG.info("Decisionchoice: " + c.getName());
+                });
                 responseService.updateOrCreate(selectedRecord, model2.toString());
                 break;
             case SINGLE_SKU_LISTING:
                 LOG.info("model3: " + model3);
                 if (model3 != null) {
-                    LOG.info("Sku: " + model3.getName());
+                    LOG.info("Sku: " + model3.getSku().getName());
                 }
                 responseService.updateOrCreate(selectedRecord, model3.toString());
                 break;
             case MULTIPLE_SKU_LISTING:
                 LOG.info("model4: " + model4);
-                model4.forEach(c -> {
-                    if (c != null) {
-                        LOG.info("Sku: " + c.getName());
-                    }
+                model4.getSkus().forEach(c -> {
+                    LOG.info("Sku: " + c.getName());
                 });
                 responseService.updateOrCreate(selectedRecord, model4.toString());
                 break;
@@ -233,35 +241,35 @@ public class ResponseView implements Serializable {
         return menuModel;
     }
 
-    public DecisionchoiceEntity getModel1() {
+    public Response1Model getModel1() {
         return model1;
     }
 
-    public void setModel1(DecisionchoiceEntity model1) {
+    public void setModel1(Response1Model model1) {
         this.model1 = model1;
     }
 
-    public List<DecisionchoiceEntity> getModel2() {
+    public Response2Model getModel2() {
         return model2;
     }
 
-    public void setModel2(List<DecisionchoiceEntity> model2) {
+    public void setModel2(Response2Model model2) {
         this.model2 = model2;
     }
 
-    public SkuEntity getModel3() {
+    public Response3Model getModel3() {
         return model3;
     }
 
-    public void setModel3(SkuEntity model3) {
+    public void setModel3(Response3Model model3) {
         this.model3 = model3;
     }
 
-    public List<SkuEntity> getModel4() {
+    public Response4Model getModel4() {
         return model4;
     }
 
-    public void setModel4(List<SkuEntity> model4) {
+    public void setModel4(Response4Model model4) {
         this.model4 = model4;
     }
 

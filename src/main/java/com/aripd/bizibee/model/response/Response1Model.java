@@ -1,23 +1,12 @@
 package com.aripd.bizibee.model.response;
 
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
-import com.aripd.bizibee.entity.SkuEntity;
 
-public class Response6Model {
+public class Response1Model {
 
-    private SkuEntity sku;
     private DecisionchoiceEntity decisionchoice;
 
-    public Response6Model(SkuEntity sku) {
-        this.sku = sku;
-    }
-
-    public SkuEntity getSku() {
-        return sku;
-    }
-
-    public void setSku(SkuEntity sku) {
-        this.sku = sku;
+    public Response1Model() {
     }
 
     public DecisionchoiceEntity getDecisionchoice() {
@@ -30,7 +19,7 @@ public class Response6Model {
 
     @Override
     public String toString() {
-        return "Response6Model{" + "sku=" + sku + ", decisionchoice=" + decisionchoice + '}';
+        return "Response1Model{" + "decisionchoice=" + decisionchoice + '}';
     }
 
 }

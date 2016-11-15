@@ -24,7 +24,7 @@
         <h3><h:outputText value="#{responseView.selectedRecord.description}"/></h3>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
-            <p:selectOneRadio value="#{responseView.model1}" 
+            <p:selectOneRadio value="#{responseView.model1.decisionchoice}" 
                               label="#{responseView.selectedRecord.name}" 
                               required="#{responseView.selectedRecord.required}" 
                               layout="pageDirection" columns="1"
@@ -35,7 +35,7 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
-            <p:selectManyCheckbox value="#{responseView.model2}" 
+            <p:selectManyCheckbox value="#{responseView.model2.decisionchoices}" 
                                   label="#{responseView.selectedRecord.name}" 
                                   required="#{responseView.selectedRecord.required}" 
                                   layout="pageDirection" columns="1"
@@ -46,7 +46,7 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_SKU_LISTING'}">
-            <p:selectOneRadio value="#{responseView.model3}" 
+            <p:selectOneRadio value="#{responseView.model3.sku}" 
                               label="#{responseView.selectedRecord.name}" 
                               required="#{responseView.selectedRecord.required}" 
                               layout="pageDirection" columns="1"
@@ -57,7 +57,7 @@
         </h:form>
 
         <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
-            <p:selectManyCheckbox value="#{responseView.model4}" 
+            <p:selectManyCheckbox value="#{responseView.model4.skus}" 
                                   label="#{responseView.selectedRecord.name}" 
                                   required="#{responseView.selectedRecord.required}" 
                                   layout="pageDirection" columns="1"
