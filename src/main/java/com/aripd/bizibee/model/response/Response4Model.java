@@ -3,6 +3,10 @@ package com.aripd.bizibee.model.response;
 import com.aripd.bizibee.entity.SkuEntity;
 import java.util.ArrayList;
 import java.util.List;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 public class Response4Model {
 
@@ -21,7 +25,19 @@ public class Response4Model {
 
     @Override
     public String toString() {
-        return "Response4Model{" + "skus=" + skus + '}';
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        skus.forEach(c -> {
+            arrayBuilder.add(
+                    Json.createObjectBuilder()
+                            .add("sku", c.getId())
+            );
+        });
+
+        JsonObject model = Json.createObjectBuilder()
+                .add("skus", arrayBuilder)
+                .build();
+        return model.toString();
+//        return "Response4Model{" + "skus=" + skus + '}';
     }
 
 }

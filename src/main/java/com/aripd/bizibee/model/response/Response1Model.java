@@ -1,6 +1,8 @@
 package com.aripd.bizibee.model.response;
 
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 public class Response1Model {
 
@@ -19,7 +21,11 @@ public class Response1Model {
 
     @Override
     public String toString() {
-        return "Response1Model{" + "decisionchoice=" + decisionchoice + '}';
+        JsonObject model = Json.createObjectBuilder()
+                .add("decisionchoice", decisionchoice.getId())
+                .build();
+        return model.toString();
+//        return "Response1Model{" + "decisionchoice=" + decisionchoice + '}';
     }
 
 }

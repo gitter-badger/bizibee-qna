@@ -2,6 +2,8 @@ package com.aripd.bizibee.model.response;
 
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.SkuEntity;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 public class Response6Model {
 
@@ -30,7 +32,12 @@ public class Response6Model {
 
     @Override
     public String toString() {
-        return "Response6Model{" + "sku=" + sku + ", decisionchoice=" + decisionchoice + '}';
+        JsonObject model = Json.createObjectBuilder()
+                .add("sku", sku.getId())
+                .add("decisionchoice", decisionchoice.getId())
+                .build();
+        return model.toString();
+//        return "Response6Model{" + "sku=" + sku + ", decisionchoice=" + decisionchoice + '}';
     }
 
 }
