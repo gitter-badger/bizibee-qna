@@ -1,8 +1,6 @@
 package com.aripd.bizibee.model.response;
 
 import com.aripd.bizibee.entity.SkuEntity;
-import javax.json.Json;
-import javax.json.JsonObject;
 
 public class Response3Model {
 
@@ -21,11 +19,7 @@ public class Response3Model {
 
     @Override
     public String toString() {
-        JsonObject model = Json.createObjectBuilder()
-                .add("sku", sku.getId())
-                .build();
-        return model.toString();
-//        return "Response3Model{" + "sku=" + sku + '}';
+        return ResponseConverter.convert(this).toString();
     }
 
 }

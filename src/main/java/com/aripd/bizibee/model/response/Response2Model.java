@@ -1,14 +1,8 @@
 package com.aripd.bizibee.model.response;
 
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
 
 public class Response2Model {
 
@@ -27,19 +21,7 @@ public class Response2Model {
 
     @Override
     public String toString() {
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        decisionchoices.forEach(c -> {
-            arrayBuilder.add(
-                    Json.createObjectBuilder()
-                            .add("decisionchoice", c.getId())
-            );
-        });
-
-        JsonObject model = Json.createObjectBuilder()
-                .add("decisionchoices", arrayBuilder)
-                .build();
-        return model.toString();
-//        return "Response2Model{" + "decisionchoices=" + decisionchoices + '}';
+        return ResponseConverter.convert(this).toString();
     }
 
 }

@@ -44,7 +44,10 @@
                     </f:facet>
                     <h:outputText value="#{response.decision.name}"/>
                     <f:facet name="description">
-                        <h:outputText value="#{response.outcome}"/>
+                        <h:panelGrid>
+                            <h:outputText value="Score: #{response.score}"/>
+                            <h:outputText value="#{response.outcome}"/>
+                        </h:panelGrid>
                     </f:facet>
                 </p:dataList>
             </div>

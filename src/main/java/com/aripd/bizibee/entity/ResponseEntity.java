@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -43,6 +44,35 @@ public class ResponseEntity extends AbstractEntity {
     public ResponseEntity(DecisionEntity decision, String outcome) {
         this.decision = decision;
         this.outcome = outcome;
+    }
+
+    @Transient
+    public double getScore() {
+        double score = 0;
+        switch (decision.getDecisionType()) {
+            case SINGLE_CHOICE:
+                score += decision.getGm();
+                break;
+            case MULTIPLE_CHOICE:
+                score += decision.getGm();
+                break;
+            case SINGLE_SKU_LISTING:
+                score += decision.getGm();
+                break;
+            case MULTIPLE_SKU_LISTING:
+                score += decision.getGm();
+                break;
+            case RANGE_SKU_LISTING:
+                score += decision.getGm();
+                break;
+            case SINGLE_CHOICE_SKU_LISTING:
+                score += decision.getGm();
+                break;
+            case MULTIPLE_CHOICE_SKU_LISTING:
+                score += decision.getGm();
+                break;
+        }
+        return score;
     }
 
     public SimulationEntity getSimulation() {

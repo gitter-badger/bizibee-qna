@@ -112,6 +112,7 @@ VALUES
 	(17,8),
 	(21,8);
 
+/*
 INSERT INTO `RESPONSEENTITY` (`ID`, `USER_ID`, `SIMULATION_ID`, `OUTCOME`, `DECISION_ID`)
 VALUES
 	(1,3,2,'com.aripd.bizibee.entity.SkuEntity[ id=9 ]',1),
@@ -123,3 +124,17 @@ VALUES
 	(7,3,2,'com.aripd.bizibee.entity.DecisionchoiceEntity[ id=10 ]',7),
 	(8,3,2,'[com.aripd.bizibee.model.response.Response6Model@451276e4, com.aripd.bizibee.model.response.Response6Model@5b25a52d, com.aripd.bizibee.model.response.Response6Model@964cc1f, com.aripd.bizibee.model.response.Response6Model@532e156d, com.aripd.bizibee.model.response.Response6Model@55decba, com.aripd.bizibee.model.response.Response6Model@73273df1]',8),
 	(9,3,2,'[com.aripd.bizibee.entity.DecisionchoiceEntity[ id=18 ], com.aripd.bizibee.entity.DecisionchoiceEntity[ id=19 ]]',9);
+*/
+
+INSERT INTO `RESPONSEENTITY` (`ID`, `USER_ID`, `SIMULATION_ID`, `OUTCOME`, `DECISION_ID`)
+VALUES
+	(1,3,2,'{\"sku\":14}',1),
+	(2,3,2,'{\"sku\":7}',2),
+	(3,3,2,'{\"skus\":[{\"sku\":22},{\"sku\":23}]}',3),
+	(4,3,2,'[{\"sku\":17,\"value\":75}, {\"sku\":19,\"value\":76}, {\"sku\":20,\"value\":77}, {\"sku\":21,\"value\":78}]',4),
+	(5,3,2,'{\"decisionchoices\":[{\"decisionchoice\":2},{\"decisionchoice\":3},{\"decisionchoice\":4}]}',5),
+	(6,3,2,'[{\"sku\":9,\"decisionchoices\":[{\"decisionchoice\":5}]}, {\"sku\":13,\"decisionchoices\":[{\"decisionchoice\":6},{\"decisionchoice\":7}]}, {\"sku\":14,\"decisionchoices\":[{\"decisionchoice\":7},{\"decisionchoice\":8}]}, {\"sku\":17,\"decisionchoices\":[{\"decisionchoice\":6},{\"decisionchoice\":7},{\"decisionchoice\":8}]}, {\"sku\":21,\"decisionchoices\":[{\"decisionchoice\":6}]}]',6),
+	(7,3,2,'{\"decisionchoice\":10}',7),
+	(8,3,2,'[{\"sku\":5,\"decisionchoice\":13}, {\"sku\":7,\"decisionchoice\":14}, {\"sku\":10,\"decisionchoice\":15}, {\"sku\":16,\"decisionchoice\":16}, {\"sku\":17,\"decisionchoice\":15}, {\"sku\":21,\"decisionchoice\":14}]',8),
+	(9,3,2,'{\"decisionchoices\":[{\"decisionchoice\":18},{\"decisionchoice\":20}]}',9);
+
