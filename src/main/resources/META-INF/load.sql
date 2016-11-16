@@ -112,29 +112,15 @@ VALUES
 	(17,8),
 	(21,8);
 
-/*
 INSERT INTO `RESPONSEENTITY` (`ID`, `USER_ID`, `SIMULATION_ID`, `OUTCOME`, `DECISION_ID`)
 VALUES
-	(1,3,2,'com.aripd.bizibee.entity.SkuEntity[ id=9 ]',1),
-	(2,3,2,'com.aripd.bizibee.entity.SkuEntity[ id=10 ]',2),
-	(3,3,2,'[com.aripd.bizibee.entity.SkuEntity[ id=22 ], com.aripd.bizibee.entity.SkuEntity[ id=23 ]]',3),
-	(4,3,2,'[com.aripd.bizibee.model.response.Response5Model@96c66e0, com.aripd.bizibee.model.response.Response5Model@21d222a4, com.aripd.bizibee.model.response.Response5Model@712e49ec, com.aripd.bizibee.model.response.Response5Model@5240a83a]',4),
-	(5,3,2,'[com.aripd.bizibee.entity.DecisionchoiceEntity[ id=2 ], com.aripd.bizibee.entity.DecisionchoiceEntity[ id=3 ], com.aripd.bizibee.entity.DecisionchoiceEntity[ id=4 ]]',5),
-	(6,3,2,'[com.aripd.bizibee.model.response.Response7Model@7323885f, com.aripd.bizibee.model.response.Response7Model@555943d7, com.aripd.bizibee.model.response.Response7Model@6e2c811f, com.aripd.bizibee.model.response.Response7Model@58085a66, com.aripd.bizibee.model.response.Response7Model@37865048]',6),
-	(7,3,2,'com.aripd.bizibee.entity.DecisionchoiceEntity[ id=10 ]',7),
-	(8,3,2,'[com.aripd.bizibee.model.response.Response6Model@451276e4, com.aripd.bizibee.model.response.Response6Model@5b25a52d, com.aripd.bizibee.model.response.Response6Model@964cc1f, com.aripd.bizibee.model.response.Response6Model@532e156d, com.aripd.bizibee.model.response.Response6Model@55decba, com.aripd.bizibee.model.response.Response6Model@73273df1]',8),
-	(9,3,2,'[com.aripd.bizibee.entity.DecisionchoiceEntity[ id=18 ], com.aripd.bizibee.entity.DecisionchoiceEntity[ id=19 ]]',9);
-*/
-
-INSERT INTO `RESPONSEENTITY` (`ID`, `USER_ID`, `SIMULATION_ID`, `OUTCOME`, `DECISION_ID`)
-VALUES
-	(1,3,2,'{\"sku\":14}',1),
-	(2,3,2,'{\"sku\":7}',2),
-	(3,3,2,'{\"skus\":[{\"sku\":22},{\"sku\":23}]}',3),
+	(1,3,2,'{\"id\":14,\"name\":\"600 ml bakım şampuanı\",\"gm\":0.0}',1),
+	(2,3,2,'{\"id\":5,\"name\":\"350 ml güzellik\",\"gm\":0.0}',2),
+	(3,3,2,'{\"skus\":[{\"id\":22,\"name\":\"TG\",\"gm\":0.0},{\"id\":23,\"name\":\"DH\",\"gm\":0.0}]}',3),
 	(4,3,2,'[{\"sku\":17,\"value\":75}, {\"sku\":19,\"value\":76}, {\"sku\":20,\"value\":77}, {\"sku\":21,\"value\":78}]',4),
-	(5,3,2,'{\"decisionchoices\":[{\"decisionchoice\":2},{\"decisionchoice\":3},{\"decisionchoice\":4}]}',5),
+	(5,3,2,'{\"decisionchoices\":[{\"id\":2,\"name\":\"Hiring someone with technical knowledge to deal e-commerce area\",\"gm\":0.008284364257},{\"id\":3,\"name\":\"Creating campaign visuals via agency for customers webpage\",\"gm\":0.002952620555},{\"id\":4,\"name\":\"Planning activities special to e-commerce, where prices are slightly lower than normal ones\",\"gm\":0.009283852454}]}',5),
 	(6,3,2,'[{\"sku\":9,\"decisionchoices\":[{\"decisionchoice\":5}]}, {\"sku\":13,\"decisionchoices\":[{\"decisionchoice\":6},{\"decisionchoice\":7}]}, {\"sku\":14,\"decisionchoices\":[{\"decisionchoice\":7},{\"decisionchoice\":8}]}, {\"sku\":17,\"decisionchoices\":[{\"decisionchoice\":6},{\"decisionchoice\":7},{\"decisionchoice\":8}]}, {\"sku\":21,\"decisionchoices\":[{\"decisionchoice\":6}]}]',6),
-	(7,3,2,'{\"decisionchoice\":10}',7),
+	(7,3,2,'{\"id\":12,\"name\":\"Assortment3\",\"gm\":0.0}',7),
 	(8,3,2,'[{\"sku\":5,\"decisionchoice\":13}, {\"sku\":7,\"decisionchoice\":14}, {\"sku\":10,\"decisionchoice\":15}, {\"sku\":16,\"decisionchoice\":16}, {\"sku\":17,\"decisionchoice\":15}, {\"sku\":21,\"decisionchoice\":14}]',8),
-	(9,3,2,'{\"decisionchoices\":[{\"decisionchoice\":18},{\"decisionchoice\":20}]}',9);
+	(9,3,2,'{\"decisionchoices\":[{\"id\":18,\"name\":\"Motivational event\",\"gm\":0.0},{\"id\":19,\"name\":\"Training\",\"gm\":0.0},{\"id\":20,\"name\":\"Providing tablets integrated to inventory system\",\"gm\":0.0}]}',9);
 

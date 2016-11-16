@@ -1,14 +1,33 @@
 package com.aripd.bizibee.model.response;
 
+import java.io.StringReader;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 public class ResponseConverter {
 
+    public static JsonObject jsonObjectFromString(String jsonObjectStr) {
+        JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));
+        JsonObject object = jsonReader.readObject();
+        jsonReader.close();
+        return object;
+    }
+
+    public static JsonArray jsonArrayFromString(String jsonArrayStr) {
+        JsonReader jsonReader = Json.createReader(new StringReader(jsonArrayStr));
+        JsonArray array = jsonReader.readArray();
+        jsonReader.close();
+        return array;
+    }
+
     static JsonObject convert(Response1Model model) {
         return Json.createObjectBuilder()
-                .add("decisionchoice", model.getDecisionchoice().getId())
+                .add("id", model.getDecisionchoice().getId())
+                .add("name", model.getDecisionchoice().getName())
+                .add("gm", model.getDecisionchoice().getGm())
                 .build();
     }
 
@@ -17,7 +36,9 @@ public class ResponseConverter {
         model.getDecisionchoices().forEach(c -> {
             arrayBuilder.add(
                     Json.createObjectBuilder()
-                            .add("decisionchoice", c.getId())
+                            .add("id", c.getId())
+                            .add("name", c.getName())
+                            .add("gm", c.getGm())
             );
         });
 
@@ -28,7 +49,9 @@ public class ResponseConverter {
 
     static JsonObject convert(Response3Model model) {
         return Json.createObjectBuilder()
-                .add("sku", model.getSku().getId())
+                .add("id", model.getSku().getId())
+                .add("name", model.getSku().getName())
+                .add("gm", model.getSku().getGm())
                 .build();
     }
 
@@ -37,7 +60,9 @@ public class ResponseConverter {
         model.getSkus().forEach(c -> {
             arrayBuilder.add(
                     Json.createObjectBuilder()
-                            .add("sku", c.getId())
+                            .add("id", c.getId())
+                            .add("name", c.getName())
+                            .add("gm", c.getGm())
             );
         });
 
