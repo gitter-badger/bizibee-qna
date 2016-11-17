@@ -18,24 +18,8 @@
         <message-bundle>ValidationMessages</message-bundle>
         <resource-library-contracts>
             <contract-mapping>
-                <url-pattern>/error/*</url-pattern>
-                <contracts>error</contracts>
-            </contract-mapping>
-            <contract-mapping>
                 <url-pattern>*</url-pattern>
-                <contracts>promotion</contracts>
-            </contract-mapping>
-            <contract-mapping>
-                <url-pattern>/member/*</url-pattern>
-                <contracts>ui</contracts>
-            </contract-mapping>
-            <contract-mapping>
-                <url-pattern>/ruler/*</url-pattern>
-                <contracts>ui</contracts>
-            </contract-mapping>
-            <contract-mapping>
-                <url-pattern>/administrator/*</url-pattern>
-                <contracts>ui</contracts>
+                <contracts>omega-layout</contracts>
             </contract-mapping>
         </resource-library-contracts>
     </application>

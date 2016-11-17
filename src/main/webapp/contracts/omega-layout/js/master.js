@@ -1,3 +1,10 @@
+$(document).ready(function () {
+    $('#menu-button').on('click', function (e) {
+        $('#menu').toggleClass('overlay-menu');
+        e.preventDefault();
+    });
+});
+
 function handleSubmitRequest(xhr, status, args, dialogId, formId, dialogWidgetVar) {
     if (args.validationFailed) {
         PF(dialogWidgetVar).jq.effect("shake", {times: 5}, 100);

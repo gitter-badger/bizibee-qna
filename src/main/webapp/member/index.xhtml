@@ -13,24 +13,41 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:panelGrid columns="2">
-            <h:outputLabel value="#{i18n['Simulation']}"/>
-            <h:outputText value="#{profileBean.selectedRecord.simulation.name}"/>
-            <h:outputLabel value="#{i18n['Team']}"/>
-            <h:outputText value="#{profileBean.selectedRecord.teamName}"/>
-            <h:outputLabel value="#{i18n['Name']}"/>
-            <h:outputText value="#{profileBean.selectedRecord.name}"/>
-            <h:outputLabel value="#{i18n['E-mail Address']}"/>
-            <h:outputText value="#{profileBean.selectedRecord.email}"/>
-        </h:panelGrid>
+        <div id="features">
+            <div class="features-content">
+                <span class="feature-title">Omega Features</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-        <!--TODO burayı başka nasıl yaparız-->
-        <h:form>
-            <p:button value="#{i18n['Go to Simulation']}" outcome="/member/response">
-                <f:param name="id" value="1"/>
-            </p:button>
-            <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
-        </h:form>
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{i18n['Home']}" outcome="/index" />
+                        <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
+                    </p:breadCrumb>
+                </h:form>
 
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="#{i18n['Simulation']}"/>
+                            <h:outputText value="#{profileBean.selectedRecord.simulation.name}"/>
+                            <h:outputLabel value="#{i18n['Team']}"/>
+                            <h:outputText value="#{profileBean.selectedRecord.teamName}"/>
+                            <h:outputLabel value="#{i18n['Name']}"/>
+                            <h:outputText value="#{profileBean.selectedRecord.name}"/>
+                            <h:outputLabel value="#{i18n['E-mail Address']}"/>
+                            <h:outputText value="#{profileBean.selectedRecord.email}"/>
+                        </h:panelGrid>
+
+                        <!--TODO burayı başka nasıl yaparız-->
+                        <h:form>
+                            <p:button value="#{i18n['Go to Simulation']}" outcome="/member/response">
+                                <f:param name="id" value="1"/>
+                            </p:button>
+                            <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
