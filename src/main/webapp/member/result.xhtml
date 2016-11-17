@@ -45,7 +45,8 @@
                     <h:outputText value="#{response.decision.name}"/>
                     <f:facet name="description">
                         <h:panelGrid>
-                            <h:outputText value="Score: #{response.score}"/>
+                            <h:outputText value="Score1: #{resultView.calculateScore(response)}"/>
+                            <h:outputText value="Score2: #{response.score}"/>
                             <h:outputText value="#{response.outcome}"/>
                         </h:panelGrid>
                     </f:facet>

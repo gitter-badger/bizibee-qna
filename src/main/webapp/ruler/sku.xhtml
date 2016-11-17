@@ -35,6 +35,9 @@
                 <p:column headerText="#{i18n['Name']}" sortBy="#{sku.name}" filterBy="#{sku.name}">
                     <h:outputText value="#{sku.name}"/>
                 </p:column>
+                <p:column headerText="#{i18n['GM']}">
+                    <h:outputText value="#{sku.gm}"/>
+                </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Show']}" update="showForm" oncomplete="PF('showDialog').show()">
                         <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
@@ -78,6 +81,8 @@
                     </p:selectOneMenu>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{skuView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{skuView.selectedRecord.gm}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{skuView.doUpdateRecord}" ajax="false"/>
@@ -101,6 +106,8 @@
                     </p:selectOneMenu>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{skuView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{skuView.newRecord.gm}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{skuView.doCreateRecord}" ajax="false"/>

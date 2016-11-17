@@ -53,6 +53,9 @@ public class ResponseEntity extends AbstractEntity {
         this.outcome = outcome;
     }
 
+    /**
+     * TODO resultView.calculateScore geçerli olursa bunu silebiliriz
+     */
     @Transient
     public double getScore() {
         JsonObject jsonObject;

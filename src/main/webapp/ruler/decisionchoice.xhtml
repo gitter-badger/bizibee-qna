@@ -34,6 +34,9 @@
                 <p:column headerText="#{i18n['Decision']}">
                     <h:outputText value="#{decisionchoice.decision.name}"/>
                 </p:column>
+                <p:column headerText="#{i18n['GM']}">
+                    <h:outputText value="#{decisionchoice.gm}"/>
+                </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                         <f:setPropertyActionListener value="#{decisionchoice}" target="#{decisionchoiceView.selectedRecord}" />
@@ -54,6 +57,8 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
                         <f:selectItems value="#{decisionchoiceView.decisions}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionchoiceView.selectedRecord.gm}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionchoiceView.doUpdateRecord}"/>
@@ -75,6 +80,8 @@
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
                         <f:selectItems value="#{decisionchoiceView.decisions}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionchoiceView.newRecord.gm}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionchoiceView.doCreateRecord}"/>

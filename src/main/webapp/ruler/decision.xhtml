@@ -34,6 +34,9 @@
                 <p:column headerText="#{i18n['Name']}" sortBy="#{decision.name}" filterBy="#{decision.name}">
                     <h:outputText value="#{decision.name}"/>
                 </p:column>
+                <p:column headerText="#{i18n['GM']}">
+                    <h:outputText value="#{decision.gm}"/>
+                </p:column>
                 <p:column exportable="false" width="100">
                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                         <f:setPropertyActionListener value="#{decision}" target="#{decisionView.selectedRecord}" />
@@ -65,6 +68,8 @@
                     </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
                     <p:selectBooleanButton id="required" value="#{decisionView.selectedRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.selectedRecord.gm}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}"/>
@@ -97,6 +102,8 @@
                     </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
                     <p:selectBooleanButton id="required" value="#{decisionView.newRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.newRecord.gm}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}"/>
