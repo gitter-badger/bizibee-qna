@@ -27,7 +27,7 @@
 
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-4">
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" rendered="#{request.isUserInRole('Member')}">
                             <h:outputLabel value="#{i18n['Simulation']}"/>
                             <h:outputText value="#{profileBean.selectedRecord.simulation.name}"/>
                             <h:outputLabel value="#{i18n['Team']}"/>
@@ -39,11 +39,34 @@
                         </h:panelGrid>
 
                         <!--TODO burayı başka nasıl yaparız-->
-                        <h:form>
+                        <h:form rendered="#{request.isUserInRole('Member')}">
                             <p:button value="#{i18n['Go to Simulation']}" outcome="/member/response">
                                 <f:param name="id" value="1"/>
                             </p:button>
                             <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
+                        </h:form>
+
+                        <h:form>
+                            <p:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
+                            <p:link value="#{i18n['Profile']}" outcome="/member/profile" rendered="#{not empty request.userPrincipal}"/>
+
+                            <p:link value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/>
+                            <p:link value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/>
+                            <p:link value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/>
+
+                            <p:link value="#{i18n['Simulation']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                            <p:link value="#{i18n['Users']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+                            <p:link value="#{i18n['Brands']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
+                            <p:link value="#{i18n['Skus']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
+                            <p:link value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
+                            <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
+                        </h:form>
+
+                        <h:form>
+                            <p:selectOneMenu value="#{localeBean.locale}" converter="#{localeConverter}" style="margin-left: 10px;">
+                                <p:ajax listener="#{localeBean.onChange}" oncomplete="location.reload()"/>
+                                <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
+                            </p:selectOneMenu>
                         </h:form>
                     </div>
                 </div>

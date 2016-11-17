@@ -79,23 +79,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <h:form rendered="#{not empty request.userPrincipal}">
-                                <p:menubar>
-                                    <p:menuitem value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
-                                    <p:menuitem value="#{i18n['Profile']}" outcome="/member/profile" rendered="#{not empty request.userPrincipal}"/>
-
-                                    <p:menuitem value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/>
-                                    <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/>
-                                    <p:menuitem value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/>
-
-                                    <p:menuitem value="#{i18n['Simulation']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    <p:menuitem value="#{i18n['Users']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    <p:menuitem value="#{i18n['Brands']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    <p:menuitem value="#{i18n['Skus']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    <p:menuitem value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    <p:menuitem value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
-                                </p:menubar>
-                            </h:form>
                         </div>
 
                         <div class="footer-bottom">
@@ -106,13 +89,6 @@
                             <h:outputLink value="http://aripd.com" style="color: inherit; text-decoration: none;">
                                 ARI Business Management Systems
                             </h:outputLink>
-
-                            <h:form>
-                                <p:selectOneMenu value="#{localeBean.locale}" converter="#{localeConverter}" style="margin-left: 10px;">
-                                    <p:ajax listener="#{localeBean.onChange}" oncomplete="location.reload()"/>
-                                    <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
-                                </p:selectOneMenu>
-                            </h:form>
                         </div>
                     </div>
                 </div>
