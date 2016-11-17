@@ -6,277 +6,124 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
     <ui:define name="content">
-<!--        <section class="section home home-register bg-dark" id="home">-->
-        <section class="section-lg home-alt bg-solid" id="home">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 text-left">
-                        <div class="home-wrapper">
-
-                            <div class="text-tran-box text-tran-box-dark">
-                                <h1 class="text-transparent">Here is the best way to simulate your business</h1>
-                            </div>
-
-                            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit.</h4>
-
-                            <a href="" class="btn btn-white">#{i18n['Learn more']}</a>
-
-                            <div class="clearfix"></div>
-
-                            <a href="http://vimeo.com/99025203" class="video-btn btn popup-video"><i class="pe-7s-play"></i>#{i18n['Watch Video']}</a>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-sm-offset-2">
-                        <div class="home-wrapper">
-                            <h:form id="login" role="form" styleClass="intro-form">
-                                <p:focus context="login"/>
-                                <h3 class="text-center">#{i18n['Sign in']}</h3>
-                                <div class="form-group">
-                                    <h:inputText id="j_username" value="#{loginBean.username}" autocomplete="off" pt:placeholder="#{i18n['Username']}" label="#{i18n['Username']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <h:inputSecret id="j_password" value="#{loginBean.password}" autocomplete="off" pt:placeholder="#{i18n['Password']}" label="#{i18n['Password']}" styleClass="form-control" required="true"/>
-                                </div>
-                                <div class="form-group text-center">
-                                    <h:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" styleClass="btn btn-custom btn-sm">
-                                        <f:ajax execute="@form" render=":growl"/>
-                                    </h:commandButton>
-                                </div>
-                            </h:form>
-                        </div>
-                    </div>
-
-                </div>
+        <div id="introduction">
+            <div class="introduction-content">
+                <span class="title">PrimeFaces Omega</span>
+                <span class="subtitle">Clean, Elegant and Functional</span>
+                <p:graphicImage name="images/landing/section1_logo.png" />
+                <p:button value="#{i18n['Sign Up']}" outcome="/login"/>
             </div>
-        </section>
+        </div>
 
+        <div id="features">
+            <div class="features-content">
+                <span class="feature-title">Omega Features</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="facts-box text-center">
-                            <div class="row">
-                                <div class="col-sm-3 col-xs-6">
-                                    <h2><i class="pe-7s-graph1"></i> 34</h2>
-                                    <p class="text-muted">Completed Simulations</p>
-                                </div>
-
-                                <div class="col-sm-3 col-xs-6">
-                                    <h2><i class="pe-7s-add-user"></i> 742</h2>
-                                    <p class="text-muted">Number of Players</p>
-                                </div>
-
-                                <div class="col-sm-3 col-xs-6">
-                                    <h2><i class="pe-7s-users"></i> 142</h2>
-                                    <p class="text-muted">Number of Teams</p>
-                                </div>
-
-                                <div class="col-sm-3 col-xs-6">
-                                    <h2><i class="pe-7s-coffee"></i> 1548</h2>
-                                    <p class="text-muted">Cup Of Coffee</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <p:graphicImage name="images/landing/section2_1.png" styleClass="feature-icon" />
+                        <span class="feature-text">
+                            <span>Responsive</span>
+                            <p>Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free.</p>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:graphicImage name="images/landing/section2_2.png" styleClass="feature-icon" />
+                        <span class="feature-text">
+                            <span>Clean</span>
+                            <p>Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon.</p>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:graphicImage name="images/landing/section2_3.png" styleClass="feature-icon" />
+                        <span class="feature-text">
+                            <span>Grid</span>
+                            <p>Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever.</p>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:graphicImage name="images/landing/section2_4.png" styleClass="feature-icon" />
+                        <span class="feature-text">
+                            <span>Modern</span>
+                            <p>Retro occupy organic, stumptown shabby chic pour-over roof party DIY.</p>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:graphicImage name="images/landing/section2_5.png" styleClass="feature-icon" />
+                        <span class="feature-text">
+                            <span>Documented</span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam enim numquam.</p>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:graphicImage name="images/landing/section2_6.png" styleClass="feature-icon" />
+                        <span class="feature-text">
+                            <span>Support</span>
+                            <p>Retro occupy organic, stumptown shabby chic pour-over roof party DIY.</p>
+                        </span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
+        <div id="mobile">
+            <div class="mobile-content">
+                <span class="title">Try Our Mobile App!</span>
+                <span class="subtitle">Available at App Store and Google Play.</span>
+                <p:graphicImage name="images/landing/section3_mobile.png" />
+                <p:button value="#{i18n['Learn More']}" outcome="/index" />
+            </div>
+        </div>
 
-        <div class="clearfix"></div>
-
-
-        <section class="section" id="features">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-sm-4">
-                        <div class="features-box text-center">
-                            <div class="feature-icon">
-                                <i class="pe-7s-science"></i>
-                            </div>
-                            <h3>Strategic Thinking</h3>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit.</p>
+        <div id="pricing">
+            <div class="pricing-content">
+                <span class="pricing-title">Pricing</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="pricing-basic pricing-box">
+                            <span class="pricing-name">Basic</span>
+                            <div class="pricing-fee">1$</div>
+                            <p>50GB Disk Space</p>
+                            <p>500GB Monthly Bandwith</p>
+                            <p>20 Email Accounts</p>
+                            <p>5 Subdomain</p>
                         </div>
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="features-box text-center">
-                            <div class="feature-icon">
-                                <i class="pe-7s-light"></i>
-                            </div>
-                            <h3>Decision Making</h3>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit.</p>
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="pricing-standard pricing-box">
+                            <span class="pricing-name">Standard</span>
+                            <div class="pricing-fee">5$</div>
+                            <p>200GB Disk Space</p>
+                            <p>1TB Monthly Bandwith</p>
+                            <p>50 Email Accounts</p>
+                            <p>10 Subdomain</p>
                         </div>
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="features-box text-center">
-                            <div class="feature-icon">
-                                <i class="pe-7s-display1"></i>
-                            </div>
-                            <h3>Problem Solving</h3>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat arcu ut orci porta, eget porttitor felis suscipit.</p>
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="pricing-professional pricing-box">
+                            <span class="pricing-name">Professional</span>
+                            <div class="pricing-fee">10$</div>
+                            <p>2TB Disk Space</p>
+                            <p>10TB Monthly Bandwith</p>
+                            <p>Unlimited Email Accounts</p>
+                            <p>50 Subdomain</p>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </section>
+        </div>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <h:graphicImage name="images/ipad.png" styleClass="img-responsive"/>
-                    </div>
+        <div id="video">
+            <div class="video-content">
+                <span class="video-title">Video</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+                <div class="video-container">
                 </div>
             </div>
-        </section>
-
-
-        <!--<section class="section-lg bg-white" id="pricing">-->
-        <section class="section bg-white padding-b-0" id="pricing">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <h2 class="title">Simple Pricing</h2>
-                        <p class="title-alt">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons, Fonts &amp; all <br/> others graphics are optimized.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1">
-                        <div class="row">
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-4 col-md-4">
-                                <div class="inner-box">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">1 Month</h3>
-                                        <h2 class="plan-price">$15</h2>
-                                        <div class="plan-duration">Per Month</div>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled">
-                                        <li> <i class="pe-7s-server"></i>10 GB Storege</li>
-                                        <li> <i class="pe-7s-graph"></i>500 GB Bandwidth</li>
-                                        <li> <i class="pe-7s-mail-open"></i>Email Support</li>
-                                        <li> <i class="pe-7s-tools"></i>24x7 Support</li>
-                                    </ul>
-
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-sm btn-dark">Signup Now</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-4 col-md-4">
-                                <div class="inner-box active">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">6 Months</h3>
-                                        <h2 class="plan-price">$12</h2>
-                                        <div class="plan-duration">Per Month</div>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled">
-                                        <li> <i class="pe-7s-server"></i>10 GB Storege</li>
-                                        <li> <i class="pe-7s-graph"></i>500 GB Bandwidth</li>
-                                        <li> <i class="pe-7s-mail-open"></i>Email Support</li>
-                                        <li> <i class="pe-7s-tools"></i>24x7 Support</li>
-                                    </ul>
-
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-sm btn-custom">Signup Now</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-4 col-md-4">
-                                <div class="inner-box">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">12 Months</h3>
-                                        <h2 class="plan-price">$10</h2>
-                                        <div class="plan-duration">Per Month</div>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled">
-                                        <li> <i class="pe-7s-server"></i>10 GB Storege</li>
-                                        <li> <i class="pe-7s-graph"></i>500 GB Bandwidth</li>
-                                        <li> <i class="pe-7s-mail-open"></i>Email Support</li>
-                                        <li> <i class="pe-7s-tools"></i>24x7 Support</li>
-                                    </ul>
-
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-sm btn-dark">Signup Now</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                        </div>
-                    </div><!-- end col -->
-                </div>
-            </div>
-        </section>
-
-        <!--<section class="section-lg" id="clients">-->
-        <section class="section bg-white" id="clients">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-sm-12">
-                        <h2 class="title">Trusted by Thousands</h2>
-                        <p class="slogan">Lorem ipsum dolor sit amet, consectetur adipis.</p>
-                        <ul class="list-inline client-list">
-                            <li><a href="" title="Microsoft"><h:graphicImage name="images/clients/microsoft.png" alt="clients"/></a></li>
-                            <li><a href="" title="Google"><h:graphicImage name="images/clients/google.png" alt="clients"/></a></li>
-                            <li><a href="" title="Instagram"><h:graphicImage name="images/clients/instagram.png" alt="clients"/></a></li>
-                            <li><a href="" title="Converse"><h:graphicImage name="images/clients/converse.png" alt="clients"/></a></li>
-                        </ul>
-                    </div> <!-- end Col -->
-                </div>
-            </div>
-        </section>
-        
-        <section class="section" id="faqs">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-sm-12">
-                        <h2 class="title">FAQ</h2>
-                        <p class="title-alt">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons, Fonts &amp; all <br/> others graphics are optimized.</p>
-                        
-                        <div class="row text-left">
-                            <div class="col-sm-6">
-                                <div class="question-box">
-                                    <h4><span class="text-colored">Q.</span>What is Lorem Ipsum?</h4>
-                                    <p><span><b>A. </b></span>Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt, pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
-                                </div>
-
-                                <div class="question-box">
-                                    <h4><span class="text-colored">Q.</span>How many variations exist?</h4>
-                                    <p><span><b>A. </b></span>Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt, pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="question-box">
-                                    <h4><span class="text-colored">Q.</span>Is safe use Lorem Ipsum?</h4>
-                                    <p><span><b>A. </b></span>Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt, pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
-                                </div>
-
-                                <div class="question-box">
-                                    <h4><span class="text-colored">Q.</span>License &amp; Copyright</h4>
-                                    <p><span><b>A. </b></span>Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt, pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div> <!-- end Col -->
-                </div>
-            </div>
-        </section>
-
+        </div>
     </ui:define>
 </ui:composition>

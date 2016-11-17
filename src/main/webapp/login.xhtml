@@ -6,21 +6,28 @@
                 template="/template.xhtml">
     <ui:define name="title">#{i18n['Login']}</ui:define>
     <ui:define name="content">
-        <div class="ui-g">
-            <div class="ui-g-4">
-            </div>
-            <div class="ui-g-4">
-                <h3>#{i18n['Sign in']}</h3>
-                <h:form id="login">
-                    <p:focus context="login"/>
-                    <h:panelGrid columns="1">
-                        <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true"/>
-                        <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true"/>
-                        <p:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" update=":growl"/>
-                    </h:panelGrid>
-                </h:form>
-            </div>
-            <div class="ui-g-4">
+        <div id="features">
+            <div class="features-content">
+                <span class="feature-title">Omega Features</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <h3>#{i18n['Sign in']}</h3>
+                        <h:form id="login">
+                            <p:focus context="login"/>
+                            <h:panelGrid columns="1">
+                                <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true"/>
+                                <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true"/>
+                                <p:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" update=":growl"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                    </div>
+                </div>
             </div>
         </div>
     </ui:define>

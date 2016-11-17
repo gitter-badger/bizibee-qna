@@ -1,0 +1,196 @@
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;">
+    <!ENTITY bull "&#8226;">
+    <!ENTITY copy "&#169;">
+    ]>
+    <html lang="#{localeBean.locale}"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:ui="http://java.sun.com/jsf/facelets">
+
+        <f:view contentType="text/html" encoding="UTF-8" locale="#{localeBean.locale}">
+
+            <h:head>
+                <f:facet name="first">
+                    <meta charset="utf-8"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <meta name="description" content=""/>
+                    <meta name="author" content="aripd.com"/>
+
+                    <!--<link rel="shortcut icon" href="images/favicon.ico"/>-->
+                    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAD/7swAAAAAAP///wBMdKkATOH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERERERERERERERESIhERESIiIiIhEzMxEiIiIhE0NDMREREiEzQ0NDMzESITNDQ0NEQxEhE0NDNEQ0MSETMzM0RDQxITADADRERDEhMAMAM0RDESEwAwAxMzMSIRMxMxExExEiERERETMTMSIiIiIRERERIiIiIiIiIiL//wAA//8AAP//AADw/wAA4H8AAMAHAADAAwAA4AEAAOABAADAAQAAwAMAAMBDAADk2wAA/8kAAP//AAD//wAA" rel="icon" type="image/x-icon" />
+
+                    <title><ui:insert name="title">BiZiBee®</ui:insert></title>
+
+                    <!-- Google Fonts -->
+                    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700' rel='stylesheet' type='text/css'/>
+                    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'/>
+
+                    <!-- Bootstrap core CSS -->
+                    <h:outputStylesheet name="css/bootstrap.min.css"/>
+
+                    <!-- Magnific-popup -->
+                    <h:outputStylesheet name="css/magnific-popup.css"/>
+
+                    <h:outputStylesheet name="css/pe-icon-7-stroke.css"/>
+                    <h:outputStylesheet name="css/pe-icon-social.css"/>
+
+                    <!-- Custom styles for this template -->
+                    <h:outputStylesheet name="css/style.css"/>
+
+                </f:facet>
+                <f:facet name="middle">
+                </f:facet>
+                <f:facet name="last">
+                </f:facet>
+
+                <ui:insert name="head"></ui:insert>
+            </h:head>
+
+            <h:body style="padding-top: 50px;">
+
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top navbar-custom-dark bg-dark">
+                <!--<nav class="navbar navbar-default navbar-custom navbar-fixed-top sticky">-->
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <h:link outcome="/index" styleClass="navbar-brand">
+                                <composite:logo text="BiZiBee®" width="100" height="50" fill="#ffffff" stroke="#ffffff" fontFamily="Josefin Sans"/>
+                            </h:link>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#home" class="scroll">Home</a></li>
+                                <li><a href="#features" class="scroll">Features</a></li>
+                                <li><a href="#pricing" class="scroll">Pricing</a></li>
+                                <li><a href="#clients" class="scroll">Clients</a></li>
+                                <li><a href="#faqs" class="scroll">FAQ</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+                <ui:insert name="content"></ui:insert>
+                <p:growl id="growl" showDetail="true" life="5000" autoUpdate="true"/>
+                <h:form>
+                    <p:confirmDialog global="true" closeOnEscape="true">
+                        <p:commandButton value="#{i18n['Yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="#{i18n['No']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>
+                </h:form>
+
+                <footer class="bg-dark footer-one">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-6 p-b-40">
+                                <composite:logo text="BiZiBee®" width="100" height="50" fill="#ffffff" stroke="#ffffff" fontFamily="Josefin Sans"/>
+                                <p class="text-light about-text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC,making it over 2000 years old.</p>
+
+                                <p class="text-light about-text">Nunc nec dui vitae urna cursus lacinia. In venenatis egetjusto in dictum.</p>
+                            </div>
+
+                            <div class="col-md-2 col-sm-6">
+                                <h5>Simulation</h5>
+                                <ul class="list-unstyled">
+                                    <li><a href="">About Us</a></li>
+                                    <li><a href="">Features</a></li>
+                                    <li><a href="">FAQ</a></li>
+                                    <li><a href="">Services</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-2 col-sm-6 p-b-40">
+                                <h5>Support</h5>
+                                <ul class="list-unstyled">
+                                    <li><a href="">Help &amp; Support</a></li>
+                                    <li><a href="">Privacy Policy</a></li>
+                                    <li><a href="">Terms &amp; Conditions</a></li>
+                                </ul>
+
+                                <br/>
+
+                                <h5>#{i18n['Languages']}</h5>
+                                <h:form>
+                                    <ul class="list-unstyled">
+                                        <ui:repeat value="#{localeBean.locales}" var="locale">
+                                            <li>
+                                                <h:commandLink immediate="true" value="#{locale.getDisplayName(localeBean.locale)}" action="#{localeBean.onSet}">
+                                                    <f:setPropertyActionListener value="#{locale}" target="#{localeBean.locale}"/>
+                                                </h:commandLink>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </h:form>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div>
+                                    <h5>Contact us</h5>
+                                    <ul class="list-unstyled">
+                                        <li><strong class="font-secondary font-14">Address:</strong> D32 8E 34758 TR, TURKEY</li>
+                                        <li><strong class="font-secondary font-14">Phone:</strong> +90 (533) 742-1059</li>
+                                        <li><strong class="font-secondary font-14">Email:</strong> <a href="mailto:dev@aripd.com">dev@aripd.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div> <!-- end row -->
+                    </div>
+                    <!-- end container -->
+
+                    <div class="footer-one-alt">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <p class="m-b-0 font-13 copyright">
+                                        © 
+                                        <h:outputText value="#{session.lastAccessedTime}">
+                                            <f:convertDateTime pattern="yyyy" type="date"/>
+                                        </h:outputText>
+                                        ARI Business Management Systems
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <ul class="list-inline footer-social-one m-b-0 pull-right">
+                                        <li><a href="#"><i class="pe-so-facebook"></i></a></li>
+                                        <li><a href="#"><i class="pe-so-twitter"></i></a></li>
+                                        <li><a href="#"><i class="pe-so-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="pe-so-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="pe-so-skype"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </footer>
+
+
+
+                <!-- js placed at the end of the document so the pages load faster -->
+                <h:outputScript name="js/jquery-2.1.4.min.js"/>
+                <h:outputScript name="js/bootstrap.min.js"/>
+
+                <!-- Jquery easing -->                                                      
+                <h:outputScript name="js/jquery.easing.1.3.min.js"/>
+                <h:outputScript name="js/jquery.magnific-popup.min.js"/>
+                <!--common script for all pages-->
+                <h:outputScript name="js/jquery.app.js"/>
+            </h:body>
+
+        </f:view>
+
+    </html>
