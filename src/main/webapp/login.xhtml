@@ -16,33 +16,19 @@
                     <p:focus context="login"/>
                     <div class="ui-g ui-fluid">
                         <div class="ui-g-12">
-                            <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true"/>
+                            <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true"/>
+                            <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true" />
                         </div>
                         <div class="ui-g-12 ui-md-6">
-                            <span class="remember-me">Remember Me</span>
-                            <div id="j_idt13" class="ui-chkbox ui-widget">
-                                <div class="ui-helper-hidden-accessible">
-                                    <input id="j_idt13_input" name="j_idt13_input" type="checkbox" autocomplete="off" aria-checked="false" />
-                                </div>
-                                <div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
-                                    <span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span>
-                                </div>
-                            </div>
-                            <script id="j_idt13_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox", "widget_j_idt13", {id: "j_idt13"});</script>
+                            <p:selectBooleanCheckbox value="#{loginBean.remember}" itemLabel="#{i18n['Remember Me']}" />
                         </div>
                         <div class="ui-g-12 ui-md-6">
                             <p:link value="#{i18n['Forgot Password']}" outcome="/login" />
                         </div>
                         <div class="ui-g-12">
-                            <p:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" update=":growl"/>
-                            <button id="j_idt18" name="j_idt18" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" onclick="window.open('/omega/dashboard.xhtml', '_self')">
-                                <span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span>
-                                <span class="ui-button-text ui-c">Login</span>
-                            </button>
-                            <script id="j_idt18_s" type="text/javascript">PrimeFaces.cw("Button", "widget_j_idt18", {id: "j_idt18"});</script>
+                            <p:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" update=":growl" icon="fa fa-check"/>
                         </div>
                     </div>
                 </h:form>

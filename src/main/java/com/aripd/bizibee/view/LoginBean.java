@@ -4,10 +4,11 @@ import com.aripd.bizibee.service.UserService;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.RequestUtil;
+import com.aripd.util.helper.CookieHelper;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 import javax.annotation.PostConstruct;
-import org.apache.log4j.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -15,12 +16,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Named
 @SessionScoped
 public class LoginBean implements Serializable {
 
-    static final Logger LOG = Logger.getLogger(LoginBean.class.getName());
+    public static final String COOKIE_NAME = "remember";
+    public static final int COOKIE_AGE = 2592000;// 30 days
 
     @Inject
     private UserService userService;
@@ -28,6 +31,7 @@ public class LoginBean implements Serializable {
 
     private String username;
     private String password;
+    private boolean remember;
 
     @Inject
     MessageUtil messageUtil;
@@ -60,13 +64,24 @@ public class LoginBean implements Serializable {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+            HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+
             request.login(username, password);
-            LOG.info(String.format("User (%s) has logged in %s", request.getUserPrincipal().getName(), new Date()));
+
+            if (remember) {
+                String uuid = UUID.randomUUID().toString();
+                user.setUuid(uuid);
+                userService.update(user);
+                CookieHelper.addCookie(response, COOKIE_NAME, uuid, COOKIE_AGE);
+            } else {
+                user.setUuid(null);
+                userService.update(user);
+                CookieHelper.removeCookie(response, COOKIE_NAME);
+            }
 
             String navigation = "/member/index?faces-redirect=true";
             RequestUtil.doNavigate(navigation);
         } catch (ServletException ex) {
-            LOG.error(ex.getMessage());
             messageUtil.addGlobalErrorFlashMessage("The username or password you provided does not match our records");
         }
     }
@@ -74,11 +89,15 @@ public class LoginBean implements Serializable {
     public String doLogout() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         try {
-            LOG.info(String.format("User (%s) has logged out %s", request.getUserPrincipal().getName(), new Date()));
+            user = userService.findOneByUsername(request.getUserPrincipal().getName());
+            user.setUuid(null);
+            userService.update(user);
+            CookieHelper.removeCookie(response, COOKIE_NAME);
+
             request.logout();
         } catch (ServletException ex) {
-            LOG.error(ex.getMessage());
             messageUtil.addGlobalErrorFlashMessage("Logout failed");
         }
         return "/index?faces-redirect=true";
@@ -98,6 +117,14 @@ public class LoginBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isRemember() {
+        return remember;
+    }
+
+    public void setRemember(boolean remember) {
+        this.remember = remember;
     }
 
     public UserEntity getUser() {

@@ -105,6 +105,24 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
     }
 
     @Override
+    public UserEntity findOneByUuid(String uuid) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        Predicate predicate = cb.equal(root.get(UserEntity_.uuid), uuid);
+        cq.where(predicate);
+
+        Query query = getEntityManager().createQuery(cq);
+        List<UserEntity> results = query.getResultList();
+        UserEntity entity = null;
+        if (!results.isEmpty()) {
+            entity = results.get(0);
+        }
+        return entity;
+    }
+
+    @Override
     public List<UserEntity> findAllByUserGroup(UserGroup userGroup) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
