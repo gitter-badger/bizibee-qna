@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html [<!ENTITY nbsp "&#160;"> <!ENTITY bull "&#8226;"> <!ENTITY copy "&#169;">]>
 <html lang="#{localeBean.locale}"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
@@ -64,19 +63,38 @@
                             <div class="ui-g">
                                 <div class="ui-g-6">
                                     <p:graphicImage name="images/logo.png" />
-                                    <p>Omega Premium Layout</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pulvinar dapibus faucibus.</p>
                                 </div>
-                                <div class="ui-g-6">
-                                    <ul>
-                                        <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
-                                        <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
-                                        <li><h:link outcome="/index" fragment="video" value="#{i18n['Video']}"/></li>
-                                    </ul>
+                                <div class="ui-g-2">
                                     <ul>
                                         <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Home']}"/></li>
                                         <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Introduction']}"/></li>
                                         <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
+                                        <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
+                                        <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
+                                        <li><h:link outcome="/index" fragment="video" value="#{i18n['Video']}"/></li>
                                     </ul>
+                                </div>
+                                <div class="ui-g-2">
+                                    <ul>
+                                        <li><h:link outcome="/index" value="#{i18n['Terms of Use']}"/></li>
+                                        <li><h:link outcome="/index" value="#{i18n['Contact Us']}"/></li>
+                                        <li><h:link outcome="/index" value="#{i18n['Careers']}"/></li>
+                                    </ul>
+                                </div>
+                                <div class="ui-g-2">
+                                    <h3>Languages</h3>
+                                    <h:form>
+                                        <ul style="font-size: smaller;">
+                                            <ui:repeat value="#{localeBean.locales}" var="locale">
+                                                <li>
+                                                    <h:commandLink immediate="true" value="#{locale.getDisplayName(localeBean.locale)}" action="#{localeBean.onSet}">
+                                                        <f:setPropertyActionListener value="#{locale}" target="#{localeBean.locale}"/>
+                                                    </h:commandLink>
+                                                </li>
+                                            </ui:repeat>
+                                        </ul>
+                                    </h:form>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +104,15 @@
                             <h:outputText value="#{session.lastAccessedTime}">
                                 <f:convertDateTime pattern="yyyy" type="date"/>
                             </h:outputText>
-                            ARI <small>Business Management Systems</small>
+                            <h:outputLink value="http://aripd.com" target="_blank" style="color: inherit; text-decoration: none;">
+                                ARI <small>Business Management Systems</small>
+                            </h:outputLink>
+
+                            <h:panelGroup style="float: right;">
+                                <p:outputLabel style="font-size: smaller;" styleClass="fa fa-map-marker" value=" D32 8E 34758 TR, TURKEY"/>&nbsp;&nbsp;
+                                <p:outputLabel style="font-size: smaller;" styleClass="fa fa-mobile" value=" +90 (533) 742-1059"/>&nbsp;&nbsp;
+                                <p:outputLabel style="font-size: smaller;" styleClass="fa fa-envelope-o" value=" dev@aripd.com"/>
+                            </h:panelGroup>
                         </div>
                     </div>
                 </div>

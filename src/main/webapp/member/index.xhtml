@@ -61,13 +61,6 @@
                             <p:link value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
                             <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
                         </h:form>
-
-                        <h:form>
-                            <p:selectOneMenu value="#{localeBean.locale}" converter="#{localeConverter}">
-                                <p:ajax listener="#{localeBean.onChange}" oncomplete="location.reload()"/>
-                                <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
-                            </p:selectOneMenu>
-                        </h:form>
                     </div>
                 </div>
             </div>
