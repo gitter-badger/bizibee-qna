@@ -27,9 +27,11 @@
             </f:facet>
         </h:head>
 
-        <h:body styleClass="exception-body">
+        <h:body styleClass="login-body">
 
             <ui:insert name="content"></ui:insert>
+
+            <p:growl id="growl" showDetail="true" life="5000" autoUpdate="true"/>
 
         </h:body>
 
