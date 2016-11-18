@@ -13,51 +13,62 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:form id="form">
-            <p:dataTable id="dataTable" var="user" value="#{userController.lazyModel}" emptyMessage="#{i18n['No records found']}"
-                         paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{user.id}" selectionMode="single" selection="#{userController.selectedRecord}"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
-                         sortMode="multiple" 
-                         lazy="true" rowsPerPageTemplate="10,15,50">
-                <f:facet name="header">
-                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
-                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
-                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
-                    </p:commandButton>
-                </f:facet>
-                <p:column headerText="#{i18n['Id']}" sortBy="#{user.id}" filterBy="#{user.id}">
-                    <h:outputText value="#{user.id}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Username']}" sortBy="#{user.username}" filterBy="#{user.username}">
-                    <h:outputText value="#{user.username}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Password']}">
-                    <h:outputText value="#{user.password}"/>
-                </p:column>
-                <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{user.email}" filterBy="#{user.email}">
-                    <h:outputText value="#{user.email}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Name']}" sortBy="#{user.name}" filterBy="#{user.name}">
-                    <h:outputText value="#{user.name}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Group']}" sortBy="#{user.userGroup}">
-                    <h:outputText value="#{i18n[user.userGroup.label]}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Simulation']}">
-                    <h:outputText value="#{user.simulation.name}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Team']}">
-                    <h:outputText value="#{user.team.name}"/>
-                </p:column>
-                <p:column exportable="false" width="100">
-                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{user}" target="#{userController.selectedRecord}" />
-                    </p:commandLink>
-                </p:column>
-            </p:dataTable>
-        </h:form>
+        <div id="features">
+            <div class="features-content">
+                <span class="feature-title">Omega Features</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12">
+                        <h:form id="form">
+                            <p:dataTable id="dataTable" var="user" value="#{userController.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                                         paginator="true" paginatorPosition="bottom" rows="10" 
+                                         rowKey="#{user.id}" selectionMode="single" selection="#{userController.selectedRecord}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                         sortMode="multiple" 
+                                         lazy="true" rowsPerPageTemplate="10,15,50">
+                                <f:facet name="header">
+                                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
+                                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
+                                    </p:commandButton>
+                                </f:facet>
+                                <p:column headerText="#{i18n['Id']}" sortBy="#{user.id}" filterBy="#{user.id}">
+                                    <h:outputText value="#{user.id}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Username']}" sortBy="#{user.username}" filterBy="#{user.username}">
+                                    <h:outputText value="#{user.username}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Password']}">
+                                    <h:outputText value="#{user.password}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{user.email}" filterBy="#{user.email}">
+                                    <h:outputText value="#{user.email}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Name']}" sortBy="#{user.name}" filterBy="#{user.name}">
+                                    <h:outputText value="#{user.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Group']}" sortBy="#{user.userGroup}">
+                                    <h:outputText value="#{i18n[user.userGroup.label]}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Simulation']}">
+                                    <h:outputText value="#{user.simulation.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Team']}">
+                                    <h:outputText value="#{user.team.name}"/>
+                                </p:column>
+                                <p:column exportable="false" width="100">
+                                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
+                                        <f:setPropertyActionListener value="#{user}" target="#{userController.selectedRecord}" />
+                                    </p:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
     <ui:define name="dialog">
         <h:form id="editForm">

@@ -15,39 +15,50 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:form id="form">
-            <p:dataTable id="dataTable" var="sku" value="#{skuView.lazyModel}" emptyMessage="#{i18n['No records found']}"
-                         paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{sku.id}" selectionMode="single" selection="#{skuView.selectedRecord}"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
-                         sortMode="multiple" 
-                         lazy="true" rowsPerPageTemplate="10,15,50">
-                <f:facet name="header">
-                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
-                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
-                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
-                    </p:commandButton>
-                </f:facet>
-                <p:column headerText="#{i18n['Brand']}">
-                    <h:outputText value="#{sku.brand.name}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Name']}" sortBy="#{sku.name}" filterBy="#{sku.name}">
-                    <h:outputText value="#{sku.name}"/>
-                </p:column>
-                <p:column headerText="#{i18n['GM']}">
-                    <h:outputText value="#{sku.gm}"/>
-                </p:column>
-                <p:column exportable="false" width="100">
-                    <p:commandLink value="#{i18n['Show']}" update="showForm" oncomplete="PF('showDialog').show()">
-                        <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
-                    </p:commandLink>
-                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
-                    </p:commandLink>
-                </p:column>
-            </p:dataTable>
-        </h:form>
+        <div id="features">
+            <div class="features-content">
+                <span class="feature-title">Omega Features</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12">
+                        <h:form id="form">
+                            <p:dataTable id="dataTable" var="sku" value="#{skuView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                                         paginator="true" paginatorPosition="bottom" rows="10" 
+                                         rowKey="#{sku.id}" selectionMode="single" selection="#{skuView.selectedRecord}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                         sortMode="multiple" 
+                                         lazy="true" rowsPerPageTemplate="10,15,50">
+                                <f:facet name="header">
+                                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
+                                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
+                                    </p:commandButton>
+                                </f:facet>
+                                <p:column headerText="#{i18n['Brand']}">
+                                    <h:outputText value="#{sku.brand.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Name']}" sortBy="#{sku.name}" filterBy="#{sku.name}">
+                                    <h:outputText value="#{sku.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['GM']}">
+                                    <h:outputText value="#{sku.gm}"/>
+                                </p:column>
+                                <p:column exportable="false" width="100">
+                                    <p:commandLink value="#{i18n['Show']}" update="showForm" oncomplete="PF('showDialog').show()">
+                                        <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
+                                    </p:commandLink>
+                                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
+                                        <f:setPropertyActionListener value="#{sku}" target="#{skuView.selectedRecord}" />
+                                    </p:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
     <ui:define name="dialog">
         <h:form id="showForm">
