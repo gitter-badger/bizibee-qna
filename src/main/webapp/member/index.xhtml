@@ -63,7 +63,7 @@
                         </h:form>
 
                         <h:form>
-                            <p:selectOneMenu value="#{localeBean.locale}" converter="#{localeConverter}" style="margin-left: 10px;">
+                            <p:selectOneMenu value="#{localeBean.locale}" converter="#{localeConverter}">
                                 <p:ajax listener="#{localeBean.onChange}" oncomplete="location.reload()"/>
                                 <f:selectItems value="#{localeBean.locales}" var="locale" itemLabel="#{locale.getDisplayName(localeBean.locale)}"/>
                             </p:selectOneMenu>
