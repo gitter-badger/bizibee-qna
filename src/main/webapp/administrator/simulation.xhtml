@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
     <ui:define name="breadCrumb">
         <h:form>
@@ -13,43 +13,54 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:form id="form">
-            <p:dataTable id="dataTable" var="simulation" value="#{simulationController.lazyModel}" emptyMessage="#{i18n['No records found']}"
-                         paginator="true" paginatorPosition="bottom" rows="10" 
-                         rowKey="#{simulation.id}" selectionMode="single" selection="#{simulationController.selectedRecord}"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
-                         sortMode="multiple" 
-                         lazy="true" rowsPerPageTemplate="10,15,50">
-                <f:facet name="header">
-                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
-                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
-                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
-                    </p:commandButton>
-                </f:facet>
-                <p:column headerText="#{i18n['Id']}" sortBy="#{simulation.id}" filterBy="#{simulation.id}">
-                    <h:outputText value="#{simulation.id}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Name']}" sortBy="#{simulation.name}" filterBy="#{simulation.name}">
-                    <h:outputText value="#{simulation.name}"/>
-                </p:column>
-                <p:column headerText="#{i18n['Date Start']}">
-                    <h:outputFormat value="#{simulation.dateStart}">
-                        <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
-                    </h:outputFormat>
-                </p:column>
-                <p:column headerText="#{i18n['Date End']}">
-                    <h:outputFormat value="#{simulation.dateEnd}">
-                        <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
-                    </h:outputFormat>
-                </p:column>
-                <p:column exportable="false" width="100">
-                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                        <f:setPropertyActionListener value="#{simulation}" target="#{simulationController.selectedRecord}" />
-                    </p:commandLink>
-                </p:column>
-            </p:dataTable>
-        </h:form>
+        <div id="features">
+            <div class="features-content">
+                <span class="feature-title">Omega Features</span>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12">
+                        <h:form id="form">
+                            <p:dataTable id="dataTable" var="simulation" value="#{simulationController.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                                         paginator="true" paginatorPosition="bottom" rows="10" 
+                                         rowKey="#{simulation.id}" selectionMode="single" selection="#{simulationController.selectedRecord}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                         sortMode="multiple" 
+                                         lazy="true" rowsPerPageTemplate="10,15,50">
+                                <f:facet name="header">
+                                    <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
+                                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
+                                    </p:commandButton>
+                                </f:facet>
+                                <p:column headerText="#{i18n['Id']}" sortBy="#{simulation.id}" filterBy="#{simulation.id}">
+                                    <h:outputText value="#{simulation.id}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Name']}" sortBy="#{simulation.name}" filterBy="#{simulation.name}">
+                                    <h:outputText value="#{simulation.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Date Start']}">
+                                    <h:outputFormat value="#{simulation.dateStart}">
+                                        <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
+                                    </h:outputFormat>
+                                </p:column>
+                                <p:column headerText="#{i18n['Date End']}">
+                                    <h:outputFormat value="#{simulation.dateEnd}">
+                                        <f:convertDateTime locale="#{localeBean.locale}" type="both"/>
+                                    </h:outputFormat>
+                                </p:column>
+                                <p:column exportable="false" width="100">
+                                    <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
+                                        <f:setPropertyActionListener value="#{simulation}" target="#{simulationController.selectedRecord}" />
+                                    </p:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
     <ui:define name="dialog">
         <h:form id="editForm">
