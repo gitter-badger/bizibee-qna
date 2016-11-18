@@ -1,19 +1,22 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                template="/template.xhtml">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_error.xhtml">
     <ui:define name="title">HTTP Status 404 - Page not found</ui:define>
     <ui:define name="content">
-        <div class="ui-g">
-            <div class="ui-g-12">
-                <h2>HTTP Status 404 - Page not found</h2>
-                <h3>The page you are requested is not found.</h3>
-                <p>
-                    <h:link outcome="/index" value="#{i18n['Back']}"/>
-                </p>
-            </div>
+        <div class="exception-wrapper notfound">
+            <p:graphicImage name="images/404.png" />
+
+            <p class="message-title">Page Not Found</p>
+            <p class="message-summary">The page you are requested is not found.</p>
+            <h:link outcome="/index" styleClass="ui-link ui-widget">
+                <i class="fa fa-home"></i>
+                <span>#{i18n['Home']}</span>
+            </h:link>
+
+            <div class="login-footer">ARI Business Management Systems</div>
         </div>
     </ui:define>
 </ui:composition>

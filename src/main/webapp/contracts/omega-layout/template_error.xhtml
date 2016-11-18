@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="#{localeBean.locale}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <f:view contentType="text/html" encoding="UTF-8" locale="#{localeBean.locale}">
+
+        <h:head>
+            <f:facet name="first">
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <meta name="description" content=""/>
+                <meta name="author" content="aripd.com"/>
+
+                <!--<link rel="shortcut icon" href="images/favicon.ico"/>-->
+                <link href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAD/7swAAAAAAP///wBMdKkATOH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERERERERERERERESIhERESIiIiIhEzMxEiIiIhE0NDMREREiEzQ0NDMzESITNDQ0NEQxEhE0NDNEQ0MSETMzM0RDQxITADADRERDEhMAMAM0RDESEwAwAxMzMSIRMxMxExExEiERERETMTMSIiIiIRERERIiIiIiIiIiL//wAA//8AAP//AADw/wAA4H8AAMAHAADAAwAA4AEAAOABAADAAQAAwAMAAMBDAADk2wAA/8kAAP//AAD//wAA" rel="icon" type="image/x-icon" />
+
+                <title><ui:insert name="title"></ui:insert></title>
+
+                <h:outputStylesheet name="css/layout.css"/>
+
+            </f:facet>
+        </h:head>
+
+        <h:body styleClass="exception-body">
+
+                <ui:insert name="content"></ui:insert>
+
+        </h:body>
+
+    </f:view>
+
+</html>
