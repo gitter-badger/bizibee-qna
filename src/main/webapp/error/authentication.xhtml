@@ -4,17 +4,19 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/template_error.xhtml">
-    <ui:define name="title">#{i18n['Authentication failed']}</ui:define>
+    <ui:define name="title">Error - Authentication Failed!</ui:define>
     <ui:define name="content">
-        <div class="ui-g">
-            <div class="ui-g-12">
-                <h2>#{i18n['Authentication failed']}</h2>
-                <h3>Incorrect username or password</h3>
-                <p>
-                    <h:link outcome="/index" value="#{i18n['Back']}"/>
-                    <h:link outcome="/login" value="#{i18n['Please try again']}">
-                </p>
-            </div>
+        <div class="exception-wrapper error">
+            <p:graphicImage name="images/error.png" />
+
+            <p class="message-title">Authentication Failed!</p>
+            <p class="message-summary">Incorrect username or password</p>
+            <h:link outcome="/index" styleClass="ui-link ui-widget">
+                <i class="fa fa-home"></i>
+                <span>#{i18n['Home']}</span>
+            </h:link>
+
+            <div class="login-footer">ARI Business Management Systems</div>
         </div>
     </ui:define>
 </ui:composition>

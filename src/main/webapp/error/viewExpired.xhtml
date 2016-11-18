@@ -4,15 +4,19 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/template_error.xhtml">
-    <ui:define name="title">Error - View expired</ui:define>
+    <ui:define name="title">Error - View Expired!</ui:define>
     <ui:define name="content">
-        <div class="ui-g">
-            <div class="ui-g-12">
-                <h2>Error - View expired</h2>
-                <p>
-                    <h:link outcome="/index" value="#{i18n['Back']}"/>
-                </p>
-            </div>
+        <div class="exception-wrapper error">
+            <p:graphicImage name="images/error.png" />
+            
+            <p class="message-title">View Expired!</p>
+            <p class="message-summary"></p>
+            <h:link outcome="/index" styleClass="ui-link ui-widget">
+                <i class="fa fa-home"></i>
+                <span>#{i18n['Home']}</span>
+            </h:link>
+            
+            <div class="login-footer">ARI Business Management Systems</div>
         </div>
     </ui:define>
 </ui:composition>
