@@ -2394,6 +2394,37 @@ h2 {
     font-size: 18px; }
 .landing-wrapper #features .features-content .feature-text p {
     margin: 5px 0 0 0; }
+
+.landing-wrapper #simulation {
+    background-color: #ffffff;
+    padding: 100px 0; }
+.landing-wrapper #simulation .simulation-content {
+    width: 960px;
+    margin: 0 auto;
+    text-align: left; }
+.landing-wrapper #simulation .simulation-content p {
+    color: #a4a4a4; }
+.landing-wrapper #simulation .simulation-content > p {
+    font-size: 20px; }
+.landing-wrapper #simulation .simulation-content .simulation-title {
+    font-size: 32px; }
+.landing-wrapper #simulation .simulation-content .ui-g {
+    text-align: left; }
+.landing-wrapper #simulation .simulation-content .ui-g > div {
+    margin-top: 50px; }
+.landing-wrapper #simulation .simulation-content .simulation-icon {
+    vertical-align: top; }
+.landing-wrapper #simulation .simulation-content .simulation-text {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+    box-sizing: border-box;
+    padding-left: 10px; }
+.landing-wrapper #simulation .simulation-content .simulation-text span {
+    font-size: 18px; }
+.landing-wrapper #simulation .simulation-content .simulation-text p {
+    margin: 5px 0 0 0; }
+
 .landing-wrapper #mobile {
     background-color: #bcc7cf;
     height: 570px;
@@ -2573,6 +2604,14 @@ h2 {
         width: 100%; }
     .landing-wrapper #features .features-content .ui-g {
         text-align: center; }
+
+    .landing-wrapper #simulation {
+        padding: 30px 0; }
+    .landing-wrapper #simulation .simulation-content {
+        width: 100%; }
+    .landing-wrapper #simulation .simulation-content .ui-g {
+        text-align: left; }
+
     .landing-wrapper #mobile {
         height: 700px; }
     .landing-wrapper #mobile .mobile-content {

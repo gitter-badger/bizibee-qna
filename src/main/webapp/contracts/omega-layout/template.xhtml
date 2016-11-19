@@ -50,6 +50,25 @@
                             <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
                             <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
                             <li><h:link outcome="/index" fragment="faq" value="#{i18n['FAQ']}"/></li>
+                            <li><h:link value="#{i18n['Dashboard']}" outcome="/member/index" rendered="#{not empty request.userPrincipal}"/></li>
+                            <li><h:link value="#{i18n['Profile']}" outcome="/member/profile" rendered="#{not empty request.userPrincipal}"/></li>
+
+                            <li><h:link value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/></li>
+                            <li><h:link value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/></li>
+                            <li><h:link value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/></li>
+
+                            <li><h:link value="#{i18n['Simulation']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><h:link value="#{i18n['Users']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><h:link value="#{i18n['Brands']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><h:link value="#{i18n['Skus']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><h:link value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><h:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/></li>
+
+                            <li>
+                                <h:form>
+                                    <h:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
+                                </h:form>
+                            </li>
                         </ul>
                     </div>
                 </div>

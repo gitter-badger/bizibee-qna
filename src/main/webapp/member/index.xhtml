@@ -5,34 +5,95 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
     <ui:define name="content">
-        <div id="features">
-            <div class="features-content">
-                <ui:include src="/menu.xhtml"/>
-                <span class="feature-title">Features</span>
+        <div id="simulation">
+            <div class="simulation-content">
+                <span class="simulation-title">#{i18n['Dashboard']} <i class="fa fa-hashtag"></i> <small>#{profileBean.selectedRecord.simulation.name}</small></span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-                <div class="ui-g">
-                    <div class="ui-g-12 ui-md-4">
-                        <h:panelGrid columns="2" rendered="#{request.isUserInRole('Member')}">
-                            <h:outputLabel value="#{i18n['Simulation']}"/>
-                            <h:outputText value="#{profileBean.selectedRecord.simulation.name}"/>
-                            <h:outputLabel value="#{i18n['Team']}"/>
-                            <h:outputText value="#{profileBean.selectedRecord.teamName}"/>
-                            <h:outputLabel value="#{i18n['Name']}"/>
-                            <h:outputText value="#{profileBean.selectedRecord.name}"/>
-                            <h:outputLabel value="#{i18n['E-mail Address']}"/>
-                            <h:outputText value="#{profileBean.selectedRecord.email}"/>
-                        </h:panelGrid>
+                <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Member')}">
+                    <div class="main">
+                        <div class="ui-g ui-fluid dashboard">
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title">Gross Margin</span>
+                                    <span class="detail">Revenue minus cost of goods sold</span>
+                                    <span class="count visitors">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.gmStart}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title">Budget</span>
+                                    <span class="detail">Budget Amount</span>
+                                    <span class="count purchases">#{profileBean.selectedRecord.simulation.budgetStart}</span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title">Revenue</span>
+                                    <span class="detail">Sales Income</span>
+                                    <span class="count revenue">#{profileBean.selectedRecord.simulation.salesStart}</span>
+                                </div>
+                            </div>
 
-                        <!--TODO burayı başka nasıl yaparız-->
-                        <h:form rendered="#{request.isUserInRole('Member')}">
-                            <p:button value="#{i18n['Go to Simulation']}" outcome="/member/response">
-                                <f:param name="id" value="1"/>
-                            </p:button>
-                            <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
-                        </h:form>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#007be5;color:#00448f">TV</div>
+                                    <div class="card">
+                                        <span class="fa fa-eye"></span>
+                                        <span>Total Views</span>
+                                        <span class="count">523</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#ef6262;color:#a83d3b">TI</div>
+                                    <div class="card">
+                                        <span class="fa fa-question-circle"></span>
+                                        <span>Total Issues</span>
+                                        <span class="count">81</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#20d077;color:#038d4a">OI</div>
+                                    <div class="card">
+                                        <span class="fa fa-question-circle-o"></span>
+                                        <span>Open Issues</span>
+                                        <span class="count">21</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#f9c851;color:#b58c2b">CI</div>
+                                    <div class="card">
+                                        <span class="fa fa-check"></span>
+                                        <span>Closed Issues</span>
+                                        <span class="count">60</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                </h:panelGroup>
+
+                <!--TODO burayı başka nasıl yaparız-->
+                <h:form style="text-align: center;" rendered="#{request.isUserInRole('Member')}">
+                    <div class="card">
+                        <p:button value="#{i18n['Go to Simulation']}" outcome="/member/simulation">
+                            <f:param name="id" value="1"/>
+                        </p:button>
+                        <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
+                    </div>
+                </h:form>
+
             </div>
         </div>
     </ui:define>

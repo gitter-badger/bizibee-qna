@@ -5,57 +5,46 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
     <ui:define name="content">
-        <div id="features">
-            <div class="features-content">
-                <ui:include src="/menu.xhtml"/>
-                <span class="feature-title">Features</span>
+        <div id="simulation">
+            <div class="simulation-content">
+                <span class="simulation-title">#{i18n['Result']} <i class="fa fa-hashtag"></i> <small>#{resultView.simulation.name}</small></span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-                <h:form>
-                    <p:breadCrumb>
-                        <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
-                    </p:breadCrumb>
-                </h:form>
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <h:outputText value="#{i18n['Start of the year']}"/>
+                    </f:facet>
+                    <h:outputLabel value="#{i18n['Sales Start']}"/>
+                    <h:outputText value="#{resultView.simulation.salesStart}"/>
+                    <h:outputLabel value="#{i18n['Budget Start']}"/>
+                    <h:outputText value="#{resultView.simulation.budgetStart}"/>
+                    <h:outputLabel value="#{i18n['GM Start']}"/>
+                    <h:outputText value="#{resultView.simulation.gmStart}"/>
+                    <h:outputLabel value="#{i18n['MS Start']}"/>
+                    <h:outputText value="#{resultView.simulation.msStart}"/>
+                    <h:outputLabel value="#{i18n['GM Weighted']}"/>
+                    <h:outputText value="#{resultView.simulation.gmWeighted}"/>
+                    <h:outputLabel value="#{i18n['MS Weighted']}"/>
+                    <h:outputText value="#{resultView.simulation.msWeighted}"/>
+                    <h:outputLabel value="#{i18n['USG Weighted']}"/>
+                    <h:outputText value="#{resultView.simulation.usgWeighted}"/>
+                </p:panelGrid>
 
-                <div class="ui-g">
-                    <div class="ui-g-12 ui-md-12">
-                        <p:panelGrid columns="2">
-                            <f:facet name="header">
-                                <h:outputText value="#{i18n['Start of the year']}"/>
-                            </f:facet>
-                            <h:outputLabel value="#{i18n['Sales Start']}"/>
-                            <h:outputText value="#{resultView.simulation.salesStart}"/>
-                            <h:outputLabel value="#{i18n['Budget Start']}"/>
-                            <h:outputText value="#{resultView.simulation.budgetStart}"/>
-                            <h:outputLabel value="#{i18n['GM Start']}"/>
-                            <h:outputText value="#{resultView.simulation.gmStart}"/>
-                            <h:outputLabel value="#{i18n['MS Start']}"/>
-                            <h:outputText value="#{resultView.simulation.msStart}"/>
-                            <h:outputLabel value="#{i18n['GM Weighted']}"/>
-                            <h:outputText value="#{resultView.simulation.gmWeighted}"/>
-                            <h:outputLabel value="#{i18n['MS Weighted']}"/>
-                            <h:outputText value="#{resultView.simulation.msWeighted}"/>
-                            <h:outputLabel value="#{i18n['USG Weighted']}"/>
-                            <h:outputText value="#{resultView.simulation.usgWeighted}"/>
-                        </p:panelGrid>
-
-                        <p:dataList value="#{resultView.responses}" var="response" 
-                                    type="definition"
-                                    emptyMessage="#{i18n['No records found']}">
-                            <f:facet name="header">
-                                <h:outputText value="#{i18n['Responses']}"/>
-                            </f:facet>
-                            <h:outputText value="#{response.decision.name}"/>
-                            <f:facet name="description">
-                                <h:panelGrid>
-                                    <h:outputText value="Score1: #{resultView.calculateScore(response)}"/>
-                                    <h:outputText value="Score2: #{response.score}"/>
-                                    <h:outputText value="#{response.outcome}"/>
-                                </h:panelGrid>
-                            </f:facet>
-                        </p:dataList>
-                    </div>
-                </div>
+                <p:dataList value="#{resultView.responses}" var="response" 
+                            type="definition"
+                            emptyMessage="#{i18n['No records found']}">
+                    <f:facet name="header">
+                        <h:outputText value="#{i18n['Responses']}"/>
+                    </f:facet>
+                    <h:outputText value="#{response.decision.name}"/>
+                    <f:facet name="description">
+                        <h:panelGrid>
+                            <h:outputText value="Score1: #{resultView.calculateScore(response)}"/>
+                            <h:outputText value="Score2: #{response.score}"/>
+                            <h:outputText value="#{response.outcome}"/>
+                        </h:panelGrid>
+                    </f:facet>
+                </p:dataList>
             </div>
         </div>
     </ui:define>
