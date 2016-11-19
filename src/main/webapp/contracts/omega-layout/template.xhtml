@@ -63,10 +63,10 @@
                             <div class="ui-g">
                                 <div class="ui-g-6">
                                     <p:graphicImage name="images/logo.png" />
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pulvinar dapibus faucibus.</p>
+                                    <p>#{i18n['Here is the best way to simulate your business']}</p>
                                 </div>
                                 <div class="ui-g-2">
-                                    <ul>
+                                    <ul style="font-size: smaller;">
                                         <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Home']}"/></li>
                                         <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Introduction']}"/></li>
                                         <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
@@ -76,7 +76,7 @@
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
-                                    <ul>
+                                    <ul style="font-size: smaller;">
                                         <li><h:link outcome="/login" value="#{i18n['Sign In']}"/></li>
                                         <li><h:link outcome="/index" value="#{i18n['Sign Up']}"/></li>
                                         <li><h:link outcome="/index" value="#{i18n['Contact Us']}"/></li>
@@ -85,7 +85,6 @@
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
-                                    <h3>Languages</h3>
                                     <h:form>
                                         <ul style="font-size: smaller;">
                                             <ui:repeat value="#{localeBean.locales}" var="locale">

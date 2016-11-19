@@ -2359,6 +2359,12 @@ h2 {
     top: 350px; }
 .landing-wrapper #introduction .introduction-content .ui-button .ui-button-text {
     padding: 1em 5em; }
+.landing-wrapper #introduction .introduction-content a {
+    position: absolute;
+    top: 425px;
+    color: inherit;
+    text-decoration: none;
+}
 .landing-wrapper #features {
     background-color: #ffffff;
     padding: 100px 0; }

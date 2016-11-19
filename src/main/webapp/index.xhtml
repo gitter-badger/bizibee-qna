@@ -4,19 +4,27 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
+    <ui:define name="head">
+        <h:outputStylesheet name="magnific-popup/magnific-popup.css"/>
+        <h:outputScript name="magnific-popup/jquery.magnific-popup.min.js"/>
+    </ui:define>
     <ui:define name="content">
         <div id="introduction">
             <div class="introduction-content">
-                <span class="title">Omega</span>
-                <span class="subtitle">Lorem ipsum dolor sit amet, consectetur...</span>
+                <span class="title">BiZiBee<sup>®</sup></span>
+                <span class="subtitle">#{i18n['Here is the best way to simulate your business']}</span>
                 <p:graphicImage name="images/landing/section1_logo.png" />
                 <p:button value="#{i18n['Sign In']}" outcome="/login"/>
+                <h:outputLink value="http://vimeo.com/99025203" styleClass="popup-video">
+                    <i class="fa fa-play-circle"></i>
+                    #{i18n['Trailer']}
+                </h:outputLink>
             </div>
         </div>
 
         <div id="features">
             <div class="features-content">
-                <span class="feature-title">Omega Features</span>
+                <span class="feature-title">Features</span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
@@ -26,7 +34,7 @@
                             <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="feature-text">
-                            <span>Responsive</span>
+                            <span>Strategic Thinking</span>
                             <p>Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free.</p>
                         </span>
                     </div>
@@ -36,7 +44,7 @@
                             <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="feature-text">
-                            <span>Clean</span>
+                            <span>Decision Making</span>
                             <p>Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon.</p>
                         </span>
                     </div>
@@ -46,7 +54,7 @@
                             <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="feature-text">
-                            <span>Grid</span>
+                            <span>Problem Solving</span>
                             <p>Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever.</p>
                         </span>
                     </div>
