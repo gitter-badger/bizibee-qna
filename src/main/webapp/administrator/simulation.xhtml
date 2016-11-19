@@ -4,14 +4,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
-    <ui:define name="breadCrumb">
-        <h:form>
-            <p:breadCrumb>
-                <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
-                <p:menuitem value="#{i18n['Simulations']}" outcome="/administrator/simulation" />
-            </p:breadCrumb>
-        </h:form>
-    </ui:define>
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
