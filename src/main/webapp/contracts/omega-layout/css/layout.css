@@ -2168,9 +2168,13 @@ h2 {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px; }
-.dashboard .summary .count.visitors {
+.dashboard .summary .count.underlyingsalesgrowth {
+    background-color: #007be5; }
+.dashboard .summary .count.marketshare {
+    background-color: #ef6262; }
+.dashboard .summary .count.grossmargin {
     background-color: #20d077; }
-.dashboard .summary .count.purchases {
+.dashboard .summary .count.budget {
     background-color: #f9c851; }
 .dashboard .summary .count.revenue {
     background-color: #007be5; }

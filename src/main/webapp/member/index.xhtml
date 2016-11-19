@@ -10,87 +10,204 @@
                 <span class="simulation-title">#{i18n['Dashboard']} <i class="fa fa-hashtag"></i> <small>#{profileBean.selectedRecord.simulation.name}</small></span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-                <h:link value="#{i18n['Profile']}" outcome="/member/profile" rendered="#{not empty request.userPrincipal}"/>
-
-                <h:link value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/>
-                <h:link value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/>
-                <h:link value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/>
-
-                <h:link value="#{i18n['Simulation']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                <h:link value="#{i18n['Users']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
-                <h:link value="#{i18n['Brands']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                <h:link value="#{i18n['Skus']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
-                <h:link value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
-                <h:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
+                <h:form rendered="#{request.isUserInRole('Administrator')}">
+                    <p:menubar>
+                        <p:menuitem value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/>
+                        <p:menuitem value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/>
+                        <p:menuitem value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/>
+                    </p:menubar>
+                </h:form>
 
                 <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Member')}">
                     <div class="main">
                         <div class="ui-g ui-fluid dashboard">
-                            <div class="ui-g-12 ui-md-4">
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method.">Revenue</span>
+                                    <span class="detail">Sales Income</span>
+                                    <span class="count revenue">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.salesStart}" >
+                                            <f:convertNumber type="number" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <span class="title">Budget</span>
+                                    <span class="detail">Restriction on expenditure</span>
+                                    <span class="count budget">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.budgetStart}" >
+                                            <f:convertNumber type="number" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
                                 <div class="card clearfix summary">
                                     <span class="title">Gross Margin</span>
                                     <span class="detail">Revenue minus cost of goods sold</span>
-                                    <span class="count visitors">
+                                    <span class="count grossmargin">
                                         <h:outputText value="#{profileBean.selectedRecord.simulation.gmStart}" >
                                             <f:convertNumber type="percent" />
                                         </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <span class="title">Market Share</span>
+                                    <span class="detail">Portion of the market</span>
+                                    <span class="count marketshare">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.msStart}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance.">USG</span>
+                                    <span class="detail">Underlying Sales Growth Weighted</span>
+                                    <span class="count underlyingsalesgrowth">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.usgWeighted}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
                                     </span>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-4">
                                 <div class="card clearfix summary">
-                                    <span class="title">Budget</span>
-                                    <span class="detail">Budget Amount</span>
-                                    <span class="count purchases">#{profileBean.selectedRecord.simulation.budgetStart}</span>
+                                    <span class="title">GM</span>
+                                    <span class="detail">Gross Margin Weighted</span>
+                                    <span class="count grossmargin">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.gmWeighted}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-4">
                                 <div class="card clearfix summary">
-                                    <span class="title">Revenue</span>
-                                    <span class="detail">Sales Income</span>
-                                    <span class="count revenue">#{profileBean.selectedRecord.simulation.salesStart}</span>
+                                    <span class="title">MS</span>
+                                    <span class="detail">Market Share Weighted</span>
+                                    <span class="count marketshare">
+                                        <h:outputText value="#{profileBean.selectedRecord.simulation.msWeighted}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="ui-g-12 ui-md-6 ui-lg-3">
                                 <div class="highlight-box">
-                                    <div class="initials" style="background-color:#007be5;color:#00448f">TV</div>
+                                    <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
                                     <div class="card">
-                                        <span class="fa fa-eye"></span>
-                                        <span>Total Views</span>
-                                        <span class="count">523</span>
+                                        <span>#{i18n['Teams']}</span>
+                                        <span class="count">#{profileBean.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-3">
                                 <div class="highlight-box">
-                                    <div class="initials" style="background-color:#ef6262;color:#a83d3b">TI</div>
+                                    <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-users"></i></div>
                                     <div class="card">
-                                        <span class="fa fa-question-circle"></span>
-                                        <span>Total Issues</span>
-                                        <span class="count">81</span>
+                                        <span>#{i18n['Players']}</span>
+                                        <span class="count">#{profileBean.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-3">
                                 <div class="highlight-box">
-                                    <div class="initials" style="background-color:#20d077;color:#038d4a">OI</div>
+                                    <div class="initials" style="background-color:#20d077; color:#038d4a;">B</div>
                                     <div class="card">
                                         <span class="fa fa-question-circle-o"></span>
-                                        <span>Open Issues</span>
-                                        <span class="count">21</span>
+                                        <span>#{i18n['Brands']}</span>
+                                        <span class="count">#{profileBean.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-3">
                                 <div class="highlight-box">
-                                    <div class="initials" style="background-color:#f9c851;color:#b58c2b">CI</div>
+                                    <div class="initials" style="background-color:#f9c851; color:#b58c2b;">SKU</div>
                                     <div class="card">
                                         <span class="fa fa-check"></span>
-                                        <span>Closed Issues</span>
-                                        <span class="count">60</span>
+                                        <span>#{i18n['Skus']}</span>
+                                        <span class="count">#{profileBean.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-8">
+                                <p:panel header="#{i18n['Decisions']}">
+                                    <h:form>
+                                        <p:dataTable id="dataTable" var="decision" value="#{decisionView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                                                     paginator="true" paginatorPosition="bottom" rows="5" 
+                                                     rowKey="#{decision.id}" selectionMode="single" selection="#{decisionView.selectedRecord}"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                     currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                                     lazy="true" rowsPerPageTemplate="10,15,50">
+                                            <p:column>
+                                                <h:outputText value="#{decision.name}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                    <f:facet name="footer">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </f:facet>
+                                </p:panel>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <p:panel header="#{i18n['Profile']}">
+                                    <p:panelGrid columns="2">
+                                        <h:outputLabel value="#{i18n['Username']}"/>
+                                        <h:outputText value="#{profileBean.selectedRecord.username}"/>
+                                        <h:outputLabel value="#{i18n['Password']}"/>
+                                        <h:outputText value="#{profileBean.selectedRecord.password}"/>
+                                        <h:outputLabel value="#{i18n['E-mail Address']}"/>
+                                        <h:outputText value="#{profileBean.selectedRecord.email}"/>
+                                        <h:outputLabel value="#{i18n['Name']}"/>
+                                        <h:outputText value="#{profileBean.selectedRecord.name}"/>
+                                    </p:panelGrid>
+                                    <f:facet name="footer">
+                                        <p:link value="#{i18n['Edit']}" outcome="/member/profile"/>
+                                    </f:facet>
+                                </p:panel>
                             </div>
 
                         </div>
