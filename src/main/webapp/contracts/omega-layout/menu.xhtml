@@ -1,0 +1,24 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:form>
+        <p:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
+        <p:link value="#{i18n['Dashboard']}" outcome="/member/index" rendered="#{not empty request.userPrincipal}"/>
+        <p:link value="#{i18n['Profile']}" outcome="/member/profile" rendered="#{not empty request.userPrincipal}"/>
+
+        <p:link value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/>
+        <p:link value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/>
+        <p:link value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/>
+
+        <p:link value="#{i18n['Simulation']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+        <p:link value="#{i18n['Users']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+        <p:link value="#{i18n['Brands']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
+        <p:link value="#{i18n['Skus']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
+        <p:link value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
+        <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
+    </h:form>
+</ui:composition>

@@ -7,14 +7,9 @@
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
+                <ui:include src="/menu.xhtml"/>
                 <span class="feature-title">Features</span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
-
-                <h:form>
-                    <p:breadCrumb>
-                        <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
-                    </p:breadCrumb>
-                </h:form>
 
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-4">
@@ -35,22 +30,6 @@
                                 <f:param name="id" value="1"/>
                             </p:button>
                             <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
-                        </h:form>
-
-                        <h:form>
-                            <p:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
-                            <p:link value="#{i18n['Profile']}" outcome="/member/profile" rendered="#{not empty request.userPrincipal}"/>
-
-                            <p:link value="#{i18n['Simulations']}" outcome="/administrator/simulation" rendered="#{request.isUserInRole('Administrator')}"/>
-                            <p:link value="#{i18n['Users']}" outcome="/administrator/user" rendered="#{request.isUserInRole('Administrator')}"/>
-                            <p:link value="#{i18n['Teams']}" outcome="/administrator/team" rendered="#{request.isUserInRole('Administrator')}"/>
-
-                            <p:link value="#{i18n['Simulation']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                            <p:link value="#{i18n['Users']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
-                            <p:link value="#{i18n['Brands']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                            <p:link value="#{i18n['Skus']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
-                            <p:link value="#{i18n['Decisions']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
-                            <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
                         </h:form>
                     </div>
                 </div>
