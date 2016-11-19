@@ -7,6 +7,9 @@
     <ui:define name="head">
         <h:outputStylesheet name="magnific-popup/magnific-popup.css"/>
         <h:outputScript name="magnific-popup/jquery.magnific-popup.min.js"/>
+        <h:outputStylesheet name="slick/slick.css"/>
+        <h:outputStylesheet name="slick/slick-theme.css"/>
+        <h:outputScript name="slick/slick.min.js"/>
         <script>
             $(document).ready(function () {
                 $('.popup-video').magnificPopup({
@@ -16,6 +19,18 @@
                     removalDelay: 160,
                     preloader: false,
                     fixedContentPos: false
+                });
+
+                $('.faq-container').slick({
+                    arrows: false,
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    adaptiveHeight: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: true,
+                    cssEase: 'linear'
                 });
             });
         </script>
@@ -159,6 +174,11 @@
                 <span class="faq-title">FAQ</span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
                 <div class="faq-container">
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel enim eros. Integer tortor nisi, lobortis in risus gravida, finibus consectetur felis. Ut iaculis lacus odio, vel malesuada odio hendrerit ac. Nunc tellus nibh, ullamcorper vel gravida ac, egestas a dui. Aliquam erat volutpat. Curabitur porta lacinia arcu, eget cursus est malesuada in. Ut facilisis hendrerit eros, a lacinia neque iaculis ut. Pellentesque ultricies nunc est. Ut aliquet in ligula id consequat.</div>
+                    <div>In vel turpis nec quam laoreet malesuada. Morbi faucibus ac nibh vitae pharetra. Phasellus et mollis neque. Etiam at orci felis. Nam blandit augue est, a pellentesque nisl accumsan sed. Sed ultrices, dolor eu lobortis ultrices, metus massa dignissim erat, sed cursus orci dui sed tortor. Nulla feugiat ligula ultrices viverra suscipit. Etiam faucibus erat id nisl aliquet, tempor efficitur mi fermentum. Fusce non turpis id dui dapibus rutrum eget eu lacus. Etiam sed enim id sapien viverra commodo vitae a lorem. Suspendisse ultrices lacus id sodales mattis. Quisque id ante nec nunc volutpat sollicitudin blandit eget felis.</div>
+                    <div>Cras facilisis dictum pulvinar. Suspendisse vel dignissim tortor, nec tempus lacus. Nunc vel tempus magna, sed ornare massa. Mauris aliquet nunc quis convallis pulvinar. Pellentesque ligula magna, porttitor sed sollicitudin cursus, pellentesque sit amet mauris. Integer tristique nibh et massa volutpat, ut fermentum nisi ornare. Pellentesque iaculis, neque at dapibus ullamcorper, nunc leo suscipit augue, ut fringilla odio ex sit amet nulla. Duis euismod, velit quis accumsan rhoncus, purus metus pellentesque enim, non placerat nibh erat et dolor. Suspendisse potenti. Curabitur a enim interdum, sollicitudin nisl vitae, eleifend massa. Donec efficitur nec nulla ac mollis. Aliquam neque turpis, condimentum sed libero ut, volutpat ultrices quam. Duis egestas ipsum et mi luctus aliquet.</div>
+                    <div>Aliquam ac aliquet mi. Sed urna ex, hendrerit et aliquam quis, rutrum non mi. Aenean consectetur tincidunt mauris, quis cursus velit iaculis et. Curabitur mattis justo at metus dictum porta. Vestibulum sodales eget risus id dictum. Phasellus sed laoreet augue, quis sodales orci. Aliquam rutrum laoreet ipsum ac suscipit. Maecenas elementum, purus et malesuada commodo, nunc lectus tincidunt sem, nec vehicula turpis tellus id sapien. Praesent feugiat leo at enim dictum euismod in at turpis. Morbi vitae tellus eget velit luctus feugiat at non arcu. Duis at lacus porta, faucibus quam et, rutrum arcu.</div>
+                    <div>Nulla ornare ipsum vitae ex pharetra lobortis. Nunc dignissim nisl at justo sollicitudin, non dapibus dolor porttitor. Praesent a luctus felis. Fusce mollis ante nec aliquet sollicitudin. In nisl mi, aliquet volutpat consectetur sit amet, imperdiet vel lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse mollis in mauris id interdum. Phasellus sollicitudin eget eros et egestas. Nullam lacus neque, aliquam eu risus quis, laoreet mollis tellus. Donec venenatis condimentum velit eget porttitor. Pellentesque viverra venenatis molestie. Pellentesque in nisi nisl. Aenean commodo sed libero ac luctus.</div>
                 </div>
             </div>
         </div>
