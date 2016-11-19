@@ -2466,22 +2466,22 @@ h2 {
 .landing-wrapper #pricing .pricing-content .pricing-box:hover .pricing-fee {
     background-color: #eaeeef;
     color: #589cf0; }
-.landing-wrapper #video {
+.landing-wrapper #faq {
     background-color: #dde2e5;
     padding: 100px 0; }
-.landing-wrapper #video .video-content {
+.landing-wrapper #faq .faq-content {
     width: 960px;
     margin: 0 auto;
     text-align: center; }
-.landing-wrapper #video .video-content p {
+.landing-wrapper #faq .faq-content p {
     color: #a4a4a4; }
-.landing-wrapper #video .video-content > p {
+.landing-wrapper #faq .faq-content > p {
     font-size: 20px; }
-.landing-wrapper #video .video-content .video-title {
+.landing-wrapper #faq .faq-content .faq-title {
     font-size: 32px; }
-.landing-wrapper #video .video-content .video-container {
+.landing-wrapper #faq .faq-content .faq-container {
     margin-top: 50px; }
-.landing-wrapper #video .video-content .video-container iframe {
+.landing-wrapper #faq .faq-content .faq-container iframe {
     width: 580px;
     height: 330px; }
 .landing-wrapper .landing-footer {
@@ -2601,11 +2601,11 @@ h2 {
         padding: 30px 0; }
     .landing-wrapper #pricing .pricing-content {
         width: 100%; }
-    .landing-wrapper #video {
+    .landing-wrapper #faq {
         padding: 30px 0; }
-    .landing-wrapper #video .video-content {
+    .landing-wrapper #faq .faq-content {
         width: 100%; }
-    .landing-wrapper #video .video-content .video-container iframe {
+    .landing-wrapper #faq .faq-content .faq-container iframe {
         width: 350px;
         height: 220px; }
     .landing-wrapper .landing-footer {
