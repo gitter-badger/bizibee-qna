@@ -3,15 +3,6 @@ $(document).ready(function () {
         $('#menu').toggleClass('overlay-menu');
         e.preventDefault();
     });
-    
-    $('.popup-video').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-        fixedContentPos: false
-    });
 });
 
 function handleSubmitRequest(xhr, status, args, dialogId, formId, dialogWidgetVar) {
