@@ -18,7 +18,7 @@ import javax.validation.Payload;
 @ReportAsSingleViolation
 public @interface EmailAddress {
 
-    String message() default "{com.aripd.util.validator.EmailAddress}";
+    String message() default "{com.aripd.util.validator.EmailAddress.message}";
 
     Class<?>[] groups() default {};
 
