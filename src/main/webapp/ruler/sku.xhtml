@@ -8,8 +8,7 @@
     <ui:define name="breadCrumb">
         <h:form>
             <p:breadCrumb>
-                <p:menuitem value="#{i18n['Home']}" outcome="/index" />
-                <p:menuitem value="#{i18n['Settings']}" />
+                <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
                 <p:menuitem value="#{i18n['Skus']}" outcome="/ruler/sku" />
             </p:breadCrumb>
         </h:form>
@@ -19,6 +18,13 @@
             <div class="features-content">
                 <span class="feature-title">Omega Features</span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <h:form>
+                    <p:breadCrumb>
+                        <p:menuitem value="#{i18n['Dashboard']}" outcome="/member/index" />
+                        <p:menuitem value="#{i18n['Skus']}" outcome="/ruler/sku" />
+                    </p:breadCrumb>
+                </h:form>
 
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-12">
