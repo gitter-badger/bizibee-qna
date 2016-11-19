@@ -95,6 +95,14 @@ public class ResponseView implements Serializable {
 
         for (SkuEntity sku : selectedRecord.getSkus()) {
             switch (selectedRecord.getDecisionType()) {
+                case SINGLE_CHOICE:
+                    break;
+                case MULTIPLE_CHOICE:
+                    break;
+                case SINGLE_SKU_LISTING:
+                    break;
+                case MULTIPLE_SKU_LISTING:
+                    break;
                 case RANGE_SKU_LISTING:
                     model5.add(new Response5Model(sku));
                     break;
