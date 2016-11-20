@@ -12,6 +12,12 @@
 
                 <h:form>
                     <p:panelGrid columns="2">
+                        <p:outputLabel value="#{i18n['Name']}"/>
+                        <h:outputText value="#{simulationView.selectedRecord.name}" />
+
+                        <p:outputLabel for="description" value="#{i18n['Description']}"/>
+                        <p:inputTextarea id="description" value="#{simulationView.selectedRecord.description}" placeholder="#{i18n['Description']}" label="#{i18n['Description']}" />
+
                         <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
                         <p:inputText id="salesStart" value="#{simulationView.selectedRecord.salesStart}" placeholder="#{i18n['salesStart']}" required="true"/>
 

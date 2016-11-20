@@ -60,6 +60,8 @@
                     <p:calendar id="dateStart" value="#{simulationController.selectedRecord.dateStart}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
                     <p:calendar id="dateEnd" value="#{simulationController.selectedRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:outputLabel for="description" value="#{i18n['Description']}"/>
+                    <p:inputTextarea id="description" value="#{simulationController.selectedRecord.description}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{simulationController.doUpdateRecord}"/>
@@ -79,6 +81,8 @@
                     <p:calendar id="dateStart" value="#{simulationController.newRecord.dateStart}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
                     <p:calendar id="dateEnd" value="#{simulationController.newRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:outputLabel for="description" value="#{i18n['Description']}"/>
+                    <p:inputTextarea id="description" value="#{simulationController.newRecord.description}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{simulationController.doCreateRecord}"/>
