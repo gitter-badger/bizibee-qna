@@ -1,7 +1,9 @@
 package com.aripd.bizibee.view;
 
+import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
+import com.aripd.bizibee.service.SimulationService;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -24,6 +26,10 @@ public class DashboardView implements Serializable {
     private UserEntity selectedRecord;
 
     @Inject
+    private SimulationService simulationService;
+    private SimulationEntity simulation;
+
+    @Inject
     MessageUtil messageUtil;
 
     public DashboardView() {
@@ -32,6 +38,12 @@ public class DashboardView implements Serializable {
     @PostConstruct
     private void init() {
         selectedRecord = userService.getCurrentUser();
+        simulation = selectedRecord.getSimulation();
+    }
+
+    public void doUpdateSimulation(ActionEvent actionEvent) {
+        simulationService.update(simulation);
+        messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
@@ -65,6 +77,14 @@ public class DashboardView implements Serializable {
 
     public void setSelectedRecord(UserEntity selectedRecord) {
         this.selectedRecord = selectedRecord;
+    }
+
+    public SimulationEntity getSimulation() {
+        return simulation;
+    }
+
+    public void setSimulation(SimulationEntity simulation) {
+        this.simulation = simulation;
     }
 
 }
