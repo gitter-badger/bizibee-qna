@@ -7,10 +7,14 @@
     <ui:define name="title">#{i18n['Login']}</ui:define>
     <ui:define name="content">
         <div id="login-wrapper">
-            <p:graphicImage name="images/login-logo.png" />
+            <h:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 4em;">
+                <!--<p:graphicImage name="images/login-logo.png" />-->
+                <!--<i class="fa fa-crosshairs"></i>-->
+                BiZiBee<sup>®</sup>
+            </h:link>
 
             <div id="login-container">
-                <span class="title">Omega</span>
+                <span class="title">#{i18n['Sign In']}</span>
 
                 <h:form id="login">
                     <p:focus context="login"/>
