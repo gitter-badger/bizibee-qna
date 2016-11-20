@@ -16,13 +16,10 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
-import org.apache.log4j.Logger;
 
 @Named
 @ViewScoped
 public class UserView implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(UserView.class.getName());
 
     @Inject
     private UserService userService;
@@ -47,7 +44,7 @@ public class UserView implements Serializable {
         UserEntity user = userService.getCurrentUser();
         SimulationEntity simulation = user.getSimulation();
         lazyModel = new LazyUserDataModelBySimulation(userService, simulation);
-        
+
         newRecord.setUserGroup(UserGroup.Members);
         newRecord.setSimulation(simulation);
     }

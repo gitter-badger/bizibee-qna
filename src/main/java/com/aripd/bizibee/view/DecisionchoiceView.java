@@ -13,14 +13,11 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
-import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionchoiceService;
 
 @Named
 @ViewScoped
 public class DecisionchoiceView implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(DecisionchoiceView.class.getName());
 
     @Inject
     private DecisionchoiceService decisionchoiceService;

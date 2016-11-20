@@ -12,13 +12,10 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
-import org.apache.log4j.Logger;
 
 @Named
 @ViewScoped
 public class BrandView implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(BrandView.class.getName());
 
     @Inject
     private BrandService brandService;

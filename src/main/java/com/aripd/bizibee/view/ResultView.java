@@ -14,7 +14,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.bizibee.service.SkuService;
 import com.aripd.bizibee.service.UserService;
@@ -26,8 +25,6 @@ import javax.json.JsonValue;
 @Named
 @ViewScoped
 public class ResultView implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(ResultView.class.getName());
 
     @Inject
     private UserService userService;

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.FacesException;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -83,6 +84,7 @@ public class LoginBean implements Serializable {
             RequestUtil.doNavigate(navigation);
         } catch (ServletException ex) {
             messageUtil.addGlobalErrorFlashMessage("The username or password you provided does not match our records");
+//            throw new FacesException(ex);
         }
     }
 

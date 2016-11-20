@@ -18,13 +18,10 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.SimulationService;
 import com.aripd.bizibee.service.TeamService;
-import org.apache.log4j.Logger;
 
 @Named
 @ViewScoped
 public class UserController implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(UserController.class.getName());
 
     @Inject
     private UserService userService;

@@ -6,7 +6,6 @@ import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.SimulationService;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
@@ -16,8 +15,6 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class SimulationView implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(SimulationView.class.getName());
 
     @Inject
     private UserService userService;
