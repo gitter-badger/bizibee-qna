@@ -245,18 +245,17 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
     @Override
     public int count() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery cq = cb.createQuery();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<T> root = cq.from(persistentClass);
         cq.select(cb.count(root));
-        Query query = getEntityManager().createQuery(cq);
-        return ((Long) query.getSingleResult()).intValue();
+        return getEntityManager().createQuery(cq).getSingleResult().intValue();
     }
 
     /**
      * Returns the number of total records
      *
      * @param namedQueryName Named Query Name
-     * @return int
+     * @return Long
      */
     @Override
     public int countTotalRecord(String namedQueryName) {
@@ -292,12 +291,11 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
     @Override
     public int count(Map<String, Object> filters) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery cq = cb.createQuery();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<T> root = cq.from(persistentClass);
         cq.where(this.getFilterCondition(cb, root, filters));
         cq.select(cb.count(root));
-        Query query = getEntityManager().createQuery(cq);
-        return ((Long) query.getSingleResult()).intValue();
+        return getEntityManager().createQuery(cq).getSingleResult().intValue();
     }
 
     /**

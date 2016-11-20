@@ -203,7 +203,7 @@
                                     <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
                                     <div class="card">
                                         <span>#{i18n['Teams']}</span>
-                                        <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                        <span class="count">#{dashboardView.numberOfTeams}</span>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                                     <div class="card">
                                         <span class="fa fa-question-circle-o"></span>
                                         <span>#{i18n['Brands']}</span>
-                                        <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                        <span class="count">#{dashboardView.numberOfBrands}</span>
                                         <span>
                                             <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
                                         </span>
@@ -238,7 +238,7 @@
                                     <div class="card">
                                         <span class="fa fa-check"></span>
                                         <span>#{i18n['Skus']}</span>
-                                        <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                        <span class="count">#{dashboardView.numberOfSkus}</span>
                                         <span>
                                             <p:link value="#{i18n['Edit']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
                                         </span>
