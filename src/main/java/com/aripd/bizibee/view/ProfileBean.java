@@ -4,8 +4,8 @@ import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.FacesException;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 @Named
 @ViewScoped
 public class ProfileBean implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(ProfileBean.class.getName());
 
     @Inject
     private UserService userService;
@@ -56,7 +54,7 @@ public class ProfileBean implements Serializable {
 
                 navigationHandler.handleNavigation(context, null, navigation);
             } catch (ServletException ex) {
-                LOG.error(ex.getMessage());
+                throw new FacesException(ex);
             }
         }
     }

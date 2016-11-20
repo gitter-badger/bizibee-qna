@@ -3,15 +3,13 @@ package com.aripd.util;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.apache.log4j.Logger;
+import javax.faces.FacesException;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestUtil {
-
-    static final Logger LOG = Logger.getLogger(RequestUtil.class.getName());
 
     public RequestUtil() {
     }
@@ -27,7 +25,7 @@ public class RequestUtil {
         try {
             url = new URL(request.getScheme(), request.getServerName(), request.getServerPort(), request.getContextPath() + file);
         } catch (MalformedURLException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
         return url;
     }
@@ -58,7 +56,7 @@ public class RequestUtil {
         try {
             url = new URL(request.getScheme(), request.getServerName(), request.getServerPort(), request.getAttribute("javax.servlet.forward.request_uri").toString());
         } catch (MalformedURLException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
         return url;
     }
@@ -75,7 +73,7 @@ public class RequestUtil {
         try {
             externalContext.redirect(url);
         } catch (IOException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
     }
 

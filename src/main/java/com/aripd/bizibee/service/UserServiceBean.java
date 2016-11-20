@@ -8,7 +8,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
@@ -26,8 +25,6 @@ import org.primefaces.model.SortOrder;
 
 @Stateless
 public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implements UserService {
-
-    static final Logger LOG = Logger.getLogger(UserServiceBean.class.getName());
 
     @PersistenceContext
     private EntityManager em;

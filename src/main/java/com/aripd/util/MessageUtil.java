@@ -9,11 +9,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import org.apache.log4j.Logger;
 
 public class MessageUtil implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(MessageUtil.class.getName());
 
     public MessageUtil() {
     }

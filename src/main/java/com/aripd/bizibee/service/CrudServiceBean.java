@@ -28,7 +28,6 @@ import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import org.apache.log4j.Logger;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
@@ -39,8 +38,6 @@ import org.primefaces.model.SortOrder;
  * @param <PK> Primary Key
  */
 public abstract class CrudServiceBean<T, PK extends Serializable> implements CrudService<T, PK> {
-
-    static final Logger LOG = Logger.getLogger(CrudServiceBean.class.getName());
 
     private final Class<T> persistentClass;
 
@@ -389,7 +386,7 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
             returnImage = baos.toByteArray();
             baos.close();
         } catch (IOException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         } finally {
             jpgWriter.dispose();
         }
@@ -404,9 +401,8 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
             byte[] converted = convert(resized, 0.7f);
             return converted;
         } catch (IOException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
-        return null;
     }
 
     @Override
@@ -439,9 +435,8 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
             String fileName = path.getFileName().toString();
             return fileName;
         } catch (IOException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
-        return "";
     }
 
     @Override
@@ -449,9 +444,8 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
         try {
             return Files.deleteIfExists(getUploadPath(directory).resolve(fileName));
         } catch (IOException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
-        return false;
     }
 
 }

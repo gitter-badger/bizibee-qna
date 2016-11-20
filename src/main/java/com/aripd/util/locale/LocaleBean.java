@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIOutput;
@@ -16,8 +15,6 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class LocaleBean implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(LocaleBean.class.getName());
 
     private Locale locale;
     private List<Locale> locales;
@@ -53,7 +50,6 @@ public class LocaleBean implements Serializable {
         locale = newLocale;
         FacesContext context = FacesContext.getCurrentInstance();
         context.getViewRoot().setLocale(locale);
-        LOG.info(String.format("Locale is set to %s", locale));
     }
 
     public Locale getLocale() {

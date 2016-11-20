@@ -9,10 +9,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
+import javax.faces.FacesException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import org.apache.log4j.Logger;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
@@ -80,14 +80,12 @@ public interface CrudService<T, PK extends Serializable> {
         System.out.println("DoSomeOtherWork implementation in the interface");
     }
 
-    static final Logger LOG = Logger.getLogger(CrudService.class.getName());
-
     default public Path getUploadPath(String directory) {
         Path path = Paths.get(System.getProperty("user.home"), "Developments", "backup", "filestack", directory);
         try {
             Files.createDirectories(path);
         } catch (IOException ex) {
-            LOG.error(ex.getMessage());
+            throw new FacesException(ex);
         }
         return path;
     }

@@ -20,7 +20,6 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
-import org.apache.log4j.Logger;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.util.RequestUtil;
@@ -32,8 +31,6 @@ import org.primefaces.model.menu.MenuModel;
 @Named
 @ViewScoped
 public class ResponseView implements Serializable {
-
-    static final Logger LOG = Logger.getLogger(ResponseView.class.getName());
 
     private MenuModel menuModel;
 
@@ -121,59 +118,59 @@ public class ResponseView implements Serializable {
 
         switch (selectedRecord.getDecisionType()) {
             case SINGLE_CHOICE:
-                LOG.info("model1: " + model1);
+                System.out.println("model1: " + model1);
                 if (model1 != null) {
-                    LOG.info("Decisionchoice: " + model1.getDecisionchoice().getName());
+                    System.out.println("Decisionchoice: " + model1.getDecisionchoice().getName());
                 }
                 responseService.updateOrCreate(selectedRecord, model1.toString());
                 break;
             case MULTIPLE_CHOICE:
-                LOG.info("model2: " + model2);
+                System.out.println("model2: " + model2);
                 model2.getDecisionchoices().forEach(c -> {
-                    LOG.info("Decisionchoice: " + c.getName());
+                    System.out.println("Decisionchoice: " + c.getName());
                 });
                 responseService.updateOrCreate(selectedRecord, model2.toString());
                 break;
             case SINGLE_SKU_LISTING:
-                LOG.info("model3: " + model3);
+                System.out.println("model3: " + model3);
                 if (model3 != null) {
-                    LOG.info("Sku: " + model3.getSku().getName());
+                    System.out.println("Sku: " + model3.getSku().getName());
                 }
                 responseService.updateOrCreate(selectedRecord, model3.toString());
                 break;
             case MULTIPLE_SKU_LISTING:
-                LOG.info("model4: " + model4);
+                System.out.println("model4: " + model4);
                 model4.getSkus().forEach(c -> {
-                    LOG.info("Sku: " + c.getName());
+                    System.out.println("Sku: " + c.getName());
                 });
                 responseService.updateOrCreate(selectedRecord, model4.toString());
                 break;
             case RANGE_SKU_LISTING:
-                LOG.info("model5: " + model5);
+                System.out.println("model5: " + model5);
                 model5.forEach(c -> {
-                    LOG.info("Sku: " + c.getSku().getName());
+                    System.out.println("Sku: " + c.getSku().getName());
                     if (c.getValue() != null) {
-                        LOG.info("Value: " + c.getValue());
+                        System.out.println("Value: " + c.getValue());
                     }
                 });
                 responseService.updateOrCreate(selectedRecord, model5.toString());
                 break;
             case SINGLE_CHOICE_SKU_LISTING:
-                LOG.info("model6: " + model6);
+                System.out.println("model6: " + model6);
                 model6.forEach(c -> {
-                    LOG.info("Sku: " + c.getSku().getName());
+                    System.out.println("Sku: " + c.getSku().getName());
                     if (c.getDecisionchoice() != null) {
-                        LOG.info("Decisionchoice: " + c.getDecisionchoice().getName());
+                        System.out.println("Decisionchoice: " + c.getDecisionchoice().getName());
                     }
                 });
                 responseService.updateOrCreate(selectedRecord, model6.toString());
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
-                LOG.info("model7: " + model7);
+                System.out.println("model7: " + model7);
                 model7.forEach(c -> {
-                    LOG.info("Sku: " + c.getSku().getName());
+                    System.out.println("Sku: " + c.getSku().getName());
                     for (DecisionchoiceEntity decisionchoice : c.getDecisionchoices()) {
-                        LOG.info("Decisionchoice: " + decisionchoice.getName());
+                        System.out.println("Decisionchoice: " + decisionchoice.getName());
                     }
                 });
                 responseService.updateOrCreate(selectedRecord, model7.toString());

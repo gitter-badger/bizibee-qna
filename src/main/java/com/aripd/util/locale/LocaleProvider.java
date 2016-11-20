@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import org.apache.log4j.Logger;
 import javax.faces.context.FacesContext;
 
 /**
@@ -26,8 +25,6 @@ import javax.faces.context.FacesContext;
  */
 public final class LocaleProvider {
 
-    static final Logger LOG = Logger.getLogger(LocaleProvider.class.getName());
-
     private static final LocaleProvider INSTANCE = new LocaleProvider();
 
     private final FacesContext facesContext;
@@ -39,7 +36,6 @@ public final class LocaleProvider {
         facesContext = FacesContext.getCurrentInstance();
 
         locale = (locale == null) ? facesContext.getApplication().getDefaultLocale() : facesContext.getViewRoot().getLocale();
-        LOG.info(String.format("Locale is set to %s", locale));
 
         locales = new ArrayList<>();
 
