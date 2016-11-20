@@ -32,4 +32,6 @@ public interface UserService extends CrudService<UserEntity, Long> {
 
     public int count(SimulationEntity simulation, Map<String, Object> filters);
 
+    public Long calculateNumberOfPlayers(SimulationEntity simulation);
+
 }

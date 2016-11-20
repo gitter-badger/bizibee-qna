@@ -237,4 +237,18 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
         return ((Long) q.getSingleResult()).intValue();
     }
 
+    @Override
+    public Long calculateNumberOfPlayers(SimulationEntity simulation) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<UserEntity> root = cq.from(UserEntity.class);
+
+        cq.select(cb.count(root));
+
+        Predicate predicate = cb.equal(root.get(UserEntity_.simulation), simulation);
+        cq.where(predicate);
+
+        return em.createQuery(cq).getSingleResult();
+    }
+
 }

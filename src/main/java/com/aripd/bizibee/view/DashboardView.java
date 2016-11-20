@@ -23,11 +23,11 @@ public class DashboardView implements Serializable {
 
     @Inject
     private UserService userService;
-    private UserEntity selectedRecord;
+    private UserEntity selectedUser;
 
     @Inject
     private SimulationService simulationService;
-    private SimulationEntity simulation;
+    private SimulationEntity selectedSimulation;
 
     @Inject
     MessageUtil messageUtil;
@@ -37,27 +37,31 @@ public class DashboardView implements Serializable {
 
     @PostConstruct
     private void init() {
-        selectedRecord = userService.getCurrentUser();
-        simulation = selectedRecord.getSimulation();
+        selectedUser = userService.getCurrentUser();
+        selectedSimulation = selectedUser.getSimulation();
+    }
+
+    public Long getNumberOfPlayers() {
+        return userService.calculateNumberOfPlayers(selectedSimulation);
     }
 
     public void doUpdateSimulation(ActionEvent actionEvent) {
-        simulationService.update(simulation);
+        simulationService.update(selectedSimulation);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
-    public void doUpdateRecord(ActionEvent actionEvent) {
+    public void doUpdateUser(ActionEvent actionEvent) {
         FacesContext context = FacesContext.getCurrentInstance();
         NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
         String navigation = "/index.xhtml?faces-redirect=true";
         UserEntity user = userService.getCurrentUser();
-        if (selectedRecord.getUsername().equalsIgnoreCase(user.getUsername())) {
-            userService.update(selectedRecord);
+        if (selectedUser.getUsername().equalsIgnoreCase(user.getUsername())) {
+            userService.update(selectedUser);
             messageUtil.addGlobalInfoFlashMessage("Updated");
-        } else if (userService.isExistByUsernameExceptUsername(selectedRecord.getUsername(), user.getUsername())) {
-            messageUtil.addGlobalErrorFlashMessage("Username {0} is available. Please try another one.", new Object[]{selectedRecord.getUsername()});
+        } else if (userService.isExistByUsernameExceptUsername(selectedUser.getUsername(), user.getUsername())) {
+            messageUtil.addGlobalErrorFlashMessage("Username {0} is available. Please try another one.", new Object[]{selectedUser.getUsername()});
         } else {
-            userService.update(selectedRecord);
+            userService.update(selectedUser);
             messageUtil.addGlobalInfoFlashMessage("Updated");
 
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -71,20 +75,20 @@ public class DashboardView implements Serializable {
         }
     }
 
-    public UserEntity getSelectedRecord() {
-        return selectedRecord;
+    public UserEntity getSelectedUser() {
+        return selectedUser;
     }
 
-    public void setSelectedRecord(UserEntity selectedRecord) {
-        this.selectedRecord = selectedRecord;
+    public void setSelectedUser(UserEntity selectedUser) {
+        this.selectedUser = selectedUser;
     }
 
-    public SimulationEntity getSimulation() {
-        return simulation;
+    public SimulationEntity getSelectedSimulation() {
+        return selectedSimulation;
     }
 
-    public void setSimulation(SimulationEntity simulation) {
-        this.simulation = simulation;
+    public void setSelectedSimulation(SimulationEntity selectedSimulation) {
+        this.selectedSimulation = selectedSimulation;
     }
 
 }
