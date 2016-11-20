@@ -70,7 +70,7 @@ public class ResponseView implements Serializable {
         for (DecisionEntity decision : decisionService.findAll()) {
             DefaultMenuItem item = new DefaultMenuItem();
             item.setValue(decision.getName());
-            item.setOutcome("/member/simulation");
+            item.setOutcome("/player/simulation");
             item.setParam("id", decision.getId());
             menuModel.addElement(item);
         }
@@ -182,7 +182,7 @@ public class ResponseView implements Serializable {
         /**
          * TODO +1 hesaplamasının mantığı yanlış, acil düzelt.
          */
-        String navigation = "/member/simulation?id=" + (selectedRecord.getId() + 1) + "&amp;faces-redirect=true";
+        String navigation = "/player/simulation?id=" + (selectedRecord.getId() + 1) + "&amp;faces-redirect=true";
         RequestUtil.doNavigate(navigation);
     }
 

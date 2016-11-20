@@ -45,7 +45,7 @@ public class UserView implements Serializable {
         SimulationEntity simulation = user.getSimulation();
         lazyModel = new LazyUserDataModelBySimulation(userService, simulation);
 
-        newRecord.setUserGroup(UserGroup.Members);
+        newRecord.setUserGroup(UserGroup.Players);
         newRecord.setSimulation(simulation);
     }
 

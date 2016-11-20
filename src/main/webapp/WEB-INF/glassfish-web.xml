@@ -11,8 +11,8 @@
     <group-name>Rulers</group-name>
   </security-role-mapping>
   <security-role-mapping>
-    <role-name>Member</role-name>
-    <group-name>Members</group-name>
+    <role-name>Player</role-name>
+    <group-name>Players</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>

@@ -80,7 +80,7 @@ public class LoginBean implements Serializable {
                 CookieHelper.removeCookie(response, COOKIE_NAME);
             }
 
-            String navigation = "/member/index?faces-redirect=true";
+            String navigation = "/player/index?faces-redirect=true";
             RequestUtil.doNavigate(navigation);
         } catch (ServletException ex) {
             messageUtil.addGlobalErrorFlashMessage("The username or password you provided does not match our records");

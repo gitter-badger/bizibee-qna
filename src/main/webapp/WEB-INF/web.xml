@@ -90,13 +90,13 @@
         </auth-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>Member Pages</display-name>
+        <display-name>Player Pages</display-name>
         <web-resource-collection>
-            <web-resource-name>Member Area</web-resource-name>
-            <url-pattern>/member/*</url-pattern>
+            <web-resource-name>Player Area</web-resource-name>
+            <url-pattern>/player/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>Member</role-name>
+            <role-name>Player</role-name>
             <role-name>Ruler</role-name>
             <role-name>Administrator</role-name>
         </auth-constraint>
@@ -116,7 +116,7 @@
         <role-name>Ruler</role-name>
     </security-role>
     <security-role>
-        <role-name>Member</role-name>
+        <role-name>Player</role-name>
     </security-role>
     
     

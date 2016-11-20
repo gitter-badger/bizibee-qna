@@ -53,7 +53,7 @@
                             </div>
                         </h:panelGroup>
 
-                        <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Member')}">
+                        <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Player')}">
                             <div class="ui-g-12 ui-md-3">
                                 <div class="card clearfix summary">
                                     <h:form>
@@ -268,7 +268,7 @@
                                             <span>#{i18n['Profile']}</span>
                                             <span class="count">#{dashboardView.selectedUser.username}</span>
                                             <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/member/profile"/>
+                                                <p:link value="#{i18n['Edit']}" outcome="/player/profile"/>
                                                 <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()"/>
                                                 <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                                     <p:panelGrid columns="2">
@@ -296,12 +296,12 @@
                 </div>
 
                 <!--TODO burayı başka nasıl yaparız-->
-                <h:form style="text-align: center;" rendered="#{request.isUserInRole('Member')}">
+                <h:form style="text-align: center;" rendered="#{request.isUserInRole('Player')}">
                     <div class="card">
-                        <p:button value="#{i18n['Go to Simulation']}" outcome="/member/simulation">
+                        <p:button value="#{i18n['Go to Simulation']}" outcome="/player/simulation">
                             <f:param name="id" value="1"/>
                         </p:button>
-                        <p:button value="#{i18n['Go to Result']}" outcome="/member/result"/>
+                        <p:button value="#{i18n['Go to Result']}" outcome="/player/result"/>
                     </div>
                 </h:form>
 

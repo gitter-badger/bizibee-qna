@@ -4,7 +4,7 @@ public enum UserGroup {
 
     Administrators("Administrators"),
     Rulers("Rulers"),
-    Members("Members");
+    Players("Players");
 
     private final String label;
 

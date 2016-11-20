@@ -51,7 +51,7 @@
                             <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
                             <li><h:link outcome="/index" fragment="faq" value="#{i18n['FAQ']}"/></li>
                             
-                            <li><h:link value="#{i18n['Dashboard']}" outcome="/member/index" rendered="#{not empty request.userPrincipal}"/></li>
+                            <li><h:link value="#{i18n['Dashboard']}" outcome="/player/index" rendered="#{not empty request.userPrincipal}"/></li>
                             <li>
                                 <h:form>
                                     <h:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
