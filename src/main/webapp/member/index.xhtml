@@ -13,50 +13,50 @@
                 <div class="main">
                     <div class="ui-g ui-fluid dashboard">
 
-                        <h:form id="form">
-                            <h:panelGroup rendered="#{request.isUserInRole('Administrator')}">
-                                <div class="ui-g-12 ui-md-4 ui-lg-4">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
-                                        <div class="card">
-                                            <span class="fa fa-check"></span>
-                                            <span>#{i18n['Simulations']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/administrator/simulation"/>
-                                            </span>
-                                        </div>
+                        <h:panelGroup rendered="#{request.isUserInRole('Administrator')}">
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
+                                    <div class="card">
+                                        <span class="fa fa-check"></span>
+                                        <span>#{i18n['Simulations']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/administrator/simulation"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="ui-g-12 ui-md-4 ui-lg-4">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-users"></i></div>
-                                        <div class="card">
-                                            <span>#{i18n['Users']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Change']}" outcome="/administrator/user"/>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-users"></i></div>
+                                    <div class="card">
+                                        <span>#{i18n['Users']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Change']}" outcome="/administrator/user"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="ui-g-12 ui-md-4 ui-lg-4">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
-                                        <div class="card">
-                                            <span>#{i18n['Teams']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Change']}" outcome="/administrator/team"/>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
+                                    <div class="card">
+                                        <span>#{i18n['Teams']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Change']}" outcome="/administrator/team"/>
+                                        </span>
                                     </div>
                                 </div>
-                            </h:panelGroup>
+                            </div>
+                        </h:panelGroup>
 
-                            <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Member')}">
-                                <div class="ui-g-12 ui-md-3">
-                                    <div class="card clearfix summary">
+                        <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Member')}">
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <h:form>
                                         <span class="title" title="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method.">Revenue</span>
                                         <span class="detail">Sales Income</span>
                                         <span class="count revenue">
@@ -65,13 +65,23 @@
                                             </h:outputText>
                                         </span>
                                         <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                                            <p:commandLink value="#{i18n['Change']}" update="editForm" oncomplete="PF('editDialog').show()"/>
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
+                                                    <p:inputText id="salesStart" value="#{dashboardView.simulation.salesStart}" placeholder="#{i18n['salesStart']}" label="#{i18n['salesStart']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
                                         </span>
-                                    </div>
+                                    </h:form>
                                 </div>
-                                <div class="ui-g-12 ui-md-3">
-                                    <div class="card clearfix summary">
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <h:form>
                                         <span class="title">Budget</span>
                                         <span class="detail">Restriction on expenditure</span>
                                         <span class="count budget">
@@ -80,12 +90,23 @@
                                             </h:outputText>
                                         </span>
                                         <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="budgetStart" value="#{i18n['budgetStart']}"/>
+                                                    <p:inputText id="budgetStart" value="#{dashboardView.simulation.budgetStart}" placeholder="#{i18n['budgetStart']}" label="#{i18n['budgetStart']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
                                         </span>
-                                    </div>
+                                    </h:form>
                                 </div>
-                                <div class="ui-g-12 ui-md-3">
-                                    <div class="card clearfix summary">
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <h:form>
                                         <span class="title">Gross Margin</span>
                                         <span class="detail">Revenue minus cost of goods sold</span>
                                         <span class="count grossmargin">
@@ -94,12 +115,23 @@
                                             </h:outputText>
                                         </span>
                                         <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="gmStart" value="#{i18n['gmStart']}"/>
+                                                    <p:inputText id="gmStart" value="#{dashboardView.simulation.gmStart}" placeholder="#{i18n['gmStart']}" label="#{i18n['gmStart']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
                                         </span>
-                                    </div>
+                                    </h:form>
                                 </div>
-                                <div class="ui-g-12 ui-md-3">
-                                    <div class="card clearfix summary">
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <h:form>
                                         <span class="title">Market Share</span>
                                         <span class="detail">Portion of the market</span>
                                         <span class="count marketshare">
@@ -108,134 +140,143 @@
                                             </h:outputText>
                                         </span>
                                         <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="msStart" value="#{i18n['msStart']}"/>
+                                                    <p:inputText id="msStart" value="#{dashboardView.simulation.msStart}" placeholder="#{i18n['msStart']}" label="#{i18n['msStart']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
                                         </span>
-                                    </div>
+                                    </h:form>
                                 </div>
+                            </div>
 
-                                <div class="ui-g-12 ui-md-4">
-                                    <div class="card clearfix summary">
-                                        <span class="title" title="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance.">USG</span>
-                                        <span class="detail">Underlying Sales Growth Weighted</span>
-                                        <span class="count underlyingsalesgrowth">
-                                            <h:outputText value="#{dashboardView.selectedRecord.simulation.usgWeighted}" >
-                                                <f:convertNumber type="percent" />
-                                            </h:outputText>
-                                        </span>
-                                        <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                                        </span>
-                                    </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance.">USG</span>
+                                    <span class="detail">Underlying Sales Growth Weighted</span>
+                                    <span class="count underlyingsalesgrowth">
+                                        <h:outputText value="#{dashboardView.selectedRecord.simulation.usgWeighted}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
                                 </div>
-                                <div class="ui-g-12 ui-md-4">
-                                    <div class="card clearfix summary">
-                                        <span class="title">GM</span>
-                                        <span class="detail">Gross Margin Weighted</span>
-                                        <span class="count grossmargin">
-                                            <h:outputText value="#{dashboardView.selectedRecord.simulation.gmWeighted}" >
-                                                <f:convertNumber type="percent" />
-                                            </h:outputText>
-                                        </span>
-                                        <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                                        </span>
-                                    </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title">GM</span>
+                                    <span class="detail">Gross Margin Weighted</span>
+                                    <span class="count grossmargin">
+                                        <h:outputText value="#{dashboardView.selectedRecord.simulation.gmWeighted}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
                                 </div>
-                                <div class="ui-g-12 ui-md-4">
-                                    <div class="card clearfix summary">
-                                        <span class="title">MS</span>
-                                        <span class="detail">Market Share Weighted</span>
-                                        <span class="count marketshare">
-                                            <h:outputText value="#{dashboardView.selectedRecord.simulation.msWeighted}" >
-                                                <f:convertNumber type="percent" />
-                                            </h:outputText>
-                                        </span>
-                                        <span class="detail">
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
-                                        </span>
-                                    </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="card clearfix summary">
+                                    <span class="title">MS</span>
+                                    <span class="detail">Market Share Weighted</span>
+                                    <span class="count marketshare">
+                                        <h:outputText value="#{dashboardView.selectedRecord.simulation.msWeighted}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                    </span>
                                 </div>
+                            </div>
 
-                                <div class="ui-g-12 ui-md-6 ui-lg-3">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
-                                        <div class="card">
-                                            <span>#{i18n['Teams']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
-                                            </span>
-                                        </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
+                                    <div class="card">
+                                        <span>#{i18n['Teams']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="ui-g-12 ui-md-6 ui-lg-3">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-users"></i></div>
-                                        <div class="card">
-                                            <span>#{i18n['Players']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-users"></i></div>
+                                    <div class="card">
+                                        <span>#{i18n['Players']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="ui-g-12 ui-md-6 ui-lg-3">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#20d077; color:#038d4a;">B</div>
-                                        <div class="card">
-                                            <span class="fa fa-question-circle-o"></span>
-                                            <span>#{i18n['Brands']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#20d077; color:#038d4a;">B</div>
+                                    <div class="card">
+                                        <span class="fa fa-question-circle-o"></span>
+                                        <span>#{i18n['Brands']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="ui-g-12 ui-md-6 ui-lg-3">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#f9c851; color:#b58c2b;">SKU</div>
-                                        <div class="card">
-                                            <span class="fa fa-check"></span>
-                                            <span>#{i18n['Skus']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#f9c851; color:#b58c2b;">SKU</div>
+                                    <div class="card">
+                                        <span class="fa fa-check"></span>
+                                        <span>#{i18n['Skus']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="ui-g-12 ui-md-6 ui-lg-6">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
-                                        <div class="card">
-                                            <span class="fa fa-check"></span>
-                                            <span>#{i18n['Decisions']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
-                                                <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
-                                            </span>
-                                        </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
+                                    <div class="card">
+                                        <span class="fa fa-check"></span>
+                                        <span>#{i18n['Decisions']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.simulation.users.size()}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="ui-g-12 ui-md-6 ui-lg-6">
-                                    <div class="highlight-box">
-                                        <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-user"></i></div>
-                                        <div class="card">
-                                            <span>#{i18n['Profile']}</span>
-                                            <span class="count">#{dashboardView.selectedRecord.username}</span>
-                                            <span>
-                                                <p:link value="#{i18n['Change']}" outcome="/member/profile"/>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                <div class="highlight-box">
+                                    <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-user"></i></div>
+                                    <div class="card">
+                                        <span>#{i18n['Profile']}</span>
+                                        <span class="count">#{dashboardView.selectedRecord.username}</span>
+                                        <span>
+                                            <p:link value="#{i18n['Change']}" outcome="/member/profile"/>
+                                        </span>
                                     </div>
                                 </div>
+                            </div>
 
-                            </h:panelGroup>
-                        </h:form>
+                        </h:panelGroup>
                     </div>
                 </div>
 
@@ -251,19 +292,5 @@
 
             </div>
         </div>
-    </ui:define>
-    <ui:define name="dialog">
-        <h:form id="editForm">
-            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                <p:panelGrid columns="2">
-                    <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
-                    <p:inputText id="salesStart" value="#{dashboardView.simulation.salesStart}" required="true"/>
-                </p:panelGrid>
-                <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                    <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
-                </f:facet>
-            </p:dialog>
-        </h:form>
     </ui:define>
 </ui:composition>
