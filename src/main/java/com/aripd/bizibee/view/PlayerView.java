@@ -19,7 +19,7 @@ import org.primefaces.model.LazyDataModel;
 
 @Named
 @ViewScoped
-public class UserView implements Serializable {
+public class PlayerView implements Serializable {
 
     @Inject
     private UserService userService;
@@ -34,7 +34,7 @@ public class UserView implements Serializable {
     @Inject
     MessageUtil messageUtil;
 
-    public UserView() {
+    public PlayerView() {
         newRecord = new UserEntity();
         selectedRecord = new UserEntity();
     }

@@ -7,44 +7,44 @@
     <ui:define name="content">
         <div id="simulation">
             <div class="simulation-content">
-                <span class="simulation-title">#{i18n['Users']}</span>
+                <span class="simulation-title">#{i18n['Players']}</span>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <h:form id="form">
-                    <p:dataTable id="dataTable" var="user" value="#{userView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                    <p:dataTable id="dataTable" var="player" value="#{playerView.lazyModel}" emptyMessage="#{i18n['No records found']}"
                                  paginator="true" paginatorPosition="bottom" rows="10" 
-                                 rowKey="#{user.id}" selectionMode="single" selection="#{userView.selectedRecord}"
+                                 rowKey="#{player.id}" selectionMode="single" selection="#{playerView.selectedRecord}"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                                  sortMode="multiple" 
                                  lazy="true" rowsPerPageTemplate="10,15,50">
                         <f:facet name="header">
-                            <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                            <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
                             <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
                                 <p:dataExporter type="xls" target="dataTable" fileName="export" />
                             </p:commandButton>
                         </f:facet>
-                        <p:column headerText="#{i18n['Username']}" sortBy="#{user.username}" filterBy="#{user.username}">
-                            <h:outputText value="#{user.username}"/>
+                        <p:column headerText="#{i18n['Username']}" sortBy="#{player.username}" filterBy="#{player.username}">
+                            <h:outputText value="#{player.username}"/>
                         </p:column>
                         <p:column headerText="#{i18n['Password']}">
-                            <h:outputText value="#{user.password}"/>
+                            <h:outputText value="#{player.password}"/>
                         </p:column>
-                        <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{user.email}" filterBy="#{user.email}">
-                            <h:outputText value="#{user.email}"/>
+                        <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{player.email}" filterBy="#{player.email}">
+                            <h:outputText value="#{player.email}"/>
                         </p:column>
-                        <p:column headerText="#{i18n['Name']}" sortBy="#{user.name}" filterBy="#{user.name}">
-                            <h:outputText value="#{user.name}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Team']}">
-                            <h:outputText value="#{user.team.name}"/>
+                        <p:column headerText="#{i18n['Name']}" sortBy="#{player.name}" filterBy="#{player.name}">
+                            <h:outputText value="#{player.name}"/>
                         </p:column>
                         <p:column headerText="#{i18n['Team']}">
-                            <h:outputText value="#{user.teamName}"/>
+                            <h:outputText value="#{player.team.name}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['Team']}">
+                            <h:outputText value="#{player.teamName}"/>
                         </p:column>
                         <p:column exportable="false" width="100">
                             <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
-                                <f:setPropertyActionListener value="#{user}" target="#{userView.selectedRecord}" />
+                                <f:setPropertyActionListener value="#{player}" target="#{playerView.selectedRecord}" />
                             </p:commandLink>
                         </p:column>
                     </p:dataTable>
@@ -57,25 +57,25 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                    <p:inputText id="username" value="#{userView.selectedRecord.username}" required="true"/>
+                    <p:inputText id="username" value="#{playerView.selectedRecord.username}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                    <p:inputText id="password" value="#{userView.selectedRecord.password}" required="true"/>
+                    <p:inputText id="password" value="#{playerView.selectedRecord.password}" required="true"/>
                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{userView.selectedRecord.email}" required="true"/>
+                    <p:inputText id="email" value="#{playerView.selectedRecord.email}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{userView.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{playerView.selectedRecord.name}" required="true"/>
                     <p:outputLabel for="team" value="#{i18n['Team']}"/>
-                    <p:selectOneMenu id="team" value="#{userView.selectedRecord.team}" converter="#{teamConverter}" 
+                    <p:selectOneMenu id="team" value="#{playerView.selectedRecord.team}" converter="#{teamConverter}" 
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
+                        <f:selectItems value="#{playerView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="teamName" value="#{i18n['Team']}"/>
-                    <p:inputText id="teamName" value="#{userView.selectedRecord.teamName}"/>
+                    <p:inputText id="teamName" value="#{playerView.selectedRecord.teamName}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{userView.doUpdateRecord}"/>
-                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{userView.doDeleteRecord}">
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{playerView.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{playerView.doDeleteRecord}">
                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
@@ -83,27 +83,27 @@
             </p:dialog>
         </h:form>
         <h:form id="newForm">
-            <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
+            <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
                 <p:panelGrid columns="2">
                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                    <p:inputText id="username" value="#{userView.newRecord.username}" required="true"/>
+                    <p:inputText id="username" value="#{playerView.newRecord.username}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                    <p:inputText id="password" value="#{userView.newRecord.password}" required="true"/>
+                    <p:inputText id="password" value="#{playerView.newRecord.password}" required="true"/>
                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{userView.newRecord.email}" required="true"/>
+                    <p:inputText id="email" value="#{playerView.newRecord.email}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{userView.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{playerView.newRecord.name}" required="true"/>
                     <p:outputLabel for="team" value="#{i18n['Team']}"/>
-                    <p:selectOneMenu id="team" value="#{userView.newRecord.team}" converter="#{teamConverter}" 
+                    <p:selectOneMenu id="team" value="#{playerView.newRecord.team}" converter="#{teamConverter}" 
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{userView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
+                        <f:selectItems value="#{playerView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="teamName" value="#{i18n['Team']}"/>
-                    <p:inputText id="teamName" value="#{userView.newRecord.teamName}"/>
+                    <p:inputText id="teamName" value="#{playerView.newRecord.teamName}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{userView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{playerView.doCreateRecord}"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
                 </f:facet>
             </p:dialog>

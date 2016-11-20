@@ -19,7 +19,7 @@
                                  sortMode="multiple" 
                                  lazy="true" rowsPerPageTemplate="10,15,50">
                         <f:facet name="header">
-                            <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                            <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
                             <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
                                 <p:dataExporter type="xls" target="dataTable" fileName="export" />
                             </p:commandButton>
@@ -57,9 +57,9 @@
                     <p:selectOneMenu id="decisionType" value="#{decisionView.selectedRecord.decisionType}" label="#{i18n['Decision Type']}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel for="skus" value="#{i18n['Skus']}"/>
+                    <p:outputLabel for="skus" value="#{i18n['SKUs']}"/>
                     <p:selectCheckboxMenu id="skus" value="#{decisionView.selectedRecord.skus}" 
-                                          label="#{i18n['Skus']}"
+                                          label="#{i18n['SKUs']}"
                                           filter="true" filterMatchMode="contains"
                                           converter="#{skuConverter}">
                         <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
@@ -79,7 +79,7 @@
             </p:dialog>
         </h:form>
         <h:form id="newForm">
-            <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
+            <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
@@ -91,9 +91,9 @@
                     <p:selectOneMenu id="decisionType" value="#{decisionView.newRecord.decisionType}" label="#{i18n['Decision Type']}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel for="skus" value="#{i18n['Skus']}"/>
+                    <p:outputLabel for="skus" value="#{i18n['SKUs']}"/>
                     <p:selectCheckboxMenu id="skus" value="#{decisionView.newRecord.skus}" 
-                                          label="#{i18n['Skus']}"
+                                          label="#{i18n['SKUs']}"
                                           filter="true" filterMatchMode="contains"
                                           converter="#{skuConverter}">
                         <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>

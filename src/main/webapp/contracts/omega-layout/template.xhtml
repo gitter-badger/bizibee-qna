@@ -49,8 +49,8 @@
                             <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
                             <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
                             <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
-                            <li><h:link outcome="/index" fragment="faq" value="#{i18n['FAQ']}"/></li>
-                            
+                            <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}"/></li>
+
                             <li><h:link value="#{i18n['Dashboard']}" outcome="/player/index" rendered="#{not empty request.userPrincipal}"/></li>
                             <li>
                                 <h:form>
@@ -69,7 +69,14 @@
                             <div class="ui-g">
                                 <div class="ui-g-6">
                                     <p:graphicImage name="images/logo.png" />
-                                    <p>#{i18n['Here is the best way to simulate your business']}</p>
+                                    <p>#{i18n['The best way to simulate your business']}</p>
+                                    <ul style="list-style: none; float: left;">
+                                        <li style="float: left;"><a target="_blank" href="#"><i class="fa fa-2x fa-facebook"></i></a></li>
+                                        <li style="float: left;"><a target="_blank" href="http://twitter.com/aripdcom"><i class="fa fa-2x fa-twitter"></i></a></li>
+                                        <li style="float: left;"><a target="_blank" href="#"><i class="fa fa-2x fa-linkedin"></i></a></li>
+                                        <li style="float: left;"><a target="_blank" href="#"><i class="fa fa-2x fa-google-plus"></i></a></li>
+                                        <li style="float: left;"><a target="_blank" href="#"><i class="fa fa-2x fa-skype"></i></a></li>
+                                    </ul>
                                 </div>
                                 <div class="ui-g-2">
                                     <ul style="font-size: smaller;">
@@ -78,7 +85,7 @@
                                         <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
                                         <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
                                         <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
-                                        <li><h:link outcome="/index" fragment="faq" value="#{i18n['FAQ']}"/></li>
+                                        <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}"/></li>
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
@@ -86,7 +93,6 @@
                                         <li><h:link outcome="/login" value="#{i18n['Sign In']}"/></li>
                                         <li><h:link outcome="/index" value="#{i18n['Sign Up']}"/></li>
                                         <li><h:link outcome="/index" value="#{i18n['Contact Us']}"/></li>
-                                        <li><h:link outcome="/index" value="#{i18n['Careers']}"/></li>
                                         <li><h:link outcome="/index" value="#{i18n['Terms of Service']}"/></li>
                                     </ul>
                                 </div>
@@ -117,7 +123,7 @@
 
                             <h:panelGroup style="float: right;">
                                 <p:outputLabel style="font-size: smaller;" styleClass="fa fa-map-marker" value=" D32 8E 34758 TR, TURKEY"/>&nbsp;&nbsp;
-                                <p:outputLabel style="font-size: smaller;" styleClass="fa fa-mobile" value=" +90 (533) 742-1059"/>&nbsp;&nbsp;
+                                <p:outputLabel style="font-size: smaller;" styleClass="fa fa-phone" value=" +90 (533) 742-1059"/>&nbsp;&nbsp;
                                 <p:outputLabel style="font-size: smaller;" styleClass="fa fa-envelope-o" value=" dev@aripd.com"/>
                             </h:panelGroup>
                         </div>

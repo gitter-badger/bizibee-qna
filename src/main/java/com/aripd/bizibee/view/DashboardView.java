@@ -4,6 +4,7 @@ import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.BrandService;
+import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.SimulationService;
 import com.aripd.bizibee.service.SkuService;
 import com.aripd.bizibee.service.UserService;
@@ -38,6 +39,9 @@ public class DashboardView implements Serializable {
     private SkuService skuService;
 
     @Inject
+    private DecisionService decisionService;
+
+    @Inject
     MessageUtil messageUtil;
 
     public DashboardView() {
@@ -45,8 +49,12 @@ public class DashboardView implements Serializable {
 
     @PostConstruct
     private void init() {
-        selectedUser = userService.getCurrentUser();
-        selectedSimulation = selectedUser.getSimulation();
+        try {
+            selectedUser = userService.getCurrentUser();
+            selectedSimulation = selectedUser.getSimulation();
+        } catch (NullPointerException ex) {
+            throw new FacesException(ex);
+        }
     }
 
     public int getNumberOfTeams() {
@@ -63,6 +71,10 @@ public class DashboardView implements Serializable {
 
     public int getNumberOfSkus() {
         return skuService.count();
+    }
+
+    public int getNumberOfDecisions() {
+        return decisionService.count();
     }
 
     public void doUpdateSimulation(ActionEvent actionEvent) {

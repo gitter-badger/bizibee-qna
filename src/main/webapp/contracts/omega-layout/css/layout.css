@@ -2501,22 +2501,22 @@ h2 {
 .landing-wrapper #pricing .pricing-content .pricing-box:hover .pricing-fee {
     background-color: #eaeeef;
     color: #589cf0; }
-.landing-wrapper #faq {
+.landing-wrapper #testimonials {
     background-color: #dde2e5;
     padding: 100px 0; }
-.landing-wrapper #faq .faq-content {
+.landing-wrapper #testimonials .testimonials-content {
     width: 960px;
     margin: 0 auto;
     text-align: center; }
-.landing-wrapper #faq .faq-content p {
+.landing-wrapper #testimonials .testimonials-content p {
     color: #a4a4a4; }
-.landing-wrapper #faq .faq-content > p {
+.landing-wrapper #testimonials .testimonials-content > p {
     font-size: 20px; }
-.landing-wrapper #faq .faq-content .faq-title {
+.landing-wrapper #testimonials .testimonials-content .testimonials-title {
     font-size: 32px; }
-.landing-wrapper #faq .faq-content .faq-container {
+.landing-wrapper #testimonials .testimonials-content .testimonials-container {
     margin-top: 50px; }
-.landing-wrapper #faq .faq-content .faq-container iframe {
+.landing-wrapper #testimonials .testimonials-content .testimonials-container iframe {
     width: 580px;
     height: 330px; }
 .landing-wrapper .landing-footer {
@@ -2644,11 +2644,11 @@ h2 {
         padding: 30px 0; }
     .landing-wrapper #pricing .pricing-content {
         width: 100%; }
-    .landing-wrapper #faq {
+    .landing-wrapper #testimonials {
         padding: 30px 0; }
-    .landing-wrapper #faq .faq-content {
+    .landing-wrapper #testimonials .testimonials-content {
         width: 100%; }
-    .landing-wrapper #faq .faq-content .faq-container iframe {
+    .landing-wrapper #testimonials .testimonials-content .testimonials-container iframe {
         width: 350px;
         height: 220px; }
     .landing-wrapper .landing-footer {

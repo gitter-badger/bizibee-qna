@@ -82,7 +82,7 @@
                             <div class="ui-g-12 ui-md-3">
                                 <div class="card clearfix summary">
                                     <h:form>
-                                        <span class="title">Budget</span>
+                                        <span class="title" title="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows.">Budget</span>
                                         <span class="detail">Restriction on expenditure</span>
                                         <span class="count budget">
                                             <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}" >
@@ -107,7 +107,7 @@
                             <div class="ui-g-12 ui-md-3">
                                 <div class="card clearfix summary">
                                     <h:form>
-                                        <span class="title">Gross Margin</span>
+                                        <span class="title" title="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations.">Gross Margin</span>
                                         <span class="detail">Revenue minus cost of goods sold</span>
                                         <span class="count grossmargin">
                                             <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}" >
@@ -132,7 +132,7 @@
                             <div class="ui-g-12 ui-md-3">
                                 <div class="card clearfix summary">
                                     <h:form>
-                                        <span class="title">Market Share</span>
+                                        <span class="title" title="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors.">Market Share</span>
                                         <span class="detail">Portion of the market</span>
                                         <span class="count marketshare">
                                             <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}" >
@@ -202,6 +202,7 @@
                                 <div class="highlight-box">
                                     <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-crosshairs"></i></div>
                                     <div class="card">
+                                        <span class="fa fa-crosshairs"></span>
                                         <span>#{i18n['Teams']}</span>
                                         <span class="count">#{dashboardView.numberOfTeams}</span>
                                     </div>
@@ -211,19 +212,20 @@
                                 <div class="highlight-box">
                                     <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-users"></i></div>
                                     <div class="card">
+                                        <span class="fa fa-users"></span>
                                         <span>#{i18n['Players']}</span>
                                         <span class="count">#{dashboardView.numberOfPlayers}</span>
                                         <span>
-                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/user" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:link value="#{i18n['Edit']}" outcome="/ruler/player" rendered="#{request.isUserInRole('Ruler')}"/>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-6 ui-lg-3">
                                 <div class="highlight-box">
-                                    <div class="initials" style="background-color:#20d077; color:#038d4a;">B</div>
+                                    <div class="initials" style="background-color:#20d077; color:#038d4a;"><i class="fa fa-tag"></i></div>
                                     <div class="card">
-                                        <span class="fa fa-question-circle-o"></span>
+                                        <span class="fa fa-tag"></span>
                                         <span>#{i18n['Brands']}</span>
                                         <span class="count">#{dashboardView.numberOfBrands}</span>
                                         <span>
@@ -236,8 +238,7 @@
                                 <div class="highlight-box">
                                     <div class="initials" style="background-color:#f9c851; color:#b58c2b;">SKU</div>
                                     <div class="card">
-                                        <span class="fa fa-check"></span>
-                                        <span>#{i18n['Skus']}</span>
+                                        <span>#{i18n['SKUs']}</span>
                                         <span class="count">#{dashboardView.numberOfSkus}</span>
                                         <span>
                                             <p:link value="#{i18n['Edit']}" outcome="/ruler/sku" rendered="#{request.isUserInRole('Ruler')}"/>
@@ -250,9 +251,9 @@
                                 <div class="highlight-box">
                                     <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
                                     <div class="card">
-                                        <span class="fa fa-check"></span>
+                                        <span class="fa fa-list"></span>
                                         <span>#{i18n['Decisions']}</span>
-                                        <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                        <span class="count">#{dashboardView.numberOfDecisions}</span>
                                         <span>
                                             <p:link value="#{i18n['Edit']}" outcome="/ruler/decision" rendered="#{request.isUserInRole('Ruler')}"/>
                                             <p:link value="#{i18n['Decision Choices']}" outcome="/ruler/decisionchoice" rendered="#{request.isUserInRole('Ruler')}"/>
@@ -265,6 +266,7 @@
                                     <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-user"></i></div>
                                     <div class="card">
                                         <h:form>
+                                        <span class="fa fa-user"></span>
                                             <span>#{i18n['Profile']}</span>
                                             <span class="count">#{dashboardView.selectedUser.username}</span>
                                             <span>

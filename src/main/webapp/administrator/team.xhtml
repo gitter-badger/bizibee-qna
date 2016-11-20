@@ -19,7 +19,7 @@
                                  sortMode="multiple" 
                                  lazy="true" rowsPerPageTemplate="10,15,50">
                         <f:facet name="header">
-                            <p:commandButton value="#{i18n['Create a new record']}" title="#{i18n['Create a new record']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                            <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
                             <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
                                 <p:dataExporter type="xls" target="dataTable" fileName="export" />
                             </p:commandButton>
@@ -54,7 +54,7 @@
             </p:dialog>
         </h:form>
         <h:form id="newForm">
-            <p:dialog id="newDlg" header="#{i18n['Create a new record']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
+            <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{teamController.newRecord.name}" required="true"/>
