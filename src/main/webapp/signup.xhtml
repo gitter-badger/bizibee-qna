@@ -39,7 +39,7 @@
                             <p:link value="#{i18n['Terms of Use']}" outcome="/terms" />
                         </div>
                         <div class="ui-g-12">
-                            <p:commandButton value="#{i18n['Signup']}" actionListener="#{signupBean.doSignup}" update=":growl" icon="fa fa-check"/>
+                            <p:commandButton value="#{i18n['Signup']}" actionListener="#{signupBean.doSignup}" update="@form, :growl" icon="fa fa-check"/>
                         </div>
                     </div>
                 </h:form>

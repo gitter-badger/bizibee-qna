@@ -62,6 +62,13 @@ public class SignupBean implements Serializable {
 
             userService.create(user);
             messageUtil.addGlobalInfoFlashMessage("Created");
+
+            simulationCode = "";
+            username = "";
+            password = "";
+            email = "";
+            name = "";
+            agree = false;
         }
     }
 
