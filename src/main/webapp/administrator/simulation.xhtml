@@ -27,6 +27,9 @@
                         <p:column headerText="#{i18n['Id']}" sortBy="#{simulation.id}" filterBy="#{simulation.id}">
                             <h:outputText value="#{simulation.id}"/>
                         </p:column>
+                        <p:column headerText="#{i18n['Code']}" sortBy="#{simulation.code}" filterBy="#{simulation.code}">
+                            <h:outputText value="#{simulation.code}"/>
+                        </p:column>
                         <p:column headerText="#{i18n['Name']}" sortBy="#{simulation.name}" filterBy="#{simulation.name}">
                             <h:outputText value="#{simulation.name}"/>
                         </p:column>
@@ -54,12 +57,14 @@
         <h:form id="editForm">
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
+                    <p:outputLabel for="code" value="#{i18n['Code']}"/>
+                    <p:inputText id="code" value="#{simulationController.selectedRecord.code}" placeholder="#{i18n['Code']}" label="#{i18n['Code']}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{simulationController.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{simulationController.selectedRecord.name}" placeholder="#{i18n['Name']}" label="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="dateStart" value="#{i18n['Date Start']}"/>
-                    <p:calendar id="dateStart" value="#{simulationController.selectedRecord.dateStart}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:calendar id="dateStart" value="#{simulationController.selectedRecord.dateStart}" placeholder="#{i18n['Date Start']}" label="#{i18n['Date Start']}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
-                    <p:calendar id="dateEnd" value="#{simulationController.selectedRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:calendar id="dateEnd" value="#{simulationController.selectedRecord.dateEnd}" placeholder="#{i18n['Date End']}" label="#{i18n['Date End']}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{simulationController.doUpdateRecord}"/>
@@ -73,12 +78,14 @@
         <h:form id="newForm">
             <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
                 <p:panelGrid columns="2">
+                    <p:outputLabel for="code" value="#{i18n['Code']}"/>
+                    <p:inputText id="code" value="#{simulationController.newRecord.code}" placeholder="#{i18n['Code']}" label="#{i18n['Code']}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{simulationController.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{simulationController.newRecord.name}" placeholder="#{i18n['Name']}" label="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="dateStart" value="#{i18n['Date Start']}"/>
-                    <p:calendar id="dateStart" value="#{simulationController.newRecord.dateStart}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:calendar id="dateStart" value="#{simulationController.newRecord.dateStart}" placeholder="#{i18n['Date Start']}" label="#{i18n['Date Start']}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                     <p:outputLabel for="dateEnd" value="#{i18n['Date End']}"/>
-                    <p:calendar id="dateEnd" value="#{simulationController.newRecord.dateEnd}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
+                    <p:calendar id="dateEnd" value="#{simulationController.newRecord.dateEnd}" placeholder="#{i18n['Date End']}" label="#{i18n['Date End']}" locale="#{localeBean.locale}" pattern="yyyy-MM-dd HH:mm" required="true"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{simulationController.doCreateRecord}"/>

@@ -2006,10 +2006,15 @@ html {
     width: 400px;
     margin: 0 auto;
     text-align: center; }
+#login-wrapper a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 4em;
+}
 #login-wrapper #login-container {
     margin-top: 20px;
     box-sizing: border-box;
-    height: 300px;
+    /*height: 300px;*/
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     padding: 2em;

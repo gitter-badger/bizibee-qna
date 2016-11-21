@@ -24,6 +24,10 @@ public class SimulationEntity extends AbstractEntity {
 
     @NotNull
     @Column(nullable = false)
+    private String code;
+
+    @NotNull
+    @Column(nullable = false)
     private String name;
 
     @Column(columnDefinition = "TEXT")
@@ -58,6 +62,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {

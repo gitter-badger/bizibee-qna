@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_login.xhtml">
+    <ui:define name="title">#{i18n['Login']}</ui:define>
+    <ui:define name="content">
+        <div id="login-wrapper">
+            <h:link outcome="/index">
+                BiZiBee<sup>®</sup>
+            </h:link>
+
+            <div id="login-container">
+                <span class="title">#{i18n['Sign Up']}</span>
+
+                <h:form id="signup">
+                    <p:focus context="signup"/>
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <p:inputText value="#{signupBean.simulationCode}" autocomplete="off" placeholder="#{i18n['Simulation']}" label="#{i18n['Simulation']}" required="true" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText value="#{signupBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText value="#{signupBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText value="#{signupBean.email}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText value="#{signupBean.name}" autocomplete="off" placeholder="#{i18n['Name']}" label="#{i18n['Name']}" required="true" />
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:selectBooleanCheckbox value="#{signupBean.agree}" itemLabel="#{i18n['I agree to terms']}" />
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:link value="#{i18n['Terms of Use']}" outcome="/terms" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:commandButton value="#{i18n['Signup']}" actionListener="#{signupBean.doSignup}" update=":growl" icon="fa fa-check"/>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+
+            <div class="login-footer">
+                ARI <small>Business Management Systems</small>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

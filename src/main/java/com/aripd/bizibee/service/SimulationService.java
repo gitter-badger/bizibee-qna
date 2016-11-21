@@ -6,4 +6,6 @@ import javax.ejb.Local;
 @Local
 public interface SimulationService extends CrudService<SimulationEntity, Long> {
 
+    public SimulationEntity findOneByCode(String code);
+
 }
