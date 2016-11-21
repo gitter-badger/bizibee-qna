@@ -2318,7 +2318,7 @@ h2 {
     margin: 0 auto;
     padding-top: 30px;
     box-sizing: border-box; }
-.landing-wrapper .landing-header .landing-header-content img {
+.landing-wrapper .landing-header .landing-header-content img, .landing-wrapper .landing-header .landing-header-content a {
     display: inline-block;
     margin-top: -6px; }
 .landing-wrapper .landing-header .landing-header-content ul {
