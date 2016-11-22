@@ -22,10 +22,17 @@ public class LoginPageFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String navigateString = "/player/index.jsf";
-
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+        String navigateString = "/index.jsf";
+        if (request.isUserInRole("Administrator")) {
+            navigateString = "/administrator/index.jsf";
+        } else if (request.isUserInRole("Ruler")) {
+            navigateString = "/ruler/index.jsf";
+        } else if (request.isUserInRole("Player")) {
+            navigateString = "/player/index.jsf";
+        }
 
         if (request.getUserPrincipal() != null) { //If user is already authenticated
             response.sendRedirect(request.getContextPath() + navigateString);

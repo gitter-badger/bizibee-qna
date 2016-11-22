@@ -189,7 +189,7 @@ public class SimulationView implements Serializable {
             String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
             RequestUtil.doNavigate(navigation);
         } catch (ArrayIndexOutOfBoundsException ex) {
-            String navigation = "/player/result?amp;faces-redirect=true";
+            String navigation = "/player/report?amp;faces-redirect=true";
             RequestUtil.doNavigate(navigation);
         }
     }

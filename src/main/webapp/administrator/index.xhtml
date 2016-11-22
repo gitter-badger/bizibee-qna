@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <div id="simulation">
+            <div class="simulation-content">
+                <span class="simulation-title">#{i18n['Dashboard']}</span>
+
+                <div class="main">
+                    <div class="ui-g ui-fluid dashboard">
+
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="highlight-box">
+                                <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
+                                <div class="card">
+                                    <span class="fa fa-check"></span>
+                                    <span>#{i18n['Simulations']}</span>
+                                    <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                    <span>
+                                        <p:link value="#{i18n['Edit']}" outcome="/administrator/simulation"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="highlight-box">
+                                <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-user"></i></div>
+                                <div class="card">
+                                    <span>#{i18n['Users']}</span>
+                                    <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                    <span>
+                                        <p:link value="#{i18n['Change']}" outcome="/administrator/user"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="highlight-box">
+                                <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-users"></i></div>
+                                <div class="card">
+                                    <span>#{i18n['Teams']}</span>
+                                    <span class="count">#{dashboardView.selectedUser.simulation.users.size()}</span>
+                                    <span>
+                                        <p:link value="#{i18n['Change']}" outcome="/administrator/team"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -24,7 +24,7 @@ import javax.json.JsonValue;
 
 @Named
 @ViewScoped
-public class ResultView implements Serializable {
+public class ReportView implements Serializable {
 
     @Inject
     private UserService userService;
@@ -44,7 +44,7 @@ public class ResultView implements Serializable {
     @Inject
     MessageUtil messageUtil;
 
-    public ResultView() {
+    public ReportView() {
         selectedRecord = new ResponseEntity();
     }
 
