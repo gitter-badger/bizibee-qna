@@ -23,7 +23,7 @@
                             <p:inputText value="#{signupBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText value="#{signupBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true" />
+                            <p:password value="#{signupBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" feedback="true" weakLabel="#{i18n['Weak']}" goodLabel="#{i18n['Good']}" strongLabel="#{i18n['Strong']}" promptLabel="#{i18n['Please enter a password']}" required="true" />
                         </div>
                         <div class="ui-g-12">
                             <p:inputText value="#{signupBean.email}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true" />

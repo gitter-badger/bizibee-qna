@@ -24,7 +24,7 @@
                             <p:inputText value="#{resetBean.email}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:password value="#{resetBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" feedback="true" weakLabel="Weak" goodLabel="Good" strongLabel="Strong" required="true" />
+                            <p:password value="#{resetBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" feedback="true" weakLabel="#{i18n['Weak']}" goodLabel="#{i18n['Good']}" strongLabel="#{i18n['Strong']}" promptLabel="#{i18n['Please enter a password']}" required="true" />
                         </div>
                         <div class="ui-g-12">
                             <p:commandButton value="#{i18n['Reset Password']}" actionListener="#{resetBean.doReset}" update="@form, :growl" icon="fa fa-check"/>
