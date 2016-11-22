@@ -160,44 +160,77 @@
                         <h:panelGroup rendered="#{request.isUserInRole('Ruler')}">
                             <div class="ui-g-12 ui-md-4">
                                 <div class="card clearfix summary">
-                                    <span class="title" title="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance.">USG</span>
-                                    <span class="detail">Underlying Sales Growth Weighted</span>
-                                    <span class="count underlyingsalesgrowth">
-                                        <h:outputText value="#{dashboardView.selectedUser.simulation.usgWeighted}" >
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="detail">
-                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    </span>
+                                    <h:form>
+                                        <span class="title" title="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance.">USG</span>
+                                        <span class="detail">Underlying Sales Growth Weighted</span>
+                                        <span class="count underlyingsalesgrowth">
+                                            <h:outputText value="#{dashboardView.selectedUser.simulation.usgWeighted}" >
+                                                <f:convertNumber type="percent" />
+                                            </h:outputText>
+                                        </span>
+                                        <span class="detail">
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="usgWeighted" value="#{i18n['usgWeighted']}"/>
+                                                    <p:inputText id="usgWeighted" value="#{dashboardView.selectedSimulation.usgWeighted}" placeholder="#{i18n['usgWeighted']}" label="#{i18n['usgWeighted']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
+                                        </span>
+                                    </h:form>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-4">
                                 <div class="card clearfix summary">
-                                    <span class="title">GM</span>
-                                    <span class="detail">Gross Margin Weighted</span>
-                                    <span class="count grossmargin">
-                                        <h:outputText value="#{dashboardView.selectedUser.simulation.gmWeighted}" >
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="detail">
-                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    </span>
+                                    <h:form>
+                                        <span class="title">GM</span>
+                                        <span class="detail">Gross Margin Weighted</span>
+                                        <span class="count grossmargin">
+                                            <h:outputText value="#{dashboardView.selectedUser.simulation.gmWeighted}" >
+                                                <f:convertNumber type="percent" />
+                                            </h:outputText>
+                                        </span>
+                                        <span class="detail">
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="gmWeighted" value="#{i18n['gmWeighted']}"/>
+                                                    <p:inputText id="gmWeighted" value="#{dashboardView.selectedSimulation.gmWeighted}" placeholder="#{i18n['gmWeighted']}" label="#{i18n['gmWeighted']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
+                                        </span>
+                                    </h:form>
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-4">
                                 <div class="card clearfix summary">
-                                    <span class="title">MS</span>
-                                    <span class="detail">Market Share Weighted</span>
-                                    <span class="count marketshare">
-                                        <h:outputText value="#{dashboardView.selectedUser.simulation.msWeighted}" >
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="detail">
-                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
-                                    </span>
+                                    <h:form>
+                                        <span class="title">MS</span>
+                                        <span class="detail">Market Share Weighted</span>
+                                        <span class="count marketshare">
+                                            <h:outputText value="#{dashboardView.selectedUser.simulation.msWeighted}" >
+                                                <f:convertNumber type="percent" />
+                                            </h:outputText>
+                                        </span>
+                                        <span class="detail">
+                                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" rendered="#{request.isUserInRole('Ruler')}"/>
+                                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                                                <p:panelGrid columns="2">
+                                                    <p:outputLabel for="msWeighted" value="#{i18n['msWeighted']}"/>
+                                                    <p:inputText id="msWeighted" value="#{dashboardView.selectedSimulation.msWeighted}" placeholder="#{i18n['msWeighted']}" label="#{i18n['msWeighted']}" required="true"/>
+                                                </p:panelGrid>
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                                </f:facet>
+                                            </p:dialog>
+                                        </span>
+                                    </h:form>
                                 </div>
                             </div>
                         </h:panelGroup>
