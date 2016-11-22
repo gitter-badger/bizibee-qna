@@ -1,15 +1,10 @@
 package com.aripd.bizibee.entity;
 
-import com.aripd.bizibee.model.response.ResponseConverter;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -39,9 +34,6 @@ public class ResponseEntity extends AbstractEntity {
     @ManyToOne
     private DecisionEntity decision;
 
-    /**
-     * TODO jsonObjectStr olarak ismini değiştir
-     */
     @Column(columnDefinition = "TEXT")
     private String outcome;
 
@@ -51,86 +43,6 @@ public class ResponseEntity extends AbstractEntity {
     public ResponseEntity(DecisionEntity decision, String outcome) {
         this.decision = decision;
         this.outcome = outcome;
-    }
-
-    /**
-     * TODO resultView.calculateScore geçerli olursa bunu silebiliriz
-     */
-    @Transient
-    public double getScore() {
-        JsonObject jsonObject;
-        JsonArray jsonArray;
-        double score = 0;
-        switch (decision.getDecisionType()) {
-            case SINGLE_CHOICE:
-                jsonObject = ResponseConverter.jsonObjectFromString(outcome);
-                Long decisionchoiceId = jsonObject.getJsonNumber("id").longValue();
-                String decisionchoiceName = jsonObject.getString("name");
-                double decisionchoiceGm = jsonObject.getJsonNumber("gm").doubleValue();
-                System.out.println("decisionchoiceId: " + decisionchoiceId);
-                System.out.println("decisionchoiceName: " + decisionchoiceName);
-                System.out.println("decisionchoiceGm: " + decisionchoiceGm);
-                score += decisionchoiceGm;
-                break;
-            case MULTIPLE_CHOICE:
-                jsonObject = ResponseConverter.jsonObjectFromString(outcome);
-                JsonArray decisionchoicesArray = jsonObject.getJsonArray("decisionchoices");
-                for (JsonValue jsonValue : decisionchoicesArray) {
-                    System.out.println("jsonValue: " + jsonValue);
-//                    JsonObject json = ResponseConverter.jsonObjectFromString(jsonValue.toString());
-//                    System.out.println("id: " + json.get("id"));
-//                    System.out.println("name: " + json.get("name"));
-//                    System.out.println("gm: " + json.get("gm"));
-//                    score += Double.valueOf(json.get("gm").toString());
-                }
-                //score += decision.getGm();
-                break;
-            case SINGLE_SKU_LISTING:
-                jsonObject = ResponseConverter.jsonObjectFromString(outcome);
-                Long skuId = jsonObject.getJsonNumber("id").longValue();
-                String skuName = jsonObject.getString("name");
-                double skuGm = jsonObject.getJsonNumber("gm").doubleValue();
-                System.out.println("skuId: " + skuId);
-                System.out.println("skuName: " + skuName);
-                System.out.println("skuGm: " + skuGm);
-                score += skuGm;
-                break;
-            case MULTIPLE_SKU_LISTING:
-                jsonObject = ResponseConverter.jsonObjectFromString(outcome);
-                JsonArray skusArray = jsonObject.getJsonArray("skus");
-                for (JsonValue jsonValue : skusArray) {
-                    System.out.println("jsonValue: " + jsonValue);
-//                    JsonObject json = ResponseConverter.jsonObjectFromString(jsonValue.toString());
-//                    System.out.println("id: " + json.get("id"));
-//                    System.out.println("name: " + json.get("name"));
-//                    System.out.println("gm: " + json.get("gm"));
-//                    score += Double.valueOf(json.get("gm").toString());
-                }
-                //score += decision.getGm();
-                break;
-            case RANGE_SKU_LISTING:
-                jsonArray = ResponseConverter.jsonArrayFromString(outcome);
-                for (JsonValue jsonValue : jsonArray) {
-                    System.out.println("jsonValue: " + jsonValue);
-                }
-//                score += decision.getGm();
-                break;
-            case SINGLE_CHOICE_SKU_LISTING:
-                jsonArray = ResponseConverter.jsonArrayFromString(outcome);
-                for (JsonValue jsonValue : jsonArray) {
-                    System.out.println("jsonValue: " + jsonValue);
-                }
-//                score += decision.getGm();
-                break;
-            case MULTIPLE_CHOICE_SKU_LISTING:
-                jsonArray = ResponseConverter.jsonArrayFromString(outcome);
-                for (JsonValue jsonValue : jsonArray) {
-                    System.out.println("jsonValue: " + jsonValue);
-                }
-//                score += decision.getGm();
-                break;
-        }
-        return score;
     }
 
     public SimulationEntity getSimulation() {

@@ -7,7 +7,7 @@
     <ui:define name="head">
         <style type="text/css">
             .ui-steps .ui-steps-item {
-                width: calc(100% / #{responseView.menuModel.elements.size()});
+                width: calc(100% / #{simulationView.menuModel.elements.size()});
                 height: 100px;
             }
             .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-title {
@@ -17,71 +17,70 @@
     </ui:define>
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="id" value="#{responseView.id}"/>
-            <f:event type="preRenderView" listener="#{responseView.onLoad}"/>
+            <f:viewParam name="sequence" value="#{simulationView.sequence}"/>
+            <f:event type="preRenderView" listener="#{simulationView.onLoad}"/>
         </f:metadata>
 
         <div id="simulation">
             <div class="simulation-content">
-                <span class="simulation-title">#{i18n['Simulation']} <i class="fa fa-hashtag"></i> <small>#{responseView.selectedRecord.simulation.name}</small></span>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+                <span class="simulation-title">#{i18n['Simulation']}</span>
+                <p>Unilever Best Seller 2016</p>
 
-                <!--TODO burayı başka nasıl yaparız-->
-                <p:steps activeIndex="#{responseView.selectedRecord.id-1}" readonly="false" model="#{responseView.menuModel}"/>
+                <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}"/>
 
-                <h3><h:outputText value="#{responseView.selectedRecord.description}"/></h3>
+                <h3><h:outputText value="#{simulationView.selectedRecord.description}"/></h3>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
-                    <p:selectOneRadio value="#{responseView.model1.decisionchoice}" 
-                                      label="#{responseView.selectedRecord.name}" 
-                                      required="#{responseView.selectedRecord.required}" 
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
+                    <p:selectOneRadio value="#{simulationView.model1.decisionchoice}" 
+                                      label="#{simulationView.selectedRecord.name}" 
+                                      required="#{simulationView.selectedRecord.required}" 
                                       layout="pageDirection" columns="1"
                                       converter="#{decisionchoiceConverter}">
-                        <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                        <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                     </p:selectOneRadio>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
-                    <p:selectManyCheckbox value="#{responseView.model2.decisionchoices}" 
-                                          label="#{responseView.selectedRecord.name}" 
-                                          required="#{responseView.selectedRecord.required}" 
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
+                    <p:selectManyCheckbox value="#{simulationView.model2.decisionchoices}" 
+                                          label="#{simulationView.selectedRecord.name}" 
+                                          required="#{simulationView.selectedRecord.required}" 
                                           layout="pageDirection" columns="1"
                                           converter="#{decisionchoiceConverter}">
-                        <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                        <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                     </p:selectManyCheckbox>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_SKU_LISTING'}">
-                    <p:selectOneRadio value="#{responseView.model3.sku}" 
-                                      label="#{responseView.selectedRecord.name}" 
-                                      required="#{responseView.selectedRecord.required}" 
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_SKU_LISTING'}">
+                    <p:selectOneRadio value="#{simulationView.model3.sku}" 
+                                      label="#{simulationView.selectedRecord.name}" 
+                                      required="#{simulationView.selectedRecord.required}" 
                                       layout="pageDirection" columns="1"
                                       converter="#{skuConverter}">
-                        <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
+                        <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectOneRadio>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
-                    <p:selectManyCheckbox value="#{responseView.model4.skus}" 
-                                          label="#{responseView.selectedRecord.name}" 
-                                          required="#{responseView.selectedRecord.required}" 
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
+                    <p:selectManyCheckbox value="#{simulationView.model4.skus}" 
+                                          label="#{simulationView.selectedRecord.name}" 
+                                          required="#{simulationView.selectedRecord.required}" 
                                           layout="pageDirection" columns="1"
                                           converter="#{skuConverter}">
-                        <f:selectItems value="#{responseView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
+                        <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectManyCheckbox>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
-                    <p:repeat var="model" value="#{responseView.model5}">
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
+                    <p:repeat var="model" value="#{simulationView.model5}">
                         <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                         <h:panelGrid columns="2">
                             <p:spinner value="#{model.value}" 
-                                       label="#{responseView.selectedRecord.name}" 
-                                       required="#{responseView.selectedRecord.required}" 
+                                       label="#{simulationView.selectedRecord.name}" 
+                                       required="#{simulationView.selectedRecord.required}" 
                                        min="#{model.sku.indexMin}" 
                                        max="#{model.sku.indexMax}" 
                                        stepFactor="#{model.sku.indexStep}"/>
@@ -92,33 +91,33 @@
                             </h:outputFormat>
                         </h:panelGrid>
                     </p:repeat>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
-                    <p:repeat var="model" value="#{responseView.model6}">
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
+                    <p:repeat var="model" value="#{simulationView.model6}">
                         <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                         <p:selectOneRadio value="#{model.decisionchoice}" 
-                                          label="#{responseView.selectedRecord.name}" 
-                                          required="#{responseView.selectedRecord.required}" 
+                                          label="#{simulationView.selectedRecord.name}" 
+                                          required="#{simulationView.selectedRecord.required}" 
                                           converter="#{decisionchoiceConverter}">
-                            <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                            <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectOneRadio>
                     </p:repeat>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
-                <h:form rendered="#{responseView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
-                    <p:repeat var="model" value="#{responseView.model7}">
+                <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
+                    <p:repeat var="model" value="#{simulationView.model7}">
                         <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                         <p:selectManyCheckbox value="#{model.decisionchoices}" 
-                                              label="#{responseView.selectedRecord.name}" 
-                                              required="#{responseView.selectedRecord.required}" 
+                                              label="#{simulationView.selectedRecord.name}" 
+                                              required="#{simulationView.selectedRecord.required}" 
                                               converter="#{decisionchoiceConverter}">
-                            <f:selectItems value="#{responseView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                            <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectManyCheckbox>
                     </p:repeat>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{responseView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
             </div>

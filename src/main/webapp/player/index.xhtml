@@ -7,7 +7,8 @@
     <ui:define name="content">
         <div id="simulation">
             <div class="simulation-content">
-                <span class="simulation-title">#{i18n['Dashboard']} <i class="fa fa-hashtag"></i> <small>#{dashboardView.selectedUser.simulation.name}</small></span>
+                <span class="simulation-title">#{i18n['Dashboard']}</span>
+                <p>Unilever Best Seller 2016</p>
                 <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="true" /></p>
 
                 <div class="main">
@@ -154,7 +155,9 @@
                                     </h:form>
                                 </div>
                             </div>
+                        </h:panelGroup>
 
+                        <h:panelGroup rendered="#{request.isUserInRole('Ruler')}">
                             <div class="ui-g-12 ui-md-4">
                                 <div class="card clearfix summary">
                                     <span class="title" title="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance.">USG</span>
@@ -165,7 +168,7 @@
                                         </h:outputText>
                                     </span>
                                     <span class="detail">
-                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
                                     </span>
                                 </div>
                             </div>
@@ -179,7 +182,7 @@
                                         </h:outputText>
                                     </span>
                                     <span class="detail">
-                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
                                     </span>
                                 </div>
                             </div>
@@ -193,11 +196,13 @@
                                         </h:outputText>
                                     </span>
                                     <span class="detail">
-                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/simulation" rendered="#{request.isUserInRole('Ruler')}"/>
+                                        <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" rendered="#{request.isUserInRole('Ruler')}"/>
                                     </span>
                                 </div>
                             </div>
+                        </h:panelGroup>
 
+                        <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Player')}">
                             <div class="ui-g-12 ui-md-6 ui-lg-3">
                                 <div class="highlight-box">
                                     <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-users"></i></div>
@@ -266,11 +271,11 @@
                                     <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-male"></i></div>
                                     <div class="card">
                                         <h:form>
-                                        <span class="fa fa-male"></span>
+                                            <span class="fa fa-male"></span>
                                             <span>#{i18n['Profile']}</span>
                                             <span class="count">#{dashboardView.selectedUser.name}</span>
                                             <span>
-                                                <p:link value="#{i18n['Edit']}" outcome="/player/profile"/>
+                                                <!--<p:link value="#{i18n['Edit']}" outcome="/player/profile"/>-->
                                                 <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()"/>
                                                 <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                                     <p:panelGrid columns="2">
@@ -297,13 +302,10 @@
                     </div>
                 </div>
 
-                <!--TODO burayı başka nasıl yaparız-->
                 <h:form style="text-align: center;" rendered="#{request.isUserInRole('Player')}">
                     <div class="card">
-                        <p:button value="#{i18n['Go to Simulation']}" outcome="/player/simulation">
-                            <f:param name="id" value="1"/>
-                        </p:button>
-                        <p:button value="#{i18n['Go to Result']}" outcome="/player/result"/>
+                        <p:button value="#{i18n['Start']}" outcome="/player/simulation" icon="fa fa-hourglass-start" />
+                        <p:button value="#{i18n['Results']}" outcome="/player/result" icon="fa fa-line-chart" />
                     </div>
                 </h:form>
 
