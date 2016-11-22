@@ -112,6 +112,7 @@ public class SimulationView implements Serializable {
                     break;
             }
         }
+        
     }
 
     public void doUpdate(ActionEvent actionEvent) {

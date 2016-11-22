@@ -24,7 +24,7 @@
         <div id="simulation">
             <div class="simulation-content">
                 <span class="simulation-title">#{i18n['Simulation']}</span>
-                <p>Unilever Best Seller 2016</p>
+                <p><h:outputText value="#{dashboardView.selectedUser.simulation.name}" /></p>
 
                 <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}"/>
 
