@@ -20,6 +20,8 @@ public interface UserService extends CrudService<UserEntity, Long> {
 
     public UserEntity findOneByUuid(String uuid);
 
+    public UserEntity findOneBySimulationAndEmail(SimulationEntity simulation, String email);
+
     public List<UserEntity> findAllByUserGroup(UserGroup userGroup);
 
     public List<UserEntity> findAllBySimulation(SimulationEntity simulation);

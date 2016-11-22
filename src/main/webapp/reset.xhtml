@@ -4,7 +4,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_login.xhtml">
-    <ui:define name="title">#{i18n['Log In']}</ui:define>
+    <ui:define name="title">#{i18n['Reset Password']}</ui:define>
     <ui:define name="content">
         <div id="login-wrapper">
             <h:link outcome="/index">
@@ -13,25 +13,21 @@
             </h:link>
 
             <div id="login-container">
-                <span class="title">#{i18n['Log In']}</span>
+                <span class="title">#{i18n['Reset Password']}</span>
 
-                <h:form id="login">
-                    <p:focus context="login"/>
+                <h:form>
                     <div class="ui-g ui-fluid">
                         <div class="ui-g-12">
-                            <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true" />
+                            <p:inputText value="#{resetBean.simulationCode}" autocomplete="off" placeholder="#{i18n['Simulation']}" label="#{i18n['Simulation']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true" />
-                        </div>
-                        <div class="ui-g-12 ui-md-6">
-                            <p:selectBooleanCheckbox value="#{loginBean.remember}" itemLabel="#{i18n['Remember Me']}" />
-                        </div>
-                        <div class="ui-g-12 ui-md-6">
-                            <p:link value="#{i18n['Forgot Password']}" outcome="/reset" />
+                            <p:inputText value="#{resetBean.email}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:commandButton value="#{i18n['Login']}" actionListener="#{loginBean.doLogin}" update="@form, :growl" icon="fa fa-check"/>
+                            <p:password value="#{resetBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" feedback="true" weakLabel="Weak" goodLabel="Good" strongLabel="Strong" required="true" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:commandButton value="#{i18n['Reset Password']}" actionListener="#{resetBean.doReset}" update="@form, :growl" icon="fa fa-check"/>
                         </div>
                     </div>
                 </h:form>
