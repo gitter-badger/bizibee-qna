@@ -3,6 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SkuEntity;
 import com.aripd.bizibee.model.response.Response1Model;
 import com.aripd.bizibee.model.response.Response2Model;
@@ -11,6 +12,7 @@ import com.aripd.bizibee.model.response.Response4Model;
 import com.aripd.bizibee.model.response.Response5Model;
 import com.aripd.bizibee.model.response.Response7Model;
 import com.aripd.bizibee.model.response.Response6Model;
+import com.aripd.bizibee.model.response.ResponseConverter;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -19,11 +21,16 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import com.aripd.bizibee.service.DecisionService;
+import com.aripd.bizibee.service.DecisionchoiceService;
 import com.aripd.bizibee.service.ResponseService;
+import com.aripd.bizibee.service.SkuService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonValue;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
@@ -36,6 +43,13 @@ public class SimulationView implements Serializable {
 
     @Inject
     private ResponseService responseService;
+    private boolean disabled;
+
+    @Inject
+    private SkuService skuService;
+
+    @Inject
+    private DecisionchoiceService decisionchoiceService;
 
     @Inject
     private DecisionService decisionService;
@@ -112,7 +126,126 @@ public class SimulationView implements Serializable {
                     break;
             }
         }
-        
+
+        ResponseEntity response = responseService.findOneByDecision(selectedRecord);
+        if (response == null) {
+            // cevaplanmamış
+            disabled = false;
+        } else {
+            // cevaplanmış
+            disabled = true;
+
+            String outcome = response.getOutcome();
+            DecisionEntity decision = response.getDecision();
+
+            JsonObject jsonObject1;
+            JsonArray jsonArray1;
+
+            Long skuId;
+            SkuEntity sku;
+
+            Long decisionchoiceId;
+            DecisionchoiceEntity decisionchoice;
+
+            int value;
+
+            switch (decision.getDecisionType()) {
+                case SINGLE_CHOICE:
+                    jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
+
+                    decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
+                    decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                    model1.setDecisionchoice(decisionchoice);
+                    break;
+                case MULTIPLE_CHOICE:
+                    List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
+                    jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
+                    jsonArray1 = jsonObject1.getJsonArray("decisionchoices");
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        decisionchoiceId = jsonObject2.getJsonNumber("id").longValue();
+                        decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                        decisionchoices.add(decisionchoice);
+                    }
+                    model2.setDecisionchoices(decisionchoices);
+                    break;
+                case SINGLE_SKU_LISTING:
+                    jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
+
+                    skuId = jsonObject1.getJsonNumber("id").longValue();
+                    sku = skuService.find(skuId);
+                    model3.setSku(sku);
+                    break;
+                case MULTIPLE_SKU_LISTING:
+                    List<SkuEntity> skus = new ArrayList<>();
+                    jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
+                    jsonArray1 = jsonObject1.getJsonArray("skus");
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        skuId = jsonObject2.getJsonNumber("id").longValue();
+                        sku = skuService.find(skuId);
+                        skus.add(sku);
+                    }
+                    model4.setSkus(skus);
+                    break;
+                case RANGE_SKU_LISTING:
+                    jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        skuId = jsonObject2.getJsonNumber("sku").longValue();
+                        sku = skuService.find(skuId);
+
+                        value = jsonObject2.getJsonNumber("value").intValue();
+
+                        Response5Model m = new Response5Model(sku);
+                        m.setValue(value);
+                        model5.add(m);
+                    }
+                    break;
+                case SINGLE_CHOICE_SKU_LISTING:
+                    jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        skuId = jsonObject2.getJsonNumber("sku").longValue();
+                        sku = skuService.find(skuId);
+
+                        decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
+                        decisionchoice = decisionchoiceService.find(decisionchoiceId);
+
+                        Response6Model m = new Response6Model(sku);
+                        m.setDecisionchoice(decisionchoice);
+                        model6.add(m);
+                    }
+                    break;
+                case MULTIPLE_CHOICE_SKU_LISTING:
+                    jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        skuId = jsonObject2.getJsonNumber("sku").longValue();
+                        sku = skuService.find(skuId);
+
+                        List<DecisionchoiceEntity> decisionchoices___ = new ArrayList<>();
+                        JsonArray jsonArray2 = jsonObject2.getJsonArray("decisionchoices");
+                        for (JsonValue jsonValue2 : jsonArray2) {
+                            JsonObject jsonObject3 = ResponseConverter.jsonObjectFromString(jsonValue2.toString());
+                            decisionchoiceId = jsonObject3.getJsonNumber("decisionchoice").longValue();
+                            decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                            decisionchoices___.add(decisionchoice);
+                        }
+
+                        Response7Model m = new Response7Model(sku);
+                        m.setDecisionchoices(decisionchoices___);
+                        model7.add(m);
+                    }
+                    break;
+            }
+        }
+
     }
 
     public void doUpdate(ActionEvent actionEvent) {
@@ -123,6 +256,7 @@ public class SimulationView implements Serializable {
                 if (model1 != null) {
                     System.out.println("Decisionchoice: " + model1.getDecisionchoice().getName());
                 }
+                // TODO prevent updating...
                 responseService.updateOrCreate(selectedRecord, model1.toString());
                 break;
             case MULTIPLE_CHOICE:
@@ -276,6 +410,14 @@ public class SimulationView implements Serializable {
 
     public void setModel7(List<Response7Model> model7) {
         this.model7 = model7;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
 }
