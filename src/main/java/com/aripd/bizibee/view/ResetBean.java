@@ -6,6 +6,7 @@ import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.SimulationService;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.validator.EmailAddress;
+import com.aripd.util.validator.Password;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -26,6 +27,7 @@ public class ResetBean implements Serializable {
     private String simulationCode;
     @EmailAddress
     private String email;
+    @Password
     private String password;
 
     @Inject

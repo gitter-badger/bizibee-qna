@@ -1,6 +1,7 @@
 package com.aripd.bizibee.entity;
 
 import com.aripd.util.validator.EmailAddress;
+import com.aripd.util.validator.Password;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -25,7 +26,7 @@ public class UserEntity extends AbstractEntity {
     @NotNull
     @Column(unique = true, nullable = false)
     private String username;
-    @NotNull
+    @Password
     @Column(nullable = false)
     private String password;
     @EmailAddress

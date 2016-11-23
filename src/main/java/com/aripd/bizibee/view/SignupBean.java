@@ -7,6 +7,7 @@ import com.aripd.bizibee.entity.UserGroup;
 import com.aripd.bizibee.service.SimulationService;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.validator.EmailAddress;
+import com.aripd.util.validator.Password;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -26,6 +27,7 @@ public class SignupBean implements Serializable {
 
     private String simulationCode;
     private String username;
+    @Password
     private String password;
     @EmailAddress
     private String email;
