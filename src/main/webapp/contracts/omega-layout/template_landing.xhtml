@@ -45,11 +45,11 @@
                             <span class="fa fa-bars"></span>
                         </h:link>
                         <ul id="menu">
-                            <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Home']}"/></li>
-                            <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
-                            <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
-                            <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
-                            <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}"/></li>
+                            <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Home']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}" rendered="#{empty request.userPrincipal}"/></li>
 
                             <li><h:link value="#{i18n['Dashboard']}" outcome="/login" rendered="#{not empty request.userPrincipal}"/></li>
                             <li>
