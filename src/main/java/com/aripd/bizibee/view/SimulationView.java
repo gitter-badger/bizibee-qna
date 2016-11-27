@@ -1,5 +1,6 @@
 package com.aripd.bizibee.view;
 
+import com.aripd.bizibee.comparison.ComparisonDecisionSortOrderAsc;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
@@ -71,28 +72,16 @@ public class SimulationView implements Serializable {
 
     public SimulationView() {
         selectedRecord = new DecisionEntity();
+        menuModel = new DefaultMenuModel();
     }
 
     @PostConstruct
     public void init() {
         decisions = decisionService.findAll();
-        Collections.sort(decisions, new Comparator<DecisionEntity>() {
-            @Override
-            public int compare(DecisionEntity o1, DecisionEntity o2) {
-                int rollno1 = o1.getSortOrder();
-                int rollno2 = o2.getSortOrder();
-                return rollno1 - rollno2;//For ascending order
-                //return rollno2-rollno1;//For descending order
-            }
-        });
+        Collections.sort(decisions, new ComparisonDecisionSortOrderAsc());
 
-        menuModel = new DefaultMenuModel();
         for (DecisionEntity decision : decisions) {
-            DefaultMenuItem item = new DefaultMenuItem();
-            item.setValue(decision.getName());
-//            item.setOutcome("/player/simulation");
-//            item.setParam("id", decision.getId());
-            menuModel.addElement(item);
+            menuModel.addElement(new DefaultMenuItem(decision.getName()));
         }
 
     }
@@ -108,20 +97,27 @@ public class SimulationView implements Serializable {
         for (SkuEntity sku : selectedRecord.getSkus()) {
             switch (selectedRecord.getDecisionType()) {
                 case SINGLE_CHOICE:
+                    model1 = new Response1Model();
                     break;
                 case MULTIPLE_CHOICE:
+                    model2 = new Response2Model();
                     break;
                 case SINGLE_SKU_LISTING:
+                    model3 = new Response3Model();
                     break;
                 case MULTIPLE_SKU_LISTING:
+                    model4 = new Response4Model();
                     break;
                 case RANGE_SKU_LISTING:
+                    model5.clear();
                     model5.add(new Response5Model(sku));
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:
+                    model6.clear();
                     model6.add(new Response6Model(sku));
                     break;
                 case MULTIPLE_CHOICE_SKU_LISTING:
+                    model7.clear();
                     model7.add(new Response7Model(sku));
                     break;
             }
@@ -151,6 +147,7 @@ public class SimulationView implements Serializable {
 
             switch (decision.getDecisionType()) {
                 case SINGLE_CHOICE:
+                    model1 = new Response1Model();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
                     decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
@@ -158,6 +155,7 @@ public class SimulationView implements Serializable {
                     model1.setDecisionchoice(decisionchoice);
                     break;
                 case MULTIPLE_CHOICE:
+                    model2 = new Response2Model();
                     List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
                     jsonArray1 = jsonObject1.getJsonArray("decisionchoices");
@@ -171,6 +169,7 @@ public class SimulationView implements Serializable {
                     model2.setDecisionchoices(decisionchoices);
                     break;
                 case SINGLE_SKU_LISTING:
+                    model3 = new Response3Model();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
                     skuId = jsonObject1.getJsonNumber("id").longValue();
@@ -178,6 +177,7 @@ public class SimulationView implements Serializable {
                     model3.setSku(sku);
                     break;
                 case MULTIPLE_SKU_LISTING:
+                    model4 = new Response4Model();
                     List<SkuEntity> skus = new ArrayList<>();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
                     jsonArray1 = jsonObject1.getJsonArray("skus");
@@ -191,6 +191,7 @@ public class SimulationView implements Serializable {
                     model4.setSkus(skus);
                     break;
                 case RANGE_SKU_LISTING:
+                    model5 = new ArrayList<>();
                     jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
                     for (JsonValue jsonValue1 : jsonArray1) {
                         JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
@@ -206,6 +207,7 @@ public class SimulationView implements Serializable {
                     }
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:
+                    model6 = new ArrayList<>();
                     jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
                     for (JsonValue jsonValue1 : jsonArray1) {
                         JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
@@ -222,6 +224,7 @@ public class SimulationView implements Serializable {
                     }
                     break;
                 case MULTIPLE_CHOICE_SKU_LISTING:
+                    model7 = new ArrayList<>();
                     jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
                     for (JsonValue jsonValue1 : jsonArray1) {
                         JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());

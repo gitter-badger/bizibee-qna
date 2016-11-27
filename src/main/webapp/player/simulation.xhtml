@@ -60,7 +60,7 @@
                                       converter="#{skuConverter}">
                         <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectOneRadio>
-                    <p:commandButton disabled="#{simulationView.disabled}" value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
