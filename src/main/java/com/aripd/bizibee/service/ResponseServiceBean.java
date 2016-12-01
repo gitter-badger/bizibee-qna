@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -40,20 +41,18 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
 
     @Override
     public ResponseEntity findOneByDecision(DecisionEntity decision) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<ResponseEntity> cq = cb.createQuery(ResponseEntity.class);
-        Root<ResponseEntity> root = cq.from(ResponseEntity.class);
+        try {
+            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<ResponseEntity> cq = cb.createQuery(ResponseEntity.class);
+            Root<ResponseEntity> root = cq.from(ResponseEntity.class);
 
-        Predicate predicate = cb.equal(root.get(ResponseEntity_.decision), decision);
-        cq.where(predicate);
+            Predicate predicate = cb.equal(root.get(ResponseEntity_.decision), decision);
+            cq.where(predicate);
 
-        Query query = getEntityManager().createQuery(cq);
-        List<ResponseEntity> results = query.getResultList();
-        ResponseEntity entity = null;
-        if (!results.isEmpty()) {
-            entity = results.get(0);
+            return getEntityManager().createQuery(cq).getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
         }
-        return entity;
     }
 
     @Override

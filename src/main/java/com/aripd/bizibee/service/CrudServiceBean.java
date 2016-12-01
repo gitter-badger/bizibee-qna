@@ -20,6 +20,7 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -32,8 +33,6 @@ import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 /**
- *
- * @author cem
  * @param <T> Entity
  * @param <PK> Primary Key
  */
@@ -244,18 +243,22 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
 
     @Override
     public int count() {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root<T> root = cq.from(persistentClass);
-        cq.select(cb.count(root));
-        return getEntityManager().createQuery(cq).getSingleResult().intValue();
+        try {
+            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+            Root<T> root = cq.from(persistentClass);
+            cq.select(cb.count(root));
+            return getEntityManager().createQuery(cq).getSingleResult().intValue();
+        } catch (NoResultException ex) {
+            return 0;
+        }
     }
 
     /**
      * Returns the number of total records
      *
      * @param namedQueryName Named Query Name
-     * @return Long
+     * @return int
      */
     @Override
     public int countTotalRecord(String namedQueryName) {
@@ -290,12 +293,16 @@ public abstract class CrudServiceBean<T, PK extends Serializable> implements Cru
 
     @Override
     public int count(Map<String, Object> filters) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root<T> root = cq.from(persistentClass);
-        cq.where(this.getFilterCondition(cb, root, filters));
-        cq.select(cb.count(root));
-        return getEntityManager().createQuery(cq).getSingleResult().intValue();
+        try {
+            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+            Root<T> root = cq.from(persistentClass);
+            cq.where(this.getFilterCondition(cb, root, filters));
+            cq.select(cb.count(root));
+            return getEntityManager().createQuery(cq).getSingleResult().intValue();
+        } catch (NoResultException ex) {
+            return 0;
+        }
     }
 
     /**

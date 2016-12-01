@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -46,8 +45,7 @@ public class DecisionchoiceServiceBean extends CrudServiceBean<DecisionchoiceEnt
         Predicate predicate = cb.equal(root.get(DecisionchoiceEntity_.decision), decision);
         cq.where(predicate);
 
-        Query q = getEntityManager().createQuery(cq);
-        return q.getResultList();
+        return getEntityManager().createQuery(cq).getResultList();
     }
 
 }
