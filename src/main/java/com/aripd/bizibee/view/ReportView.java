@@ -41,6 +41,9 @@ public class ReportView implements Serializable {
     @Inject
     private SkuService skuService;
 
+    double gm = 0;
+    double ms = 0;
+
     @Inject
     MessageUtil messageUtil;
 
@@ -52,7 +55,8 @@ public class ReportView implements Serializable {
     public void init() {
         user = userService.getCurrentUser();
         simulation = user.getSimulation();
-
+        gm = simulation.getGmStart();
+        ms = simulation.getMsStart();
     }
 
     public double calculateScore(ResponseEntity response) {
@@ -78,6 +82,8 @@ public class ReportView implements Serializable {
                 decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
                 decisionchoice = decisionchoiceService.find(decisionchoiceId);
                 score += decisionchoice.getGm();
+                gm += decisionchoice.getGm();
+                ms += decisionchoice.getMs();
                 break;
             case MULTIPLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
@@ -88,6 +94,8 @@ public class ReportView implements Serializable {
                     decisionchoiceId = jsonObject2.getJsonNumber("id").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     score += decisionchoice.getGm();
+                    gm += decisionchoice.getGm();
+                    ms += decisionchoice.getMs();
                 }
                 break;
             case SINGLE_SKU_LISTING:
@@ -96,6 +104,8 @@ public class ReportView implements Serializable {
                 skuId = jsonObject1.getJsonNumber("id").longValue();
                 sku = skuService.find(skuId);
                 score += sku.getGm();
+                gm += sku.getGm();
+                ms += sku.getMs();
                 break;
             case MULTIPLE_SKU_LISTING:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
@@ -106,6 +116,8 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("id").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    gm += sku.getGm();
+                    ms += sku.getMs();
                 }
                 break;
             case RANGE_SKU_LISTING:
@@ -116,6 +128,8 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    gm += sku.getGm();
+                    ms += sku.getMs();
 
                     value = jsonObject2.getJsonNumber("value").intValue();
                 }
@@ -128,10 +142,14 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    gm += sku.getGm();
+                    ms += sku.getMs();
 
                     decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     score += decisionchoice.getGm();
+                    gm += decisionchoice.getGm();
+                    ms += decisionchoice.getMs();
                 }
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
@@ -142,6 +160,8 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    gm += sku.getGm();
+                    ms += sku.getMs();
 
                     JsonArray jsonArray2 = jsonObject2.getJsonArray("decisionchoices");
                     for (JsonValue jsonValue2 : jsonArray2) {
@@ -149,6 +169,8 @@ public class ReportView implements Serializable {
                         decisionchoiceId = jsonObject3.getJsonNumber("decisionchoice").longValue();
                         decisionchoice = decisionchoiceService.find(decisionchoiceId);
                         score += decisionchoice.getGm();
+                        gm += decisionchoice.getGm();
+                        ms += decisionchoice.getMs();
                     }
                 }
                 break;
@@ -182,6 +204,22 @@ public class ReportView implements Serializable {
 
     public void setSimulation(SimulationEntity simulation) {
         this.simulation = simulation;
+    }
+
+    public double getGm() {
+        return gm;
+    }
+
+    public void setGm(double gm) {
+        this.gm = gm;
+    }
+
+    public double getMs() {
+        return ms;
+    }
+
+    public void setMs(double ms) {
+        this.ms = ms;
     }
 
 }

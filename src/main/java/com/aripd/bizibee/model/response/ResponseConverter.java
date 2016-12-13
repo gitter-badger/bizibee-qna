@@ -29,6 +29,7 @@ public class ResponseConverter {
                 .add("id", model.getDecisionchoice().getId())
                 .add("name", model.getDecisionchoice().getName())
                 .add("gm", model.getDecisionchoice().getGm())
+                .add("ms", model.getDecisionchoice().getMs())
                 .build();
     }
 
@@ -40,6 +41,7 @@ public class ResponseConverter {
                             .add("id", c.getId())
                             .add("name", c.getName())
                             .add("gm", c.getGm())
+                            .add("ms", c.getMs())
             );
         });
 
@@ -54,6 +56,7 @@ public class ResponseConverter {
                 .add("id", model.getSku().getId())
                 .add("name", model.getSku().getName())
                 .add("gm", model.getSku().getGm())
+                .add("ms", model.getSku().getMs())
                 .build();
     }
 
@@ -65,6 +68,7 @@ public class ResponseConverter {
                             .add("id", c.getId())
                             .add("name", c.getName())
                             .add("gm", c.getGm())
+                            .add("ms", c.getMs())
             );
         });
 

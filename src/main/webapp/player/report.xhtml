@@ -65,11 +65,13 @@
                     <f:facet name="header">
                         <h:outputText value="#{i18n['Responses']}"/>
                     </f:facet>
-                    <h:outputText value="#{response.decision.name}"/>
+                    <h:outputText value="#{response.decision.name} #{response.decision.decisionType}"/>
                     <f:facet name="description">
                         <h:panelGrid>
                             <h:outputText value="Score: #{reportView.calculateScore(response)}"/>
                             <h:outputText value="#{response.outcome}"/>
+                            <h:outputText value="GM: #{reportView.gm}"/>
+                            <h:outputText value="MS: #{reportView.ms}"/>
                         </h:panelGrid>
                     </f:facet>
                 </p:dataList>
