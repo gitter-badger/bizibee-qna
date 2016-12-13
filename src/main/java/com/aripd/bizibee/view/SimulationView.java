@@ -6,6 +6,7 @@ import com.aripd.bizibee.entity.DecisionEntity;
 import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SkuEntity;
+import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.model.response.Response1Model;
 import com.aripd.bizibee.model.response.Response2Model;
 import com.aripd.bizibee.model.response.Response3Model;
@@ -25,6 +26,7 @@ import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.DecisionchoiceService;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.bizibee.service.SkuService;
+import com.aripd.bizibee.service.UserService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +42,10 @@ import org.primefaces.model.menu.MenuModel;
 public class SimulationView implements Serializable {
 
     private MenuModel menuModel;
+
+    @Inject
+    private UserService userService;
+    private UserEntity user;
 
     @Inject
     private ResponseService responseService;
@@ -76,13 +82,14 @@ public class SimulationView implements Serializable {
 
     @PostConstruct
     public void init() {
+        user = userService.getCurrentUser();
+
         decisions = decisionService.findAll();
         Collections.sort(decisions, new ComparisonDecisionSortOrderAsc());
 
         for (DecisionEntity decision : decisions) {
             menuModel.addElement(new DefaultMenuItem(decision.getName()));
         }
-
     }
 
     public void onLoad() {
@@ -115,7 +122,7 @@ public class SimulationView implements Serializable {
             }
         }
 
-        ResponseEntity response = responseService.findOneByDecision(selectedRecord);
+        ResponseEntity response = responseService.findOneByUserAndDecision(user, selectedRecord);
         if (response == null) {
             // cevaplanmamış
             disabled = false;
@@ -252,28 +259,28 @@ public class SimulationView implements Serializable {
                     System.out.println("Decisionchoice: " + model1.getDecisionchoice().getName());
                 }
                 // TODO prevent updating...
-                responseService.updateOrCreate(selectedRecord, model1.toString());
+                responseService.updateOrCreate(user, selectedRecord, model1.toString());
                 break;
             case MULTIPLE_CHOICE:
                 System.out.println("model2: " + model2);
                 model2.getDecisionchoices().forEach(c -> {
                     System.out.println("Decisionchoice: " + c.getName());
                 });
-                responseService.updateOrCreate(selectedRecord, model2.toString());
+                responseService.updateOrCreate(user, selectedRecord, model2.toString());
                 break;
             case SINGLE_SKU_LISTING:
                 System.out.println("model3: " + model3);
                 if (model3 != null) {
                     System.out.println("Sku: " + model3.getSku().getName());
                 }
-                responseService.updateOrCreate(selectedRecord, model3.toString());
+                responseService.updateOrCreate(user, selectedRecord, model3.toString());
                 break;
             case MULTIPLE_SKU_LISTING:
                 System.out.println("model4: " + model4);
                 model4.getSkus().forEach(c -> {
                     System.out.println("Sku: " + c.getName());
                 });
-                responseService.updateOrCreate(selectedRecord, model4.toString());
+                responseService.updateOrCreate(user, selectedRecord, model4.toString());
                 break;
             case RANGE_SKU_LISTING:
                 System.out.println("model5: " + model5);
@@ -283,7 +290,7 @@ public class SimulationView implements Serializable {
                         System.out.println("Value: " + c.getValue());
                     }
                 });
-                responseService.updateOrCreate(selectedRecord, model5.toString());
+                responseService.updateOrCreate(user, selectedRecord, model5.toString());
                 break;
             case SINGLE_CHOICE_SKU_LISTING:
                 System.out.println("model6: " + model6);
@@ -293,7 +300,7 @@ public class SimulationView implements Serializable {
                         System.out.println("Decisionchoice: " + c.getDecisionchoice().getName());
                     }
                 });
-                responseService.updateOrCreate(selectedRecord, model6.toString());
+                responseService.updateOrCreate(user, selectedRecord, model6.toString());
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
                 System.out.println("model7: " + model7);
@@ -303,7 +310,7 @@ public class SimulationView implements Serializable {
                         System.out.println("Decisionchoice: " + decisionchoice.getName());
                     }
                 });
-                responseService.updateOrCreate(selectedRecord, model7.toString());
+                responseService.updateOrCreate(user, selectedRecord, model7.toString());
                 break;
         }
 
@@ -413,6 +420,14 @@ public class SimulationView implements Serializable {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
 }

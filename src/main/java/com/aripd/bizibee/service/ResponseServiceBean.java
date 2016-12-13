@@ -38,14 +38,15 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
     }
 
     @Override
-    public ResponseEntity findOneByDecision(DecisionEntity decision) {
+    public ResponseEntity findOneByUserAndDecision(UserEntity user, DecisionEntity decision) {
         try {
             CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
             CriteriaQuery<ResponseEntity> cq = cb.createQuery(ResponseEntity.class);
             Root<ResponseEntity> root = cq.from(ResponseEntity.class);
 
-            Predicate predicate = cb.equal(root.get(ResponseEntity_.decision), decision);
-            cq.where(predicate);
+            Predicate predicate1 = cb.equal(root.get(ResponseEntity_.user), user);
+            Predicate predicate2 = cb.equal(root.get(ResponseEntity_.decision), decision);
+            cq.where(cb.and(predicate1, predicate2));
 
             return getEntityManager().createQuery(cq).getSingleResult();
         } catch (NoResultException ex) {
@@ -54,13 +55,13 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
     }
 
     @Override
-    public void updateOrCreate(DecisionEntity decision, String outcome) {
-        ResponseEntity entity = this.findOneByDecision(decision);
+    public void updateOrCreate(UserEntity user, DecisionEntity decision, String outcome) {
+        ResponseEntity entity = this.findOneByUserAndDecision(user, decision);
         if (entity != null) {
             entity.setOutcome(outcome);
             this.update(entity);
         } else {
-            this.create(new ResponseEntity(decision, outcome));
+            this.create(new ResponseEntity(user, decision, outcome));
         }
     }
 

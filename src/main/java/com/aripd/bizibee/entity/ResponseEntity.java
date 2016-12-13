@@ -9,15 +9,10 @@ import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
 import org.eclipse.persistence.annotations.TenantDiscriminatorColumn;
-import org.eclipse.persistence.annotations.TenantDiscriminatorColumns;
 
 @Entity
 @Multitenant(value = MultitenantType.SINGLE_TABLE)
-@TenantDiscriminatorColumns({
-    @TenantDiscriminatorColumn(name = "SIMULATION_ID", contextProperty = "eclipselink.tenant-id")
-    ,
-    @TenantDiscriminatorColumn(name = "USER_ID", contextProperty = "eclipselink.tenant-user-id")
-})
+@TenantDiscriminatorColumn(name = "SIMULATION_ID", contextProperty = "eclipselink.tenant-id")
 @Cacheable(false)
 public class ResponseEntity extends AbstractEntity {
 
@@ -25,8 +20,9 @@ public class ResponseEntity extends AbstractEntity {
     @JoinColumn(name = "SIMULATION_ID", insertable = false, updatable = false)
     private SimulationEntity simulation;
 
+    @NotNull
+    @JoinColumn(nullable = false)
     @ManyToOne
-    @JoinColumn(name = "USER_ID", insertable = false, updatable = false)
     private UserEntity user;
 
     @NotNull
@@ -40,7 +36,8 @@ public class ResponseEntity extends AbstractEntity {
     public ResponseEntity() {
     }
 
-    public ResponseEntity(DecisionEntity decision, String outcome) {
+    public ResponseEntity(UserEntity user, DecisionEntity decision, String outcome) {
+        this.user = user;
         this.decision = decision;
         this.outcome = outcome;
     }
