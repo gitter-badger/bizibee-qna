@@ -52,6 +52,9 @@
                             <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}" rendered="#{empty request.userPrincipal}"/></li>
 
                             <li><h:link value="#{i18n['Dashboard']}" outcome="/login" rendered="#{not empty request.userPrincipal}"/></li>
+                            <li><h:link value="#{i18n['Profile']}" outcome="/administrator/profile" rendered="#{request.isUserInRole('Administrator')}"/></li>
+                            <li><h:link value="#{i18n['Profile']}" outcome="/ruler/profile" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><h:link value="#{i18n['Profile']}" outcome="/player/profile" rendered="#{request.isUserInRole('Player')}"/></li>
                             <li>
                                 <h:form>
                                     <h:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
