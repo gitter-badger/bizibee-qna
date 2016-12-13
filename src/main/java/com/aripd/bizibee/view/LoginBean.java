@@ -2,6 +2,7 @@ package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.service.UserService;
 import com.aripd.bizibee.entity.UserEntity;
+import com.aripd.bizibee.entity.UserGroup;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.RequestUtil;
 import com.aripd.util.helper.CookieHelper;
@@ -51,12 +52,22 @@ public class LoginBean implements Serializable {
         Date now = new Date();
         if (user == null) {
             messageUtil.addGlobalErrorFlashMessage("User is not exist");
-        } else if (now.before(user.getSimulation().getDateStart())) {
-            messageUtil.addGlobalErrorFlashMessage("Simulation is not started yet");
-        } else if (now.after(user.getSimulation().getDateEnd())) {
-            messageUtil.addGlobalErrorFlashMessage("Simulation is expired");
-        } else if (now.after(user.getSimulation().getDateStart()) && now.before(user.getSimulation().getDateEnd())) {
-            login();
+        } else {
+            switch (user.getUserGroup()) {
+                case Administrators:
+                    login();
+                    break;
+                case Rulers:
+                case Players:
+                    if (now.before(user.getSimulation().getDateStart())) {
+                        messageUtil.addGlobalErrorFlashMessage("Simulation is not started yet");
+                    } else if (now.after(user.getSimulation().getDateEnd())) {
+                        messageUtil.addGlobalErrorFlashMessage("Simulation is expired");
+                    } else if (now.after(user.getSimulation().getDateStart()) && now.before(user.getSimulation().getDateEnd())) {
+                        login();
+                    }
+                    break;
+            }
         }
     }
 
