@@ -43,8 +43,11 @@ public class ReportView implements Serializable {
 
     double sales = 0;
     double budget = 0;
+    double budgetChange = 0;
     double gm = 0;
+    double gmChange = 0;
     double ms = 0;
+    double msChange = 0;
     double usg = 0;
     double usgChange = 0;
 
@@ -62,8 +65,11 @@ public class ReportView implements Serializable {
 
         sales = simulation.getSalesStart();
         budget = simulation.getBudgetStart();
+        budgetChange = 0;
         gm = simulation.getGmStart();
+        gmChange = 0;
         ms = simulation.getMsStart();
+        msChange = 0;
         usg = 0;
         usgChange = 0;
     }
@@ -84,6 +90,9 @@ public class ReportView implements Serializable {
 
         int value;
 
+        double budgetLocal = 0;
+        double gmLocal = 0;
+        double msLocal = 0;
         double usgLocal = 0;
 
         switch (decision.getDecisionType()) {
@@ -94,11 +103,17 @@ public class ReportView implements Serializable {
                 decisionchoice = decisionchoiceService.find(decisionchoiceId);
                 score += decisionchoice.getGm();
                 budget += decisionchoice.getBudget();
+                budgetLocal = decisionchoice.getBudget();
                 gm += decisionchoice.getGm();
+                gmLocal = decisionchoice.getGm();
                 ms += decisionchoice.getMs();
+                msLocal = decisionchoice.getMs();
                 usg += decisionchoice.getUsg();
                 usgLocal = decisionchoice.getUsg();
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -112,12 +127,18 @@ public class ReportView implements Serializable {
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     score += decisionchoice.getGm();
                     budget += decisionchoice.getBudget();
+                    budgetLocal += decisionchoice.getBudget();
                     gm += decisionchoice.getGm();
+                    gmLocal += decisionchoice.getGm();
                     ms += decisionchoice.getMs();
+                    msLocal += decisionchoice.getMs();
                     usg += decisionchoice.getUsg();
                     usgLocal += decisionchoice.getUsg();
                 }
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -128,11 +149,17 @@ public class ReportView implements Serializable {
                 sku = skuService.find(skuId);
                 score += sku.getGm();
                 budget += sku.getBudget();
+                budgetLocal = sku.getBudget();
                 gm += sku.getGm();
+                gmLocal = sku.getGm();
                 ms += sku.getMs();
+                msLocal = sku.getMs();
                 usg += sku.getUsg();
                 usgLocal = sku.getUsg();
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -146,12 +173,18 @@ public class ReportView implements Serializable {
                     sku = skuService.find(skuId);
                     score += sku.getGm();
                     budget += sku.getBudget();
+                    budgetLocal += sku.getBudget();
                     gm += sku.getGm();
+                    gmLocal += sku.getGm();
                     ms += sku.getMs();
+                    msLocal += sku.getMs();
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
                 }
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -164,14 +197,20 @@ public class ReportView implements Serializable {
                     sku = skuService.find(skuId);
                     score += sku.getGm();
                     budget += sku.getBudget();
+                    budgetLocal += sku.getBudget();
                     gm += sku.getGm();
+                    gmLocal += sku.getGm();
                     ms += sku.getMs();
+                    msLocal += sku.getMs();
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
                     value = jsonObject2.getJsonNumber("value").intValue();
                 }
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -184,8 +223,11 @@ public class ReportView implements Serializable {
                     sku = skuService.find(skuId);
                     score += sku.getGm();
                     budget += sku.getBudget();
+                    budgetLocal += sku.getBudget();
                     gm += sku.getGm();
+                    gmLocal += sku.getGm();
                     ms += sku.getMs();
+                    msLocal += sku.getMs();
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
@@ -193,12 +235,18 @@ public class ReportView implements Serializable {
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     score += decisionchoice.getGm();
                     budget += decisionchoice.getBudget();
+                    budgetLocal += decisionchoice.getBudget();
                     gm += decisionchoice.getGm();
+                    gmLocal += decisionchoice.getGm();
                     ms += decisionchoice.getMs();
+                    msLocal += decisionchoice.getMs();
                     usg += decisionchoice.getUsg();
                     usgLocal += decisionchoice.getUsg();
                 }
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -211,8 +259,11 @@ public class ReportView implements Serializable {
                     sku = skuService.find(skuId);
                     score += sku.getGm();
                     budget += sku.getBudget();
+                    budgetLocal += sku.getBudget();
                     gm += sku.getGm();
+                    gmLocal += sku.getGm();
                     ms += sku.getMs();
+                    msLocal += sku.getMs();
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
@@ -223,13 +274,19 @@ public class ReportView implements Serializable {
                         decisionchoice = decisionchoiceService.find(decisionchoiceId);
                         score += decisionchoice.getGm();
                         budget += decisionchoice.getBudget();
+                        budgetLocal += decisionchoice.getBudget();
                         gm += decisionchoice.getGm();
+                        gmLocal += decisionchoice.getGm();
                         ms += decisionchoice.getMs();
+                        msLocal += decisionchoice.getMs();
                         usg += decisionchoice.getUsg();
                         usgLocal += decisionchoice.getUsg();
                     }
                 }
 
+                budgetChange = budgetLocal;
+                gmChange = gmLocal;
+                msChange = msLocal;
                 usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
@@ -305,12 +362,36 @@ public class ReportView implements Serializable {
         this.usg = usg;
     }
 
+    public double getGmChange() {
+        return gmChange;
+    }
+
+    public void setGmChange(double gmChange) {
+        this.gmChange = gmChange;
+    }
+
+    public double getMsChange() {
+        return msChange;
+    }
+
+    public void setMsChange(double msChange) {
+        this.msChange = msChange;
+    }
+
     public double getUsgChange() {
         return usgChange;
     }
 
     public void setUsgChange(double usgChange) {
         this.usgChange = usgChange;
+    }
+
+    public double getBudgetChange() {
+        return budgetChange;
+    }
+
+    public void setBudgetChange(double budgetChange) {
+        this.budgetChange = budgetChange;
     }
 
 }

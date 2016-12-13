@@ -76,14 +76,10 @@
                             <div class="ui-g-12 ui-md-3">
                                 <div class="card clearfix summary">
                                     <span class="title" title="">Revenue</span>
-                                    <span class="detail">
-                                        <h:outputText value="#{reportView.sales}">
-                                            <f:convertNumber type="number" />
-                                        </h:outputText>
-                                    </span>
+                                    <span class="detail"></span>
                                     <span class="count revenue">
                                         <h:outputText value="#{reportView.sales}">
-                                            <f:convertNumber type="number" />
+                                            <f:convertNumber type="number" maxFractionDigits="0" />
                                         </h:outputText>
                                     </span>
                                 </div>
@@ -97,7 +93,7 @@
                                         </h:outputText>
                                     </span>
                                     <span class="count budget">
-                                        <h:outputText value="#{reportView.budget}">
+                                        <h:outputText value="#{reportView.budgetChange}">
                                             <f:convertNumber type="number" />
                                         </h:outputText>
                                     </span>
@@ -112,7 +108,7 @@
                                         </h:outputText>
                                     </span>
                                     <span class="count grossmargin">
-                                        <h:outputText value="#{reportView.gm}">
+                                        <h:outputText value="#{reportView.gmChange}">
                                             <f:convertNumber type="percent" />
                                         </h:outputText>
                                     </span>
@@ -127,7 +123,7 @@
                                         </h:outputText>
                                     </span>
                                     <span class="count marketshare">
-                                        <h:outputText value="#{reportView.ms}">
+                                        <h:outputText value="#{reportView.msChange}">
                                             <f:convertNumber type="percent" />
                                         </h:outputText>
                                     </span>
