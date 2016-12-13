@@ -57,13 +57,13 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{decisionView.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{decisionView.selectedRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
                     <p:inputText id="sortOrder" value="#{decisionView.selectedRecord.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}"/>
+                    <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}"/>
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
-                    <p:selectOneMenu id="decisionType" value="#{decisionView.selectedRecord.decisionType}" label="#{i18n['Decision Type']}" required="true">
+                    <p:selectOneMenu id="decisionType" value="#{decisionView.selectedRecord.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="skus" value="#{i18n['SKUs']}"/>
@@ -74,17 +74,17 @@
                         <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
-                    <p:selectBooleanButton id="required" value="#{decisionView.selectedRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    <p:selectBooleanButton id="required" value="#{decisionView.selectedRecord.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                     <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
-                    <p:inputText id="budget" value="#{decisionView.selectedRecord.budget}"/>
+                    <p:inputText id="budget" value="#{decisionView.selectedRecord.budget}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}"/>
                     <p:outputLabel for="gm" value="#{i18n['GM']}"/>
-                    <p:inputText id="gm" value="#{decisionView.selectedRecord.gm}"/>
+                    <p:inputText id="gm" value="#{decisionView.selectedRecord.gm}" label="#{i18n['GM']}" placeholder="#{i18n['GM']}"/>
                     <p:outputLabel for="ms" value="#{i18n['MS']}"/>
-                    <p:inputText id="ms" value="#{decisionView.selectedRecord.ms}"/>
+                    <p:inputText id="ms" value="#{decisionView.selectedRecord.ms}" label="#{i18n['MS']}" placeholder="#{i18n['MS']}"/>
                     <p:outputLabel for="usg" value="#{i18n['USG']}"/>
-                    <p:inputText id="usg" value="#{decisionView.selectedRecord.usg}"/>
+                    <p:inputText id="usg" value="#{decisionView.selectedRecord.usg}" label="#{i18n['USG']}" placeholder="#{i18n['USG']}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}" ajax="false"/>
@@ -99,13 +99,13 @@
             <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{decisionView.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{decisionView.newRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
                     <p:inputText id="sortOrder" value="#{decisionView.newRecord.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:inputTextarea id="description" value="#{decisionView.newRecord.description}"/>
+                    <p:inputTextarea id="description" value="#{decisionView.newRecord.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}"/>
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
-                    <p:selectOneMenu id="decisionType" value="#{decisionView.newRecord.decisionType}" label="#{i18n['Decision Type']}" required="true">
+                    <p:selectOneMenu id="decisionType" value="#{decisionView.newRecord.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="skus" value="#{i18n['SKUs']}"/>
@@ -116,17 +116,17 @@
                         <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
                     </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
-                    <p:selectBooleanButton id="required" value="#{decisionView.newRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    <p:selectBooleanButton id="required" value="#{decisionView.newRecord.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                     <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
-                    <p:inputText id="budget" value="#{decisionView.newRecord.budget}"/>
+                    <p:inputText id="budget" value="#{decisionView.newRecord.budget}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}"/>
                     <p:outputLabel for="gm" value="#{i18n['GM']}"/>
-                    <p:inputText id="gm" value="#{decisionView.newRecord.gm}"/>
+                    <p:inputText id="gm" value="#{decisionView.newRecord.gm}" label="#{i18n['GM']}" placeholder="#{i18n['GM']}"/>
                     <p:outputLabel for="ms" value="#{i18n['MS']}"/>
-                    <p:inputText id="ms" value="#{decisionView.newRecord.ms}"/>
+                    <p:inputText id="ms" value="#{decisionView.newRecord.ms}" label="#{i18n['MS']}" placeholder="#{i18n['MS']}"/>
                     <p:outputLabel for="usg" value="#{i18n['USG']}"/>
-                    <p:inputText id="usg" value="#{decisionView.newRecord.usg}"/>
+                    <p:inputText id="usg" value="#{decisionView.newRecord.usg}" label="#{i18n['USG']}" placeholder="#{i18n['USG']}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}" ajax="false"/>
