@@ -41,8 +41,10 @@ public class ReportView implements Serializable {
     @Inject
     private SkuService skuService;
 
+    double budget = 0;
     double gm = 0;
     double ms = 0;
+    double usg = 0;
 
     @Inject
     MessageUtil messageUtil;
@@ -55,6 +57,8 @@ public class ReportView implements Serializable {
     public void init() {
         user = userService.getCurrentUser();
         simulation = user.getSimulation();
+
+        budget = simulation.getBudgetStart();
         gm = simulation.getGmStart();
         ms = simulation.getMsStart();
     }
@@ -82,8 +86,10 @@ public class ReportView implements Serializable {
                 decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
                 decisionchoice = decisionchoiceService.find(decisionchoiceId);
                 score += decisionchoice.getGm();
+                budget += decisionchoice.getBudget();
                 gm += decisionchoice.getGm();
                 ms += decisionchoice.getMs();
+                usg += decisionchoice.getUsg();
                 break;
             case MULTIPLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
@@ -94,8 +100,10 @@ public class ReportView implements Serializable {
                     decisionchoiceId = jsonObject2.getJsonNumber("id").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     score += decisionchoice.getGm();
+                    budget += decisionchoice.getBudget();
                     gm += decisionchoice.getGm();
                     ms += decisionchoice.getMs();
+                    usg += decisionchoice.getUsg();
                 }
                 break;
             case SINGLE_SKU_LISTING:
@@ -104,8 +112,10 @@ public class ReportView implements Serializable {
                 skuId = jsonObject1.getJsonNumber("id").longValue();
                 sku = skuService.find(skuId);
                 score += sku.getGm();
+                budget += sku.getBudget();
                 gm += sku.getGm();
                 ms += sku.getMs();
+                usg += sku.getUsg();
                 break;
             case MULTIPLE_SKU_LISTING:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
@@ -116,8 +126,10 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("id").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    budget += sku.getBudget();
                     gm += sku.getGm();
                     ms += sku.getMs();
+                    usg += sku.getUsg();
                 }
                 break;
             case RANGE_SKU_LISTING:
@@ -128,8 +140,10 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    budget += sku.getBudget();
                     gm += sku.getGm();
                     ms += sku.getMs();
+                    usg += sku.getUsg();
 
                     value = jsonObject2.getJsonNumber("value").intValue();
                 }
@@ -142,14 +156,18 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    budget += sku.getBudget();
                     gm += sku.getGm();
                     ms += sku.getMs();
+                    usg += sku.getUsg();
 
                     decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     score += decisionchoice.getGm();
+                    budget += decisionchoice.getBudget();
                     gm += decisionchoice.getGm();
                     ms += decisionchoice.getMs();
+                    usg += decisionchoice.getUsg();
                 }
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
@@ -160,8 +178,10 @@ public class ReportView implements Serializable {
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
                     score += sku.getGm();
+                    budget += sku.getBudget();
                     gm += sku.getGm();
                     ms += sku.getMs();
+                    usg += sku.getUsg();
 
                     JsonArray jsonArray2 = jsonObject2.getJsonArray("decisionchoices");
                     for (JsonValue jsonValue2 : jsonArray2) {
@@ -169,8 +189,10 @@ public class ReportView implements Serializable {
                         decisionchoiceId = jsonObject3.getJsonNumber("decisionchoice").longValue();
                         decisionchoice = decisionchoiceService.find(decisionchoiceId);
                         score += decisionchoice.getGm();
+                        budget += decisionchoice.getBudget();
                         gm += decisionchoice.getGm();
                         ms += decisionchoice.getMs();
+                        usg += decisionchoice.getUsg();
                     }
                 }
                 break;
@@ -206,6 +228,14 @@ public class ReportView implements Serializable {
         this.simulation = simulation;
     }
 
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
+
     public double getGm() {
         return gm;
     }
@@ -220,6 +250,14 @@ public class ReportView implements Serializable {
 
     public void setMs(double ms) {
         this.ms = ms;
+    }
+
+    public double getUsg() {
+        return usg;
+    }
+
+    public void setUsg(double usg) {
+        this.usg = usg;
     }
 
 }

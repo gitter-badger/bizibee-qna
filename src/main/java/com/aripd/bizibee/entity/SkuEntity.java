@@ -32,6 +32,7 @@ public class SkuEntity extends AbstractEntity {
     @Lob
     private byte[] bytes;
 
+    private double budget;
     private double gm;
     private double ms;
     private double usg;
@@ -79,6 +80,14 @@ public class SkuEntity extends AbstractEntity {
 
     public void setUsg(double usg) {
         this.usg = usg;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
     public double getGm() {

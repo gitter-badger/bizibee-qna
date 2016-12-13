@@ -48,7 +48,6 @@ public class DecisionEntity extends AbstractEntity {
     private boolean required;
 
     private double budget;
-
     private double gm;
     private double ms;
     private double usg;
