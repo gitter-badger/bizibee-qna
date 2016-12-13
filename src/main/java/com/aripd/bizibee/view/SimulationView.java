@@ -28,7 +28,6 @@ import com.aripd.bizibee.service.SkuService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
@@ -97,27 +96,20 @@ public class SimulationView implements Serializable {
         for (SkuEntity sku : selectedRecord.getSkus()) {
             switch (selectedRecord.getDecisionType()) {
                 case SINGLE_CHOICE:
-                    model1 = new Response1Model();
                     break;
                 case MULTIPLE_CHOICE:
-                    model2 = new Response2Model();
                     break;
                 case SINGLE_SKU_LISTING:
-                    model3 = new Response3Model();
                     break;
                 case MULTIPLE_SKU_LISTING:
-                    model4 = new Response4Model();
                     break;
                 case RANGE_SKU_LISTING:
-                    model5.clear();
                     model5.add(new Response5Model(sku));
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:
-                    model6.clear();
                     model6.add(new Response6Model(sku));
                     break;
                 case MULTIPLE_CHOICE_SKU_LISTING:
-                    model7.clear();
                     model7.add(new Response7Model(sku));
                     break;
             }
