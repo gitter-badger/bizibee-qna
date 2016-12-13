@@ -68,9 +68,7 @@
                     <h2><h:outputText value="#{response.decision.name}"/></h2>
                     <f:facet name="description">
                         <h:panelGrid>
-                            <h:outputText value="Score: #{reportView.calculateScore(response)}"/>
-                            <h:outputText value="#{response.outcome}"/>
-                            <h:outputText value="USG: #{reportView.usg}"/>
+                            <h:outputText value="#{reportView.calculateScore(response)}" />
                         </h:panelGrid>
                         <div class="ui-g ui-fluid dashboard">
                             <div class="ui-g-12 ui-md-3">

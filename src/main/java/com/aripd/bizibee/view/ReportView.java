@@ -74,13 +74,12 @@ public class ReportView implements Serializable {
         usgChange = 0;
     }
 
-    public double calculateScore(ResponseEntity response) {
+    public String calculateScore(ResponseEntity response) {
         String outcome = response.getOutcome();
         DecisionEntity decision = response.getDecision();
 
         JsonObject jsonObject1;
         JsonArray jsonArray1;
-        double score = 0;
 
         Long skuId;
         SkuEntity sku;
@@ -101,7 +100,6 @@ public class ReportView implements Serializable {
 
                 decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
                 decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                score += decisionchoice.getGm();
                 budget += decisionchoice.getBudget();
                 budgetLocal = decisionchoice.getBudget();
                 gm += decisionchoice.getGm();
@@ -125,7 +123,6 @@ public class ReportView implements Serializable {
 
                     decisionchoiceId = jsonObject2.getJsonNumber("id").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                    score += decisionchoice.getGm();
                     budget += decisionchoice.getBudget();
                     budgetLocal += decisionchoice.getBudget();
                     gm += decisionchoice.getGm();
@@ -147,7 +144,6 @@ public class ReportView implements Serializable {
 
                 skuId = jsonObject1.getJsonNumber("id").longValue();
                 sku = skuService.find(skuId);
-                score += sku.getGm();
                 budget += sku.getBudget();
                 budgetLocal = sku.getBudget();
                 gm += sku.getGm();
@@ -171,7 +167,6 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("id").longValue();
                     sku = skuService.find(skuId);
-                    score += sku.getGm();
                     budget += sku.getBudget();
                     budgetLocal += sku.getBudget();
                     gm += sku.getGm();
@@ -195,7 +190,6 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
-                    score += sku.getGm();
                     budget += sku.getBudget();
                     budgetLocal += sku.getBudget();
                     gm += sku.getGm();
@@ -221,7 +215,6 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
-                    score += sku.getGm();
                     budget += sku.getBudget();
                     budgetLocal += sku.getBudget();
                     gm += sku.getGm();
@@ -233,7 +226,6 @@ public class ReportView implements Serializable {
 
                     decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                    score += decisionchoice.getGm();
                     budget += decisionchoice.getBudget();
                     budgetLocal += decisionchoice.getBudget();
                     gm += decisionchoice.getGm();
@@ -257,7 +249,6 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
-                    score += sku.getGm();
                     budget += sku.getBudget();
                     budgetLocal += sku.getBudget();
                     gm += sku.getGm();
@@ -272,7 +263,6 @@ public class ReportView implements Serializable {
                         JsonObject jsonObject3 = ResponseConverter.jsonObjectFromString(jsonValue2.toString());
                         decisionchoiceId = jsonObject3.getJsonNumber("decisionchoice").longValue();
                         decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                        score += decisionchoice.getGm();
                         budget += decisionchoice.getBudget();
                         budgetLocal += decisionchoice.getBudget();
                         gm += decisionchoice.getGm();
@@ -291,7 +281,7 @@ public class ReportView implements Serializable {
                 sales += sales * usgChange;
                 break;
         }
-        return score;
+        return outcome;
     }
 
     public List<ResponseEntity> getResponses() {
