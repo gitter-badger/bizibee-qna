@@ -44,7 +44,7 @@
         </div>
     </ui:define>
     <ui:define name="dialog">
-        <h:form id="editForm">
+        <h:form id="editForm" enctype="multipart/form-data">
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
@@ -68,9 +68,11 @@
                     <p:selectBooleanButton id="required" value="#{decisionView.selectedRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                     <p:outputLabel for="gm" value="#{i18n['GM']}"/>
                     <p:inputText id="gm" value="#{decisionView.selectedRecord.gm}"/>
+                    <p:outputLabel for="image" value="#{i18n['Image']}"/>
+                    <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}" ajax="false"/>
                     <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doDeleteRecord}">
                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                     </p:commandButton>
@@ -78,7 +80,7 @@
                 </f:facet>
             </p:dialog>
         </h:form>
-        <h:form id="newForm">
+        <h:form id="newForm" enctype="multipart/form-data">
             <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
@@ -102,9 +104,11 @@
                     <p:selectBooleanButton id="required" value="#{decisionView.newRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                     <p:outputLabel for="gm" value="#{i18n['GM']}"/>
                     <p:inputText id="gm" value="#{decisionView.newRecord.gm}"/>
+                    <p:outputLabel for="image" value="#{i18n['Image']}"/>
+                    <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}" ajax="false"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>

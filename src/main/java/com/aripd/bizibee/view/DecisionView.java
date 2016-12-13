@@ -16,6 +16,7 @@ import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.SkuService;
 import java.util.Arrays;
+import org.primefaces.model.UploadedFile;
 
 @Named
 @ViewScoped
@@ -27,6 +28,8 @@ public class DecisionView implements Serializable {
     private DecisionEntity selectedRecord;
     private List<DecisionEntity> selectedRecords;
     private LazyDataModel<DecisionEntity> lazyModel;
+
+    private UploadedFile file;
 
     @Inject
     private SkuService skuService;
@@ -53,11 +56,17 @@ public class DecisionView implements Serializable {
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
+        if (file != null) {
+            newRecord.setBytes(file.getContents());
+        }
         decisionService.create(newRecord);
         messageUtil.addGlobalInfoFlashMessage("Created");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
+        if (file != null) {
+            selectedRecord.setBytes(file.getContents());
+        }
         decisionService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
@@ -98,6 +107,14 @@ public class DecisionView implements Serializable {
 
     public LazyDataModel<DecisionEntity> getLazyModel() {
         return lazyModel;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

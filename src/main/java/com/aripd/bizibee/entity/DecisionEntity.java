@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -40,6 +41,9 @@ public class DecisionEntity extends AbstractEntity {
     private int sortOrder;
 
     private String description;
+
+    @Lob
+    private byte[] bytes;
 
     private boolean required;
 
@@ -121,6 +125,14 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 
     public boolean isRequired() {

@@ -53,7 +53,7 @@ VALUES
 	(4,2,FLOOR(RAND()*(36000-1000+1))+1000,'RANGE_SKU_LISTING','Description about Price Positioning',RAND(),RAND(),'Price Positioning',1,4,RAND()),
 	(5,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_CHOICE','Description about E-Commerce Investment',RAND(),RAND(),'E-Commerce Investment',0,5,RAND()),
 	(6,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',RAND(),RAND(),'Display',0,6,RAND()),
-	(7,2,FLOOR(RAND()*(36000-1000+1))+1000,'SINGLE_CHOICE','Description about Assortment',RAND(),RAND(),'Assortment',0,7,RAND()),
+	(7,2,FLOOR(RAND()*(36000-1000+1))+1000,'RANGE_SKU_LISTING','Description about Planogram',RAND(),RAND(),'Planogram',0,7,RAND()),
 	(8,2,FLOOR(RAND()*(36000-1000+1))+1000,'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',RAND(),RAND(),'Promotion',0,8,RAND()),
 	(9,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_CHOICE','Description about Team Management',RAND(),RAND(),'Team Management',0,9,RAND());
 
@@ -68,20 +68,15 @@ INSERT INTO `DECISIONCHOICEENTITY` VALUES
 (7,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Gondola',RAND(),6),
 (8,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Checkout stand',RAND(),6),
 
-(9,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No assortment',RAND(),7),
-(10,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Assortment1',RAND(),7),
-(11,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Assortment2',RAND(),7),
-(12,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Assortment3',RAND(),7),
+(9,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No promotion',RAND(),8),
+(10,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Gift Promotion (off pack)',RAND(),8),
+(11,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Copack Promotion',RAND(),8),
+(12,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Price Promotion',RAND(),8),
 
-(13,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No promotion',RAND(),8),
-(14,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Gift Promotion (off pack)',RAND(),8),
-(15,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Copack Promotion',RAND(),8),
-(16,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Price Promotion',RAND(),8),
-
-(17,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No event nor improvement',RAND(),9),
-(18,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Motivational event',RAND(),9),
-(19,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Training',RAND(),9),
-(20,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Providing tablets integrated to inventory system',RAND(),9);
+(13,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No event nor improvement',RAND(),9),
+(14,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Motivational event',RAND(),9),
+(15,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Training',RAND(),9),
+(16,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Providing tablets integrated to inventory system',RAND(),9);
 
 INSERT INTO `decisions_skus` (`SKU_ID`, `DECISION_ID`)
 VALUES
@@ -106,6 +101,29 @@ VALUES
 	(14,6),
 	(17,6),
 	(21,6),
+	(1,7),
+	(2,7),
+	(3,7),
+	(4,7),
+	(5,7),
+	(6,7),
+	(7,7),
+	(8,7),
+	(9,7),
+	(10,7),
+	(11,7),
+	(12,7),
+	(13,7),
+	(14,7),
+	(15,7),
+	(16,7),
+	(17,7),
+	(18,7),
+	(19,7),
+	(20,7),
+	(21,7),
+	(22,7),
+	(23,7),
 	(5,8),
 	(7,8),
 	(10,8),
@@ -113,16 +131,3 @@ VALUES
 	(17,8),
 	(21,8);
 
-/*
-INSERT INTO `RESPONSEENTITY` (`ID`, `USER_ID`, `SIMULATION_ID`, `OUTCOME`, `DECISION_ID`)
-VALUES
-	(1,3,2,'{\"id\":14,\"name\":\"600 ml bakım şampuanı\",\"gm\":0.0}',1),
-	(2,3,2,'{\"id\":5,\"name\":\"350 ml güzellik\",\"gm\":0.0}',2),
-	(3,3,2,'{\"skus\":[{\"id\":22,\"name\":\"TG\",\"gm\":0.0},{\"id\":23,\"name\":\"DH\",\"gm\":0.0}]}',3),
-	(4,3,2,'[{\"sku\":17,\"value\":75}, {\"sku\":19,\"value\":76}, {\"sku\":20,\"value\":77}, {\"sku\":21,\"value\":78}]',4),
-	(5,3,2,'{\"decisionchoices\":[{\"id\":2,\"name\":\"Hiring someone with technical knowledge to deal e-commerce area\",\"gm\":0.008284364257},{\"id\":3,\"name\":\"Creating campaign visuals via agency for customers webpage\",\"gm\":0.002952620555},{\"id\":4,\"name\":\"Planning activities special to e-commerce, where prices are slightly lower than normal ones\",\"gm\":0.009283852454}]}',5),
-	(6,3,2,'[{\"sku\":9,\"decisionchoices\":[{\"decisionchoice\":5}]}, {\"sku\":13,\"decisionchoices\":[{\"decisionchoice\":6},{\"decisionchoice\":7}]}, {\"sku\":14,\"decisionchoices\":[{\"decisionchoice\":7},{\"decisionchoice\":8}]}, {\"sku\":17,\"decisionchoices\":[{\"decisionchoice\":6},{\"decisionchoice\":7},{\"decisionchoice\":8}]}, {\"sku\":21,\"decisionchoices\":[{\"decisionchoice\":6}]}]',6),
-	(7,3,2,'{\"id\":12,\"name\":\"Assortment3\",\"gm\":0.0}',7),
-	(8,3,2,'[{\"sku\":5,\"decisionchoice\":13}, {\"sku\":7,\"decisionchoice\":14}, {\"sku\":10,\"decisionchoice\":15}, {\"sku\":16,\"decisionchoice\":16}, {\"sku\":17,\"decisionchoice\":15}, {\"sku\":21,\"decisionchoice\":14}]',8),
-	(9,3,2,'{\"decisionchoices\":[{\"id\":18,\"name\":\"Motivational event\",\"gm\":0.0},{\"id\":19,\"name\":\"Training\",\"gm\":0.0},{\"id\":20,\"name\":\"Providing tablets integrated to inventory system\",\"gm\":0.0}]}',9);
-*/

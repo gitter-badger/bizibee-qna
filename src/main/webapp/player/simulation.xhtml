@@ -2,6 +2,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="head">
@@ -29,6 +30,7 @@
                 <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}"/>
 
                 <h3><h:outputText value="#{simulationView.selectedRecord.description}"/></h3>
+                <o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" width="100%" rendered="#{not empty simulationView.selectedRecord.bytes}"/>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
                     <p:selectOneRadio value="#{simulationView.model1.decisionchoice}" 
