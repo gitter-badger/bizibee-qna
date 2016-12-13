@@ -10,6 +10,8 @@
                 <h1 class="simulation-title">#{i18n['Report']}</h1>
                 <p><h:outputText value="#{reportView.simulation.name}" /></p>
 
+                <h2><h:outputText value="#{i18n['Initial Values']}" /></h2>
+
                 <div class="ui-g ui-fluid dashboard">
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
@@ -59,94 +61,86 @@
                     </div>
                 </div>
 
-                <p:dataList var="response" value="#{reportView.responses}" 
-                            type="definition"
-                            emptyMessage="#{i18n['No records found']}">
-                    <f:facet name="header">
-                        <h:outputText value="#{i18n['Responses']}"/>
-                    </f:facet>
-                    <h2><h:outputText value="#{response.decision.name}"/></h2>
-                    <f:facet name="description">
-                        <h:panelGrid>
-                            <h:outputText value="#{reportView.calculateScore(response)}" />
-                        </h:panelGrid>
-                        <div class="ui-g ui-fluid dashboard">
-                            <div class="ui-g-12 ui-md-3">
-                                <div class="card clearfix summary">
-                                    <span class="title" title="">Revenue</span>
-                                    <span class="detail"></span>
-                                    <span class="count revenue">
-                                        <h:outputText value="#{reportView.sales}">
-                                            <f:convertNumber type="number" maxFractionDigits="0" />
-                                        </h:outputText>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="ui-g-12 ui-md-3">
-                                <div class="card clearfix summary">
-                                    <span class="title" title="">Budget</span>
-                                    <span class="detail">
-                                        <h:outputText value="#{reportView.budget}">
-                                            <f:convertNumber type="number" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="count budget">
-                                        <h:outputText value="#{reportView.budgetChange}">
-                                            <f:convertNumber type="number" />
-                                        </h:outputText>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="ui-g-12 ui-md-2">
-                                <div class="card clearfix summary">
-                                    <span class="title" title="">GM</span>
-                                    <span class="detail">
-                                        <h:outputText value="#{reportView.gm}">
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="count grossmargin">
-                                        <h:outputText value="#{reportView.gmChange}">
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="ui-g-12 ui-md-2">
-                                <div class="card clearfix summary">
-                                    <span class="title" title="">MS</span>
-                                    <span class="detail">
-                                        <h:outputText value="#{reportView.ms}">
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="count marketshare">
-                                        <h:outputText value="#{reportView.msChange}">
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="detail">
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="ui-g-12 ui-md-2">
-                                <div class="card clearfix summary">
-                                    <span class="title" title="">USG</span>
-                                    <span class="detail">
-                                        <h:outputText value="#{reportView.usg}">
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                    <span class="count underlyingsalesgrowth">
-                                        <h:outputText value="#{reportView.usgChange}">
-                                            <f:convertNumber type="percent" />
-                                        </h:outputText>
-                                    </span>
-                                </div>
+                <ui:repeat var="response" value="#{reportView.responses}">
+                    <h2><h:outputText value="#{response.decision.name}" /></h2>
+                    <h:outputText value="#{reportView.calculateScore(response)}" />
+
+                    <div class="ui-g ui-fluid dashboard">
+                        <div class="ui-g-12 ui-md-3">
+                            <div class="card clearfix summary">
+                                <span class="title" title="">Revenue</span>
+                                <span class="detail"></span>
+                                <span class="count revenue">
+                                    <h:outputText value="#{reportView.sales}">
+                                        <f:convertNumber type="number" maxFractionDigits="0" />
+                                    </h:outputText>
+                                </span>
                             </div>
                         </div>
-                    </f:facet>
-                </p:dataList>
+                        <div class="ui-g-12 ui-md-3">
+                            <div class="card clearfix summary">
+                                <span class="title" title="">Budget</span>
+                                <span class="detail">
+                                    <h:outputText value="#{reportView.budget}">
+                                        <f:convertNumber type="number" />
+                                    </h:outputText>
+                                </span>
+                                <span class="count budget">
+                                    <h:outputText value="#{reportView.budgetChange}">
+                                        <f:convertNumber type="number" />
+                                    </h:outputText>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <div class="card clearfix summary">
+                                <span class="title" title="">GM</span>
+                                <span class="detail">
+                                    <h:outputText value="#{reportView.gm}">
+                                        <f:convertNumber type="percent" />
+                                    </h:outputText>
+                                </span>
+                                <span class="count grossmargin">
+                                    <h:outputText value="#{reportView.gmChange}">
+                                        <f:convertNumber type="percent" />
+                                    </h:outputText>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <div class="card clearfix summary">
+                                <span class="title" title="">MS</span>
+                                <span class="detail">
+                                    <h:outputText value="#{reportView.ms}">
+                                        <f:convertNumber type="percent" />
+                                    </h:outputText>
+                                </span>
+                                <span class="count marketshare">
+                                    <h:outputText value="#{reportView.msChange}">
+                                        <f:convertNumber type="percent" />
+                                    </h:outputText>
+                                </span>
+                                <span class="detail">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <div class="card clearfix summary">
+                                <span class="title" title="">USG</span>
+                                <span class="detail">
+                                    <h:outputText value="#{reportView.usg}">
+                                        <f:convertNumber type="percent" />
+                                    </h:outputText>
+                                </span>
+                                <span class="count underlyingsalesgrowth">
+                                    <h:outputText value="#{reportView.usgChange}">
+                                        <f:convertNumber type="percent" />
+                                    </h:outputText>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
             </div>
         </div>
     </ui:define>
