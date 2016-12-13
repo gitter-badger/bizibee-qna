@@ -2,6 +2,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
@@ -43,6 +44,9 @@
                             <h:outputText value="#{decision.usg}"/>
                         </p:column>
                         <p:column exportable="false" width="100">
+                            <p:commandLink value="#{i18n['Show']}" update="showForm" oncomplete="PF('showDialog').show()">
+                                <f:setPropertyActionListener value="#{decision}" target="#{decisionView.selectedRecord}" />
+                            </p:commandLink>
                             <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
                                 <f:setPropertyActionListener value="#{decision}" target="#{decisionView.selectedRecord}" />
                             </p:commandLink>
@@ -53,6 +57,44 @@
         </div>
     </ui:define>
     <ui:define name="dialog">
+        <h:form id="showForm">
+            <p:dialog id="showDlg" header="#{i18n['Show']}" widgetVar="showDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="#{i18n['Name']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.name}"/>
+                    <p:outputLabel value="#{i18n['Sort Order']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.sortOrder}"/>
+                    <p:outputLabel value="#{i18n['Description']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.description}"/>
+                    <p:outputLabel value="#{i18n['Decision Type']}"/>
+                    <h:outputText value="#{i18n[decisionView.selectedRecord.decisionType]}"/>
+                    <p:outputLabel value="#{i18n['SKUs']}"/>
+                    <p:dataList var="sku" value="#{decisionView.selectedRecord.skus}">
+                        #{sku.name}
+                    </p:dataList>
+                    <p:outputLabel value="#{i18n['Required']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.required}"/>
+                    <p:outputLabel value="#{i18n['Image']}"/>
+                    <h:panelGroup>
+                        <o:graphicImage value="#{decisionView.selectedRecord.bytes}" dataURI="true" alt="#{decisionView.selectedRecord.name}" title="#{decisionView.selectedRecord.name}" rendered="#{not empty decisionView.selectedRecord.bytes}"/>
+                    </h:panelGroup>
+                    <p:outputLabel value="#{i18n['Budget']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.budget}"/>
+                    <p:outputLabel value="#{i18n['GM']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.gm}"/>
+                    <p:outputLabel value="#{i18n['MS']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.ms}"/>
+                    <p:outputLabel value="#{i18n['USG']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.usg}"/>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Edit']}" update=":editForm:editDlg" oncomplete="PF('showDialog').hide();PF('editDialog').show();" icon="ui-icon-pencil" title="#{i18n['Edit']}">
+                        <f:setPropertyActionListener value="#{decisionView.selectedRecord}" target="#{sku}"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('showDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
         <h:form id="editForm" enctype="multipart/form-data">
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
