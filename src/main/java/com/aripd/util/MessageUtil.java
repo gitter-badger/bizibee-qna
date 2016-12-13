@@ -74,15 +74,6 @@ public class MessageUtil implements Serializable {
         context.addMessage(null, new FacesMessage(severity, summary, detail));
     }
 
-    public String getMailMessage(Locale locale, String message) {
-        return getMailMessage(locale, message, null);
-    }
-
-    public String getMailMessage(Locale locale, String message, Object[] obj) {
-        ResourceBundle rb = ResourceBundle.getBundle("Mail", locale);
-        return MessageFormat.format(rb.getString(message), obj);
-    }
-
     public String getI18nResource(String message) {
         return getI18nResource(message, null);
     }
