@@ -5,7 +5,8 @@ INSERT INTO `SIMULATIONENTITY` VALUES
 INSERT INTO `USERENTITY` (`ID`,`SIMULATION_ID`,`EMAIL`,`NAME`,`PASSWORD`,`USERGROUP`,`USERNAME`) VALUES 
 (1,1,'cem@aripd.com','cem aripd','cem','Administrators','cem'),
 (2,2,'ruler@aripd.com','ruler Unilever','ruler','Rulers','ruler'),
-(3,2,'player@aripd.com','player Unilever','player','Players','player');
+(3,2,'player1@aripd.com','player1 Unilever','player1','Players','player1'),
+(4,2,'player2@aripd.com','player2 Unilever','player2','Players','player2');
 
 INSERT INTO `TEAMENTITY` VALUES 
 (1,'A Team'),
