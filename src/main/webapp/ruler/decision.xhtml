@@ -24,14 +24,23 @@
                                 <p:dataExporter type="xls" target="dataTable" fileName="export" />
                             </p:commandButton>
                         </f:facet>
-                        <p:column headerText="#{i18n['Sort Order']}" sortBy="#{decision.sortOrder}" filterBy="#{decision.sortOrder}">
+                        <p:column headerText="#{i18n['Sort Order']}" sortBy="#{decision.sortOrder}">
                             <h:outputText value="#{decision.sortOrder}"/>
                         </p:column>
                         <p:column headerText="#{i18n['Name']}" sortBy="#{decision.name}" filterBy="#{decision.name}">
                             <h:outputText value="#{decision.name}"/>
                         </p:column>
+                        <p:column headerText="#{i18n['Budget']}">
+                            <h:outputText value="#{decision.budget}"/>
+                        </p:column>
                         <p:column headerText="#{i18n['GM']}">
                             <h:outputText value="#{decision.gm}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['MS']}">
+                            <h:outputText value="#{decision.ms}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['USG']}">
+                            <h:outputText value="#{decision.usg}"/>
                         </p:column>
                         <p:column exportable="false" width="100">
                             <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">
@@ -66,10 +75,16 @@
                     </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
                     <p:selectBooleanButton id="required" value="#{decisionView.selectedRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
-                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
-                    <p:inputText id="gm" value="#{decisionView.selectedRecord.gm}"/>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
+                    <p:inputText id="budget" value="#{decisionView.selectedRecord.budget}"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.selectedRecord.gm}"/>
+                    <p:outputLabel for="ms" value="#{i18n['MS']}"/>
+                    <p:inputText id="ms" value="#{decisionView.selectedRecord.ms}"/>
+                    <p:outputLabel for="usg" value="#{i18n['USG']}"/>
+                    <p:inputText id="usg" value="#{decisionView.selectedRecord.usg}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}" ajax="false"/>
@@ -102,10 +117,16 @@
                     </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
                     <p:selectBooleanButton id="required" value="#{decisionView.newRecord.required}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
-                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
-                    <p:inputText id="gm" value="#{decisionView.newRecord.gm}"/>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
+                    <p:inputText id="budget" value="#{decisionView.newRecord.budget}"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.newRecord.gm}"/>
+                    <p:outputLabel for="ms" value="#{i18n['MS']}"/>
+                    <p:inputText id="ms" value="#{decisionView.newRecord.ms}"/>
+                    <p:outputLabel for="usg" value="#{i18n['USG']}"/>
+                    <p:inputText id="usg" value="#{decisionView.newRecord.usg}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}" ajax="false"/>
