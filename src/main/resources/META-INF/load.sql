@@ -17,34 +17,36 @@ INSERT INTO `TEAMENTITY` VALUES
 (6,'F Team');
 
 INSERT INTO `BRANDENTITY` VALUES 
-(1,2,'A Brand'),
-(2,2,'B Brand'),
-(3,2,'C Brand');
+(1,2,'A&G'),
+(2,2,'Donny Hagel'),
+(3,2,'PRO'),
+(4,2,'ASTRO'),
+(5,2,'NEURO');
 
 INSERT INTO `SKUENTITY` (`ID`,`SIMULATION_ID`,`BUDGET`,`GM`,`INDEXMAX`,`INDEXMIN`,`INDEXSTEP`,`MS`,`NAME`,`USG`,`BRAND_ID`) VALUES 
-(1,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'200 ml güzellik',RAND(),1),
-(2,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'200 ml kepek',RAND(),1),
-(3,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml bakım',RAND(),2),
-(4,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml dökülme karşıtı',RAND(),2),
-(5,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml güzellik',RAND(),1),
-(6,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml kepek',RAND(),1),
-(7,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'400 ml bakım',RAND(),3),
-(8,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'400 ml güzellik',RAND(),3),
-(9,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'500 ml bakım',RAND(),2),
-(10,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'500 ml dökülme karşıtı',RAND(),2),
-(11,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'500ml+350ml bakım+dökülme karşıtı',RAND(),2),
-(12,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml + 200ml bakım + güzellik copack',RAND(),3),
-(13,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml + 200ml güzellik + kepek copack',RAND(),1),
-(14,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml bakım şampuanı',RAND(),3),
-(15,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml güzellik şampuanı',RAND(),1),
-(16,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml güzellik şampuanı',RAND(),3),
-(17,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml kepek şampuanı',RAND(),1),
-(18,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600ml+200ml güzellik + bakım copack',RAND(),3),
-(19,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600ml+200ml kepek+güzellik copack',RAND(),1),
-(20,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'900 ml bakım şampuanı',RAND(),2),
-(21,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'900 ml dökülme karşıtı şampuanı',RAND(),2),
-(22,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'TG',RAND(),null),
-(23,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'DH',RAND(),null);
+(1,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'200 ml güzellik',RAND(),3),
+(2,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'200 ml kepek',RAND(),3),
+(3,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml bakım',RAND(),4),
+(4,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml dökülme karşıtı',RAND(),4),
+(5,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml güzellik',RAND(),3),
+(6,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'350 ml kepek',RAND(),3),
+(7,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'400 ml bakım',RAND(),5),
+(8,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'400 ml güzellik',RAND(),5),
+(9,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'500 ml bakım',RAND(),4),
+(10,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'500 ml dökülme karşıtı',RAND(),4),
+(11,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'500ml+350ml bakım+dökülme karşıtı',RAND(),4),
+(12,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml + 200ml bakım + güzellik copack',RAND(),5),
+(13,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml + 200ml güzellik + kepek copack',RAND(),3),
+(14,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml bakım şampuanı',RAND(),5),
+(15,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml güzellik şampuanı',RAND(),3),
+(16,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml güzellik şampuanı',RAND(),5),
+(17,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600 ml kepek şampuanı',RAND(),3),
+(18,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600ml+200ml güzellik + bakım copack',RAND(),5),
+(19,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'600ml+200ml kepek+güzellik copack',RAND(),3),
+(20,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'900 ml bakım şampuanı',RAND(),4),
+(21,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'900 ml dökülme karşıtı şampuanı',RAND(),4),
+(22,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'TG',RAND(),1),
+(23,2,-FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'DH',RAND(),2);
 
 INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REQUIRED`, `SORTORDER`, `USG`)
 VALUES
