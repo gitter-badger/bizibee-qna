@@ -30,7 +30,6 @@ public class DecisionchoiceEntity extends AbstractEntity {
     private DecisionEntity decision;
 
     private double budget;
-
     private double gm;
     private double ms;
     private double usg;
