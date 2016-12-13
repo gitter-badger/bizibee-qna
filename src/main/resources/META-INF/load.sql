@@ -21,66 +21,67 @@ INSERT INTO `BRANDENTITY` VALUES
 (3,2,'C Brand');
 
 INSERT INTO `SKUENTITY` (`ID`,`SIMULATION_ID`,`GM`,`INDEXMAX`,`INDEXMIN`,`INDEXSTEP`,`MS`,`NAME`,`USG`,`BRAND_ID`) VALUES 
-(1,2,0,120,75,1,0,'200 ml güzellik',0,1),
-(2,2,0,120,75,1,0,'200 ml kepek',0,1),
-(3,2,0,120,75,1,0,'350 ml bakım',0,2),
-(4,2,0,120,75,1,0,'350 ml dökülme karşıtı',0,2),
-(5,2,0,120,75,1,0,'350 ml güzellik',0,1),
-(6,2,0,120,75,1,0,'350 ml kepek',0,1),
-(7,2,0,120,75,1,0,'400 ml bakım',0,3),
-(8,2,0,120,75,1,0,'400 ml güzellik',0,3),
-(9,2,0,120,75,1,0,'500 ml bakım',0,2),
-(10,2,0,120,75,1,0,'500 ml dökülme karşıtı',0,2),
-(11,2,0,120,75,1,0,'500ml+350ml bakım+dökülme karşıtı',0,2),
-(12,2,0,120,75,1,0,'600 ml + 200ml bakım + güzellik copack',0,3),
-(13,2,0,120,75,1,0,'600 ml + 200ml güzellik + kepek copack',0,1),
-(14,2,0,120,75,1,0,'600 ml bakım şampuanı',0,3),
-(15,2,0,120,75,1,0,'600 ml güzellik şampuanı',0,1),
-(16,2,0,120,75,1,0,'600 ml güzellik şampuanı',0,3),
-(17,2,0,120,75,1,0,'600 ml kepek şampuanı',0,1),
-(18,2,0,120,75,1,0,'600ml+200ml güzellik + bakım copack',0,3),
-(19,2,0,120,75,1,0,'600ml+200ml kepek+güzellik copack',0,1),
-(20,2,0,120,75,1,0,'900 ml bakım şampuanı',0,2),
-(21,2,0,120,75,1,0,'900 ml dökülme karşıtı şampuanı',0,2),
-(22,2,0,120,75,1,0,'TG',0,null),
-(23,2,0,120,75,1,0,'DH',0,null);
+(1,2,RAND(),120,75,1,RAND(),'200 ml güzellik',RAND(),1),
+(2,2,RAND(),120,75,1,RAND(),'200 ml kepek',RAND(),1),
+(3,2,RAND(),120,75,1,RAND(),'350 ml bakım',RAND(),2),
+(4,2,RAND(),120,75,1,RAND(),'350 ml dökülme karşıtı',RAND(),2),
+(5,2,RAND(),120,75,1,RAND(),'350 ml güzellik',RAND(),1),
+(6,2,RAND(),120,75,1,RAND(),'350 ml kepek',RAND(),1),
+(7,2,RAND(),120,75,1,RAND(),'400 ml bakım',RAND(),3),
+(8,2,RAND(),120,75,1,RAND(),'400 ml güzellik',RAND(),3),
+(9,2,RAND(),120,75,1,RAND(),'500 ml bakım',RAND(),2),
+(10,2,RAND(),120,75,1,RAND(),'500 ml dökülme karşıtı',RAND(),2),
+(11,2,RAND(),120,75,1,RAND(),'500ml+350ml bakım+dökülme karşıtı',RAND(),2),
+(12,2,RAND(),120,75,1,RAND(),'600 ml + 200ml bakım + güzellik copack',RAND(),3),
+(13,2,RAND(),120,75,1,RAND(),'600 ml + 200ml güzellik + kepek copack',RAND(),1),
+(14,2,RAND(),120,75,1,RAND(),'600 ml bakım şampuanı',RAND(),3),
+(15,2,RAND(),120,75,1,RAND(),'600 ml güzellik şampuanı',RAND(),1),
+(16,2,RAND(),120,75,1,RAND(),'600 ml güzellik şampuanı',RAND(),3),
+(17,2,RAND(),120,75,1,RAND(),'600 ml kepek şampuanı',RAND(),1),
+(18,2,RAND(),120,75,1,RAND(),'600ml+200ml güzellik + bakım copack',RAND(),3),
+(19,2,RAND(),120,75,1,RAND(),'600ml+200ml kepek+güzellik copack',RAND(),1),
+(20,2,RAND(),120,75,1,RAND(),'900 ml bakım şampuanı',RAND(),2),
+(21,2,RAND(),120,75,1,RAND(),'900 ml dökülme karşıtı şampuanı',RAND(),2),
+(22,2,RAND(),120,75,1,RAND(),'TG',RAND(),null),
+(23,2,RAND(),120,75,1,RAND(),'DH',RAND(),null);
 
-INSERT INTO `DECISIONENTITY` VALUES 
-(1,2,0,'SINGLE_SKU_LISTING','Description about Volume Hunting',0,0,'Volume Hunting',true,1,0),
-(2,2,0,'SINGLE_SKU_LISTING','Description about Delisting',0,0,'Delisting',false,2,0),
-(3,2,0,'MULTIPLE_SKU_LISTING','Description about Listing',0,0,'Listing',false,3,0),
-(4,2,0,'RANGE_SKU_LISTING','Description about Price Positioning',0,0,'Price Positioning',true,4,0),
-(5,2,0,'MULTIPLE_CHOICE','Description about E-Commerce Investment',0,0,'E-Commerce Investment',false,5,0),
-(6,2,0,'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',0,0,'Display',false,6,0),
-(7,2,0,'SINGLE_CHOICE','Description about Assortment',0,0,'Assortment',false,7,0),
-(8,2,0,'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',0,0,'Promotion',false,8,0),
-(9,2,0,'MULTIPLE_CHOICE','Description about Team Management',0,0,'Team Management',false,9,0);
+INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REQUIRED`, `SORTORDER`, `USG`)
+VALUES
+	(1,2,FLOOR(RAND()*(36000-1000+1))+1000,'SINGLE_SKU_LISTING','Description about Volume Hunting',RAND(),RAND(),'Volume Hunting',1,1,RAND()),
+	(2,2,FLOOR(RAND()*(36000-1000+1))+1000,'SINGLE_SKU_LISTING','Description about Delisting',RAND(),RAND(),'Delisting',0,2,RAND()),
+	(3,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_SKU_LISTING','Description about Listing',RAND(),RAND(),'Listing',0,3,RAND()),
+	(4,2,FLOOR(RAND()*(36000-1000+1))+1000,'RANGE_SKU_LISTING','Description about Price Positioning',RAND(),RAND(),'Price Positioning',1,4,RAND()),
+	(5,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_CHOICE','Description about E-Commerce Investment',RAND(),RAND(),'E-Commerce Investment',0,5,RAND()),
+	(6,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',RAND(),RAND(),'Display',0,6,RAND()),
+	(7,2,FLOOR(RAND()*(36000-1000+1))+1000,'SINGLE_CHOICE','Description about Assortment',RAND(),RAND(),'Assortment',0,7,RAND()),
+	(8,2,FLOOR(RAND()*(36000-1000+1))+1000,'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',RAND(),RAND(),'Promotion',0,8,RAND()),
+	(9,2,FLOOR(RAND()*(36000-1000+1))+1000,'MULTIPLE_CHOICE','Description about Team Management',RAND(),RAND(),'Team Management',0,9,RAND());
 
 INSERT INTO `DECISIONCHOICEENTITY` VALUES 
-(1,2,0,0.0004936303895,120,75,1,0.007103098485,'No e-commerce investment',0.007735973618,5),
-(2,2,36000,0.008284364257,120,75,1,0.003374872189,'Hiring someone with technical knowledge to deal e-commerce area',0.006874970942,5),
-(3,2,20000,0.002952620555,120,75,1,0.002459780695,'Creating campaign visuals via agency for customers webpage',0.008436672092,5),
-(4,2,10000,0.009283852454,120,75,1,0.008911583135,'Planning activities special to e-commerce, where prices are slightly lower than normal ones',0.007276897698,5),
+(1,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No e-commerce investment',RAND(),5),
+(2,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Hiring someone with technical knowledge to deal e-commerce area',RAND(),5),
+(3,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Creating campaign visuals via agency for customers webpage',RAND(),5),
+(4,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Planning activities special to e-commerce, where prices are slightly lower than normal ones',RAND(),5),
 
-(5,2,0,0,120,75,1,0,'No display',0,6),
-(6,2,2000,0,120,75,1,0,'Beginning of rayon',0,6),
-(7,2,1000,0,120,75,1,0,'Gondola',0,6),
-(8,2,1500,0,120,75,1,0,'Checkout stand',0,6),
+(5,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No display',RAND(),6),
+(6,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Beginning of rayon',RAND(),6),
+(7,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Gondola',RAND(),6),
+(8,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Checkout stand',RAND(),6),
 
-(9,2,0,0,120,75,1,0,'No assortment',0,7),
-(10,2,2000,0,120,75,1,0,'Assortment1',0,7),
-(11,2,1000,0,120,75,1,0,'Assortment2',0,7),
-(12,2,1500,0,120,75,1,0,'Assortment3',0,7),
+(9,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No assortment',RAND(),7),
+(10,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Assortment1',RAND(),7),
+(11,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Assortment2',RAND(),7),
+(12,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Assortment3',RAND(),7),
 
-(13,2,0,0,120,75,1,0,'No promotion',0,8),
-(14,2,0,0,120,75,1,0,'Gift Promotion (off pack)',0,8),
-(15,2,0,0,120,75,1,0,'Copack Promotion',0,8),
-(16,2,0,0,120,75,1,0,'Price Promotion',0,8),
+(13,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No promotion',RAND(),8),
+(14,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Gift Promotion (off pack)',RAND(),8),
+(15,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Copack Promotion',RAND(),8),
+(16,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Price Promotion',RAND(),8),
 
-(17,2,0,0,120,75,1,0,'No event nor improvement',0,9),
-(18,2,10000,0,120,75,1,0,'Motivational event',0,9),
-(19,2,15000,0,120,75,1,0,'Training',0,9),
-(20,2,24000,0,120,75,1,0,'Providing tablets integrated to inventory system',0,9);
+(17,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'No event nor improvement',RAND(),9),
+(18,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Motivational event',RAND(),9),
+(19,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Training',RAND(),9),
+(20,2,FLOOR(RAND()*(36000-1000+1))+1000,RAND(),120,75,1,RAND(),'Providing tablets integrated to inventory system',RAND(),9);
 
 INSERT INTO `decisions_skus` (`SKU_ID`, `DECISION_ID`)
 VALUES
@@ -112,6 +113,7 @@ VALUES
 	(17,8),
 	(21,8);
 
+/*
 INSERT INTO `RESPONSEENTITY` (`ID`, `USER_ID`, `SIMULATION_ID`, `OUTCOME`, `DECISION_ID`)
 VALUES
 	(1,3,2,'{\"id\":14,\"name\":\"600 ml bakım şampuanı\",\"gm\":0.0}',1),
@@ -123,4 +125,4 @@ VALUES
 	(7,3,2,'{\"id\":12,\"name\":\"Assortment3\",\"gm\":0.0}',7),
 	(8,3,2,'[{\"sku\":5,\"decisionchoice\":13}, {\"sku\":7,\"decisionchoice\":14}, {\"sku\":10,\"decisionchoice\":15}, {\"sku\":16,\"decisionchoice\":16}, {\"sku\":17,\"decisionchoice\":15}, {\"sku\":21,\"decisionchoice\":14}]',8),
 	(9,3,2,'{\"decisionchoices\":[{\"id\":18,\"name\":\"Motivational event\",\"gm\":0.0},{\"id\":19,\"name\":\"Training\",\"gm\":0.0},{\"id\":20,\"name\":\"Providing tablets integrated to inventory system\",\"gm\":0.0}]}',9);
-
+*/
