@@ -65,17 +65,72 @@
                     <f:facet name="header">
                         <h:outputText value="#{i18n['Responses']}"/>
                     </f:facet>
-                    <h:outputText value="#{response.decision.name} #{response.decision.decisionType}"/>
+                    <h2><h:outputText value="#{response.decision.name}"/></h2>
                     <f:facet name="description">
                         <h:panelGrid>
                             <h:outputText value="Score: #{reportView.calculateScore(response)}"/>
                             <h:outputText value="#{response.outcome}"/>
-
-                            <h:outputText value="Budget: #{reportView.budget}"/>
-                            <h:outputText value="GM: #{reportView.gm}"/>
-                            <h:outputText value="MS: #{reportView.ms}"/>
                             <h:outputText value="USG: #{reportView.usg}"/>
                         </h:panelGrid>
+                        <div class="ui-g ui-fluid dashboard">
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="">Revenue</span>
+                                    <span class="detail"></span>
+                                    <span class="count revenue">
+                                        <h:outputText value="#{reportView.sales}" >
+                                            <f:convertNumber type="number" />
+                                        </h:outputText>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-3">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="">Budget</span>
+                                    <span class="detail"></span>
+                                    <span class="count budget">
+                                        <h:outputText value="#{reportView.budget}" >
+                                            <f:convertNumber type="number" />
+                                        </h:outputText>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-2">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="">GM</span>
+                                    <span class="detail"></span>
+                                    <span class="count grossmargin">
+                                        <h:outputText value="#{reportView.gm}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-2">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="">MS</span>
+                                    <span class="detail"></span>
+                                    <span class="count marketshare">
+                                        <h:outputText value="#{reportView.ms}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="detail">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-2">
+                                <div class="card clearfix summary">
+                                    <span class="title" title="">USG</span>
+                                    <span class="detail"></span>
+                                    <span class="count underlyingsalesgrowth">
+                                        <h:outputText value="#{reportView.usg}" >
+                                            <f:convertNumber type="percent" />
+                                        </h:outputText>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </f:facet>
                 </p:dataList>
             </div>

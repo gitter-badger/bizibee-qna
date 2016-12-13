@@ -41,6 +41,7 @@ public class ReportView implements Serializable {
     @Inject
     private SkuService skuService;
 
+    double sales = 0;
     double budget = 0;
     double gm = 0;
     double ms = 0;
@@ -58,9 +59,11 @@ public class ReportView implements Serializable {
         user = userService.getCurrentUser();
         simulation = user.getSimulation();
 
+        sales = simulation.getSalesStart();
         budget = simulation.getBudgetStart();
         gm = simulation.getGmStart();
         ms = simulation.getMsStart();
+        usg = 0;
     }
 
     public double calculateScore(ResponseEntity response) {
@@ -90,6 +93,7 @@ public class ReportView implements Serializable {
                 gm += decisionchoice.getGm();
                 ms += decisionchoice.getMs();
                 usg += decisionchoice.getUsg();
+                sales += sales * usg;
                 break;
             case MULTIPLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
@@ -104,6 +108,7 @@ public class ReportView implements Serializable {
                     gm += decisionchoice.getGm();
                     ms += decisionchoice.getMs();
                     usg += decisionchoice.getUsg();
+                    sales += sales * usg;
                 }
                 break;
             case SINGLE_SKU_LISTING:
@@ -116,6 +121,7 @@ public class ReportView implements Serializable {
                 gm += sku.getGm();
                 ms += sku.getMs();
                 usg += sku.getUsg();
+                sales += sales * usg;
                 break;
             case MULTIPLE_SKU_LISTING:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
@@ -130,6 +136,7 @@ public class ReportView implements Serializable {
                     gm += sku.getGm();
                     ms += sku.getMs();
                     usg += sku.getUsg();
+                    sales += sales * usg;
                 }
                 break;
             case RANGE_SKU_LISTING:
@@ -144,6 +151,7 @@ public class ReportView implements Serializable {
                     gm += sku.getGm();
                     ms += sku.getMs();
                     usg += sku.getUsg();
+                    sales += sales * usg;
 
                     value = jsonObject2.getJsonNumber("value").intValue();
                 }
@@ -160,6 +168,7 @@ public class ReportView implements Serializable {
                     gm += sku.getGm();
                     ms += sku.getMs();
                     usg += sku.getUsg();
+                    sales += sales * usg;
 
                     decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
@@ -168,6 +177,7 @@ public class ReportView implements Serializable {
                     gm += decisionchoice.getGm();
                     ms += decisionchoice.getMs();
                     usg += decisionchoice.getUsg();
+                    sales += sales * usg;
                 }
                 break;
             case MULTIPLE_CHOICE_SKU_LISTING:
@@ -182,6 +192,7 @@ public class ReportView implements Serializable {
                     gm += sku.getGm();
                     ms += sku.getMs();
                     usg += sku.getUsg();
+                    sales += sales * usg;
 
                     JsonArray jsonArray2 = jsonObject2.getJsonArray("decisionchoices");
                     for (JsonValue jsonValue2 : jsonArray2) {
@@ -193,6 +204,7 @@ public class ReportView implements Serializable {
                         gm += decisionchoice.getGm();
                         ms += decisionchoice.getMs();
                         usg += decisionchoice.getUsg();
+                        sales += sales * usg;
                     }
                 }
                 break;
@@ -226,6 +238,14 @@ public class ReportView implements Serializable {
 
     public void setSimulation(SimulationEntity simulation) {
         this.simulation = simulation;
+    }
+
+    public double getSales() {
+        return sales;
+    }
+
+    public void setSales(double sales) {
+        this.sales = sales;
     }
 
     public double getBudget() {

@@ -28,8 +28,10 @@ public class ResponseConverter {
                 // TODO decisionchoice null ise id çağırırken nullpointer exception verir
                 .add("id", model.getDecisionchoice().getId())
                 .add("name", model.getDecisionchoice().getName())
+                .add("budget", model.getDecisionchoice().getBudget())
                 .add("gm", model.getDecisionchoice().getGm())
                 .add("ms", model.getDecisionchoice().getMs())
+                .add("usg", model.getDecisionchoice().getUsg())
                 .build();
     }
 
@@ -40,8 +42,10 @@ public class ResponseConverter {
                     Json.createObjectBuilder()
                             .add("id", c.getId())
                             .add("name", c.getName())
+                            .add("budget", c.getBudget())
                             .add("gm", c.getGm())
                             .add("ms", c.getMs())
+                            .add("usg", c.getUsg())
             );
         });
 
@@ -55,8 +59,10 @@ public class ResponseConverter {
                 // TODO sku null ise id çağırırken nullpointer exception verir
                 .add("id", model.getSku().getId())
                 .add("name", model.getSku().getName())
+                .add("budget", model.getSku().getBudget())
                 .add("gm", model.getSku().getGm())
                 .add("ms", model.getSku().getMs())
+                .add("usg", model.getSku().getUsg())
                 .build();
     }
 
@@ -67,8 +73,10 @@ public class ResponseConverter {
                     Json.createObjectBuilder()
                             .add("id", c.getId())
                             .add("name", c.getName())
+                            .add("budget", c.getBudget())
                             .add("gm", c.getGm())
                             .add("ms", c.getMs())
+                            .add("usg", c.getUsg())
             );
         });
 
