@@ -19,13 +19,13 @@
                     <p:focus context="login"/>
                     <div class="ui-g ui-fluid">
                         <div class="ui-g-12">
-                            <p:inputText value="#{loginBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true" />
+                            <p:inputText value="#{loginBean.username}" autocomplete="off" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:password value="#{loginBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true" />
+                            <p:password value="#{loginBean.password}" autocomplete="off" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" required="true" />
                         </div>
                         <div class="ui-g-12 ui-md-6">
-                            <p:selectBooleanCheckbox value="#{loginBean.remember}" itemLabel="#{i18n['Remember Me']}" />
+                            <p:selectBooleanCheckbox value="#{loginBean.remember}" label="#{i18n['Remember Me']}" itemLabel="#{i18n['Remember Me']}" />
                         </div>
                         <div class="ui-g-12 ui-md-6">
                             <p:link value="#{i18n['Forgot Password']}" outcome="/reset" />

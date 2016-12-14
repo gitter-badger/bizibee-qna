@@ -11,7 +11,7 @@
                     <h1 class="simulation-title"><h:outputText value="#{dashboardView.selectedUser.simulation.name}" /></h1>
                     <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
                     <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                        <p:inputText value="#{dashboardView.selectedSimulation.name}" placeholder="#{i18n['Name']}" label="#{i18n['Name']}" required="true"/>
+                        <p:inputText value="#{dashboardView.selectedSimulation.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                         <f:facet name="footer">
                             <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
                         </f:facet>
@@ -21,7 +21,7 @@
                     <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="true" /></p>
                     <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
                     <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                        <p:inputTextarea value="#{dashboardView.selectedSimulation.description}" placeholder="#{i18n['Description']}" label="#{i18n['Description']}" style="width: 700px;" required="true"/>
+                        <p:inputTextarea value="#{dashboardView.selectedSimulation.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" style="width: 700px;" required="true"/>
                         <f:facet name="footer">
                             <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
                         </f:facet>
@@ -46,7 +46,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
-                                                <p:inputText id="salesStart" value="#{dashboardView.selectedSimulation.salesStart}" placeholder="#{i18n['salesStart']}" label="#{i18n['salesStart']}" required="true"/>
+                                                <p:inputText id="salesStart" value="#{dashboardView.selectedSimulation.salesStart}" label="#{i18n['salesStart']}" placeholder="#{i18n['salesStart']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -71,7 +71,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="budgetStart" value="#{i18n['budgetStart']}"/>
-                                                <p:inputText id="budgetStart" value="#{dashboardView.selectedSimulation.budgetStart}" placeholder="#{i18n['budgetStart']}" label="#{i18n['budgetStart']}" required="true"/>
+                                                <p:inputText id="budgetStart" value="#{dashboardView.selectedSimulation.budgetStart}" label="#{i18n['budgetStart']}" placeholder="#{i18n['budgetStart']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -96,7 +96,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="gmStart" value="#{i18n['gmStart']}"/>
-                                                <p:inputText id="gmStart" value="#{dashboardView.selectedSimulation.gmStart}" placeholder="#{i18n['gmStart']}" label="#{i18n['gmStart']}" required="true"/>
+                                                <p:inputText id="gmStart" value="#{dashboardView.selectedSimulation.gmStart}" label="#{i18n['gmStart']}" placeholder="#{i18n['gmStart']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -121,7 +121,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="msStart" value="#{i18n['msStart']}"/>
-                                                <p:inputText id="msStart" value="#{dashboardView.selectedSimulation.msStart}" placeholder="#{i18n['msStart']}" label="#{i18n['msStart']}" required="true"/>
+                                                <p:inputText id="msStart" value="#{dashboardView.selectedSimulation.msStart}" label="#{i18n['msStart']}" placeholder="#{i18n['msStart']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -147,7 +147,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="usgWeighted" value="#{i18n['usgWeighted']}"/>
-                                                <p:inputText id="usgWeighted" value="#{dashboardView.selectedSimulation.usgWeighted}" placeholder="#{i18n['usgWeighted']}" label="#{i18n['usgWeighted']}" required="true"/>
+                                                <p:inputText id="usgWeighted" value="#{dashboardView.selectedSimulation.usgWeighted}" label="#{i18n['usgWeighted']}" placeholder="#{i18n['usgWeighted']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -172,7 +172,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="gmWeighted" value="#{i18n['gmWeighted']}"/>
-                                                <p:inputText id="gmWeighted" value="#{dashboardView.selectedSimulation.gmWeighted}" placeholder="#{i18n['gmWeighted']}" label="#{i18n['gmWeighted']}" required="true"/>
+                                                <p:inputText id="gmWeighted" value="#{dashboardView.selectedSimulation.gmWeighted}" label="#{i18n['gmWeighted']}" placeholder="#{i18n['gmWeighted']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -197,7 +197,7 @@
                                         <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel for="msWeighted" value="#{i18n['msWeighted']}"/>
-                                                <p:inputText id="msWeighted" value="#{dashboardView.selectedSimulation.msWeighted}" placeholder="#{i18n['msWeighted']}" label="#{i18n['msWeighted']}" required="true"/>
+                                                <p:inputText id="msWeighted" value="#{dashboardView.selectedSimulation.msWeighted}" label="#{i18n['msWeighted']}" placeholder="#{i18n['msWeighted']}" required="true"/>
                                             </p:panelGrid>
                                             <f:facet name="footer">
                                                 <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
@@ -297,13 +297,13 @@
                                             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                                                 <p:panelGrid columns="2">
                                                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                                                    <p:inputText id="username" value="#{dashboardView.selectedUser.username}" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true"/>
+                                                    <p:inputText id="username" value="#{dashboardView.selectedUser.username}" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true"/>
                                                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                                                    <p:inputText id="password" value="#{dashboardView.selectedUser.password}" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" required="true"/>
+                                                    <p:inputText id="password" value="#{dashboardView.selectedUser.password}" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" required="true"/>
                                                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                                                    <p:inputText id="email" value="#{dashboardView.selectedUser.email}" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true"/>
+                                                    <p:inputText id="email" value="#{dashboardView.selectedUser.email}" label="#{i18n['E-mail Address']}" placeholder="#{i18n['E-mail Address']}" required="true"/>
                                                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                                                    <p:inputText id="name" value="#{dashboardView.selectedUser.name}" placeholder="#{i18n['Name']}" label="#{i18n['Name']}" required="true"/>
+                                                    <p:inputText id="name" value="#{dashboardView.selectedUser.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                                                 </p:panelGrid>
                                                 <f:facet name="footer">
                                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateUser}"/>

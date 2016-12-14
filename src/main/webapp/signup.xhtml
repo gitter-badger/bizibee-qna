@@ -17,22 +17,22 @@
                 <h:form>
                     <div class="ui-g ui-fluid">
                         <div class="ui-g-12">
-                            <p:inputText value="#{signupBean.simulationCode}" autocomplete="off" placeholder="#{i18n['Simulation']}" label="#{i18n['Simulation']}" required="true" />
+                            <p:inputText value="#{signupBean.simulationCode}" autocomplete="off" label="#{i18n['Simulation']}" placeholder="#{i18n['Simulation']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText value="#{signupBean.username}" autocomplete="off" placeholder="#{i18n['Username']}" label="#{i18n['Username']}" required="true" />
+                            <p:inputText value="#{signupBean.username}" autocomplete="off" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:password value="#{signupBean.password}" autocomplete="off" placeholder="#{i18n['Password']}" label="#{i18n['Password']}" feedback="true" weakLabel="#{i18n['Weak']}" goodLabel="#{i18n['Good']}" strongLabel="#{i18n['Strong']}" promptLabel="#{i18n['Please enter a password']}" required="true" />
+                            <p:password value="#{signupBean.password}" autocomplete="off" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" feedback="true" weakLabel="#{i18n['Weak']}" goodLabel="#{i18n['Good']}" strongLabel="#{i18n['Strong']}" promptLabel="#{i18n['Please enter a password']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText value="#{signupBean.email}" autocomplete="off" placeholder="#{i18n['E-mail Address']}" label="#{i18n['E-mail Address']}" required="true" />
+                            <p:inputText value="#{signupBean.email}" autocomplete="off" label="#{i18n['E-mail Address']}" placeholder="#{i18n['E-mail Address']}" required="true" />
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText value="#{signupBean.name}" autocomplete="off" placeholder="#{i18n['Name']}" label="#{i18n['Name']}" required="true" />
+                            <p:inputText value="#{signupBean.name}" autocomplete="off" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true" />
                         </div>
                         <div class="ui-g-12 ui-md-6">
-                            <p:selectBooleanCheckbox value="#{signupBean.agree}" itemLabel="#{i18n['I agree to terms']}" />
+                            <p:selectBooleanCheckbox value="#{signupBean.agree}" label="#{i18n['I agree to terms']}" itemLabel="#{i18n['I agree to terms']}" />
                         </div>
                         <div class="ui-g-12 ui-md-6">
                             <p:link value="#{i18n['Terms of Use']}" outcome="/terms" />
