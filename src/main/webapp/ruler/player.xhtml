@@ -57,21 +57,21 @@
             <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                    <p:inputText id="username" value="#{playerView.selectedRecord.username}" required="true"/>
+                    <p:inputText id="username" value="#{playerView.selectedRecord.username}" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                    <p:inputText id="password" value="#{playerView.selectedRecord.password}" required="true"/>
+                    <p:inputText id="password" value="#{playerView.selectedRecord.password}" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" required="true"/>
                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{playerView.selectedRecord.email}" required="true"/>
+                    <p:inputText id="email" value="#{playerView.selectedRecord.email}" label="#{i18n['E-mail Address']}" placeholder="#{i18n['E-mail Address']}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{playerView.selectedRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{playerView.selectedRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="team" value="#{i18n['Team']}"/>
-                    <p:selectOneMenu id="team" value="#{playerView.selectedRecord.team}" converter="#{teamConverter}" 
+                    <p:selectOneMenu id="team" value="#{playerView.selectedRecord.team}" label="#{i18n['Team']}" converter="#{teamConverter}" 
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{playerView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="teamName" value="#{i18n['Team']}"/>
-                    <p:inputText id="teamName" value="#{playerView.selectedRecord.teamName}"/>
+                    <p:inputText id="teamName" value="#{playerView.selectedRecord.teamName}" label="#{i18n['Team']}" placeholder="#{i18n['Team']}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{playerView.doUpdateRecord}"/>
@@ -86,21 +86,21 @@
             <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true"  >
                 <p:panelGrid columns="2">
                     <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                    <p:inputText id="username" value="#{playerView.newRecord.username}" required="true"/>
+                    <p:inputText id="username" value="#{playerView.newRecord.username}" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true"/>
                     <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                    <p:inputText id="password" value="#{playerView.newRecord.password}" required="true"/>
+                    <p:inputText id="password" value="#{playerView.newRecord.password}" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" required="true"/>
                     <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                    <p:inputText id="email" value="#{playerView.newRecord.email}" required="true"/>
+                    <p:inputText id="email" value="#{playerView.newRecord.email}" label="#{i18n['E-mail Address']}" placeholder="#{i18n['E-mail Address']}" required="true"/>
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{playerView.newRecord.name}" required="true"/>
+                    <p:inputText id="name" value="#{playerView.newRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="team" value="#{i18n['Team']}"/>
-                    <p:selectOneMenu id="team" value="#{playerView.newRecord.team}" converter="#{teamConverter}" 
+                    <p:selectOneMenu id="team" value="#{playerView.newRecord.team}" label="#{i18n['Team']}" converter="#{teamConverter}" 
                                      filter="true" filterMatchMode="contains">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{playerView.teams}" var="team" itemValue="#{team}" itemLabel="#{team.name}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="teamName" value="#{i18n['Team']}"/>
-                    <p:inputText id="teamName" value="#{playerView.newRecord.teamName}"/>
+                    <p:inputText id="teamName" value="#{playerView.newRecord.teamName}" label="#{i18n['Team']}" placeholder="#{i18n['Team']}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{playerView.doCreateRecord}"/>
