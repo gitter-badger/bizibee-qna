@@ -29,7 +29,6 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
         UserEntity user = userService.getCurrentUser();
         SimulationEntity simulation = user.getSimulation();
         em.setProperty("eclipselink.tenant-id", simulation.getId());
-        em.setProperty("eclipselink.tenant-user-id", user.getId());
         return em;
     }
 

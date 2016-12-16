@@ -71,7 +71,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
      */
     @Override
     public boolean isExistByUsernameExceptUsername(String usernameNew, String username) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
         Root<UserEntity> root = cq.from(UserEntity.class);
 
@@ -81,7 +81,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
         cq.where(predicate);
 
-        TypedQuery<UserEntity> typedQuery = em.createQuery(cq);
+        TypedQuery<UserEntity> typedQuery = getEntityManager().createQuery(cq);
         List<UserEntity> resultList = typedQuery.getResultList();
         return !resultList.isEmpty();
     }
@@ -174,7 +174,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
     @Override
     public List<UserEntity> getResultList(SimulationEntity simulation, int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
         Root<UserEntity> root = cq.from(UserEntity.class);
 
@@ -195,13 +195,13 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
         cq.orderBy(cb.desc(root.get(UserEntity_.id)));
 
-        Query q = em.createQuery(cq);
+        Query q = getEntityManager().createQuery(cq);
         return q.setFirstResult(first).setMaxResults(pageSize).getResultList();
     }
 
     @Override
     public List<UserEntity> getResultList(SimulationEntity simulation, int first, int pageSize, List<SortMeta> multiSortMeta, Map<String, Object> filters) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
         Root<UserEntity> root = cq.from(UserEntity.class);
 
@@ -230,14 +230,14 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
             cq.orderBy(orders);
         }
 
-        Query q = em.createQuery(cq);
+        Query q = getEntityManager().createQuery(cq);
         return q.setFirstResult(first).setMaxResults(pageSize).getResultList();
     }
 
     @Override
     public int count(SimulationEntity simulation, Map<String, Object> filters) {
         try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
             CriteriaQuery<Long> cq = cb.createQuery(Long.class);
             Root<UserEntity> root = cq.from(UserEntity.class);
 
@@ -250,7 +250,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
             cq.select(cb.count(root));
 
-            return em.createQuery(cq).getSingleResult().intValue();
+            return getEntityManager().createQuery(cq).getSingleResult().intValue();
         } catch (NoResultException ex) {
             return 0;
         }
@@ -258,7 +258,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
 
     @Override
     public int calculateNumberOfTeams(SimulationEntity simulation) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<UserEntity> root = cq.from(UserEntity.class);
 
@@ -280,7 +280,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
     @Override
     public int calculateNumberOfPlayers(SimulationEntity simulation) {
         try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
             CriteriaQuery<Long> cq = cb.createQuery(Long.class);
             Root<UserEntity> root = cq.from(UserEntity.class);
 
@@ -290,7 +290,7 @@ public class UserServiceBean extends CrudServiceBean<UserEntity, Long> implement
             Predicate predicate2 = cb.equal(root.get(UserEntity_.userGroup), UserGroup.Players);
             cq.where(cb.and(predicate1, predicate2));
 
-            return em.createQuery(cq).getSingleResult().intValue();
+            return getEntityManager().createQuery(cq).getSingleResult().intValue();
         } catch (NoResultException ex) {
             return 0;
         }
