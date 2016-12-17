@@ -36,25 +36,25 @@
             <div class="landing-wrapper">
                 <div class="landing-header">
                     <div class="landing-header-content clearfix">
-                        <h:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 1.6em;">
+                        <p:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 1.6em;">
                             <!--<p:graphicImage name="images/logo.png" width="113" />-->
                             <i class="fa fa-crosshairs"></i>
                             BiZiBee<sup>®</sup>
-                        </h:link>
-                        <h:link id="menu-button" outcome="/index" fragment="introduction">
+                        </p:link>
+                        <p:link id="menu-button" outcome="/index" fragment="introduction">
                             <span class="fa fa-bars"></span>
-                        </h:link>
+                        </p:link>
                         <ul id="menu">
-                            <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Home']}" rendered="#{empty request.userPrincipal}"/></li>
-                            <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}" rendered="#{empty request.userPrincipal}"/></li>
-                            <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}" rendered="#{empty request.userPrincipal}"/></li>
-                            <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}" rendered="#{empty request.userPrincipal}"/></li>
-                            <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><p:link outcome="/index" fragment="introduction" value="#{i18n['Home']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><p:link outcome="/index" fragment="features" value="#{i18n['Features']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><p:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><p:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}" rendered="#{empty request.userPrincipal}"/></li>
+                            <li><p:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}" rendered="#{empty request.userPrincipal}"/></li>
 
-                            <li><h:link value="#{i18n['Dashboard']}" outcome="/login" rendered="#{not empty request.userPrincipal}"/></li>
-                            <li><h:link value="#{i18n['Profile']}" outcome="/administrator/profile" rendered="#{request.isUserInRole('Administrator')}"/></li>
-                            <li><h:link value="#{i18n['Profile']}" outcome="/ruler/profile" rendered="#{request.isUserInRole('Ruler')}"/></li>
-                            <li><h:link value="#{i18n['Profile']}" outcome="/player/profile" rendered="#{request.isUserInRole('Player')}"/></li>
+                            <li><p:link value="#{i18n['Dashboard']}" outcome="/login" rendered="#{not empty request.userPrincipal}"/></li>
+                            <li><p:link value="#{i18n['Profile']}" outcome="/administrator/profile" rendered="#{request.isUserInRole('Administrator')}"/></li>
+                            <li><p:link value="#{i18n['Profile']}" outcome="/ruler/profile" rendered="#{request.isUserInRole('Ruler')}"/></li>
+                            <li><p:link value="#{i18n['Profile']}" outcome="/player/profile" rendered="#{request.isUserInRole('Player')}"/></li>
                             <li>
                                 <h:form>
                                     <h:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
@@ -71,11 +71,11 @@
                         <div class="footer-top">
                             <div class="ui-g">
                                 <div class="ui-g-6">
-                                    <h:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 2.6em;">
+                                    <p:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 2.6em;">
                                         <!--<p:graphicImage name="images/logo.png" />-->
                                         <i class="fa fa-crosshairs"></i>
                                         BiZiBee<sup>®</sup>
-                                    </h:link>
+                                    </p:link>
                                     <p>#{i18n['The best way to simulate your business']}</p>
                                     <ul style="list-style: none; float: left;">
                                         <li style="float: left;"><a target="_blank" href="#"><i class="fa fa-2x fa-facebook"></i></a></li>
@@ -87,18 +87,18 @@
                                 </div>
                                 <div class="ui-g-2">
                                     <ul style="font-size: smaller;">
-                                        <li><h:link outcome="/index" fragment="introduction" value="#{i18n['Home']}"/></li>
-                                        <li><h:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
-                                        <li><h:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
-                                        <li><h:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
-                                        <li><h:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}"/></li>
+                                        <li><p:link outcome="/index" fragment="introduction" value="#{i18n['Home']}"/></li>
+                                        <li><p:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
+                                        <li><p:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
+                                        <li><p:link outcome="/index" fragment="pricing" value="#{i18n['Pricing']}"/></li>
+                                        <li><p:link outcome="/index" fragment="testimonials" value="#{i18n['Testimonials']}"/></li>
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
                                     <ul style="font-size: smaller;">
-                                        <li><h:link outcome="/login" value="#{i18n['Log In']}"/></li>
-                                        <li><h:link outcome="/signup" value="#{i18n['Sign Up']}"/></li>
-                                        <li><h:link outcome="/terms" value="#{i18n['Terms of Use']}"/></li>
+                                        <li><p:link outcome="/login" value="#{i18n['Log In']}"/></li>
+                                        <li><p:link outcome="/signup" value="#{i18n['Sign Up']}"/></li>
+                                        <li><p:link outcome="/terms" value="#{i18n['Terms of Use']}"/></li>
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
