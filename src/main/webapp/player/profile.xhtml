@@ -25,7 +25,7 @@
                         <p:inputText id="name" value="#{profileBean.selectedRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
 
                         <f:facet name="footer">
-                            <p:commandButton value="#{i18n['Update']}" actionListener="#{profileBean.doUpdateRecord}" update=":growl"/>
+                            <p:commandButton value="#{i18n['Update']}" actionListener="#{profileBean.doUpdateRecord}" update="@form, :growl"/>
                         </f:facet>
                     </p:panelGrid>
                 </h:form>

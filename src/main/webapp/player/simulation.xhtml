@@ -40,7 +40,7 @@
                                       converter="#{decisionchoiceConverter}">
                         <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                     </p:selectOneRadio>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
@@ -51,7 +51,7 @@
                                           converter="#{decisionchoiceConverter}">
                         <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                     </p:selectManyCheckbox>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_SKU_LISTING'}">
@@ -62,7 +62,7 @@
                                       converter="#{skuConverter}">
                         <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectOneRadio>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
@@ -73,7 +73,7 @@
                                           converter="#{skuConverter}">
                         <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
                     </p:selectManyCheckbox>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
@@ -93,7 +93,7 @@
                             </h:outputFormat>
                         </h:panelGrid>
                     </p:repeat>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
@@ -106,7 +106,7 @@
                             <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectOneRadio>
                     </p:repeat>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
                 <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
@@ -119,7 +119,7 @@
                             <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
                         </p:selectManyCheckbox>
                     </p:repeat>
-                    <p:commandButton value="#{i18n['Next']}" update=":growl" actionListener="#{simulationView.doUpdate}"/>
+                    <p:commandButton value="#{i18n['Next']}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                 </h:form>
 
             </div>
