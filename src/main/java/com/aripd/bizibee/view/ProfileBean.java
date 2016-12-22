@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.model.UploadedFile;
 
 @Named
 @ViewScoped
@@ -22,6 +23,8 @@ public class ProfileBean implements Serializable {
     @Inject
     private UserService userService;
     private UserEntity selectedRecord;
+
+    private UploadedFile file;
 
     @Inject
     MessageUtil messageUtil;
@@ -59,12 +62,44 @@ public class ProfileBean implements Serializable {
         }
     }
 
+    public void doUploadAvatar(ActionEvent actionEvent) {
+        if (file != null) {
+            selectedRecord.setBytes(file.getContents());
+        }
+        userService.update(selectedRecord);
+        messageUtil.addGlobalInfoFlashMessage("Uploaded");
+
+        String navigation = "/player/profile.xhtml?faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+        navigationHandler.handleNavigation(context, null, navigation);
+    }
+
+    public void doResetAvatar(ActionEvent actionEvent) {
+        selectedRecord.setBytes(null);
+        userService.update(selectedRecord);
+        messageUtil.addGlobalInfoFlashMessage("Resetted");
+
+        String navigation = "/player/profile.xhtml?faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+        navigationHandler.handleNavigation(context, null, navigation);
+    }
+
     public UserEntity getSelectedRecord() {
         return selectedRecord;
     }
 
     public void setSelectedRecord(UserEntity selectedRecord) {
         this.selectedRecord = selectedRecord;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

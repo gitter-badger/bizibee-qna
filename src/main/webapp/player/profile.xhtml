@@ -1,7 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:a="http://aripd.com/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
@@ -10,25 +12,50 @@
                 <h1 class="simulation-title">#{i18n['Profile']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-                <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel for="username" value="#{i18n['Username']}"/>
-                        <p:inputText id="username" value="#{profileBean.selectedRecord.username}" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true"/>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <h2>Change Your Profile</h2>
+                        <p>You can change your username, password, email and name.</p>
+                        <h:form>
+                            <p:panelGrid columns="2" styleClass="ui-g-10">
+                                <p:outputLabel for="username" value="#{i18n['Username']}"/>
+                                <p:inputText id="username" value="#{profileBean.selectedRecord.username}" label="#{i18n['Username']}" placeholder="#{i18n['Username']}" required="true"/>
 
-                        <p:outputLabel for="password" value="#{i18n['Password']}"/>
-                        <p:inputText id="password" value="#{profileBean.selectedRecord.password}" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" required="true"/>
+                                <p:outputLabel for="password" value="#{i18n['Password']}"/>
+                                <p:inputText id="password" value="#{profileBean.selectedRecord.password}" label="#{i18n['Password']}" placeholder="#{i18n['Password']}" required="true"/>
 
-                        <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
-                        <p:inputText id="email" value="#{profileBean.selectedRecord.email}" label="#{i18n['E-mail Address']}" placeholder="#{i18n['E-mail Address']}" required="true"/>
+                                <p:outputLabel for="email" value="#{i18n['E-mail Address']}"/>
+                                <p:inputText id="email" value="#{profileBean.selectedRecord.email}" label="#{i18n['E-mail Address']}" placeholder="#{i18n['E-mail Address']}" required="true"/>
 
-                        <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                        <p:inputText id="name" value="#{profileBean.selectedRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+                                <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                                <p:inputText id="name" value="#{profileBean.selectedRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
 
-                        <f:facet name="footer">
-                            <p:commandButton value="#{i18n['Update']}" actionListener="#{profileBean.doUpdateRecord}" update="@form, :growl"/>
-                        </f:facet>
-                    </p:panelGrid>
-                </h:form>
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Update']}" actionListener="#{profileBean.doUpdateRecord}" update="@form, :growl"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </h:form>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <h2>Change Your Avatar</h2>
+                        <p>You can upload 210 by 210 pixel image.</p>
+                        <h:form enctype="multipart/form-data">
+                            <p:panelGrid columns="1" styleClass="ui-g-10">
+                                <f:facet name="header">
+                                    <a:identicon text="#{profileBean.selectedRecord.email}" style="width: 210px; height: 210px;" rendered="#{empty profileBean.selectedRecord.bytes}"/>
+                                    <o:graphicImage value="#{profileBean.selectedRecord.bytes}" dataURI="true" width="210" height="210" alt="#{profileBean.selectedRecord.name}" title="#{profileBean.selectedRecord.name}" rendered="#{not empty profileBean.selectedRecord.bytes}"/>
+                                </f:facet>
+
+                                <p:fileUpload value="#{profileBean.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{profileBean.doUploadAvatar}" update="@form, :growl" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{profileBean.doResetAvatar}" update="@form, :growl"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
 
             </div>
         </div>
