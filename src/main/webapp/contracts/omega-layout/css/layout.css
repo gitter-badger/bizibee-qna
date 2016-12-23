@@ -2159,6 +2159,8 @@ h2 {
     position: relative; }
 .dashboard .summary .title {
     font-size: 20px; }
+.dashboard .summary .title:hover {
+    cursor: help; }
 .dashboard .summary .detail {
     color: #a4a4a4;
     display: block;
