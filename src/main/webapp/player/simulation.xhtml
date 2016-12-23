@@ -137,7 +137,6 @@
                                 </p:repeat>
                                 <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                             </h:form>
-
                         </div>
                         <div class="ui-g-4">
                             <div class="ui-g-12">
@@ -172,6 +171,89 @@
                                     <span class="count marketshare">$3,200</span>
                                 </div>
                             </div>
+
+                            <ui:repeat var="response" value="#{reportView.responses}" varStatus="varStatus">
+                                <h:panelGroup style="#{varStatus.last?'display: block;':'display: none;'}">
+                                    <h2><h:outputText value="#{response.decision.name}" /></h2>
+                                    <h:outputText value="#{reportView.calculateScore(response)}" />
+
+                                    <div class="ui-g-12">
+                                        <div class="card clearfix summary">
+                                            <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
+                                            <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
+                                            <span class="detail">Sales Income</span>
+                                            <span class="count revenue">
+                                                <h:outputText value="#{reportView.sales}">
+                                                    <f:convertNumber type="number" maxFractionDigits="0" />
+                                                </h:outputText>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <div class="card clearfix summary">
+                                            <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
+                                            <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
+                                            <span class="detail">
+                                                <h:outputText value="#{reportView.budgetChange}">
+                                                    <f:convertNumber type="number" />
+                                                </h:outputText>
+                                            </span>
+                                            <span class="count budget">
+                                                <h:outputText value="#{reportView.budget}">
+                                                    <f:convertNumber type="number" />
+                                                </h:outputText>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <div class="card clearfix summary">
+                                            <h:outputText id="grossmargin" value="#{i18n['Gross Margin']}" styleClass="title" />
+                                            <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
+                                            <span class="detail">
+                                                <h:outputText value="#{reportView.gmChange}">
+                                                    <f:convertNumber type="percent" />
+                                                </h:outputText>
+                                            </span>
+                                            <span class="count grossmargin">
+                                                <h:outputText value="#{reportView.gm}">
+                                                    <f:convertNumber type="percent" />
+                                                </h:outputText>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <div class="card clearfix summary">
+                                            <h:outputText id="marketshare" value="#{i18n['Market Share']}" styleClass="title" />
+                                            <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
+                                            <span class="detail">
+                                                <h:outputText value="#{reportView.msChange}">
+                                                    <f:convertNumber type="percent" />
+                                                </h:outputText>
+                                            </span>
+                                            <span class="count marketshare">
+                                                <h:outputText value="#{reportView.ms}">
+                                                    <f:convertNumber type="percent" />
+                                                </h:outputText>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <div class="card clearfix summary">
+                                            <span class="title" title="">USG</span>
+                                            <span class="detail">
+                                                <h:outputText value="#{reportView.usgChange}">
+                                                    <f:convertNumber type="percent" />
+                                                </h:outputText>
+                                            </span>
+                                            <span class="count underlyingsalesgrowth">
+                                                <h:outputText value="#{reportView.usg}">
+                                                    <f:convertNumber type="percent" />
+                                                </h:outputText>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                            </ui:repeat>
 
                             <h:form>
                                 <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}"/>
