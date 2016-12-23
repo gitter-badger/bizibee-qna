@@ -316,18 +316,23 @@ public class SimulationView implements Serializable {
 
         messageUtil.addGlobalInfoFlashMessage("Updated");
 
-        try {
-            sequence++;
-            DecisionEntity dec = decisions.get(sequence);
-            System.out.println("sequence: " + sequence);
-            System.out.println("decisions.size(): " + decisions.size());
+//        try {
+//            sequence++;
+//            DecisionEntity dec = decisions.get(sequence);
+//            System.out.println("sequence: " + sequence);
+//            System.out.println("decisions.size(): " + decisions.size());
+//
+//            String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
+//            RequestUtil.doNavigate(navigation);
+//        } catch (ArrayIndexOutOfBoundsException ex) {
+//            String navigation = "/player/report?amp;faces-redirect=true";
+//            RequestUtil.doNavigate(navigation);
+//        }
+    }
 
-            String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
-            RequestUtil.doNavigate(navigation);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            String navigation = "/player/report?amp;faces-redirect=true";
-            RequestUtil.doNavigate(navigation);
-        }
+    public String goNext() {
+        sequence++;
+        return "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
     }
 
     public DecisionEntity getSelectedRecord() {
