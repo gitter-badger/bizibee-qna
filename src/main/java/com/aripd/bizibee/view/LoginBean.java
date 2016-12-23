@@ -78,6 +78,7 @@ public class LoginBean implements Serializable {
             HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
 
             request.login(username, password);
+            request.getSession().setAttribute("user", user);
 
             if (remember) {
                 String uuid = UUID.randomUUID().toString();
@@ -109,6 +110,7 @@ public class LoginBean implements Serializable {
             CookieHelper.removeCookie(response, COOKIE_NAME);
 
             request.logout();
+            request.getSession().removeAttribute("user");
         } catch (ServletException ex) {
             messageUtil.addGlobalErrorFlashMessage("Logout failed");
         }

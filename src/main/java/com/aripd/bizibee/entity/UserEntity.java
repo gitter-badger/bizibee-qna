@@ -2,6 +2,8 @@ package com.aripd.bizibee.entity;
 
 import com.aripd.util.validator.EmailAddress;
 import com.aripd.util.validator.Password;
+import java.util.HashMap;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,10 +11,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class UserEntity extends AbstractEntity {
+public class UserEntity extends AbstractEntity implements HttpSessionBindingListener {
+
+    // All logins.
+    private static Map<UserEntity, HttpSession> logins = new HashMap<>();
 
     @NotNull
     @JoinColumn(nullable = false)
@@ -129,6 +137,20 @@ public class UserEntity extends AbstractEntity {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    @Override
+    public void valueBound(HttpSessionBindingEvent event) {
+        HttpSession session = logins.remove(this);
+        if (session != null) {
+            session.invalidate();
+        }
+        logins.put(this, event.getSession());
+    }
+
+    @Override
+    public void valueUnbound(HttpSessionBindingEvent event) {
+        logins.remove(this);
     }
 
 }
