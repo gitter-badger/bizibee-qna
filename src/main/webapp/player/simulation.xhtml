@@ -1,4 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:a="http://aripd.com/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
@@ -24,8 +25,12 @@
 
         <div id="simulation">
             <div class="simulation-content">
-                <h1 class="simulation-title">#{i18n['Simulation']}</h1>
-                <p><h:outputText value="#{dashboardView.selectedUser.simulation.name}" /></p>
+                <h1 class="simulation-title">#{i18n['Simulation']} | #{dashboardView.selectedUser.simulation.name}</h1>
+                <h:panelGrid columns="2" columnClasses="ui-g-3,ui-g-9">
+                    <a:identicon text="#{dashboardView.selectedUser.email}" style="width: 100%;" rendered="#{empty dashboardView.selectedUser.bytes}"/>
+                    <o:graphicImage value="#{dashboardView.selectedUser.bytes}" dataURI="true" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{not empty dashboardView.selectedUser.bytes}"/>
+                    <h2>#{dashboardView.selectedUser.name}</h2>
+                </h:panelGrid>
 
                 <div class="main">
                     <div class="ui-g dashboard">
@@ -167,7 +172,7 @@
                                     <span class="count marketshare">$3,200</span>
                                 </div>
                             </div>
-                            
+
                             <h:form>
                                 <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}"/>
                             </h:form>

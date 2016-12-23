@@ -7,8 +7,7 @@
     <ui:define name="content">
         <div id="simulation">
             <div class="simulation-content">
-                <h1 class="simulation-title">#{i18n['Dashboard']}</h1>
-                <p><h:outputText value="#{dashboardView.selectedUser.simulation.name}" /></p>
+                <h1 class="simulation-title">#{i18n['Dashboard']} | #{dashboardView.selectedUser.simulation.name}</h1>
                 <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="true" /></p>
 
                 <div class="main">

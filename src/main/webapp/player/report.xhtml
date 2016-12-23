@@ -7,8 +7,8 @@
     <ui:define name="content">
         <div id="simulation">
             <div class="simulation-content">
-                <h1 class="simulation-title">#{i18n['Report']}</h1>
-                <p><h:outputText value="#{reportView.simulation.name}" /></p>
+                <h1 class="simulation-title">#{i18n['Report']} | #{dashboardView.selectedUser.simulation.name}</h1>
+                <p>You can see the results of your decisions.</p>
 
                 <h2><h:outputText value="#{i18n['Initial Values']}" /></h2>
 
