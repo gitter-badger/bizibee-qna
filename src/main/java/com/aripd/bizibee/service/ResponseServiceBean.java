@@ -5,6 +5,7 @@ import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.ResponseEntity_;
 import com.aripd.bizibee.entity.UserEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -34,6 +35,18 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
 
     public ResponseServiceBean() {
         super(ResponseEntity.class);
+    }
+
+    @Override
+    public List<ResponseEntity> findByUser(UserEntity user) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<ResponseEntity> cq = cb.createQuery(ResponseEntity.class);
+        Root<ResponseEntity> root = cq.from(ResponseEntity.class);
+
+        Predicate predicate = cb.equal(root.get(ResponseEntity_.user), user);
+        cq.where(predicate);
+
+        return getEntityManager().createQuery(cq).getResultList();
     }
 
     @Override

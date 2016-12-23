@@ -285,7 +285,7 @@ public class ReportView implements Serializable {
     }
 
     public List<ResponseEntity> getResponses() {
-        return responseService.findAll();
+        return responseService.findByUser(user);
     }
 
     public ResponseEntity getSelectedRecord() {
