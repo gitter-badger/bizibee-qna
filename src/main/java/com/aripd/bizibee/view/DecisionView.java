@@ -56,7 +56,7 @@ public class DecisionView implements Serializable {
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
-        if (file != null) {
+        if (file != null && file.getSize() > 0) {
             newRecord.setBytes(file.getContents());
         }
         decisionService.create(newRecord);
@@ -64,7 +64,7 @@ public class DecisionView implements Serializable {
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
-        if (file != null) {
+        if (file != null && file.getSize() > 0) {
             selectedRecord.setBytes(file.getContents());
         }
         decisionService.update(selectedRecord);

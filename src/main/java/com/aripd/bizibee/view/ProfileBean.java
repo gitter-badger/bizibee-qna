@@ -63,7 +63,7 @@ public class ProfileBean implements Serializable {
     }
 
     public void doUploadAvatar(ActionEvent actionEvent) {
-        if (file != null) {
+        if (file != null && file.getSize() > 0) {
             selectedRecord.setBytes(file.getContents());
         }
         userService.update(selectedRecord);

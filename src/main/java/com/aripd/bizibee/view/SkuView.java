@@ -50,7 +50,7 @@ public class SkuView implements Serializable {
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
-        if (file != null) {
+        if (file != null && file.getSize() > 0) {
             newRecord.setBytes(file.getContents());
         }
         skuService.create(newRecord);
@@ -58,7 +58,7 @@ public class SkuView implements Serializable {
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
-        if (file != null) {
+        if (file != null && file.getSize() > 0) {
             selectedRecord.setBytes(file.getContents());
         }
         skuService.update(selectedRecord);
