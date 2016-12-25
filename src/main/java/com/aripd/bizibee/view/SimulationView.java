@@ -328,6 +328,8 @@ public class SimulationView implements Serializable {
 //            String navigation = "/player/report?amp;faces-redirect=true";
 //            RequestUtil.doNavigate(navigation);
 //        }
+        String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public String goNext() {
