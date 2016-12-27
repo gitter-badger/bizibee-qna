@@ -48,17 +48,17 @@ INSERT INTO `SKUENTITY` (`ID`,`SIMULATION_ID`,`BUDGET`,`GM`,`INDEXMAX`,`INDEXMIN
 (22,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),-1+2*RAND(),120,75,1,-1+2*RAND(),'TG',-1+2*RAND(),1),
 (23,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),-1+2*RAND(),120,75,1,-1+2*RAND(),'DH',-1+2*RAND(),2);
 
-INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REQUIRED`, `SORTORDER`, `USG`)
+INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REMARK`, `REQUIRED`, `SORTORDER`, `USG`)
 VALUES
-	(1,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Volume Hunting',-1+2*RAND(),-1+2*RAND(),'Volume Hunting',1,1,-1+2*RAND()),
-	(2,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Delisting',-1+2*RAND(),-1+2*RAND(),'Delisting',0,2,-1+2*RAND()),
-	(3,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_SKU_LISTING','Description about Listing',-1+2*RAND(),-1+2*RAND(),'Listing',0,3,-1+2*RAND()),
-	(4,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Price Positioning',-1+2*RAND(),-1+2*RAND(),'Price Positioning',1,4,-1+2*RAND()),
-	(5,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about E-Commerce Investment',-1+2*RAND(),-1+2*RAND(),'E-Commerce Investment',0,5,-1+2*RAND()),
-	(6,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',-1+2*RAND(),-1+2*RAND(),'Display',0,6,-1+2*RAND()),
-	(7,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram',0,7,-1+2*RAND()),
-	(8,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',-1+2*RAND(),-1+2*RAND(),'Promotion',0,8,-1+2*RAND()),
-	(9,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about Team Management',-1+2*RAND(),-1+2*RAND(),'Team Management',0,9,-1+2*RAND());
+	(1,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Volume Hunting',-1+2*RAND(),-1+2*RAND(),'Volume Hunting','Remark about Volume Hunting',1,1,-1+2*RAND()),
+	(2,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Delisting',-1+2*RAND(),-1+2*RAND(),'Delisting','Remark about Delisting',0,2,-1+2*RAND()),
+	(3,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_SKU_LISTING','Description about Listing',-1+2*RAND(),-1+2*RAND(),'Listing','Remark about Listing',0,3,-1+2*RAND()),
+	(4,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Price Positioning',-1+2*RAND(),-1+2*RAND(),'Price Positioning','Remark about Price Positioning',1,4,-1+2*RAND()),
+	(5,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about E-Commerce Investment',-1+2*RAND(),-1+2*RAND(),'E-Commerce Investment','Remark about E-Commerce Investment',0,5,-1+2*RAND()),
+	(6,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',-1+2*RAND(),-1+2*RAND(),'Display','Remark about Display',0,6,-1+2*RAND()),
+	(7,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',0,7,-1+2*RAND()),
+	(8,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',-1+2*RAND(),-1+2*RAND(),'Promotion','Remark about Promotion',0,8,-1+2*RAND()),
+	(9,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about Team Management',-1+2*RAND(),-1+2*RAND(),'Team Management','Remark about Team Management',0,9,-1+2*RAND());
 
 INSERT INTO `DECISIONCHOICEENTITY` VALUES 
 (1,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),-1+2*RAND(),120,75,1,-1+2*RAND(),'No e-commerce investment',-1+2*RAND(),5),

@@ -51,6 +51,10 @@ public class DecisionView implements Serializable {
         return Arrays.asList(DecisionType.values());
     }
 
+    public List<DecisionEntity> getDecisions() {
+        return decisionService.findAll();
+    }
+
     public List<SkuEntity> getSkus() {
         return skuService.findAll();
     }

@@ -66,6 +66,8 @@
                     <h:outputText value="#{decisionView.selectedRecord.sortOrder}"/>
                     <p:outputLabel value="#{i18n['Description']}"/>
                     <h:outputText value="#{decisionView.selectedRecord.description}"/>
+                    <p:outputLabel value="#{i18n['Remark']}"/>
+                    <h:outputText value="#{decisionView.selectedRecord.remark}"/>
                     <p:outputLabel value="#{i18n['Decision Type']}"/>
                     <h:outputText value="#{i18n[decisionView.selectedRecord.decisionType]}"/>
                     <p:outputLabel value="#{i18n['SKUs']}"/>
@@ -104,6 +106,8 @@
                     <p:inputText id="sortOrder" value="#{decisionView.selectedRecord.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.selectedRecord.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}"/>
+                    <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
+                    <p:inputTextarea id="remark" value="#{decisionView.selectedRecord.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}"/>
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
                     <p:selectOneMenu id="decisionType" value="#{decisionView.selectedRecord.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
@@ -146,6 +150,8 @@
                     <p:inputText id="sortOrder" value="#{decisionView.newRecord.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{decisionView.newRecord.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}"/>
+                    <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
+                    <p:inputTextarea id="remark" value="#{decisionView.newRecord.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}"/>
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
                     <p:selectOneMenu id="decisionType" value="#{decisionView.newRecord.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>

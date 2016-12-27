@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <div id="simulation">
+            <div class="simulation-content">
+                <h1 class="simulation-title">#{i18n['Decisions']}</h1>
+
+                <div class="main">
+                    <div class="ui-g">
+
+                        <div class="ui-g-3">
+                            <p:panel id="tb">
+                                <ui:repeat value="#{decisionView.decisions}" var="decision">
+                                    <p><p:link outcome="/player/decision" fragment="n_#{decision.id}" value="#{decision.name}"/></p>
+                                </ui:repeat>
+                            </p:panel>
+                            <p:sticky target="tb" margin="90" />
+                        </div>
+                        <div class="ui-g-9">
+                            <ui:repeat value="#{decisionView.decisions}" var="decision">
+                                <h2 id="n_#{decision.id}"><h:outputText value="#{decision.name}"/></h2>
+                                <p><h:outputText value="#{decision.remark}" escape="false"/></p>
+                            </ui:repeat>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

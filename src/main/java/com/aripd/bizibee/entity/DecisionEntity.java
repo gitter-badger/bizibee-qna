@@ -42,6 +42,9 @@ public class DecisionEntity extends AbstractEntity {
 
     private String description;
 
+    @Column(columnDefinition = "TEXT")
+    private String remark;
+
     @Lob
     private byte[] bytes;
 
@@ -124,6 +127,14 @@ public class DecisionEntity extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public byte[] getBytes() {
