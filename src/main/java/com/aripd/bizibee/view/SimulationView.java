@@ -95,9 +95,12 @@ public class SimulationView implements Serializable {
     public void onLoad() {
         try {
             selectedRecord = decisions.get(sequence);
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException ex) {
+        } catch (NullPointerException ex) {
             sequence = 0;
             selectedRecord = decisions.get(sequence);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            String navigation = "/player/report?faces-redirect=true";
+            RequestUtil.doNavigate(navigation);
         }
 
         model1 = new Response1Model();
