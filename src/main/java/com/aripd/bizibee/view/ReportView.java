@@ -98,16 +98,18 @@ public class ReportView implements Serializable {
             case SINGLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
-                decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                budget += decisionchoice.getBudget();
-                budgetLocal = decisionchoice.getBudget();
-                gm += decisionchoice.getGm();
-                gmLocal = decisionchoice.getGm();
-                ms += decisionchoice.getMs();
-                msLocal = decisionchoice.getMs();
-                usg += decisionchoice.getUsg();
-                usgLocal = decisionchoice.getUsg();
+                if (decision.isRequired()) {
+                    decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
+                    decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                    budget += decisionchoice.getBudget();
+                    budgetLocal = decisionchoice.getBudget();
+                    gm += decisionchoice.getGm();
+                    gmLocal = decisionchoice.getGm();
+                    ms += decisionchoice.getMs();
+                    msLocal = decisionchoice.getMs();
+                    usg += decisionchoice.getUsg();
+                    usgLocal = decisionchoice.getUsg();
+                }
 
                 budgetChange = budgetLocal;
                 gmChange = gmLocal;
@@ -142,16 +144,18 @@ public class ReportView implements Serializable {
             case SINGLE_SKU_LISTING:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                skuId = jsonObject1.getJsonNumber("id").longValue();
-                sku = skuService.find(skuId);
-                budget += sku.getBudget();
-                budgetLocal = sku.getBudget();
-                gm += sku.getGm();
-                gmLocal = sku.getGm();
-                ms += sku.getMs();
-                msLocal = sku.getMs();
-                usg += sku.getUsg();
-                usgLocal = sku.getUsg();
+                if (decision.isRequired()) {
+                    skuId = jsonObject1.getJsonNumber("id").longValue();
+                    sku = skuService.find(skuId);
+                    budget += sku.getBudget();
+                    budgetLocal = sku.getBudget();
+                    gm += sku.getGm();
+                    gmLocal = sku.getGm();
+                    ms += sku.getMs();
+                    msLocal = sku.getMs();
+                    usg += sku.getUsg();
+                    usgLocal = sku.getUsg();
+                }
 
                 budgetChange = budgetLocal;
                 gmChange = gmLocal;

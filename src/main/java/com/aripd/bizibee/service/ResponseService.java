@@ -13,6 +13,4 @@ public interface ResponseService extends CrudService<ResponseEntity, Long> {
 
     public ResponseEntity findOneByUserAndDecision(UserEntity user, DecisionEntity decision);
 
-    public void updateOrCreate(UserEntity user, DecisionEntity decision, String outcome);
-
 }

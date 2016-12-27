@@ -151,7 +151,7 @@
                                                 </span>
                                                 <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
                                                 <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
-                                                <span class="detail">Sales Income</span>
+                                                <span class="detail"></span>
                                             </li>
                                             <li>
                                                 <span class="count budget">
@@ -199,7 +199,11 @@
                                                     </span>
                                                     <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
                                                     <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
-                                                    <span class="detail">Sales Income</span>
+                                                    <span class="detail">
+                                                        <h:outputText value="#{reportView.usgChange}">
+                                                            <f:convertNumber type="percent" />
+                                                        </h:outputText>
+                                                    </span>
                                                 </li>
                                                 <li>
                                                     <span class="count budget">

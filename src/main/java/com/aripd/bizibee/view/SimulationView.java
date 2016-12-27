@@ -64,13 +64,13 @@ public class SimulationView implements Serializable {
 
     private Integer sequence;
 
-    private Response1Model model1 = new Response1Model();
-    private Response2Model model2 = new Response2Model();
-    private Response3Model model3 = new Response3Model();
-    private Response4Model model4 = new Response4Model();
-    private List<Response5Model> model5 = new ArrayList<>();
-    private List<Response6Model> model6 = new ArrayList<>();
-    private List<Response7Model> model7 = new ArrayList<>();
+    private Response1Model model1;
+    private Response2Model model2;
+    private Response3Model model3;
+    private Response4Model model4;
+    private List<Response5Model> model5;
+    private List<Response6Model> model6;
+    private List<Response7Model> model7;
 
     @Inject
     MessageUtil messageUtil;
@@ -99,6 +99,14 @@ public class SimulationView implements Serializable {
             sequence = 0;
             selectedRecord = decisions.get(sequence);
         }
+
+        model1 = new Response1Model();
+        model2 = new Response2Model();
+        model3 = new Response3Model();
+        model4 = new Response4Model();
+        model5 = new ArrayList<>();
+        model6 = new ArrayList<>();
+        model7 = new ArrayList<>();
 
         for (SkuEntity sku : selectedRecord.getSkus()) {
             switch (selectedRecord.getDecisionType()) {
@@ -149,9 +157,12 @@ public class SimulationView implements Serializable {
                     model1 = new Response1Model();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                    decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
-                    decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                    model1.setDecisionchoice(decisionchoice);
+                    if (decision.isRequired()) {
+                        decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
+                        decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                        model1.setDecisionchoice(decisionchoice);
+                    }
+
                     break;
                 case MULTIPLE_CHOICE:
                     model2 = new Response2Model();
@@ -171,9 +182,12 @@ public class SimulationView implements Serializable {
                     model3 = new Response3Model();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                    skuId = jsonObject1.getJsonNumber("id").longValue();
-                    sku = skuService.find(skuId);
-                    model3.setSku(sku);
+                    if (decision.isRequired()) {
+                        skuId = jsonObject1.getJsonNumber("id").longValue();
+                        sku = skuService.find(skuId);
+                        model3.setSku(sku);
+                    }
+
                     break;
                 case MULTIPLE_SKU_LISTING:
                     model4 = new Response4Model();
@@ -251,83 +265,44 @@ public class SimulationView implements Serializable {
     }
 
     public void doUpdate(ActionEvent actionEvent) {
+        ResponseEntity entity = responseService.findOneByUserAndDecision(user, selectedRecord);
+        if (entity != null) {
+            messageUtil.addGlobalErrorFlashMessage("You cannot submit more than once");
+//            throw new FacesException("You cannot submit more than once");
+        } else {
 
-        switch (selectedRecord.getDecisionType()) {
-            case SINGLE_CHOICE:
-                System.out.println("model1: " + model1);
-                if (model1 != null) {
-                    System.out.println("Decisionchoice: " + model1.getDecisionchoice().getName());
-                }
-                // TODO prevent updating...
-                responseService.updateOrCreate(user, selectedRecord, model1.toString());
-                break;
-            case MULTIPLE_CHOICE:
-                System.out.println("model2: " + model2);
-                model2.getDecisionchoices().forEach(c -> {
-                    System.out.println("Decisionchoice: " + c.getName());
-                });
-                responseService.updateOrCreate(user, selectedRecord, model2.toString());
-                break;
-            case SINGLE_SKU_LISTING:
-                System.out.println("model3: " + model3);
-                if (model3 != null) {
-                    System.out.println("Sku: " + model3.getSku().getName());
-                }
-                responseService.updateOrCreate(user, selectedRecord, model3.toString());
-                break;
-            case MULTIPLE_SKU_LISTING:
-                System.out.println("model4: " + model4);
-                model4.getSkus().forEach(c -> {
-                    System.out.println("Sku: " + c.getName());
-                });
-                responseService.updateOrCreate(user, selectedRecord, model4.toString());
-                break;
-            case RANGE_SKU_LISTING:
-                System.out.println("model5: " + model5);
-                model5.forEach(c -> {
-                    System.out.println("Sku: " + c.getSku().getName());
-                    if (c.getValue() != null) {
-                        System.out.println("Value: " + c.getValue());
-                    }
-                });
-                responseService.updateOrCreate(user, selectedRecord, model5.toString());
-                break;
-            case SINGLE_CHOICE_SKU_LISTING:
-                System.out.println("model6: " + model6);
-                model6.forEach(c -> {
-                    System.out.println("Sku: " + c.getSku().getName());
-                    if (c.getDecisionchoice() != null) {
-                        System.out.println("Decisionchoice: " + c.getDecisionchoice().getName());
-                    }
-                });
-                responseService.updateOrCreate(user, selectedRecord, model6.toString());
-                break;
-            case MULTIPLE_CHOICE_SKU_LISTING:
-                System.out.println("model7: " + model7);
-                model7.forEach(c -> {
-                    System.out.println("Sku: " + c.getSku().getName());
-                    for (DecisionchoiceEntity decisionchoice : c.getDecisionchoices()) {
-                        System.out.println("Decisionchoice: " + decisionchoice.getName());
-                    }
-                });
-                responseService.updateOrCreate(user, selectedRecord, model7.toString());
-                break;
+            ResponseEntity response = new ResponseEntity();
+            response.setUser(user);
+            response.setDecision(selectedRecord);
+
+            switch (selectedRecord.getDecisionType()) {
+                case SINGLE_CHOICE:
+                    response.setOutcome(model1.toString());
+                    break;
+                case MULTIPLE_CHOICE:
+                    response.setOutcome(model2.toString());
+                    break;
+                case SINGLE_SKU_LISTING:
+                    response.setOutcome(model3.toString());
+                    break;
+                case MULTIPLE_SKU_LISTING:
+                    response.setOutcome(model4.toString());
+                    break;
+                case RANGE_SKU_LISTING:
+                    response.setOutcome(model5.toString());
+                    break;
+                case SINGLE_CHOICE_SKU_LISTING:
+                    response.setOutcome(model6.toString());
+                    break;
+                case MULTIPLE_CHOICE_SKU_LISTING:
+                    response.setOutcome(model7.toString());
+                    break;
+            }
+
+            responseService.create(response);
+            messageUtil.addGlobalInfoFlashMessage("Updated");
         }
 
-        messageUtil.addGlobalInfoFlashMessage("Updated");
-
-//        try {
-//            sequence++;
-//            DecisionEntity dec = decisions.get(sequence);
-//            System.out.println("sequence: " + sequence);
-//            System.out.println("decisions.size(): " + decisions.size());
-//
-//            String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
-//            RequestUtil.doNavigate(navigation);
-//        } catch (ArrayIndexOutOfBoundsException ex) {
-//            String navigation = "/player/report?amp;faces-redirect=true";
-//            RequestUtil.doNavigate(navigation);
-//        }
         String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
         RequestUtil.doNavigate(navigation);
     }

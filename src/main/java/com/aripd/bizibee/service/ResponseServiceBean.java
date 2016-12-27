@@ -66,15 +66,4 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
         }
     }
 
-    @Override
-    public void updateOrCreate(UserEntity user, DecisionEntity decision, String outcome) {
-        ResponseEntity entity = this.findOneByUserAndDecision(user, decision);
-        if (entity != null) {
-            entity.setOutcome(outcome);
-            this.update(entity);
-        } else {
-            this.create(new ResponseEntity(user, decision, outcome));
-        }
-    }
-
 }

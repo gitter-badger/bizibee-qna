@@ -24,8 +24,11 @@ public class ResponseConverter {
     }
 
     static JsonObject convert(Response1Model model) {
+        if (model.getDecisionchoice() == null) {
+            return Json.createObjectBuilder().build();
+        }
+
         return Json.createObjectBuilder()
-                // TODO decisionchoice null ise id çağırırken nullpointer exception verir
                 .add("id", model.getDecisionchoice().getId())
                 .add("name", model.getDecisionchoice().getName())
                 .add("budget", model.getDecisionchoice().getBudget())
@@ -55,8 +58,11 @@ public class ResponseConverter {
     }
 
     static JsonObject convert(Response3Model model) {
+        if (model.getSku() == null) {
+            return Json.createObjectBuilder().build();
+        }
+
         return Json.createObjectBuilder()
-                // TODO sku null ise id çağırırken nullpointer exception verir
                 .add("id", model.getSku().getId())
                 .add("name", model.getSku().getName())
                 .add("budget", model.getSku().getBudget())
@@ -87,8 +93,8 @@ public class ResponseConverter {
 
     static JsonObject convert(Response5Model model) {
         return Json.createObjectBuilder()
-                // TODO sku null ise id çağırırken nullpointer exception verir
                 .add("sku", model.getSku().getId())
+                // TODO value null ise nullpointer exception verir
                 .add("value", model.getValue())
                 .build();
     }
