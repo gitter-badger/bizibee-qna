@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{decisionView.id}"/>
+            <f:event type="preRenderView" listener="#{decisionView.onLoad}"/>
+        </f:metadata>
+
+        <div id="simulation">
+            <div class="simulation-content">
+                <h1 class="simulation-title">#{i18n['Decision Choices']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <h:form>
+                            <p:menu>
+                                <p:menuitem outcome="/ruler/decision/show" value="#{i18n['Show']}" icon="fa fa-search">
+                                    <f:param name="id" value="#{decisionView.selectedDecision.id}" />
+                                </p:menuitem>
+                                <p:menuitem outcome="/ruler/decision/form" value="#{i18n['Edit']}" icon="fa fa-edit">
+                                    <f:param name="id" value="#{decisionView.selectedDecision.id}" />
+                                </p:menuitem>
+                                <p:menuitem outcome="/ruler/decision/choice" value="#{i18n['Choice']}" icon="fa fa-list">
+                                    <f:param name="id" value="#{decisionView.selectedDecision.id}" />
+                                </p:menuitem>
+                            </p:menu>
+                        </h:form>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form id="form">
+                            <p:dataTable id="dataTable" var="decisionchoice" value="#{decisionView.decisionchoices}" emptyMessage="#{i18n['No records found']}"
+                                         rowKey="#{decisionchoice.id}" selectionMode="single" selection="#{decisionView.selectedDecisionchoice}"
+                                         >
+                                <f:facet name="header">
+                                    <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                                </f:facet>
+                                <p:column headerText="#{i18n['Name']}" width="300">
+                                    <h:outputText value="#{decisionchoice.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Budget']}">
+                                    <h:outputText value="#{decisionchoice.budget}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['GM']}">
+                                    <h:outputText value="#{decisionchoice.gm}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['MS']}">
+                                    <h:outputText value="#{decisionchoice.ms}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['USG']}">
+                                    <h:outputText value="#{decisionchoice.usg}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="dialog">
+        <h:form id="editForm">
+            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                    <p:inputText id="name" value="#{decisionView.selectedDecisionchoice.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+                    <p:outputLabel for="decision" value="#{i18n['Decision']}"/>
+                    <p:selectOneMenu id="decision" value="#{decisionView.selectedDecisionchoice.decision}" label="#{i18n['Decision']}" converter="#{decisionConverter}"
+                                     filter="true" filterMatchMode="contains" required="true">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
+                        <f:selectItems value="#{decisionView.decisions}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
+                    <p:inputText id="budget" value="#{decisionView.selectedDecisionchoice.budget}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.selectedDecisionchoice.gm}" label="#{i18n['GM']}" placeholder="#{i18n['GM']}"/>
+                    <p:outputLabel for="ms" value="#{i18n['MS']}"/>
+                    <p:inputText id="ms" value="#{decisionView.selectedDecisionchoice.ms}" label="#{i18n['MS']}" placeholder="#{i18n['MS']}"/>
+                    <p:outputLabel for="usg" value="#{i18n['USG']}"/>
+                    <p:inputText id="usg" value="#{decisionView.selectedDecisionchoice.usg}" label="#{i18n['USG']}" placeholder="#{i18n['USG']}"/>
+                    <p:outputLabel for="indexMin" value="#{i18n['indexMin']}"/>
+                    <p:inputText id="indexMin" value="#{decisionView.selectedDecisionchoice.indexMin}" label="#{i18n['indexMin']}" placeholder="#{i18n['indexMin']}"/>
+                    <p:outputLabel for="indexMax" value="#{i18n['indexMax']}"/>
+                    <p:inputText id="indexMax" value="#{decisionView.selectedDecisionchoice.indexMax}" label="#{i18n['indexMax']}" placeholder="#{i18n['indexMax']}"/>
+                    <p:outputLabel for="indexStep" value="#{i18n['indexStep']}"/>
+                    <p:inputText id="indexStep" value="#{decisionView.selectedDecisionchoice.indexStep}" label="#{i18n['indexStep']}" placeholder="#{i18n['indexStep']}"/>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doUpdateRecord}"/>
+                    <p:commandButton value="#{i18n['Delete']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{decisionView.doDeleteRecord}">
+                        <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+        <h:form id="newForm">
+            <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                    <p:inputText id="name" value="#{decisionView.newDecisionchoice.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+                    <p:outputLabel for="decision" value="#{i18n['Decision']}"/>
+                    <p:selectOneMenu id="decision" value="#{decisionView.newDecisionchoice.decision}" label="#{i18n['Decision']}" converter="#{decisionConverter}"
+                                     filter="true" filterMatchMode="contains" required="true">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue=""/>
+                        <f:selectItems value="#{decisionView.decisions}" var="decision" itemValue="#{decision}" itemLabel="#{decision.name}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
+                    <p:inputText id="budget" value="#{decisionView.newDecisionchoice.budget}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.newDecisionchoice.gm}" label="#{i18n['GM']}" placeholder="#{i18n['GM']}"/>
+                    <p:outputLabel for="ms" value="#{i18n['MS']}"/>
+                    <p:inputText id="ms" value="#{decisionView.newDecisionchoice.ms}" label="#{i18n['MS']}" placeholder="#{i18n['MS']}"/>
+                    <p:outputLabel for="usg" value="#{i18n['USG']}"/>
+                    <p:inputText id="usg" value="#{decisionView.newDecisionchoice.usg}" label="#{i18n['USG']}" placeholder="#{i18n['USG']}"/>
+                    <p:outputLabel for="indexMin" value="#{i18n['indexMin']}"/>
+                    <p:inputText id="indexMin" value="#{decisionView.newDecisionchoice.indexMin}" label="#{i18n['indexMin']}" placeholder="#{i18n['indexMin']}"/>
+                    <p:outputLabel for="indexMax" value="#{i18n['indexMax']}"/>
+                    <p:inputText id="indexMax" value="#{decisionView.newDecisionchoice.indexMax}" label="#{i18n['indexMax']}" placeholder="#{i18n['indexMax']}"/>
+                    <p:outputLabel for="indexStep" value="#{i18n['indexStep']}"/>
+                    <p:inputText id="indexStep" value="#{decisionView.newDecisionchoice.indexStep}" label="#{i18n['indexStep']}" placeholder="#{i18n['indexStep']}"/>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}"/>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

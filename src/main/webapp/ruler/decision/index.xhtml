@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <div id="simulation">
+            <div class="simulation-content">
+                <h1 class="simulation-title">#{i18n['Decisions']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <h:form id="form">
+                    <p:dataTable id="dataTable" var="decision" value="#{decisionView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                                 paginator="true" paginatorPosition="bottom" rows="10" 
+                                 rowKey="#{decision.id}" selectionMode="single" selection="#{decisionView.selectedDecision}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                 sortMode="multiple" 
+                                 lazy="true" rowsPerPageTemplate="10,15,50">
+                        <f:facet name="header">
+                            <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                            <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
+                                <p:dataExporter type="xls" target="dataTable" fileName="export" />
+                            </p:commandButton>
+                        </f:facet>
+                        <p:column headerText="#{i18n['Name']}" width="300" sortBy="#{decision.name}" filterBy="#{decision.name}">
+                            <h:outputText value="#{decision.name}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['Sort Order']}" sortBy="#{decision.sortOrder}">
+                            <h:outputText value="#{decision.sortOrder}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['Budget']}">
+                            <h:outputText value="#{decision.budget}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['GM']}">
+                            <h:outputText value="#{decision.gm}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['MS']}">
+                            <h:outputText value="#{decision.ms}"/>
+                        </p:column>
+                        <p:column headerText="#{i18n['USG']}">
+                            <h:outputText value="#{decision.usg}"/>
+                        </p:column>
+                        <p:column exportable="false" width="100">
+                            <p:link outcome="/ruler/decision/show" value="#{i18n['Show']}">
+                                <f:param name="id" value="#{decision.id}"/>
+                            </p:link>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="dialog">
+        <h:form id="newForm" enctype="multipart/form-data">
+            <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                    <p:inputText id="name" value="#{decisionView.newDecision.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+                    <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
+                    <p:inputText id="sortOrder" value="#{decisionView.newDecision.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
+                    <p:outputLabel for="description" value="#{i18n['Description']}"/>
+                    <p:inputTextarea id="description" value="#{decisionView.newDecision.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}"/>
+                    <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
+                    <p:inputTextarea id="remark" value="#{decisionView.newDecision.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}"/>
+                    <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
+                    <p:selectOneMenu id="decisionType" value="#{decisionView.newDecision.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
+                        <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel for="skus" value="#{i18n['SKUs']}"/>
+                    <p:selectCheckboxMenu id="skus" value="#{decisionView.newDecision.skus}" 
+                                          label="#{i18n['SKUs']}"
+                                          filter="true" filterMatchMode="contains"
+                                          converter="#{skuConverter}">
+                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
+                    </p:selectCheckboxMenu>
+                    <p:outputLabel for="required" value="#{i18n['Required']}"/>
+                    <p:selectBooleanButton id="required" value="#{decisionView.newDecision.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    <p:outputLabel for="image" value="#{i18n['Image']}"/>
+                    <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
+                    <p:inputText id="budget" value="#{decisionView.newDecision.budget}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}"/>
+                    <p:outputLabel for="gm" value="#{i18n['GM']}"/>
+                    <p:inputText id="gm" value="#{decisionView.newDecision.gm}" label="#{i18n['GM']}" placeholder="#{i18n['GM']}"/>
+                    <p:outputLabel for="ms" value="#{i18n['MS']}"/>
+                    <p:inputText id="ms" value="#{decisionView.newDecision.ms}" label="#{i18n['MS']}" placeholder="#{i18n['MS']}"/>
+                    <p:outputLabel for="usg" value="#{i18n['USG']}"/>
+                    <p:inputText id="usg" value="#{decisionView.newDecision.usg}" label="#{i18n['USG']}" placeholder="#{i18n['USG']}"/>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}" ajax="false"/>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+</ui:composition>
