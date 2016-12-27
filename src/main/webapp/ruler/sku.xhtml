@@ -28,7 +28,7 @@
                         <p:column headerText="#{i18n['Brand']}">
                             <h:outputText value="#{sku.brand.name}"/>
                         </p:column>
-                        <p:column headerText="#{i18n['Name']}" sortBy="#{sku.name}" filterBy="#{sku.name}">
+                        <p:column headerText="#{i18n['Name']}" width="300" sortBy="#{sku.name}" filterBy="#{sku.name}">
                             <h:outputText value="#{sku.name}"/>
                         </p:column>
                         <p:column headerText="#{i18n['Budget']}">
@@ -42,15 +42,6 @@
                         </p:column>
                         <p:column headerText="#{i18n['USG']}">
                             <h:outputText value="#{sku.usg}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['indexMin']}">
-                            <h:outputText value="#{sku.indexMin}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['indexMax']}">
-                            <h:outputText value="#{sku.indexMax}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['indexStep']}">
-                            <h:outputText value="#{sku.indexStep}"/>
                         </p:column>
                         <p:column exportable="false" width="100">
                             <p:commandLink value="#{i18n['Show']}" update="showForm" oncomplete="PF('showDialog').show()">

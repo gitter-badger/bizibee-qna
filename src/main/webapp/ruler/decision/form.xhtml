@@ -68,7 +68,7 @@
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{decisionView.doUpdateRecord}" ajax="false"/>
-                                    <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" actionListener="#{decisionView.doDeleteRecord}">
+                                    <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" action="/ruler/decision/index?faces-redirect=true" actionListener="#{decisionView.doDeleteRecord}" icon="fa fa-trash">
                                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                                     </p:commandButton>
                                 </f:facet>

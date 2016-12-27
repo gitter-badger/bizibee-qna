@@ -3,8 +3,13 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyResponseDataModel;
 import com.aripd.bizibee.entity.ResponseEntity;
+import com.aripd.bizibee.entity.SimulationEntity;
+import com.aripd.bizibee.entity.UserEntity;
+import com.aripd.bizibee.model.data.LazyUserDataModelBySimulation;
 import com.aripd.bizibee.service.ResponseService;
+import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -23,15 +28,25 @@ public class ResponseController implements Serializable {
     private LazyDataModel<ResponseEntity> lazyModel;
 
     @Inject
+    private UserService userService;
+    private UserEntity selectedPlayer;
+    private LazyDataModel<UserEntity> lazyModelPlayer;
+
+    @Inject
     MessageUtil messageUtil;
 
     public ResponseController() {
         selectedRecord = new ResponseEntity();
+        selectedRecords = new ArrayList<>();
     }
 
     @PostConstruct
     public void init() {
         lazyModel = new LazyResponseDataModel(responseService);
+
+        UserEntity user = userService.getCurrentUser();
+        SimulationEntity simulation = user.getSimulation();
+        lazyModelPlayer = new LazyUserDataModelBySimulation(userService, simulation);
     }
 
     public ResponseEntity getSelectedRecord() {
@@ -52,6 +67,18 @@ public class ResponseController implements Serializable {
 
     public LazyDataModel<ResponseEntity> getLazyModel() {
         return lazyModel;
+    }
+
+    public LazyDataModel<UserEntity> getLazyModelPlayer() {
+        return lazyModelPlayer;
+    }
+
+    public UserEntity getSelectedPlayer() {
+        return selectedPlayer;
+    }
+
+    public void setSelectedPlayer(UserEntity selectedPlayer) {
+        this.selectedPlayer = selectedPlayer;
     }
 
 }
