@@ -41,7 +41,7 @@ import org.primefaces.model.menu.MenuModel;
 @ViewScoped
 public class SimulationView implements Serializable {
 
-    private MenuModel menuModel;
+    private final MenuModel menuModel;
 
     @Inject
     private UserService userService;
@@ -62,6 +62,7 @@ public class SimulationView implements Serializable {
     private DecisionEntity selectedRecord;
     private List<DecisionEntity> decisions;
 
+    private String uuid;
     private Integer sequence;
 
     private Response1Model model1;
@@ -93,14 +94,12 @@ public class SimulationView implements Serializable {
     }
 
     public void onLoad() {
-        try {
-            selectedRecord = decisions.get(sequence);
-        } catch (NullPointerException ex) {
+        if (uuid == null) {
             sequence = 0;
             selectedRecord = decisions.get(sequence);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            String navigation = "/player/report?faces-redirect=true";
-            RequestUtil.doNavigate(navigation);
+        } else {
+            selectedRecord = decisionService.findOneByUuid(uuid);
+            sequence = decisions.indexOf(selectedRecord);
         }
 
         model1 = new Response1Model();
@@ -312,13 +311,42 @@ public class SimulationView implements Serializable {
             messageUtil.addGlobalInfoFlashMessage("Updated");
         }
 
-        String navigation = "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
+        String navigation = "/player/simulation?uuid=" + selectedRecord.getUuid() + "&amp;faces-redirect=true";
         RequestUtil.doNavigate(navigation);
     }
 
     public String goNext() {
-        sequence++;
-        return "/player/simulation?sequence=" + sequence + "&amp;faces-redirect=true";
+        try {
+            DecisionEntity decision = getNext(selectedRecord);
+            return "/player/simulation?uuid=" + decision.getUuid() + "&amp;faces-redirect=true";
+        } catch (NullPointerException ex) {
+            return "/player/report?faces-redirect=true";
+        }
+    }
+
+    public String goPrevious() {
+        try {
+            DecisionEntity decision = getPrevious(selectedRecord);
+            return "/player/simulation?uuid=" + decision.getUuid() + "&amp;faces-redirect=true";
+        } catch (NullPointerException ex) {
+            return "/player/report?faces-redirect=true";
+        }
+    }
+
+    private DecisionEntity getNext(DecisionEntity decision) {
+        int idx = decisions.indexOf(decision);
+        if (idx < 0 || idx + 1 == decisions.size()) {
+            return null;
+        }
+        return decisions.get(idx + 1);
+    }
+
+    private DecisionEntity getPrevious(DecisionEntity decision) {
+        int idx = decisions.indexOf(decision);
+        if (idx <= 0) {
+            return null;
+        }
+        return decisions.get(idx - 1);
     }
 
     public DecisionEntity getSelectedRecord() {
@@ -335,6 +363,14 @@ public class SimulationView implements Serializable {
 
     public void setDecisions(List<DecisionEntity> decisions) {
         this.decisions = decisions;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public Integer getSequence() {

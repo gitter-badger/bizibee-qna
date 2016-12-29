@@ -66,7 +66,11 @@
                 </div>
 
                 <ui:repeat var="response" value="#{reportView.responses}" varStatus="varStatus">
-                    <h2><h:outputText value="#{response.decision.name}" /></h2>
+                    <h2>
+                        <h:link outcome="/player/simulation" value="#{response.decision.name}">
+                            <f:param name="uuid" value="#{response.decision.uuid}" />
+                        </h:link>
+                    </h2>
                     <h:outputText value="#{reportView.calculateScore(response)}" style="display: none;" />
 
                     <div class="ui-g ui-fluid dashboard">

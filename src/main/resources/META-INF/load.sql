@@ -48,27 +48,27 @@ INSERT INTO `SKUENTITY` (`ID`,`SIMULATION_ID`,`BUDGET`,`GM`,`INDEXMAX`,`INDEXMIN
 (22,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),-1+2*RAND(),120,75,1,-1+2*RAND(),'TG',-1+2*RAND(),1),
 (23,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),-1+2*RAND(),120,75,1,-1+2*RAND(),'DH',-1+2*RAND(),2);
 
-INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REMARK`, `REQUIRED`, `SORTORDER`, `USG`)
+INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `UUID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REMARK`, `REQUIRED`, `SORTORDER`, `USG`)
 VALUES
-	(1,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Volume Hunting',-1+2*RAND(),-1+2*RAND(),'Volume Hunting','Remark about Volume Hunting',1,1,-1+2*RAND()),
-	(2,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Delisting',-1+2*RAND(),-1+2*RAND(),'Delisting','Remark about Delisting',0,3,-1+2*RAND()),
-	(3,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_SKU_LISTING','Description about Listing',-1+2*RAND(),-1+2*RAND(),'Listing','Remark about Listing',0,5,-1+2*RAND()),
-	(4,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Price Positioning',-1+2*RAND(),-1+2*RAND(),'Price Positioning','Remark about Price Positioning',1,7,-1+2*RAND()),
-	(5,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about E-Commerce Investment',-1+2*RAND(),-1+2*RAND(),'E-Commerce Investment','Remark about E-Commerce Investment',0,9,-1+2*RAND()),
-	(6,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',-1+2*RAND(),-1+2*RAND(),'Display','Remark about Display',0,11,-1+2*RAND()),
-	(7,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',0,13,-1+2*RAND()),
-	(8,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',-1+2*RAND(),-1+2*RAND(),'Promotion','Remark about Promotion',0,15,-1+2*RAND()),
-	(9,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about Team Management',-1+2*RAND(),-1+2*RAND(),'Team Management','Remark about Team Management',0,17,-1+2*RAND()),
+	(1,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Volume Hunting',-1+2*RAND(),-1+2*RAND(),'Volume Hunting','Remark about Volume Hunting',1,1,-1+2*RAND()),
+	(2,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Delisting',-1+2*RAND(),-1+2*RAND(),'Delisting','Remark about Delisting',0,3,-1+2*RAND()),
+	(3,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_SKU_LISTING','Description about Listing',-1+2*RAND(),-1+2*RAND(),'Listing','Remark about Listing',0,5,-1+2*RAND()),
+	(4,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Price Positioning',-1+2*RAND(),-1+2*RAND(),'Price Positioning','Remark about Price Positioning',1,7,-1+2*RAND()),
+	(5,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about E-Commerce Investment',-1+2*RAND(),-1+2*RAND(),'E-Commerce Investment','Remark about E-Commerce Investment',0,9,-1+2*RAND()),
+	(6,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',-1+2*RAND(),-1+2*RAND(),'Display','Remark about Display',0,11,-1+2*RAND()),
+	(7,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',0,13,-1+2*RAND()),
+	(8,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',-1+2*RAND(),-1+2*RAND(),'Promotion','Remark about Promotion',0,15,-1+2*RAND()),
+	(9,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about Team Management',-1+2*RAND(),-1+2*RAND(),'Team Management','Remark about Team Management',0,17,-1+2*RAND()),
 	
-	(10,2,0,'SINGLE_CHOICE','Description about Question1',0,0,'Question1','Remark about Question1',0,2,0),
-	(11,2,0,'SINGLE_CHOICE','Description about Question2',0,0,'Question2','Remark about Question2',0,4,0),
-	(12,2,0,'SINGLE_CHOICE','Description about Question3',0,0,'Question3','Remark about Question3',0,6,0),
-	(13,2,0,'SINGLE_CHOICE','Description about Question4',0,0,'Question4','Remark about Question4',0,8,0),
-	(14,2,0,'SINGLE_CHOICE','Description about Question5',0,0,'Question5','Remark about Question5',0,10,0),
-	(15,2,0,'SINGLE_CHOICE','Description about Question6',0,0,'Question6','Remark about Question6',0,12,0),
-	(16,2,0,'SINGLE_CHOICE','Description about Question7',0,0,'Question7','Remark about Question7',0,14,0),
-	(17,2,0,'SINGLE_CHOICE','Description about Question8',0,0,'Question8','Remark about Question8',0,16,0),
-	(18,2,0,'SINGLE_CHOICE','Description about Question9',0,0,'Question9','Remark about Question9',0,18,0);
+	(10,2,UUID(),0,'SINGLE_CHOICE','Description about Question1',0,0,'Question1','Remark about Question1',0,2,0),
+	(11,2,UUID(),0,'SINGLE_CHOICE','Description about Question2',0,0,'Question2','Remark about Question2',0,4,0),
+	(12,2,UUID(),0,'SINGLE_CHOICE','Description about Question3',0,0,'Question3','Remark about Question3',0,6,0),
+	(13,2,UUID(),0,'SINGLE_CHOICE','Description about Question4',0,0,'Question4','Remark about Question4',0,8,0),
+	(14,2,UUID(),0,'SINGLE_CHOICE','Description about Question5',0,0,'Question5','Remark about Question5',0,10,0),
+	(15,2,UUID(),0,'SINGLE_CHOICE','Description about Question6',0,0,'Question6','Remark about Question6',0,12,0),
+	(16,2,UUID(),0,'SINGLE_CHOICE','Description about Question7',0,0,'Question7','Remark about Question7',0,14,0),
+	(17,2,UUID(),0,'SINGLE_CHOICE','Description about Question8',0,0,'Question8','Remark about Question8',0,16,0),
+	(18,2,UUID(),0,'SINGLE_CHOICE','Description about Question9',0,0,'Question9','Remark about Question9',0,18,0);
 
 INSERT INTO `DECISIONCHOICEENTITY` VALUES 
 (1,2,FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),-1+2*RAND(),120,75,1,-1+2*RAND(),'No e-commerce investment',-1+2*RAND(),5),
