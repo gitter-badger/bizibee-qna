@@ -215,10 +215,13 @@ public class SimulationView implements Serializable {
                         skuId = jsonObject2.getJsonNumber("sku").longValue();
                         sku = skuService.find(skuId);
 
-                        value = jsonObject2.getJsonNumber("value").intValue();
-
                         Response5Model m = new Response5Model(sku);
-                        m.setValue(value);
+
+                        if (decision.isRequired()) {
+                            value = jsonObject2.getJsonNumber("value").intValue();
+                            m.setValue(value);
+                        }
+
                         model5.add(m);
                     }
                     break;
@@ -231,11 +234,14 @@ public class SimulationView implements Serializable {
                         skuId = jsonObject2.getJsonNumber("sku").longValue();
                         sku = skuService.find(skuId);
 
-                        decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
-                        decisionchoice = decisionchoiceService.find(decisionchoiceId);
-
                         Response6Model m = new Response6Model(sku);
-                        m.setDecisionchoice(decisionchoice);
+
+                        if (decision.isRequired()) {
+                            decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
+                            decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                            m.setDecisionchoice(decisionchoice);
+                        }
+
                         model6.add(m);
                     }
                     break;

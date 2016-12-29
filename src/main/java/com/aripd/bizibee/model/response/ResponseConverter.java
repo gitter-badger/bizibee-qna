@@ -24,18 +24,18 @@ public class ResponseConverter {
     }
 
     static JsonObject convert(Response1Model model) {
-        if (model.getDecisionchoice() == null) {
+        try {
+            return Json.createObjectBuilder()
+                    .add("id", model.getDecisionchoice().getId())
+                    .add("name", model.getDecisionchoice().getName())
+                    .add("budget", model.getDecisionchoice().getBudget())
+                    .add("gm", model.getDecisionchoice().getGm())
+                    .add("ms", model.getDecisionchoice().getMs())
+                    .add("usg", model.getDecisionchoice().getUsg())
+                    .build();
+        } catch (NullPointerException ex) {
             return Json.createObjectBuilder().build();
         }
-
-        return Json.createObjectBuilder()
-                .add("id", model.getDecisionchoice().getId())
-                .add("name", model.getDecisionchoice().getName())
-                .add("budget", model.getDecisionchoice().getBudget())
-                .add("gm", model.getDecisionchoice().getGm())
-                .add("ms", model.getDecisionchoice().getMs())
-                .add("usg", model.getDecisionchoice().getUsg())
-                .build();
     }
 
     static JsonObject convert(Response2Model model) {
@@ -58,18 +58,18 @@ public class ResponseConverter {
     }
 
     static JsonObject convert(Response3Model model) {
-        if (model.getSku() == null) {
+        try {
+            return Json.createObjectBuilder()
+                    .add("id", model.getSku().getId())
+                    .add("name", model.getSku().getName())
+                    .add("budget", model.getSku().getBudget())
+                    .add("gm", model.getSku().getGm())
+                    .add("ms", model.getSku().getMs())
+                    .add("usg", model.getSku().getUsg())
+                    .build();
+        } catch (NullPointerException ex) {
             return Json.createObjectBuilder().build();
         }
-
-        return Json.createObjectBuilder()
-                .add("id", model.getSku().getId())
-                .add("name", model.getSku().getName())
-                .add("budget", model.getSku().getBudget())
-                .add("gm", model.getSku().getGm())
-                .add("ms", model.getSku().getMs())
-                .add("usg", model.getSku().getUsg())
-                .build();
     }
 
     static JsonObject convert(Response4Model model) {
@@ -92,19 +92,31 @@ public class ResponseConverter {
     }
 
     static JsonObject convert(Response5Model model) {
-        return Json.createObjectBuilder()
-                .add("sku", model.getSku().getId())
-                // TODO value null ise nullpointer exception verir
-                .add("value", model.getValue())
-                .build();
+        try {
+            return Json.createObjectBuilder()
+                    .add("sku", model.getSku().getId())
+                    .add("value", model.getValue())
+                    .build();
+        } catch (NullPointerException ex) {
+            return Json.createObjectBuilder()
+                    .add("sku", model.getSku().getId())
+                    .add("value", "")
+                    .build();
+        }
     }
 
     static JsonObject convert(Response6Model model) {
-        return Json.createObjectBuilder()
-                .add("sku", model.getSku().getId())
-                // TODO decisionchoice null ise id çağırırken nullpointer exception verir
-                .add("decisionchoice", model.getDecisionchoice().getId())
-                .build();
+        try {
+            return Json.createObjectBuilder()
+                    .add("sku", model.getSku().getId())
+                    .add("decisionchoice", model.getDecisionchoice().getId())
+                    .build();
+        } catch (NullPointerException ex) {
+            return Json.createObjectBuilder()
+                    .add("sku", model.getSku().getId())
+                    .add("decisionchoice", "")
+                    .build();
+        }
     }
 
     static JsonObject convert(Response7Model model) {

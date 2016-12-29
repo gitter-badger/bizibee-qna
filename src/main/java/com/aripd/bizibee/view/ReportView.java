@@ -203,7 +203,9 @@ public class ReportView implements Serializable {
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
-                    value = jsonObject2.getJsonNumber("value").intValue();
+                    if (decision.isRequired()) {
+                        value = jsonObject2.getJsonNumber("value").intValue();
+                    }
                 }
 
                 budgetChange = budgetLocal;
@@ -228,16 +230,18 @@ public class ReportView implements Serializable {
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
-                    decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
-                    decisionchoice = decisionchoiceService.find(decisionchoiceId);
-                    budget += decisionchoice.getBudget();
-                    budgetLocal += decisionchoice.getBudget();
-                    gm += decisionchoice.getGm();
-                    gmLocal += decisionchoice.getGm();
-                    ms += decisionchoice.getMs();
-                    msLocal += decisionchoice.getMs();
-                    usg += decisionchoice.getUsg();
-                    usgLocal += decisionchoice.getUsg();
+                    if (decision.isRequired()) {
+                        decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
+                        decisionchoice = decisionchoiceService.find(decisionchoiceId);
+                        budget += decisionchoice.getBudget();
+                        budgetLocal += decisionchoice.getBudget();
+                        gm += decisionchoice.getGm();
+                        gmLocal += decisionchoice.getGm();
+                        ms += decisionchoice.getMs();
+                        msLocal += decisionchoice.getMs();
+                        usg += decisionchoice.getUsg();
+                        usgLocal += decisionchoice.getUsg();
+                    }
                 }
 
                 budgetChange = budgetLocal;
