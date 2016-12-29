@@ -159,10 +159,12 @@ public class SimulationView implements Serializable {
                     model1 = new Response1Model();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                    if (decision.isRequired()) {
+                    try {
                         decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
                         decisionchoice = decisionchoiceService.find(decisionchoiceId);
                         model1.setDecisionchoice(decisionchoice);
+                    } catch (NullPointerException ex) {
+                        model1.setDecisionchoice(null);
                     }
 
                     break;
@@ -184,10 +186,12 @@ public class SimulationView implements Serializable {
                     model3 = new Response3Model();
                     jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                    if (decision.isRequired()) {
+                    try {
                         skuId = jsonObject1.getJsonNumber("id").longValue();
                         sku = skuService.find(skuId);
                         model3.setSku(sku);
+                    } catch (NullPointerException ex) {
+                        model3.setSku(null);
                     }
 
                     break;
@@ -216,9 +220,12 @@ public class SimulationView implements Serializable {
 
                         Response5Model m = new Response5Model(sku);
 
-                        if (decision.isRequired()) {
+                        try {
                             value = jsonObject2.getJsonNumber("value").intValue();
                             m.setValue(value);
+                        } catch (NullPointerException ex) {
+                            // TODO bunun yerine default olarak sku.getIndexMin() girilebilir
+                            value = sku.getIndexMin();
                         }
 
                         model5.add(m);
@@ -235,10 +242,12 @@ public class SimulationView implements Serializable {
 
                         Response6Model m = new Response6Model(sku);
 
-                        if (decision.isRequired()) {
+                        try {
                             decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                             decisionchoice = decisionchoiceService.find(decisionchoiceId);
                             m.setDecisionchoice(decisionchoice);
+                        } catch (NullPointerException ex) {
+                            m.setDecisionchoice(null);
                         }
 
                         model6.add(m);

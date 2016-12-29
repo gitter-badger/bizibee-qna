@@ -98,7 +98,7 @@ public class ReportView implements Serializable {
             case SINGLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                if (decision.isRequired()) {
+                try {
                     decisionchoiceId = jsonObject1.getJsonNumber("id").longValue();
                     decisionchoice = decisionchoiceService.find(decisionchoiceId);
                     budget += decisionchoice.getBudget();
@@ -109,6 +109,7 @@ public class ReportView implements Serializable {
                     msLocal = decisionchoice.getMs();
                     usg += decisionchoice.getUsg();
                     usgLocal = decisionchoice.getUsg();
+                } catch (NullPointerException ex) {
                 }
 
                 budgetChange = budgetLocal;
@@ -144,7 +145,7 @@ public class ReportView implements Serializable {
             case SINGLE_SKU_LISTING:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
 
-                if (decision.isRequired()) {
+                try {
                     skuId = jsonObject1.getJsonNumber("id").longValue();
                     sku = skuService.find(skuId);
                     budget += sku.getBudget();
@@ -155,6 +156,7 @@ public class ReportView implements Serializable {
                     msLocal = sku.getMs();
                     usg += sku.getUsg();
                     usgLocal = sku.getUsg();
+                } catch (NullPointerException ex) {
                 }
 
                 budgetChange = budgetLocal;
@@ -203,8 +205,9 @@ public class ReportView implements Serializable {
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
-                    if (decision.isRequired()) {
+                    try {
                         value = jsonObject2.getJsonNumber("value").intValue();
+                    } catch (NullPointerException ex) {
                     }
                 }
 
@@ -230,7 +233,7 @@ public class ReportView implements Serializable {
                     usg += sku.getUsg();
                     usgLocal += sku.getUsg();
 
-                    if (decision.isRequired()) {
+                    try {
                         decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                         decisionchoice = decisionchoiceService.find(decisionchoiceId);
                         budget += decisionchoice.getBudget();
@@ -241,6 +244,7 @@ public class ReportView implements Serializable {
                         msLocal += decisionchoice.getMs();
                         usg += decisionchoice.getUsg();
                         usgLocal += decisionchoice.getUsg();
+                    } catch (NullPointerException ex) {
                     }
                 }
 
