@@ -207,7 +207,9 @@ public class ReportView implements Serializable {
 
                     try {
                         value = jsonObject2.getJsonNumber("value").intValue();
-                    } catch (NullPointerException ex) {
+                    } catch (NullPointerException | ClassCastException ex) {
+                        // TODO bunun yerine default olarak sku.getIndexMin() girilebilir
+                        value = sku.getIndexMin();
                     }
                 }
 
@@ -244,7 +246,7 @@ public class ReportView implements Serializable {
                         msLocal += decisionchoice.getMs();
                         usg += decisionchoice.getUsg();
                         usgLocal += decisionchoice.getUsg();
-                    } catch (NullPointerException ex) {
+                    } catch (NullPointerException | ClassCastException ex) {
                     }
                 }
 

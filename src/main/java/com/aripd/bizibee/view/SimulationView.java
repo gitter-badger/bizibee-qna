@@ -223,7 +223,7 @@ public class SimulationView implements Serializable {
                         try {
                             value = jsonObject2.getJsonNumber("value").intValue();
                             m.setValue(value);
-                        } catch (NullPointerException ex) {
+                        } catch (NullPointerException | ClassCastException ex) {
                             // TODO bunun yerine default olarak sku.getIndexMin() girilebilir
                             value = sku.getIndexMin();
                         }
@@ -246,7 +246,7 @@ public class SimulationView implements Serializable {
                             decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
                             decisionchoice = decisionchoiceService.find(decisionchoiceId);
                             m.setDecisionchoice(decisionchoice);
-                        } catch (NullPointerException ex) {
+                        } catch (NullPointerException | ClassCastException ex) {
                             m.setDecisionchoice(null);
                         }
 
