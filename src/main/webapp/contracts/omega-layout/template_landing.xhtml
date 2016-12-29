@@ -53,6 +53,7 @@
 
                             <li><p:link value="#{i18n['Dashboard']}" outcome="/login" rendered="#{not empty request.userPrincipal}"/></li>
                             <li><p:link value="#{i18n['Profile']}" outcome="/administrator/profile" rendered="#{request.isUserInRole('Administrator')}"/></li>
+                            <li><p:link value="#{i18n['Settings']}" outcome="/ruler/settings/index" rendered="#{request.isUserInRole('Ruler')}"/></li>
                             <li><p:link value="#{i18n['Profile']}" outcome="/ruler/profile" rendered="#{request.isUserInRole('Ruler')}"/></li>
                             <li><p:link value="#{i18n['Profile']}" outcome="/player/profile" rendered="#{request.isUserInRole('Player')}"/></li>
                             <li>

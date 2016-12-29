@@ -5,61 +5,65 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
-        <div id="simulation">
-            <div class="simulation-content">
-                <h1 class="simulation-title">#{i18n['Responses']}</h1>
+        <div id="features">
+            <div class="features-content">
+                <h1 class="features-title">#{i18n['Responses']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-                <h:form id="form">
-<!--                    <p:dataTable id="dataTable" var="response" value="#{responseController.lazyModel}" emptyMessage="#{i18n['No records found']}"
-                                 paginator="true" paginatorPosition="bottom" rows="10" 
-                                 rowKey="#{response.id}" selectionMode="single" selection="#{responseController.selectedRecord}"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
-                                 sortMode="multiple" 
-                                 lazy="true" rowsPerPageTemplate="10,15,50">
-                        <f:facet name="header">
-                            <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
-                                <p:dataExporter type="xls" target="dataTable" fileName="export" />
-                            </p:commandButton>
-                        </f:facet>
-                        <p:column headerText="#{i18n['Player']}">
-                            <h:outputText value="#{response.user.username}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Decision']}">
-                            <h:outputText value="#{response.decision.name}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Outcome']}">
-                            <h:outputText value="#{response.outcome}"/>
-                        </p:column>
-                    </p:dataTable>-->
-                    <p:dataTable id="dataTable" var="player" value="#{responseController.lazyModelPlayer}" emptyMessage="#{i18n['No records found']}"
-                                 paginator="true" paginatorPosition="bottom" rows="10" 
-                                 rowKey="#{player.id}" selectionMode="single" selection="#{responseController.selectedPlayer}"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
-                                 sortMode="multiple" 
-                                 lazy="true" rowsPerPageTemplate="10,15,50">
-                        <p:column headerText="#{i18n['Username']}" sortBy="#{player.username}" filterBy="#{player.username}">
-                            <h:outputText value="#{player.username}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{player.email}" filterBy="#{player.email}">
-                            <h:outputText value="#{player.email}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Name']}" sortBy="#{player.name}" filterBy="#{player.name}">
-                            <h:outputText value="#{player.name}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Team']}">
-                            <h:outputText value="#{player.team.name}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Team']}">
-                            <h:outputText value="#{player.teamName}"/>
-                        </p:column>
-                        <p:column headerText="#{i18n['Action']}">
-                            PDF Report
-                        </p:column>
-                    </p:dataTable>
-                </h:form>
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <h:form id="form">
+        <!--                    <p:dataTable id="dataTable" var="response" value="#{responseController.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                                         paginator="true" paginatorPosition="bottom" rows="10" 
+                                         rowKey="#{response.id}" selectionMode="single" selection="#{responseController.selectedRecord}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                         sortMode="multiple" 
+                                         lazy="true" rowsPerPageTemplate="10,15,50">
+                                <f:facet name="header">
+                                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
+                                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
+                                    </p:commandButton>
+                                </f:facet>
+                                <p:column headerText="#{i18n['Player']}">
+                                    <h:outputText value="#{response.user.username}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Decision']}">
+                                    <h:outputText value="#{response.decision.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Outcome']}">
+                                    <h:outputText value="#{response.outcome}"/>
+                                </p:column>
+                            </p:dataTable>-->
+                            <p:dataTable id="dataTable" var="player" value="#{responseController.lazyModelPlayer}" emptyMessage="#{i18n['No records found']}"
+                                         paginator="true" paginatorPosition="bottom" rows="10" 
+                                         rowKey="#{player.id}" selectionMode="single" selection="#{responseController.selectedPlayer}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
+                                         sortMode="multiple" 
+                                         lazy="true" rowsPerPageTemplate="10,15,50">
+                                <p:column headerText="#{i18n['Username']}" sortBy="#{player.username}" filterBy="#{player.username}">
+                                    <h:outputText value="#{player.username}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['E-mail Address']}" sortBy="#{player.email}" filterBy="#{player.email}">
+                                    <h:outputText value="#{player.email}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Name']}" sortBy="#{player.name}" filterBy="#{player.name}">
+                                    <h:outputText value="#{player.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Team']}">
+                                    <h:outputText value="#{player.team.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Team']}">
+                                    <h:outputText value="#{player.teamName}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['Action']}">
+                                    PDF Report
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
             </div>
         </div>
     </ui:define>

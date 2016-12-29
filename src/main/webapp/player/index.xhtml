@@ -5,150 +5,147 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
-        <div id="simulation">
-            <div class="simulation-content">
-                <h1 class="simulation-title">#{i18n['Dashboard']} | #{dashboardView.selectedUser.simulation.name}</h1>
+        <div id="features">
+            <div class="features-content">
+                <h1 class="features-title">#{i18n['Dashboard']} | #{dashboardView.selectedUser.simulation.name}</h1>
                 <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="true" /></p>
 
-                <div class="main">
-                    <div class="ui-g ui-fluid dashboard">
-
-                        <div class="ui-g-12 ui-md-3">
-                            <div class="card clearfix summary">
-                                <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
-                                <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
-                                <span class="detail">Sales Income</span>
-                                <span class="count revenue">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.salesStart}">
-                                        <f:convertNumber type="number" />
-                                    </h:outputText>
-                                </span>
-                            </div>
+                <div class="ui-g ui-fluid dashboard">
+                    <div class="ui-g-12 ui-md-3">
+                        <div class="card clearfix summary">
+                            <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
+                            <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
+                            <span class="detail">Sales Income</span>
+                            <span class="count revenue">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.salesStart}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
                         </div>
-                        <div class="ui-g-12 ui-md-3">
-                            <div class="card clearfix summary">
-                                <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
-                                <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
-                                <span class="detail">Restriction on expenditure</span>
-                                <span class="count budget">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}">
-                                        <f:convertNumber type="number" />
-                                    </h:outputText>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-3">
-                            <div class="card clearfix summary">
-                                <h:outputText id="grossmargin" value="#{i18n['Gross Margin']}" styleClass="title" />
-                                <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
-                                <span class="detail">Revenue minus cost of goods sold</span>
-                                <span class="count grossmargin">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-3">
-                            <div class="card clearfix summary">
-                                <h:outputText id="marketshare" value="#{i18n['Market Share']}" styleClass="title" />
-                                <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
-                                <span class="detail">Portion of the market</span>
-                                <span class="count marketshare">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="ui-g-12 ui-md-6 ui-lg-3">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-users"></i></div>
-                                <div class="card">
-                                    <span class="fa fa-users"></span>
-                                    <span>#{i18n['Teams']}</span>
-                                    <span class="count">#{dashboardView.numberOfTeams}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-3">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-user"></i></div>
-                                <div class="card">
-                                    <span class="fa fa-user"></span>
-                                    <span>#{i18n['Players']}</span>
-                                    <span class="count">#{dashboardView.numberOfPlayers}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-3">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#20d077; color:#038d4a;"><i class="fa fa-tag"></i></div>
-                                <div class="card">
-                                    <span class="fa fa-tag"></span>
-                                    <span>#{i18n['Brands']}</span>
-                                    <span class="count">#{dashboardView.numberOfBrands}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-3">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#f9c851; color:#b58c2b;">SKU</div>
-                                <div class="card">
-                                    <span>#{i18n['SKUs']}</span>
-                                    <span class="count">#{dashboardView.numberOfSkus}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="ui-g-12 ui-md-4 ui-lg-4">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
-                                <div class="card">
-                                    <span class="fa fa-list"></span>
-                                    <span>#{i18n['Decisions']}</span>
-                                    <span class="count">#{dashboardView.numberOfDecisions}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-4 ui-lg-4">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-line-chart"></i></div>
-                                <div class="card">
-                                    <span class="fa fa-line-chart"></span>
-                                    <span>#{i18n['Reports']}</span>
-                                    <span class="count">.</span>
-                                    <span>
-                                        <p:link value="#{i18n['Show']}" outcome="/player/report" />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-g-12 ui-md-4 ui-lg-4">
-                            <div class="highlight-box">
-                                <div class="initials" style="background-color:#20d077; color:#038d4a;"><i class="fa fa-info"></i></div>
-                                <div class="card">
-                                    <span class="fa fa-info"></span>
-                                    <span>#{i18n['Decisions']}</span>
-                                    <span class="count">.</span>
-                                    <span>
-                                        <p:link value="#{i18n['Show']}" outcome="/player/decision" />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <div class="card clearfix summary">
+                            <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
+                            <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
+                            <span class="detail">Restriction on expenditure</span>
+                            <span class="count budget">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <div class="card clearfix summary">
+                            <h:outputText id="grossmargin" value="#{i18n['Gross Margin']}" styleClass="title" />
+                            <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
+                            <span class="detail">Revenue minus cost of goods sold</span>
+                            <span class="count grossmargin">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <div class="card clearfix summary">
+                            <h:outputText id="marketshare" value="#{i18n['Market Share']}" styleClass="title" />
+                            <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
+                            <span class="detail">Portion of the market</span>
+                            <span class="count marketshare">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-users"></i></div>
+                            <div class="card">
+                                <span class="fa fa-users"></span>
+                                <span>#{i18n['Teams']}</span>
+                                <span class="count">#{dashboardView.numberOfTeams}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#ef6262; color:#a83d3b;"><i class="fa fa-user"></i></div>
+                            <div class="card">
+                                <span class="fa fa-user"></span>
+                                <span>#{i18n['Players']}</span>
+                                <span class="count">#{dashboardView.numberOfPlayers}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#20d077; color:#038d4a;"><i class="fa fa-tag"></i></div>
+                            <div class="card">
+                                <span class="fa fa-tag"></span>
+                                <span>#{i18n['Brands']}</span>
+                                <span class="count">#{dashboardView.numberOfBrands}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#f9c851; color:#b58c2b;">SKU</div>
+                            <div class="card">
+                                <span>#{i18n['SKUs']}</span>
+                                <span class="count">#{dashboardView.numberOfSkus}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
+                            <div class="card">
+                                <span class="fa fa-list"></span>
+                                <span>#{i18n['Decisions']}</span>
+                                <span class="count">#{dashboardView.numberOfDecisions}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-line-chart"></i></div>
+                            <div class="card">
+                                <span class="fa fa-line-chart"></span>
+                                <span>#{i18n['Reports']}</span>
+                                <span class="count">.</span>
+                                <span>
+                                    <p:link value="#{i18n['Show']}" outcome="/player/report" />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <div class="highlight-box">
+                            <div class="initials" style="background-color:#20d077; color:#038d4a;"><i class="fa fa-info"></i></div>
+                            <div class="card">
+                                <span class="fa fa-info"></span>
+                                <span>#{i18n['Decisions']}</span>
+                                <span class="count">.</span>
+                                <span>
+                                    <p:link value="#{i18n['Show']}" outcome="/player/decision" />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-                <h:form style="text-align: center;">
-                    <div class="card">
-                        <p:button value="#{i18n['Start']}" outcome="/player/simulation" icon="fa fa-hourglass-start" />
-                    </div>
-                </h:form>
-
             </div>
+
+            <h:form style="text-align: center;">
+                <div class="card">
+                    <p:button value="#{i18n['Start']}" outcome="/player/simulation" icon="fa fa-hourglass-start" />
+                </div>
+            </h:form>
+
         </div>
     </ui:define>
 </ui:composition>

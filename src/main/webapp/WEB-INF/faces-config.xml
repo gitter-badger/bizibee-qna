@@ -5,6 +5,21 @@
         http://xmlns.jcp.org/xml/ns/javaee
         http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
+    <name>bizibee</name>
+    
+    <component>
+        <component-type>org.primefaces.component.OmegaMenu</component-type>
+        <component-class>org.primefaces.omega.component.menu.OmegaMenu</component-class>
+    </component>
+    
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.OmegaMenuRenderer</renderer-type>
+            <renderer-class>org.primefaces.omega.component.menu.OmegaMenuRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+    
     <application>
         <locale-config>
             <default-locale>en_US</default-locale>

@@ -1,0 +1,81 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:po="http://primefaces.org/omega">
+
+    <div class="sidebar">
+        <div class="nano">
+            <div class="nano-content sidebar-scroll-content">
+                <div class="logo">
+                    <p:graphicImage name="images/logo.png" width="113"/>
+                </div>
+
+                <div class="profile">
+                    <p:graphicImage name="images/profile.png" />
+                    <a id="profile-button" href="#">
+                        <span class="username">Peggy Olson</span>
+                        <i class="fa fa-fw fa-cog"></i>
+                    </a>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-fw fa-sliders"></i><span>Account</span></a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-bell"></i><span>Notifications</span><span class="menu-badge">2</span></a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-sign-out"></i><span>Logout</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="menu">
+                    <po:menu>
+                        <p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-home" outcome="/index"/>
+                        <p:submenu id="om_components" label="Components" icon="fa fa-sitemap">
+                            <p:menuitem id="om_sample" value="Sample Page" icon="fa fa-columns" outcome="/index" />
+                            <p:menuitem id="om_forms" value="Forms" icon="fa fa-code" outcome="/index" />
+                            <p:menuitem id="om_data" value="Data" icon="fa fa-table" outcome="/index" />
+                            <p:menuitem id="om_panels" value="Panels" icon="fa fa-list-alt" outcome="/index" />
+                            <p:menuitem id="om_overlays" value="Overlays" icon="fa fa-square" outcome="/index" />
+                            <p:menuitem id="om_menus" value="Menus" icon="fa fa-minus-square-o" outcome="/index" />
+                            <p:menuitem id="om_messages" value="Messages" icon="fa fa-circle-o-notch" outcome="/index" />
+                            <p:menuitem id="om_charts" value="Charts" icon="fa fa-area-chart" outcome="/index" />
+                            <p:menuitem id="om_file" value="File" icon="fa fa-arrow-circle-o-up" outcome="/index" />
+                            <p:menuitem id="om_misc" value="Misc" icon="fa fa-user-secret" outcome="/index" />
+                        </p:submenu>
+                        <p:menuitem id="om_db_landing" value="Landing" icon="fa fa-certificate" outcome="/index"/>
+                        <p:submenu id="om_default" label="Template Pages" icon="fa fa-life-saver">
+                            <p:menuitem id="om_empty" value="Empty Page" icon="fa fa-square-o" outcome="/index" />
+                            <p:menuitem id="om_login" value="Login Page" icon="fa fa-sign-in" outcome="/index" />
+                            <p:menuitem id="om_error" value="Error Page" icon="fa fa-exclamation-circle" outcome="/index" />
+                            <p:menuitem id="om_404" value="404 Page" icon="fa fa-times" outcome="/index" />
+                            <p:menuitem id="om_access" value="Access Denied Page" icon="fa fa-exclamation-triangle" outcome="/index" />
+                        </p:submenu>
+                        <p:submenu id="om_hierarchy" label="Menu Hierarchy" icon="fa fa-gg">
+                            <p:submenu id="om_sm1" label="Submenu 1" icon="fa fa-sign-in">
+                                <p:submenu id="om_sm11" label="Submenu 1.1" icon="fa fa-sign-in">
+                                    <p:menuitem id="om_lnk111" value="Link 1.1.1" icon="fa fa-sign-in" url="#" />
+                                    <p:menuitem id="om_lnk112" value="Link 1.1.2" icon="fa fa-sign-in" url="#" />
+                                    <p:menuitem id="om_lnk113" value="Link 1.1.3" icon="fa fa-sign-in" url="#" />
+                                </p:submenu>
+                                <p:submenu id="om_sm12" label="Submenu 1.2" icon="fa fa-sign-in">
+                                    <p:menuitem id="om_lnk121" value="Link 1.2.1" icon="fa fa-sign-in" url="#" />
+                                </p:submenu>
+                            </p:submenu>
+                            <p:submenu id="om_sm2" label="Submenu 2" icon="fa fa-sign-in">
+                                <p:submenu id="om_sm21" label="Submenu 2.1" icon="fa fa-sign-in">
+                                    <p:menuitem id="om_lnk211" value="Link 2.1.1" icon="fa fa-sign-in" url="#" />
+                                    <p:menuitem id="om_lnk212" value="Link 2.1.2" icon="fa fa-sign-in" url="#" />
+                                </p:submenu>
+                                <p:submenu id="om_sm22" label="Submenu 2.2" icon="fa fa-sign-in">
+                                    <p:menuitem id="om_lnk221" value="Link 2.2.1" icon="fa fa-sign-in" url="#" />
+                                </p:submenu>
+                            </p:submenu>
+                        </p:submenu>
+
+                        <p:menuitem id="om_doc" value="Documentation" icon="fa fa-book" outcome="/index"/>
+                    </po:menu>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

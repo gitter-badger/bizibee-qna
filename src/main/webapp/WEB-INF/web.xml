@@ -24,6 +24,10 @@
         <param-value>true</param-value>
     </context-param>
     <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
@@ -34,6 +38,10 @@
     <context-param>
         <param-name>primefaces.FONT_AWESOME</param-name>
         <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+        <param-value>/WEB-INF/primefaces-omega.taglib.xml</param-value>
     </context-param>
     <context-param>
         <param-name>primefaces.UPLOADER</param-name>
