@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @NotNull
-@Size(min = 6, max = 20)
+@Size(min = 3, max = 20)
 //@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})")
 //@Pattern.List({
 //    @Pattern(regexp = "(?=.*[0-9])", message = "Password must contain one digit.")
