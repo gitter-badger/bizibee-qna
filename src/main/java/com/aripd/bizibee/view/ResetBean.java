@@ -9,13 +9,13 @@ import com.aripd.util.validator.EmailAddress;
 import com.aripd.util.validator.Password;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class ResetBean implements Serializable {
 
     @Inject

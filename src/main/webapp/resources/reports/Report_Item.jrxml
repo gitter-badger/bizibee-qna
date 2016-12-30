@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport 
+    xmlns="http://jasperreports.sourceforge.net/jasperreports" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" 
+    name="Report_Item" 
+    pageWidth="555" 
+    pageHeight="802" 
+    columnWidth="555" 
+    topMargin="0" 
+    rightMargin="0" 
+    bottomMargin="0" 
+    leftMargin="0" 
+    uuid="75a1a2f0-f019-4d08-ad70-239fe3089138" 
+    resourceBundle="Resources">
+    
+    <property name="ireport.zoom" value="4.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <field name="IPN_PCODE" class="java.lang.String"/>
+    <field name="IPN_PNAME" class="java.lang.String"/>
+    <field name="IPN_PRICE" class="java.math.BigDecimal"/>
+    <field name="IPN_VAT" class="java.math.BigDecimal"/>
+    <field name="IPN_TOTAL" class="java.math.BigDecimal"/>
+    <field name="IPN_QTY" class="java.lang.Integer"/>
+    <variable name="taxExcluded" class="java.math.BigDecimal" resetType="None">
+        <variableExpression><![CDATA[$F{IPN_PRICE}.multiply(new BigDecimal($F{IPN_QTY}))]]></variableExpression>
+        <initialValueExpression><![CDATA[0.0F]]></initialValueExpression>
+    </variable>
+    <variable name="taxIncluded" class="java.math.BigDecimal" resetType="None">
+        <variableExpression><![CDATA[$F{IPN_TOTAL}.multiply(new BigDecimal($F{IPN_QTY}))]]></variableExpression>
+        <initialValueExpression><![CDATA[0.0F]]></initialValueExpression>
+    </variable>
+    <variable name="tax" class="java.math.BigDecimal" resetType="None">
+        <variableExpression><![CDATA[$F{IPN_VAT}.multiply(new BigDecimal($F{IPN_QTY}))]]></variableExpression>
+        <initialValueExpression><![CDATA[0.0F]]></initialValueExpression>
+    </variable>
+    <variable name="taxExcludedTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$V{taxExcluded}]]></variableExpression>
+        <initialValueExpression><![CDATA[0.0F]]></initialValueExpression>
+    </variable>
+    <variable name="taxTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$V{tax}]]></variableExpression>
+        <initialValueExpression><![CDATA[0.0F]]></initialValueExpression>
+    </variable>
+    <variable name="taxIncludedTotal" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$V{taxIncluded}]]></variableExpression>
+        <initialValueExpression><![CDATA[0.0F]]></initialValueExpression>
+    </variable>
+    <columnHeader>
+        <band height="31">
+            <staticText>
+                <reportElement x="0" y="0" width="20" height="20" uuid="15e1e045-42e4-4fc7-a3b2-42287a1fac33"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[#]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="20" y="0" width="123" height="20" uuid="5eb93459-b481-4053-af5f-e9488fc4a226"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Description}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="143" y="0" width="40" height="20" uuid="960648d8-7705-426a-9713-cde00762d268"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Quantity}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="183" y="0" width="40" height="20" uuid="44ef7b99-2068-414c-80f1-f5ef223e9da7"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Price}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="223" y="0" width="40" height="20" uuid="c65a4a63-2880-4861-ac60-cdc4c49d5b09"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Total}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="0" y="27" width="263" height="1" uuid="8b974e3f-0b86-45c6-b09e-da48fdb4f451"/>
+            </line>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="23" splitType="Stretch">
+            <textField isBlankWhenNull="false">
+                <reportElement x="0" y="0" width="20" height="20" uuid="affef623-cca9-4801-9b01-a375bb22f890"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="0" width="123" height="20" uuid="3ad0be1b-b547-47c5-b89e-3ebb78d2ae95"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{IPN_PCODE} + "\n" + $F{IPN_PNAME}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="143" y="0" width="40" height="20" uuid="0c7e29f4-15be-46fe-9f65-b44cc0521df5"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{IPN_QTY}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="183" y="0" width="40" height="20" uuid="a3ba2ff8-0120-423b-ae3b-f0576b44f69e"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{IPN_PRICE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="223" y="0" width="40" height="20" uuid="6866a976-15d6-494e-a5ff-54553de9e251"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{taxExcluded}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="60" splitType="Stretch">
+            <line>
+                <reportElement x="0" y="5" width="263" height="1"/>
+            </line>
+            <textField>
+                <reportElement x="20" y="15" width="123" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Tax Excluded}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="223" y="15" width="40" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{taxExcludedTotal}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="25" width="123" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Tax}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="223" y="25" width="40" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{taxTotal}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="35" width="123" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{General Total}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="223" y="35" width="40" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="6" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{taxIncludedTotal}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

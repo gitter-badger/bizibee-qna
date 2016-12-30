@@ -58,7 +58,9 @@
                                     <h:outputText value="#{player.teamName}"/>
                                 </p:column>
                                 <p:column headerText="#{i18n['Action']}">
-                                    PDF Report
+                                    <p:commandButton value="#{i18n['Report']}" action="#{responseController.doGenerateReport}" ajax="false">
+                                        <f:setPropertyActionListener value="#{player}" target="#{responseController.selectedPlayer}" />
+                                    </p:commandButton>
                                 </p:column>
                             </p:dataTable>
                         </h:form>

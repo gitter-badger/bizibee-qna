@@ -58,7 +58,7 @@
                             <li><p:link value="#{i18n['Profile']}" outcome="/player/profile" rendered="#{request.isUserInRole('Player')}"/></li>
                             <li>
                                 <h:form>
-                                    <h:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
+                                    <p:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
                                 </h:form>
                             </li>
                         </ul>
@@ -107,9 +107,9 @@
                                         <ul style="font-size: smaller;">
                                             <ui:repeat value="#{localeBean.locales}" var="locale">
                                                 <li>
-                                                    <h:commandLink immediate="true" value="#{locale.getDisplayName(localeBean.locale)}" action="#{localeBean.onSet}">
+                                                    <p:commandLink immediate="true" value="#{locale.getDisplayName(localeBean.locale)}" action="#{localeBean.onSet}">
                                                         <f:setPropertyActionListener value="#{locale}" target="#{localeBean.locale}"/>
-                                                    </h:commandLink>
+                                                    </p:commandLink>
                                                 </li>
                                             </ui:repeat>
                                         </ul>

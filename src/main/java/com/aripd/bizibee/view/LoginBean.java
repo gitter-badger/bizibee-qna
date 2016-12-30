@@ -2,7 +2,6 @@ package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.service.UserService;
 import com.aripd.bizibee.entity.UserEntity;
-import com.aripd.bizibee.entity.UserGroup;
 import com.aripd.util.MessageUtil;
 import com.aripd.util.RequestUtil;
 import com.aripd.util.helper.CookieHelper;
@@ -11,7 +10,6 @@ import java.util.Date;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.FacesException;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
