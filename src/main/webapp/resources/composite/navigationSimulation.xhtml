@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <composite:interface>
+        <!--<composite:attribute name="product" required="false"/>-->
+    </composite:interface>
+    <composite:implementation>
+        <h:form>
+            <p:menu>
+                <p:menuitem outcome="/ruler/simulation/name" value="#{i18n['Name']}" />
+                <p:menuitem outcome="/ruler/simulation/description" value="#{i18n['Description']}" />
+                <p:menuitem outcome="/ruler/simulation/file" value="#{i18n['File']}" />
+                <p:menuitem outcome="/ruler/simulation/parameter" value="#{i18n['Parameters']}" />
+                <p:menuitem outcome="/ruler/simulation/brand" value="#{i18n['Brands']}" />
+                <p:menuitem outcome="/ruler/simulation/player" value="#{i18n['Players']}" />
+                <p:menuitem outcome="/ruler/simulation/sku" value="#{i18n['SKUs']}" />
+                <p:menuitem outcome="/ruler/decision/index" value="#{i18n['Decisions']}" />
+            </p:menu>
+        </h:form>
+    </composite:implementation>
+
+</html>

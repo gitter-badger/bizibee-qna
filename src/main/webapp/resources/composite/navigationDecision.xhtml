@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <composite:interface>
+        <composite:attribute name="decision" required="true"/>
+    </composite:interface>
+    <composite:implementation>
+        <h:form>
+            <p:menu>
+                <p:menuitem outcome="/ruler/decision/show" value="#{i18n['Show']}" icon="fa fa-search">
+                    <f:param name="id" value="#{cc.attrs.decision.id}" />
+                </p:menuitem>
+                <p:menuitem outcome="/ruler/decision/form" value="#{i18n['Edit']}" icon="fa fa-edit">
+                    <f:param name="id" value="#{cc.attrs.decision.id}" />
+                </p:menuitem>
+                <p:menuitem outcome="/ruler/decision/choice" value="#{i18n['Decision Choices']}" icon="fa fa-list">
+                    <f:param name="id" value="#{cc.attrs.decision.id}" />
+                </p:menuitem>
+                <p:menuitem outcome="/ruler/decision/remark" value="#{i18n['Remark']}" icon="fa fa-edit">
+                    <f:param name="id" value="#{cc.attrs.decision.id}" />
+                </p:menuitem>
+                <p:menuitem outcome="/ruler/simulation/index" value="#{i18n['Back']}" icon="fa fa-arrow-left" />
+            </p:menu>
+        </h:form>
+    </composite:implementation>
+
+</html>

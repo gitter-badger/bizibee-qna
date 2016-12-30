@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <div id="features">
+            <div class="features-content">
+                <h1 class="features-title">#{i18n['Simulation']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationSimulation/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form>
+                            <p:fieldset legend="Initials" style="margin-bottom:20px">
+                                <h:panelGrid columns="1" styleClass="ui-g-12">
+                                    <p:outputLabel for="salesStart" value="#{i18n['Revenue']}"/>
+                                    <p:inputText id="salesStart" value="#{dashboardView.selectedSimulation.salesStart}" label="#{i18n['Revenue']}" placeholder="#{i18n['Revenue']}" styleClass="ui-g-12" required="true" />
+
+                                    <p:outputLabel for="budgetStart" value="#{i18n['Budget']}"/>
+                                    <p:inputText id="budgetStart" value="#{dashboardView.selectedSimulation.budgetStart}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}" styleClass="ui-g-12" required="true" />
+
+                                    <p:outputLabel for="gmStart" value="#{i18n['Gross Margin']}"/>
+                                    <p:inputText id="gmStart" value="#{dashboardView.selectedSimulation.gmStart}" label="#{i18n['Gross Margin']}" placeholder="#{i18n['Gross Margin']}" styleClass="ui-g-12" required="true" />
+
+                                    <p:outputLabel for="msStart" value="#{i18n['Market Share']}"/>
+                                    <p:inputText id="msStart" value="#{dashboardView.selectedSimulation.msStart}" label="#{i18n['Market Share']}" placeholder="#{i18n['Market Share']}" styleClass="ui-g-12" required="true" />
+
+                                    <f:facet name="footer">
+                                        <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                    </f:facet>
+                                </h:panelGrid>
+                            </p:fieldset>
+                            <p:fieldset legend="Weighted" style="margin-bottom:20px">
+                                <h:panelGrid columns="1" styleClass="ui-g-12">
+                                    <p:outputLabel for="usgWeighted" value="#{i18n['usgWeighted']}"/>
+                                    <p:inputText id="usgWeighted" value="#{dashboardView.selectedSimulation.usgWeighted}" label="#{i18n['usgWeighted']}" placeholder="#{i18n['usgWeighted']}" styleClass="ui-g-12" required="true" />
+
+                                    <p:outputLabel for="gmWeighted" value="#{i18n['gmWeighted']}"/>
+                                    <p:inputText id="gmWeighted" value="#{dashboardView.selectedSimulation.gmWeighted}" label="#{i18n['gmWeighted']}" placeholder="#{i18n['gmWeighted']}" styleClass="ui-g-12" required="true" />
+
+                                    <p:outputLabel for="msWeighted" value="#{i18n['msWeighted']}"/>
+                                    <p:inputText id="msWeighted" value="#{dashboardView.selectedSimulation.msWeighted}" label="#{i18n['msWeighted']}" placeholder="#{i18n['msWeighted']}" styleClass="ui-g-12" required="true" />
+
+                                    <f:facet name="footer">
+                                        <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{dashboardView.doUpdateSimulation}"/>
+                                    </f:facet>
+                                </h:panelGrid>
+                            </p:fieldset>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

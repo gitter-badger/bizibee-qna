@@ -22,7 +22,7 @@
                     <div class="ui-g-9">
                         <ui:repeat value="#{decisionView.decisions}" var="decision">
                             <h2 id="n_#{decision.id}"><h:outputText value="#{decision.name}"/></h2>
-                            <p><h:outputText value="#{decision.remark}" escape="false"/></p>
+                            <p><h:outputText value="#{decision.remark}" escape="false" /></p>
                         </ui:repeat>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
@@ -7,15 +8,15 @@
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
-                <h1 class="features-title">#{i18n['Settings']}</h1>
+                <h1 class="features-title">#{i18n['Simulation']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
                     <div class="ui-g-12">
-                        <h1 class="features-title">#{i18n['Settings']}</h1>
+                        <h1 class="features-title">#{i18n['Simulation']}</h1>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
-                        Simulation Name, Description, Remark, File???, Initial Values, Players etc.
+                        <composite:navigationSimulation/>
 
                     </div>
                 </div>

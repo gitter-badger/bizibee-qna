@@ -1,4 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
@@ -17,19 +18,7 @@
 
                 <div class="ui-g">
                     <div class="ui-g-3">
-                        <h:form>
-                            <p:menu>
-                                <p:menuitem outcome="/ruler/decision/show" value="#{i18n['Show']}" icon="fa fa-search">
-                                    <f:param name="id" value="#{decisionView.selectedDecision.id}" />
-                                </p:menuitem>
-                                <p:menuitem outcome="/ruler/decision/form" value="#{i18n['Edit']}" icon="fa fa-edit">
-                                    <f:param name="id" value="#{decisionView.selectedDecision.id}" />
-                                </p:menuitem>
-                                <p:menuitem outcome="/ruler/decision/choice" value="#{i18n['Choice']}" icon="fa fa-list">
-                                    <f:param name="id" value="#{decisionView.selectedDecision.id}" />
-                                </p:menuitem>
-                            </p:menu>
-                        </h:form>
+                        <composite:navigationDecision decision="#{decisionView.selectedDecision}"/>
                     </div>
                     <div class="ui-g-9">
                         <h:form id="form">

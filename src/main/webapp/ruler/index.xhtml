@@ -10,202 +10,93 @@
 
                 <div class="ui-g ui-fluid dashboard">
                     <div class="ui-g-12">
-                        <h:form>
-                            <h1 class="features-title"><h:outputText value="#{dashboardView.selectedUser.simulation.name}" /></h1>
-                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                <p:inputText value="#{dashboardView.selectedSimulation.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
-                                <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                </f:facet>
-                            </p:dialog>
-                        </h:form>
-                        <h:form>
-                            <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="true" /></p>
-                            <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                            <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                <p:inputTextarea value="#{dashboardView.selectedSimulation.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" style="width: 700px;" required="true"/>
-                                <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                </f:facet>
-                            </p:dialog>
-                        </h:form>
+                        <h1 class="features-title"><h:outputText value="#{dashboardView.selectedUser.simulation.name}" /></h1>
+                        <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="true" /></p>
                     </div>
 
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">Revenue</span>
-                                <span class="detail">Sales Income</span>
-                                <span class="count revenue">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.salesStart}">
-                                        <f:convertNumber type="number" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
-                                            <p:inputText id="salesStart" value="#{dashboardView.selectedSimulation.salesStart}" label="#{i18n['salesStart']}" placeholder="#{i18n['salesStart']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">Revenue</span>
+                            <span class="detail">Sales Income</span>
+                            <span class="count revenue">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.salesStart}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">Budget</span>
-                                <span class="detail">Restriction on expenditure</span>
-                                <span class="count budget">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}">
-                                        <f:convertNumber type="number" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="budgetStart" value="#{i18n['budgetStart']}"/>
-                                            <p:inputText id="budgetStart" value="#{dashboardView.selectedSimulation.budgetStart}" label="#{i18n['budgetStart']}" placeholder="#{i18n['budgetStart']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">Budget</span>
+                            <span class="detail">Restriction on expenditure</span>
+                            <span class="count budget">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">Gross Margin</span>
-                                <span class="detail">Revenue minus cost of goods sold</span>
-                                <span class="count grossmargin">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="gmStart" value="#{i18n['gmStart']}"/>
-                                            <p:inputText id="gmStart" value="#{dashboardView.selectedSimulation.gmStart}" label="#{i18n['gmStart']}" placeholder="#{i18n['gmStart']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">Gross Margin</span>
+                            <span class="detail">Revenue minus cost of goods sold</span>
+                            <span class="count grossmargin">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">Market Share</span>
-                                <span class="detail">Portion of the market</span>
-                                <span class="count marketshare">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="msStart" value="#{i18n['msStart']}"/>
-                                            <p:inputText id="msStart" value="#{dashboardView.selectedSimulation.msStart}" label="#{i18n['msStart']}" placeholder="#{i18n['msStart']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">Market Share</span>
+                            <span class="detail">Portion of the market</span>
+                            <span class="count marketshare">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
 
                     <div class="ui-g-12 ui-md-4">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">USG</span>
-                                <span class="detail">Underlying Sales Growth Weighted</span>
-                                <span class="count underlyingsalesgrowth">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.usgWeighted}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="usgWeighted" value="#{i18n['usgWeighted']}"/>
-                                            <p:inputText id="usgWeighted" value="#{dashboardView.selectedSimulation.usgWeighted}" label="#{i18n['usgWeighted']}" placeholder="#{i18n['usgWeighted']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">USG</span>
+                            <span class="detail">Underlying Sales Growth Weighted</span>
+                            <span class="count underlyingsalesgrowth">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.usgWeighted}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-4">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">GM</span>
-                                <span class="detail">Gross Margin Weighted</span>
-                                <span class="count grossmargin">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.gmWeighted}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="gmWeighted" value="#{i18n['gmWeighted']}"/>
-                                            <p:inputText id="gmWeighted" value="#{dashboardView.selectedSimulation.gmWeighted}" label="#{i18n['gmWeighted']}" placeholder="#{i18n['gmWeighted']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">GM</span>
+                            <span class="detail">Gross Margin Weighted</span>
+                            <span class="count grossmargin">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.gmWeighted}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-4">
                         <div class="card clearfix summary">
-                            <h:form>
-                                <span class="title">MS</span>
-                                <span class="detail">Market Share Weighted</span>
-                                <span class="count marketshare">
-                                    <h:outputText value="#{dashboardView.selectedUser.simulation.msWeighted}">
-                                        <f:convertNumber type="percent" />
-                                    </h:outputText>
-                                </span>
-                                <span class="detail">
-                                    <p:commandLink value="#{i18n['Change']}" update="editDlg" oncomplete="PF('editDialog').show()" />
-                                    <p:dialog id="editDlg" header="#{i18n['Edit']}" widgetVar="editDialog" resizable="false" closeOnEscape="true" modal="true">
-                                        <p:panelGrid columns="2">
-                                            <p:outputLabel for="msWeighted" value="#{i18n['msWeighted']}"/>
-                                            <p:inputText id="msWeighted" value="#{dashboardView.selectedSimulation.msWeighted}" label="#{i18n['msWeighted']}" placeholder="#{i18n['msWeighted']}" required="true"/>
-                                        </p:panelGrid>
-                                        <f:facet name="footer">
-                                            <p:commandButton value="#{i18n['Update']}" update="@form, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{dashboardView.doUpdateSimulation}"/>
-                                        </f:facet>
-                                    </p:dialog>
-                                </span>
-                            </h:form>
+                            <span class="title">MS</span>
+                            <span class="detail">Market Share Weighted</span>
+                            <span class="count marketshare">
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.msWeighted}">
+                                    <f:convertNumber type="percent" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail"></span>
                         </div>
                     </div>
 
@@ -226,9 +117,6 @@
                                 <span class="fa fa-user"></span>
                                 <span>#{i18n['Players']}</span>
                                 <span class="count">#{dashboardView.numberOfPlayers}</span>
-                                <span>
-                                    <p:link value="#{i18n['Edit']}" outcome="/ruler/player" />
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -239,9 +127,6 @@
                                 <span class="fa fa-tag"></span>
                                 <span>#{i18n['Brands']}</span>
                                 <span class="count">#{dashboardView.numberOfBrands}</span>
-                                <span>
-                                    <p:link value="#{i18n['Edit']}" outcome="/ruler/brand" />
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -251,9 +136,6 @@
                             <div class="card">
                                 <span>#{i18n['SKUs']}</span>
                                 <span class="count">#{dashboardView.numberOfSkus}</span>
-                                <span>
-                                    <p:link value="#{i18n['Edit']}" outcome="/ruler/sku" />
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -265,9 +147,6 @@
                                 <span class="fa fa-list"></span>
                                 <span>#{i18n['Decisions']}</span>
                                 <span class="count">#{dashboardView.numberOfDecisions}</span>
-                                <span>
-                                    <p:link value="#{i18n['Show']}" outcome="/ruler/decision/index" />
-                                </span>
                             </div>
                         </div>
                     </div>

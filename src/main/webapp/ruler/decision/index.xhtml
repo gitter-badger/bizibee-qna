@@ -1,4 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
@@ -12,7 +13,10 @@
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
-                    <div class="ui-g-12">
+                    <div class="ui-g-3">
+                        <composite:navigationSimulation/>
+                    </div>
+                    <div class="ui-g-9">
                         <h:form id="form">
                             <p:dataTable id="dataTable" var="decision" value="#{decisionView.lazyModel}" emptyMessage="#{i18n['No records found']}"
                                          paginator="true" paginatorPosition="bottom" rows="10" 
@@ -27,7 +31,7 @@
                                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                                     </p:commandButton>
                                 </f:facet>
-                                <p:column headerText="#{i18n['Name']}" width="300" sortBy="#{decision.name}" filterBy="#{decision.name}">
+                                <p:column headerText="#{i18n['Name']}" width="200" sortBy="#{decision.name}" filterBy="#{decision.name}">
                                     <h:outputText value="#{decision.name}"/>
                                 </p:column>
                                 <p:column headerText="#{i18n['Sort Order']}" sortBy="#{decision.sortOrder}">
@@ -66,9 +70,9 @@
                     <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
                     <p:inputText id="sortOrder" value="#{decisionView.newDecision.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:inputTextarea id="description" value="#{decisionView.newDecision.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}"/>
+                    <p:inputTextarea id="description" value="#{decisionView.newDecision.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" />
                     <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
-                    <p:inputTextarea id="remark" value="#{decisionView.newDecision.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}"/>
+                    <p:inputTextarea id="remark" value="#{decisionView.newDecision.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" />
                     <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
                     <p:selectOneMenu id="decisionType" value="#{decisionView.newDecision.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
                         <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
