@@ -12,62 +12,124 @@
     rightMargin="0" 
     bottomMargin="0" 
     leftMargin="0" 
-    uuid="3e544cdf-f422-4f22-acbc-052f51903469"
     resourceBundle="Resources">
     
     <property name="ireport.zoom" value="1.0"/>
     <property name="ireport.x" value="0"/>
     <property name="ireport.y" value="0"/>
-    <parameter name="user" class="com.aripd.bizibee.entity.UserEntity" isForPrompting="false"/>
+    <parameter name="player" class="com.aripd.bizibee.entity.UserEntity" isForPrompting="false"/>
+    <parameter name="responses" class="java.util.List" isForPrompting="false"/>
+    <parameter name="SUBREPORT1" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+    <parameter name="logo" class="java.io.InputStream" isForPrompting="false"/>
+    <background>
+        <band height="45">
+            <image scaleImage="RetainShape">
+                <reportElement x="0" y="0" width="99" height="45"/>
+                <imageExpression><![CDATA[$P{logo}]]></imageExpression>
+            </image>
+        </band>
+    </background>
     <title>
-        <band/>
+        <band height="90">
+            <textField>
+                <reportElement x="0" y="0" width="99" height="45"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$R{Completed}]]></textFieldExpression>
+            </textField>
+        </band>
     </title>
     <pageHeader>
         <band height="234">
             <textField isBlankWhenNull="false">
-                <reportElement key="textField" mode="Transparent" x="173" y="150" width="100" height="13" backcolor="#FFFFFF" uuid="b38a7dfb-e7a5-47d4-b13e-2070a81582d8"/>
+                <reportElement key="textField" mode="Transparent" x="173" y="150" width="100" height="13" backcolor="#FFFFFF"/>
                 <textElement textAlignment="Left">
                     <font size="8"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{user}.getUsername()]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{player}.getUsername()]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="false">
-                <reportElement key="textField" mode="Transparent" x="215" y="169" width="70" height="13" backcolor="#FFFFFF" uuid="68f7919c-0579-45a5-b356-168ac4766c0e"/>
+                <reportElement key="textField" mode="Transparent" x="215" y="169" width="70" height="13" backcolor="#FFFFFF"/>
                 <textElement textAlignment="Left">
                     <font size="6"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{user}.getPassword()]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{player}.getPassword()]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="false">
-                <reportElement key="textField" mode="Transparent" x="215" y="190" width="70" height="13" backcolor="#FFFFFF" uuid="7c49e20a-0927-4729-8482-d9ad13f1232c"/>
+                <reportElement key="textField" mode="Transparent" x="215" y="190" width="70" height="13" backcolor="#FFFFFF"/>
                 <textElement textAlignment="Left">
                     <font size="6"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{user}.getEmail()]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{player}.getEmail()]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="false">
-                <reportElement key="textField" mode="Transparent" x="215" y="211" width="70" height="13" backcolor="#FFFFFF" uuid="53667d57-fb72-4444-9b85-b502c72e4d1d"/>
+                <reportElement key="textField" mode="Transparent" x="215" y="211" width="70" height="13" backcolor="#FFFFFF"/>
                 <textElement textAlignment="Left">
                     <font size="6"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{user}.getName()]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{player}.getName()]]></textFieldExpression>
             </textField>
         </band>
     </pageHeader>
     <columnHeader>
-        <band/>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[columnHeader]]></text>
+            </staticText>
+        </band>
     </columnHeader>
     <detail>
         <band height="210" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[detail]]></text>
+            </staticText>
+            <subreport isUsingCache="true">
+                <reportElement positionType="Float" x="10" y="5" width="263" height="200"/>
+                <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{responses})]]></dataSourceExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT1}]]></subreportExpression>
+            </subreport>
         </band>
     </detail>
     <columnFooter>
-        <band/>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[columnFooter]]></text>
+            </staticText>
+        </band>
     </columnFooter>
     <pageFooter>
-        <band height="150"/>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[pageFooter]]></text>
+            </staticText>
+        </band>
     </pageFooter>
     <summary>
-        <band/>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="6" isBold="true"/>
+                </textElement>
+                <text><![CDATA[summary]]></text>
+            </staticText>
+        </band>
     </summary>
 </jasperReport>
