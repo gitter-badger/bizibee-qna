@@ -70,11 +70,12 @@
 
         <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
             <h2>
-                <h:link outcome="/player/simulation" value="#{response.decision.name}">
+                <h:link outcome="/player/simulation" value="#{response.decision.name}" rendered="#{empty cc.attrs.player}">
                     <f:param name="uuid" value="#{response.decision.uuid}" />
                 </h:link>
+                <h:outputText value="#{response.decision.name}" rendered="#{not empty cc.attrs.player}"/>
             </h2>
-            <h:outputText value="#{reportView.calculateScore(response)}" style="display: none;" />
+            <h:outputText value="#{reportView.calculateScore(response)}" />
 
             <div class="ui-g ui-fluid dashboard">
                 <div class="ui-g-12 ui-md-3">

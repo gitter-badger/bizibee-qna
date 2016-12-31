@@ -7,16 +7,16 @@
                 template="/template_landing.xhtml">
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="id" value="#{reportController.id}"/>
-            <f:event type="preRenderView" listener="#{reportController.onLoad}"/>
+            <f:viewParam name="id" value="#{reportView.id}"/>
+            <f:event type="preRenderView" listener="#{reportView.onLoad}"/>
         </f:metadata>
 
         <div id="features">
             <div class="features-content">
                 <h1 class="features-title">#{i18n['Report']}</h1>
-                <p>You can see the results of #{reportController.selectedPlayer.username}.</p>
+                <p>You can see the results of #{reportView.selectedPlayer.username}.</p>
 
-                <composite:report player="#{reportController.selectedPlayer}"/>
+                <composite:report player="#{reportView.selectedPlayer}"/>
             </div>
         </div>
     </ui:define>
