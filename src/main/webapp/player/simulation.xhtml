@@ -140,7 +140,7 @@
                     <div class="ui-g-4">
                         <h:form id="panel">
                             <p:panel>
-                                <h:panelGroup rendered="#{empty reportView.responses}">
+                                <h:panelGroup rendered="#{empty reportView.getResponses(dashboardView.selectedUser)}">
                                     <ul class="scores">
                                         <li>
                                             <span class="count revenue">
@@ -185,7 +185,7 @@
                                     </ul>
                                 </h:panelGroup>
 
-                                <ui:repeat var="response" value="#{reportView.responses}" varStatus="varStatus" rendered="#{not empty reportView.responses}">
+                                <ui:repeat var="response" value="#{reportView.getResponses(dashboardView.selectedUser)}" varStatus="varStatus" rendered="#{not empty reportView.getResponses(dashboardView.selectedUser)}">
                                     <h:panelGroup style="#{varStatus.last?'display: block;':'display: none;'}">
                                         <h:outputText value="#{reportView.calculateScore(response)}" style="display:none;" />
 

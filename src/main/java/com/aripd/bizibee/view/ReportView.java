@@ -298,8 +298,12 @@ public class ReportView implements Serializable {
         return outcome;
     }
 
-    public List<ResponseEntity> getResponses() {
-        return responseService.findByUser(user);
+    public List<ResponseEntity> getResponses(UserEntity u) {
+        if (u != null) {
+            return responseService.findByUser(u);
+        } else {
+            return responseService.findByUser(user);
+        }
     }
 
     public ResponseEntity getSelectedRecord() {
