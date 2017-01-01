@@ -53,8 +53,12 @@ public class BrandView implements Serializable {
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        brandService.deleteItems(selectedRecords);
-        messageUtil.addGlobalInfoFlashMessage("Deleted");
+        if (selectedRecords.isEmpty()) {
+            messageUtil.addGlobalErrorFlashMessage("Please select at least one item");
+        } else {
+            brandService.deleteItems(selectedRecords);
+            messageUtil.addGlobalInfoFlashMessage("Deleted");
+        }
     }
 
     public BrandEntity getSelectedRecord() {

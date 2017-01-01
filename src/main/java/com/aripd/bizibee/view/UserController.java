@@ -77,8 +77,12 @@ public class UserController implements Serializable {
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        userService.deleteItems(selectedRecords);
-        messageUtil.addGlobalInfoFlashMessage("Deleted");
+        if (selectedRecords.isEmpty()) {
+            messageUtil.addGlobalErrorFlashMessage("Please select at least one item");
+        } else {
+            userService.deleteItems(selectedRecords);
+            messageUtil.addGlobalInfoFlashMessage("Deleted");
+        }
     }
 
     public UserEntity getSelectedRecord() {

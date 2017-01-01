@@ -53,8 +53,12 @@ public class TeamController implements Serializable {
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        teamService.deleteItems(selectedRecords);
-        messageUtil.addGlobalInfoFlashMessage("Deleted");
+        if (selectedRecords.isEmpty()) {
+            messageUtil.addGlobalErrorFlashMessage("Please select at least one item");
+        } else {
+            teamService.deleteItems(selectedRecords);
+            messageUtil.addGlobalInfoFlashMessage("Deleted");
+        }
     }
 
     public TeamEntity getSelectedRecord() {

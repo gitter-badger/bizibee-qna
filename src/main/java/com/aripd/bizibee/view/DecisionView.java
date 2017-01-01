@@ -17,6 +17,7 @@ import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.DecisionchoiceService;
 import com.aripd.bizibee.service.SkuService;
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.primefaces.model.UploadedFile;
 
@@ -49,6 +50,9 @@ public class DecisionView implements Serializable {
     public DecisionView() {
         newDecision = new DecisionEntity();
         selectedDecision = new DecisionEntity();
+        selectedDecisions = new ArrayList<>();
+        newDecisionchoice = new DecisionchoiceEntity();
+        selectedDecisionchoice = new DecisionchoiceEntity();
     }
 
     @PostConstruct
@@ -108,8 +112,19 @@ public class DecisionView implements Serializable {
         messageUtil.addGlobalInfoFlashMessage("Deleted");
     }
 
-    public void doDeleteRecords(ActionEvent actionEvent) {
-        decisionService.deleteItems(selectedDecisions);
+    public void doCreateDecisionchoice(ActionEvent actionEvent) {
+        newDecisionchoice.setDecision(selectedDecision);
+        decisionchoiceService.create(newDecisionchoice);
+        messageUtil.addGlobalInfoFlashMessage("Created");
+    }
+
+    public void doUpdateDecisionchoice(ActionEvent actionEvent) {
+        decisionchoiceService.update(selectedDecisionchoice);
+        messageUtil.addGlobalInfoFlashMessage("Updated");
+    }
+
+    public void doDeleteDecisionchoice(ActionEvent actionEvent) {
+        decisionchoiceService.delete(selectedDecisionchoice);
         messageUtil.addGlobalInfoFlashMessage("Deleted");
     }
 

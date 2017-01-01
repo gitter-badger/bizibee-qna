@@ -53,8 +53,12 @@ public class SimulationController implements Serializable {
     }
 
     public void doDeleteRecords(ActionEvent actionEvent) {
-        simulationService.deleteItems(selectedRecords);
-        messageUtil.addGlobalInfoFlashMessage("Deleted");
+        if (selectedRecords.isEmpty()) {
+            messageUtil.addGlobalErrorFlashMessage("Please select at least one item");
+        } else {
+            simulationService.deleteItems(selectedRecords);
+            messageUtil.addGlobalInfoFlashMessage("Deleted");
+        }
     }
 
     public SimulationEntity getSelectedRecord() {
