@@ -25,7 +25,7 @@
 
         <div id="features">
             <div class="features-content">
-                <h1 class="features-title">#{i18n['Simulation']} | #{dashboardView.selectedUser.simulation.name}</h1>
+                <h1 class="features-title">#{i18n['Simulation']}</h1>
                 <h:panelGrid columns="2" columnClasses="ui-g-3,ui-g-9">
                     <a:identicon text="#{dashboardView.selectedUser.email}" style="width: 100%;" rendered="#{empty dashboardView.selectedUser.bytes}"/>
                     <o:graphicImage value="#{dashboardView.selectedUser.bytes}" dataURI="true" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{not empty dashboardView.selectedUser.bytes}"/>

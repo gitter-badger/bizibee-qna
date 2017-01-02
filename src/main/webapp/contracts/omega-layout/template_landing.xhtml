@@ -37,13 +37,13 @@
                 <div class="landing-header">
                     <div class="landing-header-content clearfix">
                         <p:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 1.6em;">
+                            <!--<p:graphicImage name="images/logo.png" width="113" />-->
+                            <i class="fa fa-crosshairs"></i>
                             <h:panelGroup rendered="#{empty request.userPrincipal}">
-                                <!--<p:graphicImage name="images/logo.png" width="113" />-->
-                                <i class="fa fa-crosshairs"></i>
                                 BiZiBee<sup>®</sup>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{not empty request.userPrincipal}">
-                                <h:outputText value="#{dashboardView.selectedUser.simulation.name}" />
+                                #{dashboardView.selectedUser.simulation.name}
                             </h:panelGroup>
                         </p:link>
                         <p:link id="menu-button" outcome="/index" fragment="introduction">
