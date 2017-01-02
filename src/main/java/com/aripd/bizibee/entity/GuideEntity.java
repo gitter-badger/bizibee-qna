@@ -28,12 +28,9 @@ public class GuideEntity extends AbstractEntity {
     @Column(nullable = false)
     private int sortOrder = 0;
 
-    @NotNull
-    @Column(nullable = false)
     private String description;
 
-    @NotNull
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String remark;
 
     public GuideEntity() {

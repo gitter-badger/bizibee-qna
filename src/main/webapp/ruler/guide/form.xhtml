@@ -25,12 +25,15 @@
                             <h:panelGrid columns="1" styleClass="ui-g-12">
                                 <p:outputLabel for="name" value="#{i18n['Name']}"/>
                                 <p:inputText id="name" value="#{guideView.selectedGuide.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" styleClass="ui-g-12" required="true"/>
+                                
                                 <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
                                 <p:inputText id="sortOrder" value="#{guideView.selectedGuide.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" styleClass="ui-g-12" required="true"/>
+                                
                                 <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                                <p:inputTextarea id="description" value="#{guideView.selectedGuide.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" styleClass="ui-g-12" required="true" />
+                                <p:inputTextarea id="description" value="#{guideView.selectedGuide.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" styleClass="ui-g-12" />
+                                
                                 <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
-                                <p:inputTextarea id="remark" value="#{guideView.selectedGuide.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" styleClass="ui-g-12" required="true" />
+                                <p:inputTextarea id="remark" value="#{guideView.selectedGuide.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" styleClass="ui-g-12" />
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{guideView.doUpdateRecord}"/>
