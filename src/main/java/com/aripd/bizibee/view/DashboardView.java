@@ -11,10 +11,13 @@ import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.FacesException;
+import javax.faces.application.NavigationHandler;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.model.UploadedFile;
 
 @Named
 @ViewScoped
@@ -27,6 +30,8 @@ public class DashboardView implements Serializable {
     @Inject
     private SimulationService simulationService;
     private SimulationEntity selectedSimulation;
+
+    private UploadedFile file;
 
     @Inject
     private BrandService brandService;
@@ -78,6 +83,30 @@ public class DashboardView implements Serializable {
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
+    public void doUploadLogo(ActionEvent actionEvent) {
+        if (file != null && file.getSize() > 0) {
+            selectedSimulation.setBytes(file.getContents());
+        }
+        simulationService.update(selectedSimulation);
+        messageUtil.addGlobalInfoFlashMessage("Uploaded");
+
+        String navigation = "/ruler/simulation/logo.xhtml?faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+        navigationHandler.handleNavigation(context, null, navigation);
+    }
+
+    public void doResetLogo(ActionEvent actionEvent) {
+        selectedSimulation.setBytes(null);
+        simulationService.update(selectedSimulation);
+        messageUtil.addGlobalInfoFlashMessage("Resetted");
+
+        String navigation = "/ruler/simulation/logo.xhtml?faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+        navigationHandler.handleNavigation(context, null, navigation);
+    }
+
     public UserEntity getSelectedUser() {
         return selectedUser;
     }
@@ -92,6 +121,14 @@ public class DashboardView implements Serializable {
 
     public void setSelectedSimulation(SimulationEntity selectedSimulation) {
         this.selectedSimulation = selectedSimulation;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

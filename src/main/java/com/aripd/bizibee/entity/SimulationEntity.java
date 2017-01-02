@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,6 +30,9 @@ public class SimulationEntity extends AbstractEntity {
     @NotNull
     @Column(nullable = false)
     private String name;
+
+    @Lob
+    private byte[] bytes;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -81,6 +85,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 
     public String getDescription() {

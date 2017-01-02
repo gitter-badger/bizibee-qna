@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:a="http://aripd.com/ui"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <div id="features">
+            <div class="features-content">
+                <h1 class="features-title">#{i18n['Simulation']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationSimulation/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form enctype="multipart/form-data">
+                            <p:panelGrid columns="1" styleClass="ui-g-12">
+                                <f:facet name="header">
+                                    <a:identicon text="#{dashboardView.selectedSimulation.name}" style="width: 210px; height: 210px;" rendered="#{empty dashboardView.selectedSimulation.bytes}"/>
+                                    <o:graphicImage value="#{dashboardView.selectedSimulation.bytes}" dataURI="true" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{not empty dashboardView.selectedSimulation.bytes}"/>
+                                </f:facet>
+
+                                <p:fileUpload value="#{dashboardView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{dashboardView.doUploadLogo}" update="@form, :growl" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{dashboardView.doResetLogo}" update="@form, :growl"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

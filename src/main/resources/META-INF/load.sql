@@ -1,6 +1,8 @@
-INSERT INTO `SIMULATIONENTITY` VALUES 
-(1,0,'ARIPDCOM',NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,null,0,0,0,0,'ARI Business Management Systems',0,'',0),
-(2,100000,'UNILEVER2016',NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo nisl velit, at scelerisque leo tempor eget. Sed at orci auctor, lacinia dolor id, dignissim sapien. Ut pulvinar sapien vel mi dignissim vulputate. Nunc viverra ligula eget dignissim lacinia. Nulla pulvinar imperdiet eros, eget rhoncus dui rutrum non. Sed sit amet tristique tortor, sit amet sollicitudin augue. Sed volutpat orci eget ipsum dictum, vitae posuere arcu dignissim. Mauris fermentum interdum finibus. Ut erat massa, congue quis feugiat sed, sodales non risus. Proin sit amet enim sed lacus aliquam vulputate ut sed leo. Suspendisse tincidunt nisi nec massa dignissim dignissim.',0.4,0.25,0.4,0.55,'Unilever Beyond Sales 2016',5000000,'Thanks for your contribution',0.2);
+INSERT INTO `SIMULATIONENTITY` (`ID`, `BUDGETSTART`, `CODE`, `DATEEND`, `DATESTART`, `DESCRIPTION`, `GMSTART`, `GMWEIGHTED`, `MSSTART`, `MSWEIGHTED`, `NAME`, `SALESSTART`, `THANKS`, `USGWEIGHTED`)
+VALUES
+	(1,0,'ARIPDCOM','2017-01-17 16:29:48','2016-12-18 16:29:48',NULL,0,0,0,0,'ARI Business Management Systems',0,'',0),
+	(2,100000,'UNILEVER2016','2017-01-17 16:29:48','2016-12-18 16:29:48','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo nisl velit, at scelerisque leo tempor eget. Sed at orci auctor, lacinia dolor id, dignissim sapien. Ut pulvinar sapien vel mi dignissim vulputate. Nunc viverra ligula eget dignissim lacinia. Nulla pulvinar imperdiet eros, eget rhoncus dui rutrum non. Sed sit amet tristique tortor, sit amet sollicitudin augue. Sed volutpat orci eget ipsum dictum, vitae posuere arcu dignissim. Mauris fermentum interdum finibus. Ut erat massa, congue quis feugiat sed, sodales non risus. Proin sit amet enim sed lacus aliquam vulputate ut sed leo. Suspendisse tincidunt nisi nec massa dignissim dignissim.',0.4,0.25,0.4,0.55,'Unilever Beyond Sales 2016',5000000,'Thanks for your contribution',0.2);
+
 
 INSERT INTO `GUIDEENTITY` (`ID`,`SIMULATION_ID`,`DESCRIPTION`,`NAME`,`REMARK`,`SORTORDER`) VALUES  
 (1,2,'Description about 1','Name1','Remark about 1',1),
