@@ -282,8 +282,8 @@
                                 </ui:repeat>
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{!simulationView.disabled}" />
-                                    <div style="text-align: right;">
-                                        <h:outputFormat value="{0} of {1}" style="font-style: italic;">
+                                    <div style="text-align: center;">
+                                        <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
                                             <f:param value="#{simulationView.sequence+1}" />
                                             <f:param value="#{simulationView.menuModel.elements.size()}" />
                                         </h:outputFormat>
