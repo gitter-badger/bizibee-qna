@@ -5,6 +5,14 @@ $(document).ready(function () {
     });
 });
 
+function planogram(slotId, skuId, skuName) {
+//    alert(skuId);
+//    alert(slotId);
+//    $('#item'+slotId).html(skuId);
+    $('#item'+slotId).html(skuName);
+//    $('#item' + slotId).html($('<img>', {id: 'theImg', src: 'theImg.png'}));
+}
+
 function handleSubmitRequest(xhr, status, args, dialogId, formId, dialogWidgetVar) {
     if (args.validationFailed) {
         PF(dialogWidgetVar).jq.effect("shake", {times: 5}, 100);

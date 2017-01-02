@@ -111,8 +111,21 @@
                         </h:form>
 
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
+                            <h:panelGrid border="1" cellspacing="2" columns="20">
+                                <h:column><span id="item1">1</span></h:column>
+                                <h:column><span id="item2">2</span></h:column>
+                                <h:column><span id="item3">3</span></h:column>
+                                <h:column><span id="item4">4</span></h:column>
+                                <h:column><span id="item5">5</span></h:column>
+                                <h:column><span id="item6">6</span></h:column>
+                                <h:column><span id="item7">7</span></h:column>
+                                <h:column><span id="item8">8</span></h:column>
+                                <h:column><span id="item9">9</span></h:column>
+                                <h:column><span id="item10">10</span></h:column>
+                            </h:panelGrid>
+
                             <p:repeat var="model" value="#{simulationView.model5}">
-                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
+                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name} ##{model.sku.id}"/>
                                 <h:panelGrid columns="1">
                                     <p:spinner value="#{model.value}" 
                                                label="#{simulationView.selectedRecord.name}" 
@@ -121,6 +134,7 @@
                                                min="1" 
                                                max="#{simulationView.model5.size()}"
                                                stepFactor="1"
+                                               onkeyup="planogram(this.value, #{model.sku.id}, '#{model.sku.name}')" 
                                                converter="javax.faces.Integer"/>
                                 </h:panelGrid>
                             </p:repeat>
