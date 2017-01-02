@@ -59,13 +59,13 @@ INSERT INTO `SKUENTITY` (`ID`,`SIMULATION_ID`,`BUDGET`,`GM`,`INDEXMAX`,`INDEXMIN
 
 INSERT INTO `DECISIONENTITY` (`ID`, `SIMULATION_ID`, `UUID`, `BUDGET`, `DECISIONTYPE`, `DESCRIPTION`, `GM`, `MS`, `NAME`, `REMARK`, `REQUIRED`, `SORTORDER`, `USG`)
 VALUES
-	(1,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Volume Hunting',-1+2*RAND(),-1+2*RAND(),'Volume Hunting','Remark about Volume Hunting',1,1,-1+2*RAND()),
+	(1,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Volume Hunting',-1+2*RAND(),-1+2*RAND(),'Volume Hunting','Remark about Volume Hunting',1,13,-1+2*RAND()),
 	(2,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_SKU_LISTING','Description about Delisting',-1+2*RAND(),-1+2*RAND(),'Delisting','Remark about Delisting',1,3,-1+2*RAND()),
 	(3,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_SKU_LISTING','Description about Listing',-1+2*RAND(),-1+2*RAND(),'Listing','Remark about Listing',1,5,-1+2*RAND()),
 	(4,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Price Positioning',-1+2*RAND(),-1+2*RAND(),'Price Positioning','Remark about Price Positioning',1,7,-1+2*RAND()),
 	(5,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about E-Commerce Investment',-1+2*RAND(),-1+2*RAND(),'E-Commerce Investment','Remark about E-Commerce Investment',1,9,-1+2*RAND()),
 	(6,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',-1+2*RAND(),-1+2*RAND(),'Display','Remark about Display',1,11,-1+2*RAND()),
-	(7,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',1,13,-1+2*RAND()),
+	(7,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'INPUT_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',1,1,-1+2*RAND()),
 	(8,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',-1+2*RAND(),-1+2*RAND(),'Promotion','Remark about Promotion',1,15,-1+2*RAND()),
 	(9,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about Team Management',-1+2*RAND(),-1+2*RAND(),'Team Management','Remark about Team Management',1,17,-1+2*RAND()),
 	

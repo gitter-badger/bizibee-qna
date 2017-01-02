@@ -121,6 +121,7 @@ public class SimulationView implements Serializable {
                 case MULTIPLE_SKU_LISTING:
                     break;
                 case RANGE_SKU_LISTING:
+                case INPUT_SKU_LISTING:
                     model5.add(new Response5Model(sku));
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:
@@ -210,6 +211,7 @@ public class SimulationView implements Serializable {
                     model4.setSkus(skus);
                     break;
                 case RANGE_SKU_LISTING:
+                case INPUT_SKU_LISTING:
                     model5 = new ArrayList<>();
                     jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
                     for (JsonValue jsonValue1 : jsonArray1) {
@@ -306,6 +308,7 @@ public class SimulationView implements Serializable {
                     response.setOutcome(model4.toString());
                     break;
                 case RANGE_SKU_LISTING:
+                case INPUT_SKU_LISTING:
                     response.setOutcome(model5.toString());
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:
@@ -322,6 +325,9 @@ public class SimulationView implements Serializable {
 
         String navigation = "/player/simulation?uuid=" + selectedRecord.getUuid() + "&amp;faces-redirect=true";
         RequestUtil.doNavigate(navigation);
+    }
+
+    public void ajaxPreview() {
     }
 
     public String goNext() {

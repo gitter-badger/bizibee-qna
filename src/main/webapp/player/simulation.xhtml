@@ -109,6 +109,37 @@
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>
 
+                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
+                            <p:dataGrid var="model" value="#{simulationView.model5}" 
+                                        columns="4" layout="grid">
+                                <f:facet name="header">dwedwedw</f:facet>
+                                #{model.sku.name}
+                            </p:dataGrid>
+                            <h:panelGrid columns="4">
+                                <h:outputLabel value="row1"/>
+                                <h:outputLabel value="row1"/>
+                                <h:outputLabel value="row1"/>
+                                <h:outputLabel value="row1"/>
+                                <h:outputLabel value="row1"/>
+                                <h:outputLabel value="row1"/>
+                                <h:outputLabel value="row1"/>
+                            </h:panelGrid>
+                            <p:repeat var="model" value="#{simulationView.model5}">
+                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
+                                <h:panelGrid columns="1">
+                                    <p:spinner value="#{model.value}" 
+                                               label="#{simulationView.selectedRecord.name}" 
+                                               required="#{simulationView.selectedRecord.required}" 
+                                               disabled="#{simulationView.disabled}"
+                                               min="1" 
+                                               stepFactor="1"
+                                               converter="javax.faces.Integer">
+                                    </p:spinner>
+                                </h:panelGrid>
+                            </p:repeat>
+                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
+                        </h:form>
+
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
                             <p:repeat var="model" value="#{simulationView.model6}">
                                 <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
