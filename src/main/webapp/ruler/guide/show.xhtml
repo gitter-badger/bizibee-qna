@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{guideView.id}"/>
+            <f:event type="preRenderView" listener="#{guideView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="features-title">#{i18n['Guide']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationSimulation/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form id="showForm">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    <p:button outcome="/ruler/guide/form" value="#{i18n['Edit']}">
+                                        <f:param name="id" value="#{guideView.selectedGuide.id}" />
+                                    </p:button>
+                                </f:facet>
+                                <p:outputLabel value="#{i18n['Name']}"/>
+                                <h:outputText value="#{guideView.selectedGuide.name}"/>
+                                <p:outputLabel value="#{i18n['Sort Order']}"/>
+                                <h:outputText value="#{guideView.selectedGuide.sortOrder}"/>
+                                <p:outputLabel value="#{i18n['Description']}"/>
+                                <h:outputText value="#{guideView.selectedGuide.description}"/>
+                                <p:outputLabel value="#{i18n['Remark']}"/>
+                                <h:outputText value="#{guideView.selectedGuide.remark}"/>
+                            </p:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

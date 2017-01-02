@@ -13,16 +13,17 @@
                 <div class="ui-g">
                     <div class="ui-g-3">
                         <p:panel id="tb">
-                            <ui:repeat value="#{decisionView.decisions}" var="decision">
-                                <p><p:link outcome="/player/decision" fragment="n_#{decision.id}" value="#{decision.name}"/></p>
+                            <ui:repeat value="#{guideView.guides}" var="guide">
+                                <p><p:link outcome="/player/guide" fragment="n_#{guide.id}" value="#{guide.name}"/></p>
                             </ui:repeat>
                         </p:panel>
                         <p:sticky target="tb" margin="90" />
                     </div>
                     <div class="ui-g-9">
-                        <ui:repeat value="#{decisionView.decisions}" var="decision">
-                            <h2 id="n_#{decision.id}"><h:outputText value="#{decision.name}"/></h2>
-                            <p><h:outputText value="#{decision.remark}" escape="false" /></p>
+                        <ui:repeat value="#{guideView.guides}" var="guide">
+                            <h2 id="n_#{guide.id}"><h:outputText value="#{guide.name}"/></h2>
+                            <h3><h:outputText value="#{guide.description}"/></h3>
+                            <p><h:outputText value="#{guide.remark}" escape="false" /></p>
                         </ui:repeat>
                     </div>
                 </div>

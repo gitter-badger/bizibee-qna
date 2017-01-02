@@ -9,7 +9,7 @@
     <ui:define name="head">
         <style type="text/css">
             .ui-steps .ui-steps-item {
-                width: calc(100% / #{simulationView.menuModel.elements.size()});
+                width: calc(100% * 2 / #{simulationView.menuModel.elements.size()});
                 height: 100px;
             }
             .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-title {
@@ -251,6 +251,12 @@
                                 </ui:repeat>
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{!simulationView.disabled}" />
+                                    <div style="text-align: right;">
+                                        <h:outputFormat value="{0} of {1}" style="font-style: italic;">
+                                            <f:param value="#{simulationView.sequence+1}" />
+                                            <f:param value="#{simulationView.menuModel.elements.size()}" />
+                                        </h:outputFormat>
+                                    </div>
                                 </f:facet>
                             </p:panel>
                         </h:form>

@@ -33,6 +33,9 @@ public class SimulationEntity extends AbstractEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(columnDefinition = "TEXT")
+    private String thanks;
+
     private double salesStart;
     private double budgetStart;
     private double gmStart;
@@ -86,6 +89,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getThanks() {
+        return thanks;
+    }
+
+    public void setThanks(String thanks) {
+        this.thanks = thanks;
     }
 
     public double getSalesStart() {
