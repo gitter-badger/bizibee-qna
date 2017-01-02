@@ -98,7 +98,8 @@
                                                disabled="#{simulationView.disabled}"
                                                min="#{model.sku.indexMin}" 
                                                max="#{model.sku.indexMax}" 
-                                               stepFactor="#{model.sku.indexStep}"/>
+                                               stepFactor="#{model.sku.indexStep}"
+                                               converter="javax.faces.Integer"/>
                                     <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
                                         <f:param value="#{model.sku.name}"/>
                                         <f:param value="#{model.sku.indexMin}"/>
@@ -110,20 +111,6 @@
                         </h:form>
 
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
-                            <p:dataGrid var="model" value="#{simulationView.model5}" 
-                                        columns="4" layout="grid">
-                                <f:facet name="header">dwedwedw</f:facet>
-                                #{model.sku.name}
-                            </p:dataGrid>
-                            <h:panelGrid columns="4">
-                                <h:outputLabel value="row1"/>
-                                <h:outputLabel value="row1"/>
-                                <h:outputLabel value="row1"/>
-                                <h:outputLabel value="row1"/>
-                                <h:outputLabel value="row1"/>
-                                <h:outputLabel value="row1"/>
-                                <h:outputLabel value="row1"/>
-                            </h:panelGrid>
                             <p:repeat var="model" value="#{simulationView.model5}">
                                 <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                                 <h:panelGrid columns="1">
@@ -132,9 +119,9 @@
                                                required="#{simulationView.selectedRecord.required}" 
                                                disabled="#{simulationView.disabled}"
                                                min="1" 
+                                               max="#{simulationView.model5.size()}"
                                                stepFactor="1"
-                                               converter="javax.faces.Integer">
-                                    </p:spinner>
+                                               converter="javax.faces.Integer"/>
                                 </h:panelGrid>
                             </p:repeat>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
