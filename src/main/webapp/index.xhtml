@@ -1,26 +1,16 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:a="http://aripd.com/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="head">
-        <h:outputStylesheet name="magnific-popup/magnific-popup.css"/>
-        <h:outputScript name="magnific-popup/jquery.magnific-popup.min.js"/>
         <h:outputStylesheet name="slick/slick.css"/>
         <h:outputStylesheet name="slick/slick-theme.css"/>
         <h:outputScript name="slick/slick.min.js"/>
         <script>
             $(document).ready(function () {
-                $('.popup-video').magnificPopup({
-                    disableOn: 700,
-                    type: 'iframe',
-                    mainClass: 'mfp-fade',
-                    removalDelay: 160,
-                    preloader: false,
-                    fixedContentPos: false
-                });
-
                 $('.testimonials-container').slick({
                     arrows: false,
                     dots: true,
@@ -43,10 +33,7 @@
                 <!--<p:graphicImage name="images/landing/section1_logo.png" />-->
                 <!--<i class="fa fa-crosshairs" style="color: #c0c5c9; font-size: 25em;"></i>-->
                 <p:button value="#{i18n['Log In']}" outcome="/login"/>
-                <h:outputLink value="http://vimeo.com/99025203" styleClass="popup-video">
-                    <i class="fa fa-play-circle"></i>
-                    #{i18n['Trailer']}
-                </h:outputLink>
+                <a:magnificpopup src="http://vimeo.com/99025203" value="#{i18n['Trailer']}" styleClass="fa fa-play-circle" />
             </div>
         </div>
 

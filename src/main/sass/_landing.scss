@@ -459,6 +459,11 @@
                     width: 250px;
                     margin: 0 auto;
                 }
+
+                a {
+                    display: block;
+                    position: static;
+                }
             }
         }
 
