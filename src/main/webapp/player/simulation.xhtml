@@ -119,8 +119,8 @@
                                 </c:forEach>
                             </p:panelGrid>
 
-                            <p:repeat var="model" value="#{simulationView.model5}">
-                                <h:panelGrid columns="2">
+                            <p:repeat var="model" value="#{simulationView.model5}" varStatus="varStatus">
+                                <h:panelGrid columns="3">
                                     <p:spinner value="#{model.value}" 
                                                label="#{simulationView.selectedRecord.name}" 
                                                required="#{simulationView.selectedRecord.required}" 
@@ -129,9 +129,14 @@
                                                max="#{simulationView.model5.size()}"
                                                size="2"
                                                stepFactor="1"
-                                               onchange="planogram(this.value, #{model.sku.id}, '#{model.sku.name}')" 
-                                               onkeyup="planogram(this.value, #{model.sku.id}, '#{model.sku.name}')" 
+                                               onchange="planogram(this, this.value, #{model.sku.id})" 
+                                               onkeyup="planogram(this, this.value, #{model.sku.id})" 
                                                converter="javax.faces.Integer"/>
+                                    <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="false" />
+                                    <h:panelGroup>
+                                        <a:identicon text="#{model.sku.id}" style="width:30px; height: 30px;" rendered="#{empty model.sku.bytes}"/>
+                                        <o:graphicImage value="#{model.sku.bytes}" dataURI="true" width="30" height="30" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{not empty model.sku.bytes}"/>
+                                    </h:panelGroup>
                                     <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                                 </h:panelGrid>
                             </p:repeat>
