@@ -129,8 +129,7 @@
                                                max="#{simulationView.model5.size()}"
                                                size="2"
                                                stepFactor="1"
-                                               onchange="planogram(this, this.value, #{model.sku.id})" 
-                                               onkeyup="planogram(this, this.value, #{model.sku.id})" 
+                                               onblur="planogram(this, this.value, #{model.sku.id})" 
                                                converter="javax.faces.Integer"/>
                                     <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="false" />
                                     <h:panelGroup>
