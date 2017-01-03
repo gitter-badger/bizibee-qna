@@ -28,7 +28,7 @@
             <f:facet name="last">
             </f:facet>
 
-            <ui:insert name="head"></ui:insert>
+            <ui:insert name="head"/>
         </h:head>
 
         <h:body styleClass="landing-body">
@@ -154,6 +154,14 @@
             </h:form>
 
             <h:outputScript name="js/master.js"/>
+            <script type="text/javascript">
+                $(function () {
+                    $('#menu-button').on('click', function (e) {
+                        $('#menu').toggleClass('overlay-menu');
+                        e.preventDefault();
+                    });
+                });
+            </script>
 
         </h:body>
 
