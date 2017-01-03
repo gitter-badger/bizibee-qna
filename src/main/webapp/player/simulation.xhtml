@@ -9,7 +9,7 @@
     <ui:define name="head">
         <style type="text/css">
             .ui-steps .ui-steps-item {
-                width: calc(100% * 2 / #{simulationView.menuModel.elements.size()});
+                width: calc(100% / #{simulationView.menuModel.elements.size()});
                 height: 100px;
             }
             .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-title {
@@ -33,10 +33,11 @@
                 </h:panelGrid>
 
                 <div class="ui-g ui-fluid dashboard">
-                    <div class="ui-g-12 ui-md-12">
-                        <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}"/>
-                    </div>
+                    <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.menuModel.elements.size() lt 10}">
+                        <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}" />
+                    </h:panelGroup>
                     <div class="ui-g-8">
+                        <h2><h:outputText value="#{simulationView.selectedRecord.name}"/></h2>
                         <h3><h:outputText value="#{simulationView.selectedRecord.description}"/></h3>
                         <o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" width="100%" rendered="#{not empty simulationView.selectedRecord.bytes}"/>
 
@@ -111,7 +112,8 @@
                         </h:form>
 
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
-                            <h:panelGrid border="1" cellspacing="2" columns="12" styleClass="ui-g-12">
+
+                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;">
                                 <h:column><span id="item1">1</span></h:column>
                                 <h:column><span id="item2">2</span></h:column>
                                 <h:column><span id="item3">3</span></h:column>
@@ -125,21 +127,32 @@
                                 <h:column><span id="item11">11</span></h:column>
                                 <h:column><span id="item12">12</span></h:column>
                                 <h:column><span id="item13">13</span></h:column>
-                            </h:panelGrid>
+                                <h:column><span id="item14">14</span></h:column>
+                                <h:column><span id="item15">15</span></h:column>
+                                <h:column><span id="item16">16</span></h:column>
+                                <h:column><span id="item17">17</span></h:column>
+                                <h:column><span id="item18">18</span></h:column>
+                                <h:column><span id="item19">19</span></h:column>
+                                <h:column><span id="item20">20</span></h:column>
+                                <h:column><span id="item21">21</span></h:column>
+                                <h:column><span id="item22">22</span></h:column>
+                                <h:column><span id="item23">23</span></h:column>
+                            </p:panelGrid>
 
                             <p:repeat var="model" value="#{simulationView.model5}">
-                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
-                                <h:panelGrid columns="1">
+                                <h:panelGrid columns="2">
                                     <p:spinner value="#{model.value}" 
                                                label="#{simulationView.selectedRecord.name}" 
                                                required="#{simulationView.selectedRecord.required}" 
                                                disabled="#{simulationView.disabled}"
-                                               min="1" 
+                                               min="0" 
                                                max="#{simulationView.model5.size()}"
+                                               size="2"
                                                stepFactor="1"
                                                onchange="planogram(this.value, #{model.sku.id}, '#{model.sku.name}')" 
                                                onkeyup="planogram(this.value, #{model.sku.id}, '#{model.sku.name}')" 
                                                converter="javax.faces.Integer"/>
+                                    <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                                 </h:panelGrid>
                             </p:repeat>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
