@@ -1,8 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a="http://aripd.com/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template.xhtml">
 
     <ui:define name="content">
@@ -16,6 +17,8 @@
                     <p>
                         <i class="fa fa-crosshairs" style="color: #000000; font-size: 25em;"></i>
                     </p>
+                    
+                    <a:magnificpopup src="http://vimeo.com/99025203" value="#{i18n['Trailer']}" styleClass="fa fa-play-circle" />
 
                 </div>
             </div>
