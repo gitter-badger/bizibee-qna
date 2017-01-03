@@ -327,9 +327,6 @@ public class SimulationView implements Serializable {
         RequestUtil.doNavigate(navigation);
     }
 
-    public void ajaxPreview() {
-    }
-
     public String goNext() {
         try {
             DecisionEntity decision = getNext(selectedRecord);

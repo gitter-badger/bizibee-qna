@@ -113,8 +113,7 @@
                         </h:form>
 
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
-
-                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;">
+                            <p:panelGrid id="panelGrid" columns="6" styleClass="ui-g-12" style="text-align:center;">
                                 <c:forEach var="i" begin="1" end="46">
                                     <h:column><span id="item${i}">${i}</span></h:column>
                                 </c:forEach>
