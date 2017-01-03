@@ -327,6 +327,10 @@ public class SimulationView implements Serializable {
         RequestUtil.doNavigate(navigation);
     }
 
+    public SkuEntity slotToSku(int slot) {
+        return model5.stream().filter(m -> m.getValue().equals(slot)).findFirst().orElse(null).getSku();
+    }
+
     public String goNext() {
         try {
             DecisionEntity decision = getNext(selectedRecord);

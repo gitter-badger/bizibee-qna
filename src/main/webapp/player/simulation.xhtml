@@ -28,7 +28,7 @@
             <div class="features-content">
                 <h1 class="features-title">#{i18n['Simulation']}</h1>
                 <h:panelGrid columns="2" columnClasses="ui-g-3,ui-g-9">
-                    <a:identicon text="#{dashboardView.selectedUser.email}" style="width: 100%;" rendered="#{empty dashboardView.selectedUser.bytes}"/>
+                    <a:identicon text="#{dashboardView.selectedUser.email}" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}"  rendered="#{empty dashboardView.selectedUser.bytes}"/>
                     <o:graphicImage value="#{dashboardView.selectedUser.bytes}" dataURI="true" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{not empty dashboardView.selectedUser.bytes}"/>
                     <h2>#{dashboardView.selectedUser.name}</h2>
                 </h:panelGrid>
@@ -113,10 +113,44 @@
                         </h:form>
 
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
-                            <p:panelGrid id="panelGrid" columns="6" styleClass="ui-g-12" style="text-align:center;">
-                                <c:forEach var="i" begin="1" end="46">
-                                    <h:column><span id="item${i}">${i}</span></h:column>
+                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;">
+                                <c:forEach var="i" begin="1" end="23">
+                                    <h:column>
+                                        i: #{i} - sku: #{simulationView.model5.get(i-1).sku.id} - value: #{simulationView.model5.get(i-1).value}
+                                    </h:column>
                                 </c:forEach>
+                            </p:panelGrid>
+
+                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
+                                <c:forEach var="i" begin="1" end="23">
+                                    <h:column>
+                                        <h:outputText value="${simulationView.slotToSku(i)}" />
+                                    </h:column>
+                                </c:forEach>
+                            </p:panelGrid>
+
+                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;">
+                                <c:forEach var="i" begin="1" end="23">
+                                    <h:column>
+                                        <h:panelGroup id="item${i}">
+                                            <h:outputText value="${i}" rendered="#{empty simulationView.model5.get(i-1).sku.bytes}" />
+                                            <a:identicon text="#{simulationView.model5.get(i-1).sku.id}" style="width:30px; height: 30px;" alt="#{simulationView.model5.get(i-1).sku.name}" title="#{simulationView.model5.get(i-1).sku.name}" rendered="#{empty simulationView.model5.get(i-1).sku.bytes}"/>
+                                            <o:graphicImage value="#{simulationView.model5.get(i-1).sku.bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.model5.get(i-1).sku.name}" title="#{simulationView.model5.get(i-1).sku.name}" rendered="#{not empty simulationView.model5.get(i-1).sku.bytes}"/>
+                                        </h:panelGroup>
+                                    </h:column>
+                                </c:forEach>
+                            </p:panelGrid>
+
+                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;">
+                                <p:repeat var="model" value="#{simulationView.model5}" varStatus="varStatus">
+                                    <h:column>
+                                        <h:panelGroup id="item${model.value}">
+                                            <h:outputText value="${model.value}" rendered="#{empty model.sku.bytes}" />
+                                            <a:identicon text="#{model.sku.id}" style="width:30px; height: 30px;" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{empty model.sku.bytes}"/>
+                                            <o:graphicImage value="#{model.sku.bytes}" dataURI="true" width="30" height="30" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{not empty model.sku.bytes}"/>
+                                        </h:panelGroup>
+                                    </h:column>
+                                </p:repeat>
                             </p:panelGrid>
 
                             <p:repeat var="model" value="#{simulationView.model5}" varStatus="varStatus">
@@ -133,7 +167,7 @@
                                                converter="javax.faces.Integer"/>
                                     <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="false" />
                                     <h:panelGroup>
-                                        <a:identicon text="#{model.sku.id}" style="width:30px; height: 30px;" rendered="#{empty model.sku.bytes}"/>
+                                        <a:identicon text="#{model.sku.id}" style="width:30px; height: 30px;" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{empty model.sku.bytes}"/>
                                         <o:graphicImage value="#{model.sku.bytes}" dataURI="true" width="30" height="30" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{not empty model.sku.bytes}"/>
                                     </h:panelGroup>
                                     <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
