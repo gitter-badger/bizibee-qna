@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:a="http://aripd.com/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
@@ -114,29 +115,9 @@
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
 
                             <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;">
-                                <h:column><span id="item1">1</span></h:column>
-                                <h:column><span id="item2">2</span></h:column>
-                                <h:column><span id="item3">3</span></h:column>
-                                <h:column><span id="item4">4</span></h:column>
-                                <h:column><span id="item5">5</span></h:column>
-                                <h:column><span id="item6">6</span></h:column>
-                                <h:column><span id="item7">7</span></h:column>
-                                <h:column><span id="item8">8</span></h:column>
-                                <h:column><span id="item9">9</span></h:column>
-                                <h:column><span id="item10">10</span></h:column>
-                                <h:column><span id="item11">11</span></h:column>
-                                <h:column><span id="item12">12</span></h:column>
-                                <h:column><span id="item13">13</span></h:column>
-                                <h:column><span id="item14">14</span></h:column>
-                                <h:column><span id="item15">15</span></h:column>
-                                <h:column><span id="item16">16</span></h:column>
-                                <h:column><span id="item17">17</span></h:column>
-                                <h:column><span id="item18">18</span></h:column>
-                                <h:column><span id="item19">19</span></h:column>
-                                <h:column><span id="item20">20</span></h:column>
-                                <h:column><span id="item21">21</span></h:column>
-                                <h:column><span id="item22">22</span></h:column>
-                                <h:column><span id="item23">23</span></h:column>
+                                <c:forEach var="i" begin="1" end="46">
+                                    <h:column><span id="item${i}">${i}</span></h:column>
+                                </c:forEach>
                             </p:panelGrid>
 
                             <p:repeat var="model" value="#{simulationView.model5}">
