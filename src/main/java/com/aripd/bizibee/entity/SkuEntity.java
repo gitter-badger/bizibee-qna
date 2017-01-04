@@ -42,6 +42,18 @@ public class SkuEntity extends AbstractEntity {
     private int indexMax;
     private int indexStep;
 
+    private double usgGainMin;
+    private double usgGainMax;
+
+    private double gmGainMin;
+    private double gmGainMax;
+
+    private int msBreakpointIndexMin;
+    private int msBreakpointIndexMax;
+    private int msOptimalIndexMax;
+    private double msGainMin;
+    private double msGainMax;
+
     @ManyToOne
     private BrandEntity brand;
 
@@ -150,6 +162,78 @@ public class SkuEntity extends AbstractEntity {
 
     public void setBrand(BrandEntity brand) {
         this.brand = brand;
+    }
+
+    public double getUsgGainMin() {
+        return usgGainMin;
+    }
+
+    public void setUsgGainMin(double usgGainMin) {
+        this.usgGainMin = usgGainMin;
+    }
+
+    public double getUsgGainMax() {
+        return usgGainMax;
+    }
+
+    public void setUsgGainMax(double usgGainMax) {
+        this.usgGainMax = usgGainMax;
+    }
+
+    public double getGmGainMin() {
+        return gmGainMin;
+    }
+
+    public void setGmGainMin(double gmGainMin) {
+        this.gmGainMin = gmGainMin;
+    }
+
+    public double getGmGainMax() {
+        return gmGainMax;
+    }
+
+    public void setGmGainMax(double gmGainMax) {
+        this.gmGainMax = gmGainMax;
+    }
+
+    public int getMsBreakpointIndexMin() {
+        return msBreakpointIndexMin;
+    }
+
+    public void setMsBreakpointIndexMin(int msBreakpointIndexMin) {
+        this.msBreakpointIndexMin = msBreakpointIndexMin;
+    }
+
+    public int getMsBreakpointIndexMax() {
+        return msBreakpointIndexMax;
+    }
+
+    public void setMsBreakpointIndexMax(int msBreakpointIndexMax) {
+        this.msBreakpointIndexMax = msBreakpointIndexMax;
+    }
+
+    public int getMsOptimalIndexMax() {
+        return msOptimalIndexMax;
+    }
+
+    public void setMsOptimalIndexMax(int msOptimalIndexMax) {
+        this.msOptimalIndexMax = msOptimalIndexMax;
+    }
+
+    public double getMsGainMin() {
+        return msGainMin;
+    }
+
+    public void setMsGainMin(double msGainMin) {
+        this.msGainMin = msGainMin;
+    }
+
+    public double getMsGainMax() {
+        return msGainMax;
+    }
+
+    public void setMsGainMax(double msGainMax) {
+        this.msGainMax = msGainMax;
     }
 
 }

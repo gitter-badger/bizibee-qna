@@ -84,12 +84,34 @@
                     <h:outputText value="#{skuView.selectedRecord.ms}"/>
                     <p:outputLabel value="#{i18n['USG']}"/>
                     <h:outputText value="#{skuView.selectedRecord.usg}"/>
+                    
                     <p:outputLabel value="#{i18n['indexMin']}"/>
                     <h:outputText value="#{skuView.selectedRecord.indexMin}"/>
                     <p:outputLabel value="#{i18n['indexMax']}"/>
                     <h:outputText value="#{skuView.selectedRecord.indexMax}"/>
                     <p:outputLabel value="#{i18n['indexStep']}"/>
                     <h:outputText value="#{skuView.selectedRecord.indexStep}"/>
+                    
+                    <p:outputLabel value="#{i18n['usgGainMin']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.usgGainMin}"/>
+                    <p:outputLabel value="#{i18n['usgGainMax']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.usgGainMax}"/>
+
+                    <p:outputLabel value="#{i18n['gmGainMin']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.gmGainMin}"/>
+                    <p:outputLabel value="#{i18n['gmGainMax']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.gmGainMax}"/>
+
+                    <p:outputLabel value="#{i18n['msBreakpointIndexMin']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.msBreakpointIndexMin}"/>
+                    <p:outputLabel value="#{i18n['msBreakpointIndexMax']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.msBreakpointIndexMax}"/>
+                    <p:outputLabel value="#{i18n['msOptimalIndexMax']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.msOptimalIndexMax}"/>
+                    <p:outputLabel value="#{i18n['msGainMin']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.msGainMin}"/>
+                    <p:outputLabel value="#{i18n['msGainMax']}"/>
+                    <h:outputText value="#{skuView.selectedRecord.msGainMax}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Edit']}" update=":editForm:editDlg" oncomplete="PF('showDialog').hide();PF('editDialog').show();" icon="ui-icon-pencil" title="#{i18n['Edit']}">
@@ -126,6 +148,27 @@
                     <p:inputText id="indexMax" value="#{skuView.selectedRecord.indexMax}" label="#{i18n['indexMax']}" placeholder="#{i18n['indexMax']}"/>
                     <p:outputLabel for="indexStep" value="#{i18n['indexStep']}"/>
                     <p:inputText id="indexStep" value="#{skuView.selectedRecord.indexStep}" label="#{i18n['indexStep']}" placeholder="#{i18n['indexStep']}"/>
+
+                    <p:outputLabel for="usgGainMin" value="#{i18n['usgGainMin']}"/>
+                    <p:inputText id="usgGainMin" value="#{skuView.selectedRecord.usgGainMin}" label="#{i18n['usgGainMin']}" placeholder="#{i18n['usgGainMin']}"/>
+                    <p:outputLabel for="usgGainMax" value="#{i18n['usgGainMax']}"/>
+                    <p:inputText id="usgGainMax" value="#{skuView.selectedRecord.usgGainMax}" label="#{i18n['usgGainMax']}" placeholder="#{i18n['usgGainMax']}"/>
+
+                    <p:outputLabel for="gmGainMin" value="#{i18n['gmGainMin']}"/>
+                    <p:inputText id="gmGainMin" value="#{skuView.selectedRecord.gmGainMin}" label="#{i18n['gmGainMin']}" placeholder="#{i18n['gmGainMin']}"/>
+                    <p:outputLabel for="gmGainMax" value="#{i18n['gmGainMax']}"/>
+                    <p:inputText id="gmGainMax" value="#{skuView.selectedRecord.gmGainMax}" label="#{i18n['gmGainMax']}" placeholder="#{i18n['gmGainMax']}"/>
+
+                    <p:outputLabel for="msBreakpointIndexMin" value="#{i18n['msBreakpointIndexMin']}"/>
+                    <p:inputText id="msBreakpointIndexMin" value="#{skuView.selectedRecord.msBreakpointIndexMin}" label="#{i18n['msBreakpointIndexMin']}" placeholder="#{i18n['msBreakpointIndexMin']}"/>
+                    <p:outputLabel for="msBreakpointIndexMax" value="#{i18n['msBreakpointIndexMax']}"/>
+                    <p:inputText id="msBreakpointIndexMax" value="#{skuView.selectedRecord.msBreakpointIndexMax}" label="#{i18n['msBreakpointIndexMax']}" placeholder="#{i18n['msBreakpointIndexMax']}"/>
+                    <p:outputLabel for="msOptimalIndexMax" value="#{i18n['msOptimalIndexMax']}"/>
+                    <p:inputText id="msOptimalIndexMax" value="#{skuView.selectedRecord.msOptimalIndexMax}" label="#{i18n['msOptimalIndexMax']}" placeholder="#{i18n['msOptimalIndexMax']}"/>
+                    <p:outputLabel for="msGainMin" value="#{i18n['msGainMin']}"/>
+                    <p:inputText id="msGainMin" value="#{skuView.selectedRecord.msGainMin}" label="#{i18n['msGainMin']}" placeholder="#{i18n['msGainMin']}"/>
+                    <p:outputLabel for="msGainMax" value="#{i18n['msGainMax']}"/>
+                    <p:inputText id="msGainMax" value="#{skuView.selectedRecord.msGainMax}" label="#{i18n['msGainMax']}" placeholder="#{i18n['msGainMax']}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Update']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'editDlg','editForm','editDialog');" actionListener="#{skuView.doUpdateRecord}" ajax="false"/>
@@ -163,6 +206,27 @@
                     <p:inputText id="indexMax" value="#{skuView.newRecord.indexMax}" label="#{i18n['indexMax']}" placeholder="#{i18n['indexMax']}"/>
                     <p:outputLabel for="indexStep" value="#{i18n['indexStep']}"/>
                     <p:inputText id="indexStep" value="#{skuView.newRecord.indexStep}" label="#{i18n['indexStep']}" placeholder="#{i18n['indexStep']}"/>
+
+                    <p:outputLabel for="usgGainMin" value="#{i18n['usgGainMin']}"/>
+                    <p:inputText id="usgGainMin" value="#{skuView.newRecord.usgGainMin}" label="#{i18n['usgGainMin']}" placeholder="#{i18n['usgGainMin']}"/>
+                    <p:outputLabel for="usgGainMax" value="#{i18n['usgGainMax']}"/>
+                    <p:inputText id="usgGainMax" value="#{skuView.newRecord.usgGainMax}" label="#{i18n['usgGainMax']}" placeholder="#{i18n['usgGainMax']}"/>
+
+                    <p:outputLabel for="gmGainMin" value="#{i18n['gmGainMin']}"/>
+                    <p:inputText id="gmGainMin" value="#{skuView.newRecord.gmGainMin}" label="#{i18n['gmGainMin']}" placeholder="#{i18n['gmGainMin']}"/>
+                    <p:outputLabel for="gmGainMax" value="#{i18n['gmGainMax']}"/>
+                    <p:inputText id="gmGainMax" value="#{skuView.newRecord.gmGainMax}" label="#{i18n['gmGainMax']}" placeholder="#{i18n['gmGainMax']}"/>
+
+                    <p:outputLabel for="msBreakpointIndexMin" value="#{i18n['msBreakpointIndexMin']}"/>
+                    <p:inputText id="msBreakpointIndexMin" value="#{skuView.newRecord.msBreakpointIndexMin}" label="#{i18n['msBreakpointIndexMin']}" placeholder="#{i18n['msBreakpointIndexMin']}"/>
+                    <p:outputLabel for="msBreakpointIndexMax" value="#{i18n['msBreakpointIndexMax']}"/>
+                    <p:inputText id="msBreakpointIndexMax" value="#{skuView.newRecord.msBreakpointIndexMax}" label="#{i18n['msBreakpointIndexMax']}" placeholder="#{i18n['msBreakpointIndexMax']}"/>
+                    <p:outputLabel for="msOptimalIndexMax" value="#{i18n['msOptimalIndexMax']}"/>
+                    <p:inputText id="msOptimalIndexMax" value="#{skuView.newRecord.msOptimalIndexMax}" label="#{i18n['msOptimalIndexMax']}" placeholder="#{i18n['msOptimalIndexMax']}"/>
+                    <p:outputLabel for="msGainMin" value="#{i18n['msGainMin']}"/>
+                    <p:inputText id="msGainMin" value="#{skuView.newRecord.msGainMin}" label="#{i18n['msGainMin']}" placeholder="#{i18n['msGainMin']}"/>
+                    <p:outputLabel for="msGainMax" value="#{i18n['msGainMax']}"/>
+                    <p:inputText id="msGainMax" value="#{skuView.newRecord.msGainMax}" label="#{i18n['msGainMax']}" placeholder="#{i18n['msGainMax']}"/>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{skuView.doCreateRecord}" ajax="false"/>

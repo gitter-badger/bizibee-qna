@@ -233,14 +233,6 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
-                    budget += sku.getBudget();
-                    budgetLocal += sku.getBudget();
-                    gm += sku.getGm();
-                    gmLocal += sku.getGm();
-                    ms += sku.getMs();
-                    msLocal += sku.getMs();
-                    usg += sku.getUsg();
-                    usgLocal += sku.getUsg();
 
                     try {
                         value = jsonObject2.getJsonNumber("value").intValue();
@@ -248,6 +240,22 @@ public class ReportView implements Serializable {
                         // TODO bunun yerine default olarak sku.getIndexMin() girilebilir
                         value = sku.getIndexMin();
                     }
+
+                    budget += sku.getBudget();
+                    budgetLocal += sku.getBudget();
+                    if (value >= sku.getIndexMin() && value < sku.getMsBreakpointIndexMin()) {
+                        ms += 0;
+                        msLocal += 0;
+                    } else if (value >= sku.getMsBreakpointIndexMin() && value < sku.getMsBreakpointIndexMax()) {
+                        ms += sku.getMsGainMax() + ((value - sku.getMsBreakpointIndexMin()) * (sku.getMsGainMin() - sku.getMsGainMax())) / (sku.getMsBreakpointIndexMax() - sku.getMsBreakpointIndexMin());
+                    } else {
+                        ms += sku.getMsGainMin();
+                        msLocal += sku.getMsGainMin();
+                    }
+                    gm += sku.getGmGainMin() + ((value - sku.getIndexMin()) * (sku.getGmGainMax() - sku.getGmGainMin()) / ((sku.getIndexMax() + sku.getIndexMin()) / 2 - (sku.getIndexMin())));
+                    gmLocal += sku.getGmGainMin() + ((value - sku.getIndexMin()) * (sku.getGmGainMax() - sku.getGmGainMin()) / ((sku.getIndexMax() + sku.getIndexMin()) / 2 - (sku.getIndexMin())));
+                    usg += ((sku.getIndexMax() - value) * (sku.getUsgGainMax() - sku.getUsgGainMin()) / (sku.getIndexMax() - sku.getIndexMin())) + sku.getUsgGainMin();
+                    usgLocal += ((sku.getIndexMax() - value) * (sku.getUsgGainMax() - sku.getUsgGainMin()) / (sku.getIndexMax() - sku.getIndexMin())) + sku.getUsgGainMin();
                 }
 
                 budgetChange = budgetLocal;
