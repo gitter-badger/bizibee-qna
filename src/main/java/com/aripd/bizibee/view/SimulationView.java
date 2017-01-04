@@ -121,7 +121,8 @@ public class SimulationView implements Serializable {
                 case MULTIPLE_SKU_LISTING:
                     break;
                 case RANGE_SKU_LISTING:
-                case INPUT_SKU_LISTING:
+                case PLANOGRAM1:
+                case PLANOGRAM2:
                     model5.add(new Response5Model(sku));
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:
@@ -211,7 +212,8 @@ public class SimulationView implements Serializable {
                     model4.setSkus(skus);
                     break;
                 case RANGE_SKU_LISTING:
-                case INPUT_SKU_LISTING:
+                case PLANOGRAM1:
+                case PLANOGRAM2:
                     model5 = new ArrayList<>();
                     jsonArray1 = ResponseConverter.jsonArrayFromString(outcome);
                     for (JsonValue jsonValue1 : jsonArray1) {
@@ -308,7 +310,8 @@ public class SimulationView implements Serializable {
                     response.setOutcome(model4.toString());
                     break;
                 case RANGE_SKU_LISTING:
-                case INPUT_SKU_LISTING:
+                case PLANOGRAM1:
+                case PLANOGRAM2:
                     response.setOutcome(model5.toString());
                     break;
                 case SINGLE_CHOICE_SKU_LISTING:

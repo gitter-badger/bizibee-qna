@@ -17,8 +17,14 @@
                     <p>
                         <i class="fa fa-crosshairs" style="color: #000000; font-size: 25em;"></i>
                     </p>
-                    
-                    <a:magnificpopup src="http://vimeo.com/99025203" value="#{i18n['Trailer']}" styleClass="fa fa-play-circle" />
+
+                    <p>
+                        <a:magnificpopup src="http://vimeo.com/99025203" value="#{i18n['Trailer']}" styleClass="fa fa-play-circle" />
+                    </p>
+
+                    <a:slick var="brand" value="#{skuView.brands}" >
+                        #{brand.name}
+                    </a:slick>
 
                 </div>
             </div>

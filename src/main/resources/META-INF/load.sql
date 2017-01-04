@@ -65,7 +65,7 @@ VALUES
 	(4,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'RANGE_SKU_LISTING','Description about Price Positioning',-1+2*RAND(),-1+2*RAND(),'Price Positioning','Remark about Price Positioning',1,7,-1+2*RAND()),
 	(5,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about E-Commerce Investment',-1+2*RAND(),-1+2*RAND(),'E-Commerce Investment','Remark about E-Commerce Investment',1,9,-1+2*RAND()),
 	(6,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE_SKU_LISTING','Description about Display',-1+2*RAND(),-1+2*RAND(),'Display','Remark about Display',1,11,-1+2*RAND()),
-	(7,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'INPUT_SKU_LISTING','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',1,1,-1+2*RAND()),
+	(7,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'PLANOGRAM1','Description about Planogram',-1+2*RAND(),-1+2*RAND(),'Planogram','Remark about Planogram',1,1,-1+2*RAND()),
 	(8,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'SINGLE_CHOICE_SKU_LISTING','Description about Promotion',-1+2*RAND(),-1+2*RAND(),'Promotion','Remark about Promotion',1,15,-1+2*RAND()),
 	(9,2,UUID(),FLOOR(RAND()*(-1000-(-36000)+1))+(-36000),'MULTIPLE_CHOICE','Description about Team Management',-1+2*RAND(),-1+2*RAND(),'Team Management','Remark about Team Management',1,17,-1+2*RAND()),
 	

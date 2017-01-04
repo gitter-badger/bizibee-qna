@@ -92,7 +92,6 @@
 
                         <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
                             <p:repeat var="model" value="#{simulationView.model5}">
-                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
                                 <h:panelGrid columns="2">
                                     <p:spinner value="#{model.value}" 
                                                label="#{simulationView.selectedRecord.name}" 
@@ -100,10 +99,11 @@
                                                disabled="#{simulationView.disabled}"
                                                min="#{model.sku.indexMin}" 
                                                max="#{model.sku.indexMax}" 
+                                               size="#{model.sku.inputSize}"
                                                stepFactor="#{model.sku.indexStep}"
                                                converter="javax.faces.Integer"/>
-                                    <h:outputFormat value="{0} ürünü için {1} index ile {2} index arasinda bir fiyat belirleyin">
-                                        <f:param value="#{model.sku.name}"/>
+                                    <h:outputFormat value="{0} için {1} ile {2} arasinda bir index belirleyin">
+                                        <f:param value="#{model.sku.brand.name} #{model.sku.name}"/>
                                         <f:param value="#{model.sku.indexMin}"/>
                                         <f:param value="#{model.sku.indexMax}"/>
                                     </h:outputFormat>
@@ -112,7 +112,22 @@
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'INPUT_SKU_LISTING'}">
+                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'PLANOGRAM1'}">
+                            <p:repeat var="model" value="#{simulationView.model5}">
+                                <h:panelGrid columns="2">
+                                    <p:inputText value="#{model.value}" 
+                                                 label="#{simulationView.selectedRecord.name}" 
+                                                 required="#{simulationView.selectedRecord.required}" 
+                                                 disabled="#{simulationView.disabled}"
+                                                 size="#{model.sku.inputSize}"
+                                                 converter="javax.faces.Integer"/>
+                                    <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
+                                </h:panelGrid>
+                            </p:repeat>
+                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
+                        </h:form>
+
+                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'PLANOGRAM2'}">
                             <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
                                 <c:forEach var="i" begin="1" end="23">
                                     <h:column>
@@ -136,7 +151,7 @@
                                                disabled="#{simulationView.disabled}"
                                                min="0" 
                                                max="#{simulationView.model5.size()}"
-                                               size="2"
+                                               size="#{model.sku.inputSize}"
                                                stepFactor="1"
                                                onblur="planogram(this, this.value, #{model.sku.id})" 
                                                converter="javax.faces.Integer"/>

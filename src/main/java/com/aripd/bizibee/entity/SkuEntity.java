@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -48,6 +49,11 @@ public class SkuEntity extends AbstractEntity {
     private List<DecisionEntity> decisions = new ArrayList<>();
 
     public SkuEntity() {
+    }
+
+    @Transient
+    public int getInputSize() {
+        return (int) (Math.log10(indexMax) + 1);
     }
 
     public SimulationEntity getSimulation() {
