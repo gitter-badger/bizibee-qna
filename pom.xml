@@ -81,14 +81,14 @@
     </contributors>
   
     <scm>
-        <connection>scm:git:git@github.com:aripd/bizibee.git</connection>
-        <developerConnection>scm:git:git@github.com:aripd/bizibee.git</developerConnection>
-        <url>https://github.com/aripd/bizibee</url>
+        <connection>scm:git:git@github.com:${repository.user}/${repository.name}.git</connection>
+        <developerConnection>scm:git:git@github.com:${repository.user}/${repository.name}.git</developerConnection>
+        <url>https://github.com/${repository.user}/${repository.name}</url>
     </scm>
     
     <issueManagement>
-        <url>https://github.com/aripd/bizibee/issues</url>
-        <system>GitHub</system>
+        <url>https://www.github.com/${repository.user}/${repository.name}/issues</url>
+        <system>Github Issues</system>
     </issueManagement>
 
     <build>

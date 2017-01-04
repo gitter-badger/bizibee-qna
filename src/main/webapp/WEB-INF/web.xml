@@ -132,7 +132,6 @@
         <role-name>Player</role-name>
     </security-role>
     
-    
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/error/error.xhtml</location>
