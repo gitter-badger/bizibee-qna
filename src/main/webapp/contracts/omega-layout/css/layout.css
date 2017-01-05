@@ -3193,6 +3193,7 @@ h2 {
     position: static;
     width: 250px;
     margin: 0 auto;
+    margin-bottom: 20px;
   }
   .landing-wrapper #introduction .introduction-content a {
     display: block;
@@ -3252,6 +3253,14 @@ h2 {
   .landing-wrapper #video .video-content .video-container iframe {
     width: 350px;
     height: 220px;
+  }
+  .landing-wrapper #testimonials {
+    padding: 30px 0;
+  }
+  .landing-wrapper #testimonials .testimonials-content {
+    width: 100%;
+  }
+  .landing-wrapper #testimonials .testimonials-content .testimonials-container {
   }
   .landing-wrapper .landing-footer {
     padding: 0px 20px;
