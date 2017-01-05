@@ -2600,6 +2600,9 @@ h2 {
 .dashboard .summary .count.revenue {
   background-color: #007be5;
 }
+.dashboard .summary .count.score {
+  background-color: #606860;
+}
 .dashboard .task-list {
   list-style-type: none;
   margin: 0;
@@ -2724,12 +2727,12 @@ h2 {
 .dashboard .contacts li:last-child {
   border: 0;
 }
-.dashboard .scores {
+.dashboard .scoreboard {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-.dashboard .scores li {
+.dashboard .scoreboard li {
   border-bottom: 1px solid #e3e3e3;
   padding: 9px;
   width: 100%;
@@ -2746,23 +2749,23 @@ h2 {
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
 }
-.dashboard .scores li .title {
+.dashboard .scoreboard li .title {
   position: absolute;
   right: 10px;
   top: 10px;
   font-size: 18px;
 }
-.dashboard .scores li .title:hover {
+.dashboard .scoreboard li .title:hover {
   cursor: help;
 }
-.dashboard .scores li .detail {
+.dashboard .scoreboard li .detail {
   position: absolute;
   right: 10px;
   top: 30px;
   font-size: 14px;
   color: #a4a4a4;
 }
-.dashboard .scores li .count {
+.dashboard .scoreboard li .count {
   color: #ffffff;
   position: absolute;
   top: 10px;
@@ -2773,26 +2776,29 @@ h2 {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-.dashboard .scores li .count.underlyingsalesgrowth {
+.dashboard .scoreboard li .count.underlyingsalesgrowth {
   background-color: #007be5;
 }
-.dashboard .scores li .count.marketshare {
+.dashboard .scoreboard li .count.marketshare {
   background-color: #ef6262;
 }
-.dashboard .scores li .count.grossmargin {
+.dashboard .scoreboard li .count.grossmargin {
   background-color: #20d077;
 }
-.dashboard .scores li .count.budget {
+.dashboard .scoreboard li .count.budget {
   background-color: #f9c851;
 }
-.dashboard .scores li .count.revenue {
+.dashboard .scoreboard li .count.revenue {
   background-color: #007be5;
 }
-.dashboard .scores li:hover {
+.dashboard .scoreboard li .count.score {
+  background-color: #606860;
+}
+.dashboard .scoreboard li:hover {
   cursor: pointer;
   background-color: #eeeeee;
 }
-.dashboard .scores li:last-child {
+.dashboard .scoreboard li:last-child {
   border: 0;
 }
 

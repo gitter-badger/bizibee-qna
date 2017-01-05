@@ -36,21 +36,20 @@
             &.underlyingsalesgrowth {
                 background-color: #007be5;
             }
-
             &.marketshare {
                 background-color: #ef6262;
             }
-
             &.grossmargin {
                 background-color: #20d077;
             }
-
             &.budget {
                 background-color: #f9c851;
             }
-
             &.revenue {
                 background-color: #007be5;
+            }
+            &.score {
+                background-color: #606860;
             }
         }
     }
@@ -196,7 +195,7 @@
         }
     }
 
-    .scores {
+    .scoreboard {
         list-style-type: none;
         padding: 0;
         margin: 0;
@@ -259,7 +258,9 @@
                 &.revenue {
                     background-color: #007be5;
                 }
-
+                &.score {
+                    background-color: #606860;
+                }
             }
 
             &:hover {

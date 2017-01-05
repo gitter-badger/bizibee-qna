@@ -142,7 +142,7 @@
                         <h:form id="panel">
                             <p:panel>
                                 <h:panelGroup rendered="#{empty reportView.getResponses(dashboardView.selectedUser)}">
-                                    <ul class="scores">
+                                    <ul class="scoreboard">
                                         <li>
                                             <span class="count revenue">
                                                 <h:outputText value="#{reportView.simulation.salesStart}">
@@ -199,7 +199,7 @@
                                     <h:panelGroup style="#{varStatus.last?'display: block;':'display: none;'}">
                                         <h:outputText value="#{reportView.calculateScore(response)}" style="display:none;" />
 
-                                        <ul class="scores">
+                                        <ul class="scoreboard">
                                             <li>
                                                 <span class="count revenue">
                                                     <h:outputText value="#{reportView.sales}">
