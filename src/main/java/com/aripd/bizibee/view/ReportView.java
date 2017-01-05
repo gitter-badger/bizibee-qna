@@ -62,12 +62,16 @@ public class ReportView implements Serializable {
     double sales = 0;
     double budget = 0;
     double budgetChange = 0;
-    double gm = 0;
-    double gmChange = 0;
-    double ms = 0;
-    double msChange = 0;
+
+    double usgWeighted = 0;
     double usg = 0;
     double usgChange = 0;
+    double gmWeighted = 0;
+    double gm = 0;
+    double gmChange = 0;
+    double msWeighted = 0;
+    double ms = 0;
+    double msChange = 0;
 
     @Inject
     MessageUtil messageUtil;
@@ -87,10 +91,14 @@ public class ReportView implements Serializable {
         sales = simulation.getSalesStart();
         budget = simulation.getBudgetStart();
         budgetChange = 0;
+
+        gmWeighted = simulation.getGmWeighted();
         gm = simulation.getGmStart();
         gmChange = 0;
+        msWeighted = simulation.getMsWeighted();
         ms = simulation.getMsStart();
         msChange = 0;
+        usgWeighted = simulation.getUsgWeighted();
         usg = 0;
         usgChange = 0;
     }
@@ -139,20 +147,20 @@ public class ReportView implements Serializable {
                     scoreLocal = answer.getCoefScore();
                     budget += answer.getCoefBudget();
                     budgetLocal = answer.getCoefBudget();
+                    usg += answer.getCoefUsg();
+                    usgLocal = answer.getCoefUsg();
                     gm += answer.getCoefGm();
                     gmLocal = answer.getCoefGm();
                     ms += answer.getCoefMs();
                     msLocal = answer.getCoefMs();
-                    usg += answer.getCoefUsg();
-                    usgLocal = answer.getCoefUsg();
                 } catch (NullPointerException ex) {
                 }
 
                 scoreChange = scoreLocal;
                 budgetChange = budgetLocal;
+                usgChange = usgLocal;
                 gmChange = gmLocal;
                 msChange = msLocal;
-                usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
             case MULTIPLE_CHOICE:
@@ -167,19 +175,19 @@ public class ReportView implements Serializable {
                     scoreLocal += answer.getCoefScore();
                     budget += answer.getCoefBudget();
                     budgetLocal += answer.getCoefBudget();
+                    usg += answer.getCoefUsg();
+                    usgLocal += answer.getCoefUsg();
                     gm += answer.getCoefGm();
                     gmLocal += answer.getCoefGm();
                     ms += answer.getCoefMs();
                     msLocal += answer.getCoefMs();
-                    usg += answer.getCoefUsg();
-                    usgLocal += answer.getCoefUsg();
                 }
 
                 scoreChange = scoreLocal;
                 budgetChange = budgetLocal;
+                usgChange = usgLocal;
                 gmChange = gmLocal;
                 msChange = msLocal;
-                usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
             case RANGE_CHOICE:
@@ -201,26 +209,27 @@ public class ReportView implements Serializable {
                     scoreLocal += answer.getCoefScore();
                     budget += answer.getCoefBudget();
                     budgetLocal += answer.getCoefBudget();
+                    usg += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
+                    usgLocal += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
+                    gm += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
+                    gmLocal += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
                     if (value >= answer.getCoefIndexMin() && value < answer.getCoefMsBreakpointIndexMin()) {
                         ms += 0;
                         msLocal += 0;
                     } else if (value >= answer.getCoefMsBreakpointIndexMin() && value < answer.getCoefMsBreakpointIndexMax()) {
                         ms += answer.getCoefMsGainMax() + ((value - answer.getCoefMsBreakpointIndexMin()) * (answer.getCoefMsGainMin() - answer.getCoefMsGainMax())) / (answer.getCoefMsBreakpointIndexMax() - answer.getCoefMsBreakpointIndexMin());
+                        msLocal += answer.getCoefMsGainMax() + ((value - answer.getCoefMsBreakpointIndexMin()) * (answer.getCoefMsGainMin() - answer.getCoefMsGainMax())) / (answer.getCoefMsBreakpointIndexMax() - answer.getCoefMsBreakpointIndexMin());
                     } else {
                         ms += answer.getCoefMsGainMin();
                         msLocal += answer.getCoefMsGainMin();
                     }
-                    gm += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
-                    gmLocal += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
-                    usg += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
-                    usgLocal += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
                 }
 
                 scoreChange = scoreLocal;
                 budgetChange = budgetLocal;
+                usgChange = usgLocal;
                 gmChange = gmLocal;
                 msChange = msLocal;
-                usgChange = usgLocal;
                 sales += sales * usgChange;
                 break;
         }
@@ -399,6 +408,30 @@ public class ReportView implements Serializable {
 
     public void setScoreChange(double scoreChange) {
         this.scoreChange = scoreChange;
+    }
+
+    public double getUsgWeighted() {
+        return usgWeighted;
+    }
+
+    public void setUsgWeighted(double usgWeighted) {
+        this.usgWeighted = usgWeighted;
+    }
+
+    public double getGmWeighted() {
+        return gmWeighted;
+    }
+
+    public void setGmWeighted(double gmWeighted) {
+        this.gmWeighted = gmWeighted;
+    }
+
+    public double getMsWeighted() {
+        return msWeighted;
+    }
+
+    public void setMsWeighted(double msWeighted) {
+        this.msWeighted = msWeighted;
     }
 
 }
