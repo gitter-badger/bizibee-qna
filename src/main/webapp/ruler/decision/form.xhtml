@@ -46,14 +46,6 @@
                                 <p:selectBooleanButton id="required" value="#{decisionView.selectedDecision.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                                 <p:outputLabel for="image" value="#{i18n['Image']}"/>
                                 <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
-                                <p:outputLabel for="budget" value="#{i18n['Budget']}"/>
-                                <p:inputText id="budget" value="#{decisionView.selectedDecision.budget}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}"/>
-                                <p:outputLabel for="gm" value="#{i18n['GM']}"/>
-                                <p:inputText id="gm" value="#{decisionView.selectedDecision.gm}" label="#{i18n['GM']}" placeholder="#{i18n['GM']}"/>
-                                <p:outputLabel for="ms" value="#{i18n['MS']}"/>
-                                <p:inputText id="ms" value="#{decisionView.selectedDecision.ms}" label="#{i18n['MS']}" placeholder="#{i18n['MS']}"/>
-                                <p:outputLabel for="usg" value="#{i18n['USG']}"/>
-                                <p:inputText id="usg" value="#{decisionView.selectedDecision.usg}" label="#{i18n['USG']}" placeholder="#{i18n['USG']}"/>
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{decisionView.doUpdateRecord}" ajax="false"/>

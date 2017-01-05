@@ -3,14 +3,12 @@ package com.aripd.bizibee.entity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -33,39 +31,13 @@ public class SkuEntity extends AbstractEntity {
     @Lob
     private byte[] bytes;
 
-    private double budget;
-    private double gm;
-    private double ms;
-    private double usg;
-
-    private int indexMin;
-    private int indexMax;
-    private int indexStep;
-
-    private double usgGainMin;
-    private double usgGainMax;
-
-    private double gmGainMin;
-    private double gmGainMax;
-
-    private int msBreakpointIndexMin;
-    private int msBreakpointIndexMax;
-    private int msOptimalIndexMax;
-    private double msGainMin;
-    private double msGainMax;
-
     @ManyToOne
     private BrandEntity brand;
 
-    @ManyToMany(mappedBy = "skus", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
-    private List<DecisionEntity> decisions = new ArrayList<>();
+    @OneToMany(mappedBy = "sku", orphanRemoval = true)
+    private List<WeightEntity> weights = new ArrayList<>();
 
     public SkuEntity() {
-    }
-
-    @Transient
-    public int getInputSize() {
-        return (int) (Math.log10(indexMax) + 1);
     }
 
     public SimulationEntity getSimulation() {
@@ -92,68 +64,12 @@ public class SkuEntity extends AbstractEntity {
         this.bytes = bytes;
     }
 
-    public double getUsg() {
-        return usg;
+    public List<WeightEntity> getWeights() {
+        return weights;
     }
 
-    public void setUsg(double usg) {
-        this.usg = usg;
-    }
-
-    public double getBudget() {
-        return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
-    public double getGm() {
-        return gm;
-    }
-
-    public void setGm(double gm) {
-        this.gm = gm;
-    }
-
-    public double getMs() {
-        return ms;
-    }
-
-    public void setMs(double ms) {
-        this.ms = ms;
-    }
-
-    public int getIndexMin() {
-        return indexMin;
-    }
-
-    public void setIndexMin(int indexMin) {
-        this.indexMin = indexMin;
-    }
-
-    public int getIndexMax() {
-        return indexMax;
-    }
-
-    public void setIndexMax(int indexMax) {
-        this.indexMax = indexMax;
-    }
-
-    public int getIndexStep() {
-        return indexStep;
-    }
-
-    public void setIndexStep(int indexStep) {
-        this.indexStep = indexStep;
-    }
-
-    public List<DecisionEntity> getDecisions() {
-        return decisions;
-    }
-
-    public void setDecisions(List<DecisionEntity> decisions) {
-        this.decisions = decisions;
+    public void setWeights(List<WeightEntity> weights) {
+        this.weights = weights;
     }
 
     public BrandEntity getBrand() {
@@ -162,78 +78,6 @@ public class SkuEntity extends AbstractEntity {
 
     public void setBrand(BrandEntity brand) {
         this.brand = brand;
-    }
-
-    public double getUsgGainMin() {
-        return usgGainMin;
-    }
-
-    public void setUsgGainMin(double usgGainMin) {
-        this.usgGainMin = usgGainMin;
-    }
-
-    public double getUsgGainMax() {
-        return usgGainMax;
-    }
-
-    public void setUsgGainMax(double usgGainMax) {
-        this.usgGainMax = usgGainMax;
-    }
-
-    public double getGmGainMin() {
-        return gmGainMin;
-    }
-
-    public void setGmGainMin(double gmGainMin) {
-        this.gmGainMin = gmGainMin;
-    }
-
-    public double getGmGainMax() {
-        return gmGainMax;
-    }
-
-    public void setGmGainMax(double gmGainMax) {
-        this.gmGainMax = gmGainMax;
-    }
-
-    public int getMsBreakpointIndexMin() {
-        return msBreakpointIndexMin;
-    }
-
-    public void setMsBreakpointIndexMin(int msBreakpointIndexMin) {
-        this.msBreakpointIndexMin = msBreakpointIndexMin;
-    }
-
-    public int getMsBreakpointIndexMax() {
-        return msBreakpointIndexMax;
-    }
-
-    public void setMsBreakpointIndexMax(int msBreakpointIndexMax) {
-        this.msBreakpointIndexMax = msBreakpointIndexMax;
-    }
-
-    public int getMsOptimalIndexMax() {
-        return msOptimalIndexMax;
-    }
-
-    public void setMsOptimalIndexMax(int msOptimalIndexMax) {
-        this.msOptimalIndexMax = msOptimalIndexMax;
-    }
-
-    public double getMsGainMin() {
-        return msGainMin;
-    }
-
-    public void setMsGainMin(double msGainMin) {
-        this.msGainMin = msGainMin;
-    }
-
-    public double getMsGainMax() {
-        return msGainMax;
-    }
-
-    public void setMsGainMax(double msGainMax) {
-        this.msGainMax = msGainMax;
     }
 
 }

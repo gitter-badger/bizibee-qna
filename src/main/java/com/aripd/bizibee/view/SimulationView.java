@@ -7,6 +7,7 @@ import com.aripd.bizibee.entity.DecisionchoiceEntity;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SkuEntity;
 import com.aripd.bizibee.entity.UserEntity;
+import com.aripd.bizibee.entity.WeightEntity;
 import com.aripd.bizibee.model.response.Response1Model;
 import com.aripd.bizibee.model.response.Response2Model;
 import com.aripd.bizibee.model.response.Response3Model;
@@ -27,6 +28,7 @@ import com.aripd.bizibee.service.DecisionchoiceService;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.bizibee.service.SkuService;
 import com.aripd.bizibee.service.UserService;
+import com.aripd.bizibee.service.WeightService;
 import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,6 +55,9 @@ public class SimulationView implements Serializable {
 
     @Inject
     private SkuService skuService;
+
+    @Inject
+    private WeightService weightService;
 
     @Inject
     private DecisionchoiceService decisionchoiceService;
@@ -221,6 +226,7 @@ public class SimulationView implements Serializable {
 
                         skuId = jsonObject2.getJsonNumber("sku").longValue();
                         sku = skuService.find(skuId);
+                        WeightEntity weight = weightService.findOneByDecisionAndSku(decision, sku);
 
                         Response5Model m = new Response5Model(sku);
 
@@ -229,7 +235,7 @@ public class SimulationView implements Serializable {
                             m.setValue(value);
                         } catch (NullPointerException | ClassCastException ex) {
                             // TODO bunun yerine default olarak sku.getIndexMin() girilebilir
-                            value = sku.getIndexMin();
+                            value = weight.getIndexMin();
                         }
 
                         model5.add(m);

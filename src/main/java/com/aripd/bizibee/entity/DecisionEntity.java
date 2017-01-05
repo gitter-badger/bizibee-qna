@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -56,24 +54,11 @@ public class DecisionEntity extends AbstractEntity {
 
     private boolean required;
 
-    private double budget;
-    private double gm;
-    private double ms;
-    private double usg;
-
     @OneToMany(mappedBy = "decision", orphanRemoval = true)
     private List<DecisionchoiceEntity> decisionchoices;
 
-    @ManyToMany
-    @JoinTable(
-            name = "decisions_skus",
-            joinColumns = {
-                @JoinColumn(name = "DECISION_ID")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "SKU_ID")
-            }
-    )
-    private List<SkuEntity> skus = new ArrayList<>();
+    @OneToMany(mappedBy = "decision", orphanRemoval = true)
+    private List<WeightEntity> weights = new ArrayList<>();
 
     public DecisionEntity() {
     }
@@ -81,6 +66,15 @@ public class DecisionEntity extends AbstractEntity {
     @PrePersist
     protected void prePersist() {
         uuid = UUID.randomUUID().toString();
+    }
+
+    @Transient
+    public List<SkuEntity> getSkus() {
+        List<SkuEntity> skus = new ArrayList<>();
+        for (WeightEntity weight : this.getWeights()) {
+            skus.add(weight.getSku());
+        }
+        return skus;
     }
 
     @Transient
@@ -188,38 +182,6 @@ public class DecisionEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public double getBudget() {
-        return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
-    public double getUsg() {
-        return usg;
-    }
-
-    public void setUsg(double usg) {
-        this.usg = usg;
-    }
-
-    public double getGm() {
-        return gm;
-    }
-
-    public void setGm(double gm) {
-        this.gm = gm;
-    }
-
-    public double getMs() {
-        return ms;
-    }
-
-    public void setMs(double ms) {
-        this.ms = ms;
-    }
-
     public List<DecisionchoiceEntity> getDecisionchoices() {
         return decisionchoices;
     }
@@ -228,12 +190,12 @@ public class DecisionEntity extends AbstractEntity {
         this.decisionchoices = decisionchoices;
     }
 
-    public List<SkuEntity> getSkus() {
-        return skus;
+    public List<WeightEntity> getWeights() {
+        return weights;
     }
 
-    public void setSkus(List<SkuEntity> skus) {
-        this.skus = skus;
+    public void setWeights(List<WeightEntity> weights) {
+        this.weights = weights;
     }
 
 }

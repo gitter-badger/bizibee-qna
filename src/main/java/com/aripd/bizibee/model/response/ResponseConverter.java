@@ -62,10 +62,6 @@ public class ResponseConverter {
             return Json.createObjectBuilder()
                     .add("id", model.getSku().getId())
                     .add("name", model.getSku().getName())
-                    .add("budget", model.getSku().getBudget())
-                    .add("gm", model.getSku().getGm())
-                    .add("ms", model.getSku().getMs())
-                    .add("usg", model.getSku().getUsg())
                     .build();
         } catch (NullPointerException ex) {
             return Json.createObjectBuilder().build();
@@ -79,10 +75,6 @@ public class ResponseConverter {
                     Json.createObjectBuilder()
                             .add("id", c.getId())
                             .add("name", c.getName())
-                            .add("budget", c.getBudget())
-                            .add("gm", c.getGm())
-                            .add("ms", c.getMs())
-                            .add("usg", c.getUsg())
             );
         });
 

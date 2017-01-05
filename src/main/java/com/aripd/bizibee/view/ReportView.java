@@ -7,6 +7,7 @@ import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.SkuEntity;
 import com.aripd.bizibee.entity.UserEntity;
+import com.aripd.bizibee.entity.WeightEntity;
 import com.aripd.bizibee.model.data.LazyUserDataModelBySimulation;
 import com.aripd.bizibee.model.response.ResponseConverter;
 import com.aripd.bizibee.service.DecisionchoiceService;
@@ -18,6 +19,7 @@ import javax.inject.Named;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.bizibee.service.SkuService;
 import com.aripd.bizibee.service.UserService;
+import com.aripd.bizibee.service.WeightService;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,6 +63,9 @@ public class ReportView implements Serializable {
 
     @Inject
     private SkuService skuService;
+
+    @Inject
+    private WeightService weightService;
 
     double sales = 0;
     double budget = 0;
@@ -185,14 +190,15 @@ public class ReportView implements Serializable {
                 try {
                     skuId = jsonObject1.getJsonNumber("id").longValue();
                     sku = skuService.find(skuId);
-                    budget += sku.getBudget();
-                    budgetLocal = sku.getBudget();
-                    gm += sku.getGm();
-                    gmLocal = sku.getGm();
-                    ms += sku.getMs();
-                    msLocal = sku.getMs();
-                    usg += sku.getUsg();
-                    usgLocal = sku.getUsg();
+                    WeightEntity weight = weightService.findOneByDecisionAndSku(decision, sku);
+                    budget += weight.getBudget();
+                    budgetLocal = weight.getBudget();
+                    gm += weight.getGm();
+                    gmLocal = weight.getGm();
+                    ms += weight.getMs();
+                    msLocal = weight.getMs();
+                    usg += weight.getUsg();
+                    usgLocal = weight.getUsg();
                 } catch (NullPointerException ex) {
                 }
 
@@ -210,14 +216,15 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("id").longValue();
                     sku = skuService.find(skuId);
-                    budget += sku.getBudget();
-                    budgetLocal += sku.getBudget();
-                    gm += sku.getGm();
-                    gmLocal += sku.getGm();
-                    ms += sku.getMs();
-                    msLocal += sku.getMs();
-                    usg += sku.getUsg();
-                    usgLocal += sku.getUsg();
+                    WeightEntity weight = weightService.findOneByDecisionAndSku(decision, sku);
+                    budget += weight.getBudget();
+                    budgetLocal += weight.getBudget();
+                    gm += weight.getGm();
+                    gmLocal += weight.getGm();
+                    ms += weight.getMs();
+                    msLocal += weight.getMs();
+                    usg += weight.getUsg();
+                    usgLocal += weight.getUsg();
                 }
 
                 budgetChange = budgetLocal;
@@ -233,29 +240,30 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
+                    WeightEntity weight = weightService.findOneByDecisionAndSku(decision, sku);
 
                     try {
                         value = jsonObject2.getJsonNumber("value").intValue();
                     } catch (NullPointerException | ClassCastException ex) {
                         // TODO bunun yerine default olarak sku.getIndexMin() girilebilir
-                        value = sku.getIndexMin();
+                        value = weight.getIndexMin();
                     }
 
-                    budget += sku.getBudget();
-                    budgetLocal += sku.getBudget();
-                    if (value >= sku.getIndexMin() && value < sku.getMsBreakpointIndexMin()) {
+                    budget += weight.getBudget();
+                    budgetLocal += weight.getBudget();
+                    if (value >= weight.getIndexMin() && value < weight.getMsBreakpointIndexMin()) {
                         ms += 0;
                         msLocal += 0;
-                    } else if (value >= sku.getMsBreakpointIndexMin() && value < sku.getMsBreakpointIndexMax()) {
-                        ms += sku.getMsGainMax() + ((value - sku.getMsBreakpointIndexMin()) * (sku.getMsGainMin() - sku.getMsGainMax())) / (sku.getMsBreakpointIndexMax() - sku.getMsBreakpointIndexMin());
+                    } else if (value >= weight.getMsBreakpointIndexMin() && value < weight.getMsBreakpointIndexMax()) {
+                        ms += weight.getMsGainMax() + ((value - weight.getMsBreakpointIndexMin()) * (weight.getMsGainMin() - weight.getMsGainMax())) / (weight.getMsBreakpointIndexMax() - weight.getMsBreakpointIndexMin());
                     } else {
-                        ms += sku.getMsGainMin();
-                        msLocal += sku.getMsGainMin();
+                        ms += weight.getMsGainMin();
+                        msLocal += weight.getMsGainMin();
                     }
-                    gm += sku.getGmGainMin() + ((value - sku.getIndexMin()) * (sku.getGmGainMax() - sku.getGmGainMin()) / ((sku.getIndexMax() + sku.getIndexMin()) / 2 - (sku.getIndexMin())));
-                    gmLocal += sku.getGmGainMin() + ((value - sku.getIndexMin()) * (sku.getGmGainMax() - sku.getGmGainMin()) / ((sku.getIndexMax() + sku.getIndexMin()) / 2 - (sku.getIndexMin())));
-                    usg += ((sku.getIndexMax() - value) * (sku.getUsgGainMax() - sku.getUsgGainMin()) / (sku.getIndexMax() - sku.getIndexMin())) + sku.getUsgGainMin();
-                    usgLocal += ((sku.getIndexMax() - value) * (sku.getUsgGainMax() - sku.getUsgGainMin()) / (sku.getIndexMax() - sku.getIndexMin())) + sku.getUsgGainMin();
+                    gm += weight.getGmGainMin() + ((value - weight.getIndexMin()) * (weight.getGmGainMax() - weight.getGmGainMin()) / ((weight.getIndexMax() + weight.getIndexMin()) / 2 - (weight.getIndexMin())));
+                    gmLocal += weight.getGmGainMin() + ((value - weight.getIndexMin()) * (weight.getGmGainMax() - weight.getGmGainMin()) / ((weight.getIndexMax() + weight.getIndexMin()) / 2 - (weight.getIndexMin())));
+                    usg += ((weight.getIndexMax() - value) * (weight.getUsgGainMax() - weight.getUsgGainMin()) / (weight.getIndexMax() - weight.getIndexMin())) + weight.getUsgGainMin();
+                    usgLocal += ((weight.getIndexMax() - value) * (weight.getUsgGainMax() - weight.getUsgGainMin()) / (weight.getIndexMax() - weight.getIndexMin())) + weight.getUsgGainMin();
                 }
 
                 budgetChange = budgetLocal;
@@ -271,14 +279,15 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
-                    budget += sku.getBudget();
-                    budgetLocal += sku.getBudget();
-                    gm += sku.getGm();
-                    gmLocal += sku.getGm();
-                    ms += sku.getMs();
-                    msLocal += sku.getMs();
-                    usg += sku.getUsg();
-                    usgLocal += sku.getUsg();
+                    WeightEntity weight = weightService.findOneByDecisionAndSku(decision, sku);
+                    budget += weight.getBudget();
+                    budgetLocal += weight.getBudget();
+                    gm += weight.getGm();
+                    gmLocal += weight.getGm();
+                    ms += weight.getMs();
+                    msLocal += weight.getMs();
+                    usg += weight.getUsg();
+                    usgLocal += weight.getUsg();
 
                     try {
                         decisionchoiceId = jsonObject2.getJsonNumber("decisionchoice").longValue();
@@ -308,14 +317,15 @@ public class ReportView implements Serializable {
 
                     skuId = jsonObject2.getJsonNumber("sku").longValue();
                     sku = skuService.find(skuId);
-                    budget += sku.getBudget();
-                    budgetLocal += sku.getBudget();
-                    gm += sku.getGm();
-                    gmLocal += sku.getGm();
-                    ms += sku.getMs();
-                    msLocal += sku.getMs();
-                    usg += sku.getUsg();
-                    usgLocal += sku.getUsg();
+                    WeightEntity weight = weightService.findOneByDecisionAndSku(decision, sku);
+                    budget += weight.getBudget();
+                    budgetLocal += weight.getBudget();
+                    gm += weight.getGm();
+                    gmLocal += weight.getGm();
+                    ms += weight.getMs();
+                    msLocal += weight.getMs();
+                    usg += weight.getUsg();
+                    usgLocal += weight.getUsg();
 
                     JsonArray jsonArray2 = jsonObject2.getJsonArray("decisionchoices");
                     for (JsonValue jsonValue2 : jsonArray2) {

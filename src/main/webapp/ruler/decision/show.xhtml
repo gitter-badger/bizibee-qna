@@ -44,14 +44,6 @@
                                 <h:panelGroup>
                                     <o:graphicImage value="#{decisionView.selectedDecision.bytes}" dataURI="true" alt="#{decisionView.selectedDecision.name}" title="#{decisionView.selectedDecision.name}" rendered="#{not empty decisionView.selectedDecision.bytes}"/>
                                 </h:panelGroup>
-                                <p:outputLabel value="#{i18n['Budget']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.budget}"/>
-                                <p:outputLabel value="#{i18n['GM']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.gm}"/>
-                                <p:outputLabel value="#{i18n['MS']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.ms}"/>
-                                <p:outputLabel value="#{i18n['USG']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.usg}"/>
                             </p:panelGrid>
                         </h:form>
                     </div>
