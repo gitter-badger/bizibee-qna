@@ -1,5 +1,6 @@
 package com.aripd.bizibee.view;
 
+import com.aripd.bizibee.comparison.ComparisonGuideSortOrderAsc;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.model.data.LazyGuideDataModel;
 import com.aripd.bizibee.entity.GuideEntity;
@@ -13,6 +14,7 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.GuideService;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Named
 @ViewScoped
@@ -57,7 +59,9 @@ public class GuideView implements Serializable {
     }
 
     public List<GuideEntity> getGuides() {
-        return guideService.findAll();
+        List<GuideEntity> guides = guideService.findAll();
+        Collections.sort(guides, new ComparisonGuideSortOrderAsc());
+        return guides;
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {
