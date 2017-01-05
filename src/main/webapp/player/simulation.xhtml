@@ -183,6 +183,15 @@
                                             <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
                                             <span class="detail">Portion of the market</span>
                                         </li>
+                                        <li>
+                                            <span class="count score">
+                                                <h:outputText value="#{reportView.simulation.scoreStart}">
+                                                    <f:convertNumber type="number" />
+                                                </h:outputText>
+                                            </span>
+                                            <span class="title">#{i18n['Score']}</span>
+                                            <span class="detail">#{i18n['Score']}</span>
+                                        </li>
                                     </ul>
                                 </h:panelGroup>
 
@@ -244,6 +253,19 @@
                                                 <span class="detail">
                                                     <h:outputText value="#{reportView.msChange}">
                                                         <f:convertNumber type="percent" />
+                                                    </h:outputText>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="count score">
+                                                    <h:outputText value="#{reportView.score}">
+                                                        <f:convertNumber type="number" />
+                                                    </h:outputText>
+                                                </span>
+                                                <span class="title">#{i18n['Score']}</span>
+                                                <span class="detail">
+                                                    <h:outputText value="#{reportView.scoreChange}">
+                                                        <f:convertNumber type="number" />
                                                     </h:outputText>
                                                 </span>
                                             </li>

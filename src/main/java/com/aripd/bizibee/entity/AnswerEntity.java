@@ -34,6 +34,8 @@ public class AnswerEntity extends AbstractEntity {
     @JoinColumn(nullable = false)
     private QuestionEntity question;
 
+    private int coefScore = 0;
+
     private double coefBudget = 0;
 
     private int coefIndexMin = 0;
@@ -93,6 +95,14 @@ public class AnswerEntity extends AbstractEntity {
 
     public void setQuestion(QuestionEntity question) {
         this.question = question;
+    }
+
+    public int getCoefScore() {
+        return coefScore;
+    }
+
+    public void setCoefScore(int coefScore) {
+        this.coefScore = coefScore;
     }
 
     public double getCoefBudget() {

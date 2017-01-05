@@ -57,6 +57,8 @@ public class ReportView implements Serializable {
     @Inject
     private AnswerService answerService;
 
+    double score = 0;
+    double scoreChange = 0;
     double sales = 0;
     double budget = 0;
     double budgetChange = 0;
@@ -80,6 +82,8 @@ public class ReportView implements Serializable {
         simulation = user.getSimulation();
         lazyModelPlayer = new LazyUserDataModelBySimulation(userService, simulation);
 
+        score = simulation.getScoreStart();
+        scoreChange = 0;
         sales = simulation.getSalesStart();
         budget = simulation.getBudgetStart();
         budgetChange = 0;
@@ -118,6 +122,7 @@ public class ReportView implements Serializable {
 
         int value;
 
+        double scoreLocal = 0;
         double budgetLocal = 0;
         double gmLocal = 0;
         double msLocal = 0;
@@ -130,6 +135,8 @@ public class ReportView implements Serializable {
                 try {
                     answerId = jsonObject1.getJsonNumber("id").longValue();
                     answer = answerService.find(answerId);
+                    score += answer.getCoefScore();
+                    scoreLocal = answer.getCoefScore();
                     budget += answer.getCoefBudget();
                     budgetLocal = answer.getCoefBudget();
                     gm += answer.getCoefGm();
@@ -141,6 +148,7 @@ public class ReportView implements Serializable {
                 } catch (NullPointerException ex) {
                 }
 
+                scoreChange = scoreLocal;
                 budgetChange = budgetLocal;
                 gmChange = gmLocal;
                 msChange = msLocal;
@@ -155,6 +163,8 @@ public class ReportView implements Serializable {
 
                     answerId = jsonObject2.getJsonNumber("id").longValue();
                     answer = answerService.find(answerId);
+                    score += answer.getCoefScore();
+                    scoreLocal += answer.getCoefScore();
                     budget += answer.getCoefBudget();
                     budgetLocal += answer.getCoefBudget();
                     gm += answer.getCoefGm();
@@ -165,6 +175,7 @@ public class ReportView implements Serializable {
                     usgLocal += answer.getCoefUsg();
                 }
 
+                scoreChange = scoreLocal;
                 budgetChange = budgetLocal;
                 gmChange = gmLocal;
                 msChange = msLocal;
@@ -186,6 +197,8 @@ public class ReportView implements Serializable {
                         value = answer.getCoefIndexMin();
                     }
 
+                    score += answer.getCoefScore();
+                    scoreLocal += answer.getCoefScore();
                     budget += answer.getCoefBudget();
                     budgetLocal += answer.getCoefBudget();
                     if (value >= answer.getCoefIndexMin() && value < answer.getCoefMsBreakpointIndexMin()) {
@@ -203,6 +216,7 @@ public class ReportView implements Serializable {
                     usgLocal += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
                 }
 
+                scoreChange = scoreLocal;
                 budgetChange = budgetLocal;
                 gmChange = gmLocal;
                 msChange = msLocal;
@@ -369,6 +383,22 @@ public class ReportView implements Serializable {
 
     public void setSelectedPlayer(UserEntity selectedPlayer) {
         this.selectedPlayer = selectedPlayer;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public double getScoreChange() {
+        return scoreChange;
+    }
+
+    public void setScoreChange(double scoreChange) {
+        this.scoreChange = scoreChange;
     }
 
 }

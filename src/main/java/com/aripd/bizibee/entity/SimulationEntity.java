@@ -40,14 +40,15 @@ public class SimulationEntity extends AbstractEntity {
     @Column(columnDefinition = "TEXT")
     private String thanks;
 
-    private double salesStart;
-    private double budgetStart;
-    private double gmStart;
-    private double msStart;
+    private double scoreStart = 0;
+    private double salesStart = 0;
+    private double budgetStart = 0;
+    private double gmStart = 0;
+    private double msStart = 0;
 
-    private double gmWeighted;
-    private double msWeighted;
-    private double usgWeighted;
+    private double gmWeighted = 0;
+    private double msWeighted = 0;
+    private double usgWeighted = 0;
 
     @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
@@ -109,6 +110,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setThanks(String thanks) {
         this.thanks = thanks;
+    }
+
+    public double getScoreStart() {
+        return scoreStart;
+    }
+
+    public void setScoreStart(double scoreStart) {
+        this.scoreStart = scoreStart;
     }
 
     public double getSalesStart() {
