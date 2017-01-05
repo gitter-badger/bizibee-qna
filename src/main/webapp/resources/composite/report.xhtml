@@ -40,7 +40,7 @@
                     </span>
                 </div>
             </div>
-            <div class="ui-g-12 ui-md-3">
+            <div class="ui-g-12 ui-md-2">
                 <div class="card clearfix summary">
                     <h:outputText id="grossmargin" value="#{i18n['Gross Margin']}" styleClass="title" />
                     <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
@@ -52,7 +52,7 @@
                     </span>
                 </div>
             </div>
-            <div class="ui-g-12 ui-md-3">
+            <div class="ui-g-12 ui-md-2">
                 <div class="card clearfix summary">
                     <h:outputText id="marketshare" value="#{i18n['Market Share']}" styleClass="title" />
                     <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
@@ -60,6 +60,20 @@
                     <span class="count marketshare">
                         <h:outputText value="#{reportView.simulation.msStart}">
                             <f:convertNumber type="percent" />
+                        </h:outputText>
+                    </span>
+                    <span class="detail">
+                    </span>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-2">
+                <div class="card clearfix summary">
+                    <h:outputText id="score" value="#{i18n['Score']}" styleClass="title" />
+                    <p:tooltip for="score" position="top" style="width: 300px;" value="Score" />
+                    <span class="detail">#{i18n['Score']}</span>
+                    <span class="count score">
+                        <h:outputText value="#{reportView.simulation.scoreStart}">
+                            <f:convertNumber type="number" />
                         </h:outputText>
                     </span>
                     <span class="detail">
@@ -78,7 +92,7 @@
             <h:outputText value="#{reportView.calculateScore(response)}" style="display: none;" />
 
             <div class="ui-g ui-fluid dashboard">
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <div class="card clearfix summary">
                         <span class="title">#{i18n['Revenue']}</span>
                         <span class="detail"></span>
@@ -89,7 +103,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <div class="card clearfix summary">
                         <span class="title">#{i18n['Budget']}</span>
                         <span class="detail">
@@ -147,6 +161,21 @@
                         <span class="count underlyingsalesgrowth">
                             <h:outputText value="#{reportView.usg}">
                                 <f:convertNumber type="percent" />
+                            </h:outputText>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <div class="card clearfix summary">
+                        <span class="title">#{i18n['Score']}</span>
+                        <span class="detail">
+                            <h:outputText value="#{reportView.scoreChange}">
+                                <f:convertNumber type="number" />
+                            </h:outputText>
+                        </span>
+                        <span class="count score">
+                            <h:outputText value="#{reportView.score}">
+                                <f:convertNumber type="number" />
                             </h:outputText>
                         </span>
                     </div>
