@@ -19,17 +19,20 @@
                         <h:form>
                             <p:fieldset legend="Initials" style="margin-bottom:20px">
                                 <h:panelGrid columns="1" styleClass="ui-g-12">
-                                    <p:outputLabel for="salesStart" value="#{i18n['Revenue']}"/>
-                                    <p:inputText id="salesStart" value="#{dashboardView.selectedSimulation.salesStart}" label="#{i18n['Revenue']}" placeholder="#{i18n['Revenue']}" styleClass="ui-g-12" required="true" />
+                                    <p:outputLabel for="scoreStart" value="#{i18n['scoreStart']}"/>
+                                    <p:inputText id="scoreStart" value="#{dashboardView.selectedSimulation.scoreStart}" label="#{i18n['scoreStart']}" placeholder="#{i18n['scoreStart']}" styleClass="ui-g-12" required="true" />
 
-                                    <p:outputLabel for="budgetStart" value="#{i18n['Budget']}"/>
-                                    <p:inputText id="budgetStart" value="#{dashboardView.selectedSimulation.budgetStart}" label="#{i18n['Budget']}" placeholder="#{i18n['Budget']}" styleClass="ui-g-12" required="true" />
+                                    <p:outputLabel for="salesStart" value="#{i18n['salesStart']}"/>
+                                    <p:inputText id="salesStart" value="#{dashboardView.selectedSimulation.salesStart}" label="#{i18n['salesStart']}" placeholder="#{i18n['salesStart']}" styleClass="ui-g-12" required="true" />
 
-                                    <p:outputLabel for="gmStart" value="#{i18n['Gross Margin']}"/>
-                                    <p:inputText id="gmStart" value="#{dashboardView.selectedSimulation.gmStart}" label="#{i18n['Gross Margin']}" placeholder="#{i18n['Gross Margin']}" styleClass="ui-g-12" required="true" />
+                                    <p:outputLabel for="budgetStart" value="#{i18n['budgetStart']}"/>
+                                    <p:inputText id="budgetStart" value="#{dashboardView.selectedSimulation.budgetStart}" label="#{i18n['budgetStart']}" placeholder="#{i18n['budgetStart']}" styleClass="ui-g-12" required="true" />
 
-                                    <p:outputLabel for="msStart" value="#{i18n['Market Share']}"/>
-                                    <p:inputText id="msStart" value="#{dashboardView.selectedSimulation.msStart}" label="#{i18n['Market Share']}" placeholder="#{i18n['Market Share']}" styleClass="ui-g-12" required="true" />
+                                    <p:outputLabel for="gmStart" value="#{i18n['gmStart']}"/>
+                                    <p:inputText id="gmStart" value="#{dashboardView.selectedSimulation.gmStart}" label="#{i18n['gmStart']}" placeholder="#{i18n['gmStart']}" styleClass="ui-g-12" required="true" />
+
+                                    <p:outputLabel for="msStart" value="#{i18n['msStart']}"/>
+                                    <p:inputText id="msStart" value="#{dashboardView.selectedSimulation.msStart}" label="#{i18n['msStart']}" placeholder="#{i18n['msStart']}" styleClass="ui-g-12" required="true" />
 
                                     <f:facet name="footer">
                                         <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{dashboardView.doUpdateSimulation}"/>
