@@ -41,7 +41,7 @@
                             <span class="detail">Revenue minus cost of goods sold</span>
                             <span class="count grossmargin">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
-                                    <f:convertNumber type="percent" />
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
                                 </h:outputText>
                             </span>
                             <span class="detail"></span>
@@ -53,7 +53,7 @@
                             <span class="detail">Portion of the market</span>
                             <span class="count marketshare">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
-                                    <f:convertNumber type="percent" />
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
                                 </h:outputText>
                             </span>
                             <span class="detail"></span>
@@ -66,7 +66,7 @@
                             <span class="detail">Underlying Sales Growth Weighted</span>
                             <span class="count underlyingsalesgrowth">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.usgWeighted}">
-                                    <f:convertNumber type="percent" />
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
                                 </h:outputText>
                             </span>
                             <span class="detail"></span>
@@ -78,7 +78,7 @@
                             <span class="detail">Gross Margin Weighted</span>
                             <span class="count grossmargin">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.gmWeighted}">
-                                    <f:convertNumber type="percent" />
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
                                 </h:outputText>
                             </span>
                             <span class="detail"></span>
@@ -90,7 +90,7 @@
                             <span class="detail">Market Share Weighted</span>
                             <span class="count marketshare">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.msWeighted}">
-                                    <f:convertNumber type="percent" />
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
                                 </h:outputText>
                             </span>
                             <span class="detail"></span>

@@ -47,7 +47,7 @@
                     <span class="detail">Revenue minus cost of goods sold</span>
                     <span class="count grossmargin">
                         <h:outputText value="#{reportView.simulation.gmStart}">
-                            <f:convertNumber type="percent" />
+                            <f:convertNumber type="percent" minFractionDigits="2" />
                         </h:outputText>
                     </span>
                 </div>
@@ -59,7 +59,7 @@
                     <span class="detail">Portion of the market</span>
                     <span class="count marketshare">
                         <h:outputText value="#{reportView.simulation.msStart}">
-                            <f:convertNumber type="percent" />
+                            <f:convertNumber type="percent" minFractionDigits="2" />
                         </h:outputText>
                     </span>
                     <span class="detail">
@@ -123,12 +123,12 @@
                         <span class="title">#{i18n['GM']}</span>
                         <span class="detail">
                             <h:outputText value="#{reportView.gmChange}">
-                                <f:convertNumber type="percent" />
+                                <f:convertNumber type="percent" minFractionDigits="2" />
                             </h:outputText>
                         </span>
                         <span class="count grossmargin">
                             <h:outputText value="#{reportView.gm}">
-                                <f:convertNumber type="percent" />
+                                <f:convertNumber type="percent" minFractionDigits="2" />
                             </h:outputText>
                         </span>
                     </div>
@@ -138,12 +138,12 @@
                         <span class="title">#{i18n['MS']}</span>
                         <span class="detail">
                             <h:outputText value="#{reportView.msChange}">
-                                <f:convertNumber type="percent" />
+                                <f:convertNumber type="percent" minFractionDigits="2" />
                             </h:outputText>
                         </span>
                         <span class="count marketshare">
                             <h:outputText value="#{reportView.ms}">
-                                <f:convertNumber type="percent" />
+                                <f:convertNumber type="percent" minFractionDigits="2" />
                             </h:outputText>
                         </span>
                         <span class="detail">
@@ -155,12 +155,12 @@
                         <span class="title">#{i18n['USG']}</span>
                         <span class="detail">
                             <h:outputText value="#{reportView.usgChange}">
-                                <f:convertNumber type="percent" />
+                                <f:convertNumber type="percent" minFractionDigits="2" />
                             </h:outputText>
                         </span>
                         <span class="count underlyingsalesgrowth">
                             <h:outputText value="#{reportView.usg}">
-                                <f:convertNumber type="percent" />
+                                <f:convertNumber type="percent" minFractionDigits="2" />
                             </h:outputText>
                         </span>
                     </div>
