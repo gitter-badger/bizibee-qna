@@ -3,10 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
-import com.aripd.bizibee.service.BrandService;
-import com.aripd.bizibee.service.DecisionService;
 import com.aripd.bizibee.service.SimulationService;
-import com.aripd.bizibee.service.SkuService;
 import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -18,6 +15,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
+import com.aripd.bizibee.service.QuestionService;
 
 @Named
 @ViewScoped
@@ -34,13 +32,7 @@ public class DashboardView implements Serializable {
     private UploadedFile file;
 
     @Inject
-    private BrandService brandService;
-
-    @Inject
-    private SkuService skuService;
-
-    @Inject
-    private DecisionService decisionService;
+    private QuestionService questionService;
 
     @Inject
     MessageUtil messageUtil;
@@ -66,16 +58,8 @@ public class DashboardView implements Serializable {
         return userService.calculateNumberOfPlayers(selectedSimulation);
     }
 
-    public int getNumberOfBrands() {
-        return brandService.count();
-    }
-
-    public int getNumberOfSkus() {
-        return skuService.count();
-    }
-
-    public int getNumberOfDecisions() {
-        return decisionService.count();
+    public int getNumberOfQuestions() {
+        return questionService.count();
     }
 
     public void doUpdateSimulation(ActionEvent actionEvent) {

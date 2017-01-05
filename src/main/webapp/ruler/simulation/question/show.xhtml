@@ -8,41 +8,37 @@
                 template="/template_landing.xhtml">
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="id" value="#{decisionView.id}"/>
-            <f:event type="preRenderView" listener="#{decisionView.onLoad}"/>
+            <f:viewParam name="id" value="#{questionView.id}"/>
+            <f:event type="preRenderView" listener="#{questionView.onLoad}"/>
         </f:metadata>
 
         <div id="features">
             <div class="features-content">
-                <h1 class="feature-title">#{i18n['Decision']}</h1>
+                <h1 class="feature-title">#{i18n['Question']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
                     <div class="ui-g-3">
-                        <composite:navigationDecision decision="#{decisionView.selectedDecision}"/>
+                        <composite:navigationQuestion question="#{questionView.selectedQuestion}"/>
                     </div>
                     <div class="ui-g-9">
                         <h:form id="showForm">
                             <p:panelGrid columns="2">
                                 <p:outputLabel value="#{i18n['Name']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.name}"/>
+                                <h:outputText value="#{questionView.selectedQuestion.name}"/>
                                 <p:outputLabel value="#{i18n['Sort Order']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.sortOrder}"/>
+                                <h:outputText value="#{questionView.selectedQuestion.sortOrder}"/>
                                 <p:outputLabel value="#{i18n['Description']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.description}"/>
+                                <h:outputText value="#{questionView.selectedQuestion.description}"/>
                                 <p:outputLabel value="#{i18n['Remark']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.remark}"/>
-                                <p:outputLabel value="#{i18n['Decision Type']}"/>
-                                <h:outputText value="#{i18n[decisionView.selectedDecision.decisionType]}"/>
-                                <p:outputLabel value="#{i18n['SKUs']}"/>
-                                <p:dataList var="sku" value="#{decisionView.selectedDecision.skus}">
-                                    #{sku.name}
-                                </p:dataList>
+                                <h:outputText value="#{questionView.selectedQuestion.remark}"/>
+                                <p:outputLabel value="#{i18n['Type']}"/>
+                                <h:outputText value="#{i18n[questionView.selectedQuestion.type]}"/>
                                 <p:outputLabel value="#{i18n['Required']}"/>
-                                <h:outputText value="#{decisionView.selectedDecision.required}"/>
+                                <h:outputText value="#{questionView.selectedQuestion.required}"/>
                                 <p:outputLabel value="#{i18n['Image']}"/>
                                 <h:panelGroup>
-                                    <o:graphicImage value="#{decisionView.selectedDecision.bytes}" dataURI="true" alt="#{decisionView.selectedDecision.name}" title="#{decisionView.selectedDecision.name}" rendered="#{not empty decisionView.selectedDecision.bytes}"/>
+                                    <o:graphicImage value="#{questionView.selectedQuestion.bytes}" dataURI="true" alt="#{questionView.selectedQuestion.name}" title="#{questionView.selectedQuestion.name}" rendered="#{not empty questionView.selectedQuestion.bytes}"/>
                                 </h:panelGroup>
                             </p:panelGrid>
                         </h:form>

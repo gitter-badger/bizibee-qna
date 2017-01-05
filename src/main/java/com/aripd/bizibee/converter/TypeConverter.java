@@ -1,16 +1,16 @@
 package com.aripd.bizibee.converter;
 
-import com.aripd.bizibee.entity.DecisionType;
+import com.aripd.bizibee.entity.Type;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.convert.EnumConverter;
 import javax.inject.Named;
 
 @Named
 @ApplicationScoped
-public class DecisionTypeConverter extends EnumConverter {
+public class TypeConverter extends EnumConverter {
 
-    public DecisionTypeConverter() {
-        super(DecisionType.class);
+    public TypeConverter() {
+        super(Type.class);
     }
 
 }

@@ -70,10 +70,10 @@
 
         <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
             <h2>
-                <h:link outcome="/player/simulation" value="#{response.decision.name}" rendered="#{empty cc.attrs.player}">
-                    <f:param name="uuid" value="#{response.decision.uuid}" />
+                <h:link outcome="/player/simulation" value="#{response.question.name}" rendered="#{empty cc.attrs.player}">
+                    <f:param name="uuid" value="#{response.question.uuid}" />
                 </h:link>
-                <h:outputText value="#{response.decision.name}" rendered="#{not empty cc.attrs.player}"/>
+                <h:outputText value="#{response.question.name}" rendered="#{not empty cc.attrs.player}"/>
             </h2>
             <h:outputText value="#{reportView.calculateScore(response)}" style="display: none;" />
 

@@ -1,12 +1,12 @@
 package com.aripd.bizibee.comparison;
 
-import com.aripd.bizibee.entity.DecisionEntity;
+import com.aripd.bizibee.entity.QuestionEntity;
 import java.util.Comparator;
 
-public class ComparisonDecisionSortOrderAsc implements Comparator<DecisionEntity> {
+public class ComparisonQuestionSortOrderAsc implements Comparator<QuestionEntity> {
 
     @Override
-    public int compare(DecisionEntity o1, DecisionEntity o2) {
+    public int compare(QuestionEntity o1, QuestionEntity o2) {
         Integer rollno1 = o1.getSortOrder();
         Integer rollno2 = o2.getSortOrder();
         return rollno1.compareTo(rollno2);

@@ -1,8 +1,8 @@
 package com.aripd.bizibee.service;
 
 import com.aripd.bizibee.entity.SimulationEntity;
-import com.aripd.bizibee.entity.DecisionEntity;
-import com.aripd.bizibee.entity.DecisionEntity_;
+import com.aripd.bizibee.entity.QuestionEntity;
+import com.aripd.bizibee.entity.QuestionEntity_;
 import com.aripd.bizibee.entity.UserEntity;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 @Stateless
-public class DecisionServiceBean extends CrudServiceBean<DecisionEntity, Long> implements DecisionService {
+public class QuestionServiceBean extends CrudServiceBean<QuestionEntity, Long> implements QuestionService {
 
     @PersistenceContext
     private EntityManager em;
@@ -31,18 +31,18 @@ public class DecisionServiceBean extends CrudServiceBean<DecisionEntity, Long> i
         return em;
     }
 
-    public DecisionServiceBean() {
-        super(DecisionEntity.class);
+    public QuestionServiceBean() {
+        super(QuestionEntity.class);
     }
 
     @Override
-    public DecisionEntity findOneByUuid(String uuid) {
+    public QuestionEntity findOneByUuid(String uuid) {
         try {
             CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-            CriteriaQuery<DecisionEntity> cq = cb.createQuery(DecisionEntity.class);
-            Root<DecisionEntity> root = cq.from(DecisionEntity.class);
+            CriteriaQuery<QuestionEntity> cq = cb.createQuery(QuestionEntity.class);
+            Root<QuestionEntity> root = cq.from(QuestionEntity.class);
 
-            Predicate predicate = cb.equal(root.get(DecisionEntity_.uuid), uuid);
+            Predicate predicate = cb.equal(root.get(QuestionEntity_.uuid), uuid);
             cq.where(predicate);
 
             return getEntityManager().createQuery(cq).getSingleResult();

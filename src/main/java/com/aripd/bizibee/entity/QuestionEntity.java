@@ -1,6 +1,5 @@
 package com.aripd.bizibee.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Cacheable;
@@ -13,7 +12,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -23,7 +21,7 @@ import org.eclipse.persistence.annotations.TenantDiscriminatorColumn;
 @Multitenant(value = MultitenantType.SINGLE_TABLE)
 @TenantDiscriminatorColumn(name = "SIMULATION_ID", contextProperty = "eclipselink.tenant-id")
 @Cacheable(false)
-public class DecisionEntity extends AbstractEntity {
+public class QuestionEntity extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "SIMULATION_ID", insertable = false, updatable = false)
@@ -36,7 +34,7 @@ public class DecisionEntity extends AbstractEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private DecisionType decisionType;
+    private Type type;
 
     @NotNull
     @Column(nullable = false)
@@ -54,60 +52,15 @@ public class DecisionEntity extends AbstractEntity {
 
     private boolean required;
 
-    @OneToMany(mappedBy = "decision", orphanRemoval = true)
-    private List<DecisionchoiceEntity> decisionchoices;
+    @OneToMany(mappedBy = "question", orphanRemoval = true)
+    private List<AnswerEntity> answers;
 
-    @OneToMany(mappedBy = "decision", orphanRemoval = true)
-    private List<WeightEntity> weights = new ArrayList<>();
-
-    public DecisionEntity() {
+    public QuestionEntity() {
     }
 
     @PrePersist
     protected void prePersist() {
         uuid = UUID.randomUUID().toString();
-    }
-
-    @Transient
-    public List<SkuEntity> getSkus() {
-        List<SkuEntity> skus = new ArrayList<>();
-        for (WeightEntity weight : this.getWeights()) {
-            skus.add(weight.getSku());
-        }
-        return skus;
-    }
-
-    @Transient
-    public int getAllUsgs() {
-        int sum = 0;
-
-        for (DecisionchoiceEntity s : decisionchoices) {
-            sum += s.getUsg();
-        }
-
-        return sum;
-    }
-
-    @Transient
-    public int getAllGms() {
-        int sum = 0;
-
-        for (DecisionchoiceEntity s : decisionchoices) {
-            sum += s.getGm();
-        }
-
-        return sum;
-    }
-
-    @Transient
-    public int getAllMss() {
-        int sum = 0;
-
-        for (DecisionchoiceEntity s : decisionchoices) {
-            sum += s.getMs();
-        }
-
-        return sum;
     }
 
     public SimulationEntity getSimulation() {
@@ -126,12 +79,12 @@ public class DecisionEntity extends AbstractEntity {
         this.uuid = uuid;
     }
 
-    public DecisionType getDecisionType() {
-        return decisionType;
+    public Type getType() {
+        return type;
     }
 
-    public void setDecisionType(DecisionType decisionType) {
-        this.decisionType = decisionType;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public String getDescription() {
@@ -182,20 +135,12 @@ public class DecisionEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public List<DecisionchoiceEntity> getDecisionchoices() {
-        return decisionchoices;
+    public List<AnswerEntity> getAnswers() {
+        return answers;
     }
 
-    public void setDecisionchoices(List<DecisionchoiceEntity> decisionchoices) {
-        this.decisionchoices = decisionchoices;
-    }
-
-    public List<WeightEntity> getWeights() {
-        return weights;
-    }
-
-    public void setWeights(List<WeightEntity> weights) {
-        this.weights = weights;
+    public void setAnswers(List<AnswerEntity> answers) {
+        this.answers = answers;
     }
 
 }

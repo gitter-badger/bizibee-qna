@@ -42,97 +42,69 @@
                         <h3><h:outputText value="#{simulationView.selectedRecord.description}"/></h3>
                         <o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" width="100%" rendered="#{not empty simulationView.selectedRecord.bytes}"/>
 
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE'}">
-                            <p:selectOneRadio value="#{simulationView.model1.decisionchoice}" 
+                        <h:form rendered="#{simulationView.selectedRecord.type eq 'SINGLE_CHOICE'}">
+                            <p:selectOneRadio value="#{simulationView.model1.answer}" 
                                               label="#{simulationView.selectedRecord.name}" 
                                               required="#{simulationView.selectedRecord.required}" 
                                               disabled="#{simulationView.disabled}"
                                               layout="pageDirection" columns="1"
-                                              converter="#{decisionchoiceConverter}">
-                                <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                                              converter="#{answerConverter}">
+                                <f:selectItems value="#{simulationView.selectedRecord.answers}" var="answer" itemValue="#{answer}" itemLabel="#{answer.name}"/>
                             </p:selectOneRadio>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE'}">
-                            <p:selectManyCheckbox value="#{simulationView.model2.decisionchoices}" 
+                        <h:form rendered="#{simulationView.selectedRecord.type eq 'MULTIPLE_CHOICE'}">
+                            <p:selectManyCheckbox value="#{simulationView.model2.answers}" 
                                                   label="#{simulationView.selectedRecord.name}" 
                                                   required="#{simulationView.selectedRecord.required}" 
                                                   disabled="#{simulationView.disabled}"
                                                   layout="pageDirection" columns="1"
-                                                  converter="#{decisionchoiceConverter}">
-                                <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
+                                                  converter="#{answerConverter}">
+                                <f:selectItems value="#{simulationView.selectedRecord.answers}" var="answer" itemValue="#{answer}" itemLabel="#{answer.name}"/>
                             </p:selectManyCheckbox>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_SKU_LISTING'}">
-                            <p:selectOneRadio value="#{simulationView.model3.sku}" 
-                                              label="#{simulationView.selectedRecord.name}" 
-                                              required="#{simulationView.selectedRecord.required}" 
-                                              disabled="#{simulationView.disabled}"
-                                              layout="pageDirection" columns="1"
-                                              converter="#{skuConverter}">
-                                <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
-                            </p:selectOneRadio>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
-                        </h:form>
-
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_SKU_LISTING'}">
-                            <p:selectManyCheckbox value="#{simulationView.model4.skus}" 
-                                                  label="#{simulationView.selectedRecord.name}" 
-                                                  required="#{simulationView.selectedRecord.required}" 
-                                                  disabled="#{simulationView.disabled}"
-                                                  layout="pageDirection" columns="1"
-                                                  converter="#{skuConverter}">
-                                <f:selectItems value="#{simulationView.selectedRecord.skus}" var="sku" itemValue="#{sku}" itemLabel="#{sku.brand.name} #{sku.name}"/>
-                            </p:selectManyCheckbox>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
-                        </h:form>
-
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'RANGE_SKU_LISTING'}">
+                        <h:form rendered="#{simulationView.selectedRecord.type eq 'RANGE_CHOICE'}">
                             <p:repeat var="model" value="#{simulationView.model5}">
                                 <h:panelGrid columns="2">
                                     <p:spinner value="#{model.value}" 
                                                label="#{simulationView.selectedRecord.name}" 
                                                required="#{simulationView.selectedRecord.required}" 
                                                disabled="#{simulationView.disabled}"
-                                               min="#{model.sku.indexMin}" 
-                                               max="#{model.sku.indexMax}" 
-                                               size="#{model.sku.inputSize}"
-                                               stepFactor="#{model.sku.indexStep}"
+                                               min="#{model.answer.coefIndexMin}" 
+                                               max="#{model.answer.coefIndexMax}" 
+                                               size="#{model.answer.inputSize}"
+                                               stepFactor="#{model.answer.coefIndexStep}"
                                                converter="javax.faces.Integer"/>
-                                    <h:outputFormat value="{0} için {1} ile {2} arasinda bir index belirleyin">
-                                        <f:param value="#{model.sku.brand.name} #{model.sku.name}"/>
-                                        <f:param value="#{model.sku.indexMin}"/>
-                                        <f:param value="#{model.sku.indexMax}"/>
-                                    </h:outputFormat>
+                                    <h:outputText value="#{model.answer.name}" />
                                 </h:panelGrid>
                             </p:repeat>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'PLANOGRAM1'}">
+                        <h:form rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM1'}">
                             <p:repeat var="model" value="#{simulationView.model5}">
                                 <h:panelGrid columns="2">
                                     <p:inputText value="#{model.value}" 
                                                  label="#{simulationView.selectedRecord.name}" 
                                                  required="#{simulationView.selectedRecord.required}" 
                                                  disabled="#{simulationView.disabled}"
-                                                 size="#{model.sku.inputSize}"
+                                                 size="#{model.answer.inputSize}"
                                                  converter="javax.faces.Integer"/>
-                                    <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
+                                    <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
                             </p:repeat>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'PLANOGRAM2'}">
+                        <h:form rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
                             <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
                                 <c:forEach var="i" begin="1" end="23">
                                     <h:column>
-                                        <a:identicon text="#{simulationView.slotToSku(i).id}" style="width:30px; height: 30px;" alt="#{simulationView.slotToSku(i).name}" title="#{simulationView.slotToSku(i).name}" rendered="#{empty simulationView.slotToSku(i).bytes}"/>
-                                        <o:graphicImage value="#{simulationView.slotToSku(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToSku(i).name}" title="#{simulationView.slotToSku(i).name}" rendered="#{not empty simulationView.slotToSku(i).bytes}"/>
+                                        <a:identicon text="#{simulationView.slotToAnswer(i).id}" style="width:30px; height: 30px;" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
+                                        <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
                                     </h:column>
                                 </c:forEach>
                             </p:panelGrid>
@@ -151,45 +123,17 @@
                                                disabled="#{simulationView.disabled}"
                                                min="0" 
                                                max="#{simulationView.model5.size()}"
-                                               size="#{model.sku.inputSize}"
+                                               size="#{model.answer.inputSize}"
                                                stepFactor="1"
-                                               onblur="planogram(this, this.value, #{model.sku.id})" 
+                                               onblur="planogram(this, this.value, #{model.answer.id})" 
                                                converter="javax.faces.Integer"/>
-                                    <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="false" />
+                                    <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="false" />
                                     <h:panelGroup>
-                                        <a:identicon text="#{model.sku.id}" style="width:30px; height: 30px;" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{empty model.sku.bytes}"/>
-                                        <o:graphicImage value="#{model.sku.bytes}" dataURI="true" width="30" height="30" alt="#{model.sku.name}" title="#{model.sku.name}" rendered="#{not empty model.sku.bytes}"/>
+                                        <a:identicon text="#{model.answer.id}" style="width:30px; height: 30px;" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
+                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>
                                     </h:panelGroup>
-                                    <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
+                                    <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
-                            </p:repeat>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
-                        </h:form>
-
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'SINGLE_CHOICE_SKU_LISTING'}">
-                            <p:repeat var="model" value="#{simulationView.model6}">
-                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
-                                <p:selectOneRadio value="#{model.decisionchoice}" 
-                                                  label="#{simulationView.selectedRecord.name}" 
-                                                  required="#{simulationView.selectedRecord.required}" 
-                                                  disabled="#{simulationView.disabled}"
-                                                  converter="#{decisionchoiceConverter}">
-                                    <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                                </p:selectOneRadio>
-                            </p:repeat>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
-                        </h:form>
-
-                        <h:form rendered="#{simulationView.selectedRecord.decisionType eq 'MULTIPLE_CHOICE_SKU_LISTING'}">
-                            <p:repeat var="model" value="#{simulationView.model7}">
-                                <h:outputText value="#{model.sku.brand.name} #{model.sku.name}"/>
-                                <p:selectManyCheckbox value="#{model.decisionchoices}" 
-                                                      label="#{simulationView.selectedRecord.name}" 
-                                                      required="#{simulationView.selectedRecord.required}" 
-                                                      disabled="#{simulationView.disabled}"
-                                                      converter="#{decisionchoiceConverter}">
-                                    <f:selectItems value="#{simulationView.selectedRecord.decisionchoices}" var="decisionchoice" itemValue="#{decisionchoice}" itemLabel="#{decisionchoice.name}"/>
-                                </p:selectManyCheckbox>
                             </p:repeat>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}"/>
                         </h:form>

@@ -1,20 +1,20 @@
 package com.aripd.bizibee.model.response;
 
-import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import com.aripd.bizibee.entity.AnswerEntity;
 
 public class Response1Model {
 
-    private DecisionchoiceEntity decisionchoice;
+    private AnswerEntity answer;
 
     public Response1Model() {
     }
 
-    public DecisionchoiceEntity getDecisionchoice() {
-        return decisionchoice;
+    public AnswerEntity getAnswer() {
+        return answer;
     }
 
-    public void setDecisionchoice(DecisionchoiceEntity decisionchoice) {
-        this.decisionchoice = decisionchoice;
+    public void setAnswer(AnswerEntity answer) {
+        this.answer = answer;
     }
 
     @Override

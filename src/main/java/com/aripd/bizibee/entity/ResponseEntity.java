@@ -28,7 +28,7 @@ public class ResponseEntity extends AbstractEntity {
     @NotNull
     @JoinColumn(nullable = false)
     @ManyToOne
-    private DecisionEntity decision;
+    private QuestionEntity question;
 
     @Column(columnDefinition = "TEXT")
     private String outcome;
@@ -36,9 +36,9 @@ public class ResponseEntity extends AbstractEntity {
     public ResponseEntity() {
     }
 
-    public ResponseEntity(UserEntity user, DecisionEntity decision, String outcome) {
+    public ResponseEntity(UserEntity user, QuestionEntity question, String outcome) {
         this.user = user;
-        this.decision = decision;
+        this.question = question;
         this.outcome = outcome;
     }
 
@@ -58,12 +58,12 @@ public class ResponseEntity extends AbstractEntity {
         this.user = user;
     }
 
-    public DecisionEntity getDecision() {
-        return decision;
+    public QuestionEntity getQuestion() {
+        return question;
     }
 
-    public void setDecision(DecisionEntity decision) {
-        this.decision = decision;
+    public void setQuestion(QuestionEntity question) {
+        this.question = question;
     }
 
     public String getOutcome() {

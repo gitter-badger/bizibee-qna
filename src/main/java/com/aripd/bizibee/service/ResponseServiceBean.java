@@ -1,6 +1,6 @@
 package com.aripd.bizibee.service;
 
-import com.aripd.bizibee.entity.DecisionEntity;
+import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.ResponseEntity_;
@@ -50,14 +50,14 @@ public class ResponseServiceBean extends CrudServiceBean<ResponseEntity, Long> i
     }
 
     @Override
-    public ResponseEntity findOneByUserAndDecision(UserEntity user, DecisionEntity decision) {
+    public ResponseEntity findOneByUserAndQuestion(UserEntity user, QuestionEntity question) {
         try {
             CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
             CriteriaQuery<ResponseEntity> cq = cb.createQuery(ResponseEntity.class);
             Root<ResponseEntity> root = cq.from(ResponseEntity.class);
 
             Predicate predicate1 = cb.equal(root.get(ResponseEntity_.user), user);
-            Predicate predicate2 = cb.equal(root.get(ResponseEntity_.decision), decision);
+            Predicate predicate2 = cb.equal(root.get(ResponseEntity_.question), question);
             cq.where(cb.and(predicate1, predicate2));
 
             return getEntityManager().createQuery(cq).getSingleResult();

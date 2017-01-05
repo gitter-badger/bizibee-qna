@@ -9,7 +9,7 @@
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
-                <h1 class="feature-title">#{i18n['Decisions']}</h1>
+                <h1 class="feature-title">#{i18n['Questions']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
@@ -18,9 +18,9 @@
                     </div>
                     <div class="ui-g-9">
                         <h:form id="form">
-                            <p:dataTable id="dataTable" var="decision" value="#{decisionView.lazyModel}" emptyMessage="#{i18n['No records found']}"
+                            <p:dataTable id="dataTable" var="question" value="#{questionView.lazyModel}" emptyMessage="#{i18n['No records found']}"
                                          paginator="true" paginatorPosition="bottom" rows="10" 
-                                         rowKey="#{decision.id}" selectionMode="single" selection="#{decisionView.selectedDecision}"
+                                         rowKey="#{question.id}" selectionMode="single" selection="#{questionView.selectedQuestion}"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          currentPageReportTemplate="Showing {startRecord}-{endRecord} out of {totalRecords}"
                                          sortMode="multiple" 
@@ -31,15 +31,15 @@
                                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                                     </p:commandButton>
                                 </f:facet>
-                                <p:column headerText="#{i18n['Name']}" width="200" sortBy="#{decision.name}" filterBy="#{decision.name}">
-                                    <h:outputText value="#{decision.name}"/>
+                                <p:column headerText="#{i18n['Name']}" width="200" sortBy="#{question.name}" filterBy="#{question.name}">
+                                    <h:outputText value="#{question.name}"/>
                                 </p:column>
-                                <p:column headerText="#{i18n['Sort Order']}" sortBy="#{decision.sortOrder}">
-                                    <h:outputText value="#{decision.sortOrder}"/>
+                                <p:column headerText="#{i18n['Sort Order']}" sortBy="#{question.sortOrder}">
+                                    <h:outputText value="#{question.sortOrder}"/>
                                 </p:column>
                                 <p:column exportable="false" width="100">
-                                    <p:link outcome="/ruler/decision/show" value="#{i18n['Show']}">
-                                        <f:param name="id" value="#{decision.id}"/>
+                                    <p:link outcome="/ruler/simulation/question/show" value="#{i18n['Show']}">
+                                        <f:param name="id" value="#{question.id}"/>
                                     </p:link>
                                 </p:column>
                             </p:dataTable>
@@ -54,31 +54,24 @@
             <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
-                    <p:inputText id="name" value="#{decisionView.newDecision.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+                    <p:inputText id="name" value="#{questionView.newQuestion.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
                     <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
-                    <p:inputText id="sortOrder" value="#{decisionView.newDecision.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
+                    <p:inputText id="sortOrder" value="#{questionView.newQuestion.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:inputTextarea id="description" value="#{decisionView.newDecision.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" />
+                    <p:inputTextarea id="description" value="#{questionView.newQuestion.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" />
                     <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
-                    <p:inputTextarea id="remark" value="#{decisionView.newDecision.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" />
-                    <p:outputLabel for="decisionType" value="#{i18n['Decision Type']}"/>
-                    <p:selectOneMenu id="decisionType" value="#{decisionView.newDecision.decisionType}" label="#{i18n['Decision Type']}" converter="#{decisionTypeConverter}" required="true">
-                        <f:selectItems value="#{decisionView.decisionTypes}" var="decisionType" itemValue="#{decisionType}" itemLabel="#{i18n[decisionType.label]}"/>
+                    <p:inputTextarea id="remark" value="#{questionView.newQuestion.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" />
+                    <p:outputLabel for="type" value="#{i18n['Type']}"/>
+                    <p:selectOneMenu id="type" value="#{questionView.newQuestion.type}" label="#{i18n['Type']}" converter="#{typeConverter}" required="true">
+                        <f:selectItems value="#{questionView.types}" var="type" itemValue="#{type}" itemLabel="#{i18n[type.label]}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel for="skus" value="#{i18n['SKUs']}"/>
-                    <p:selectCheckboxMenu id="skus" value="#{decisionView.newDecision.skus}" 
-                                          label="#{i18n['SKUs']}"
-                                          filter="true" filterMatchMode="contains"
-                                          converter="#{skuConverter}">
-                        <f:selectItems value="#{decisionView.skus}" var="sku" itemLabel="#{sku.brand.name} #{sku.name}" itemValue="#{sku}"/>
-                    </p:selectCheckboxMenu>
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
-                    <p:selectBooleanButton id="required" value="#{decisionView.newDecision.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    <p:selectBooleanButton id="required" value="#{questionView.newQuestion.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
-                    <p:fileUpload id="image" value="#{decisionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:fileUpload id="image" value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{decisionView.doCreateRecord}" ajax="false"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{questionView.doCreateRecord}" ajax="false"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>

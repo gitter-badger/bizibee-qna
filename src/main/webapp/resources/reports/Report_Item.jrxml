@@ -16,7 +16,7 @@
     <property name="ireport.zoom" value="4.0"/>
     <property name="ireport.x" value="0"/>
     <property name="ireport.y" value="0"/>
-    <field name="decision" class="com.aripd.bizibee.entity.DecisionEntity"/>
+    <field name="question" class="com.aripd.bizibee.entity.QuestionEntity"/>
     <field name="outcome" class="java.lang.String"/>
     <columnHeader>
         <band height="31">
@@ -25,7 +25,7 @@
                 <textElement textAlignment="Left" verticalAlignment="Middle">
                     <font size="6" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Decision]]></text>
+                <text><![CDATA[Question]]></text>
             </staticText>
             <textField>
                 <reportElement x="20" y="0" width="123" height="20"/>
@@ -46,7 +46,7 @@
                 <textElement textAlignment="Left" verticalAlignment="Middle">
                     <font size="6" isBold="false"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$F{decision}.getName()]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{question}.getName()]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="20" y="0" width="123" height="20"/>

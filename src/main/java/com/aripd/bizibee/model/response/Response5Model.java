@@ -1,22 +1,22 @@
 package com.aripd.bizibee.model.response;
 
-import com.aripd.bizibee.entity.SkuEntity;
+import com.aripd.bizibee.entity.AnswerEntity;
 
 public class Response5Model {
 
-    private SkuEntity sku;
+    private AnswerEntity answer;
     private Integer value;
 
-    public Response5Model(SkuEntity sku) {
-        this.sku = sku;
+    public Response5Model(AnswerEntity answer) {
+        this.answer = answer;
     }
 
-    public SkuEntity getSku() {
-        return sku;
+    public AnswerEntity getAnswer() {
+        return answer;
     }
 
-    public void setSku(SkuEntity sku) {
-        this.sku = sku;
+    public void setAnswer(AnswerEntity answer) {
+        this.answer = answer;
     }
 
     public Integer getValue() {

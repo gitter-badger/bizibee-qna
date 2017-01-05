@@ -26,12 +26,7 @@ public class ResponseConverter {
     static JsonObject convert(Response1Model model) {
         try {
             return Json.createObjectBuilder()
-                    .add("id", model.getDecisionchoice().getId())
-                    .add("name", model.getDecisionchoice().getName())
-                    .add("budget", model.getDecisionchoice().getBudget())
-                    .add("gm", model.getDecisionchoice().getGm())
-                    .add("ms", model.getDecisionchoice().getMs())
-                    .add("usg", model.getDecisionchoice().getUsg())
+                    .add("id", model.getAnswer().getId())
                     .build();
         } catch (NullPointerException ex) {
             return Json.createObjectBuilder().build();
@@ -40,90 +35,30 @@ public class ResponseConverter {
 
     static JsonObject convert(Response2Model model) {
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        model.getDecisionchoices().forEach(c -> {
+        model.getAnswers().forEach(c -> {
             arrayBuilder.add(
                     Json.createObjectBuilder()
                             .add("id", c.getId())
-                            .add("name", c.getName())
-                            .add("budget", c.getBudget())
-                            .add("gm", c.getGm())
-                            .add("ms", c.getMs())
-                            .add("usg", c.getUsg())
             );
         });
 
         return Json.createObjectBuilder()
-                .add("decisionchoices", arrayBuilder)
-                .build();
-    }
-
-    static JsonObject convert(Response3Model model) {
-        try {
-            return Json.createObjectBuilder()
-                    .add("id", model.getSku().getId())
-                    .add("name", model.getSku().getName())
-                    .build();
-        } catch (NullPointerException ex) {
-            return Json.createObjectBuilder().build();
-        }
-    }
-
-    static JsonObject convert(Response4Model model) {
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        model.getSkus().forEach(c -> {
-            arrayBuilder.add(
-                    Json.createObjectBuilder()
-                            .add("id", c.getId())
-                            .add("name", c.getName())
-            );
-        });
-
-        return Json.createObjectBuilder()
-                .add("skus", arrayBuilder)
+                .add("answers", arrayBuilder)
                 .build();
     }
 
     static JsonObject convert(Response5Model model) {
         try {
             return Json.createObjectBuilder()
-                    .add("sku", model.getSku().getId())
+                    .add("answer", model.getAnswer().getId())
                     .add("value", model.getValue())
                     .build();
         } catch (NullPointerException ex) {
             return Json.createObjectBuilder()
-                    .add("sku", model.getSku().getId())
+                    .add("answer", model.getAnswer().getId())
                     .add("value", "")
                     .build();
         }
-    }
-
-    static JsonObject convert(Response6Model model) {
-        try {
-            return Json.createObjectBuilder()
-                    .add("sku", model.getSku().getId())
-                    .add("decisionchoice", model.getDecisionchoice().getId())
-                    .build();
-        } catch (NullPointerException ex) {
-            return Json.createObjectBuilder()
-                    .add("sku", model.getSku().getId())
-                    .add("decisionchoice", "")
-                    .build();
-        }
-    }
-
-    static JsonObject convert(Response7Model model) {
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        model.getDecisionchoices().forEach(c -> {
-            arrayBuilder.add(
-                    Json.createObjectBuilder()
-                            .add("decisionchoice", c.getId())
-            );
-        });
-
-        return Json.createObjectBuilder()
-                .add("sku", model.getSku().getId())
-                .add("decisionchoices", arrayBuilder)
-                .build();
     }
 
 }

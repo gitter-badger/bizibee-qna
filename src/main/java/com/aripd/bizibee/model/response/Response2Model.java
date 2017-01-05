@@ -1,22 +1,22 @@
 package com.aripd.bizibee.model.response;
 
-import com.aripd.bizibee.entity.DecisionchoiceEntity;
+import com.aripd.bizibee.entity.AnswerEntity;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Response2Model {
 
-    private List<DecisionchoiceEntity> decisionchoices = new ArrayList<>();
+    private List<AnswerEntity> answers = new ArrayList<>();
 
     public Response2Model() {
     }
 
-    public List<DecisionchoiceEntity> getDecisionchoices() {
-        return decisionchoices;
+    public List<AnswerEntity> getAnswers() {
+        return answers;
     }
 
-    public void setDecisionchoices(List<DecisionchoiceEntity> decisionchoices) {
-        this.decisionchoices = decisionchoices;
+    public void setAnswers(List<AnswerEntity> answers) {
+        this.answers = answers;
     }
 
     @Override

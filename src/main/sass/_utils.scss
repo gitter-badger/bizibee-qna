@@ -22,11 +22,15 @@ h2 {
     background-color: #ffffff;
     padding: 1em;
     margin-top: 16px;
-    
+
     h1 {
         margin: 0 0 .5em 0;
         border-bottom: 1px solid #d5d5d5;
         padding: .1em;
         font-size: 24px;
     }
+}
+
+.verticalAlignTop {
+    vertical-align: top;
 }
