@@ -19,7 +19,7 @@ function planogram(e, slotId, answerId) {
     var title = img.attr('title');
     var width = img.attr('width');
     var height = img.attr('height');
-    $('#item' + slotId).html($('<img>', {id: 'image' + answerId, src: src, alt: alt, title: title, width: width, height: height}));
+    $('#item' + slotId).html($('<img>', {id: 'image' + answerId, src: src, alt: alt, title: title, width: width, height: height, style: 'width: ' + width + 'px; height: ' + height + 'px;'}));
 }
 
 function handleSubmitRequest(xhr, status, args, dialogId, formId, dialogWidgetVar) {

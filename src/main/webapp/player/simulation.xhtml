@@ -103,7 +103,7 @@
                             <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
                                 <c:forEach var="i" begin="1" end="23">
                                     <h:column>
-                                        <a:identicon text="#{simulationView.slotToAnswer(i).id}" style="width:30px; height: 30px;" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
+                                        <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
                                         <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
                                     </h:column>
                                 </c:forEach>
@@ -121,15 +121,15 @@
                                                label="#{simulationView.selectedRecord.name}" 
                                                required="#{simulationView.selectedRecord.required}" 
                                                disabled="#{simulationView.disabled}"
-                                               min="0" 
-                                               max="#{simulationView.model5.size()}"
+                                               min="#{model.answer.coefIndexMin}" 
+                                               max="#{model.answer.coefIndexMax}"
                                                size="#{model.answer.inputSize}"
-                                               stepFactor="1"
+                                               stepFactor="#{model.answer.coefIndexStep}"
                                                onblur="planogram(this, this.value, #{model.answer.id})" 
                                                converter="javax.faces.Integer"/>
                                     <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="false" />
                                     <h:panelGroup>
-                                        <a:identicon text="#{model.answer.id}" style="width:30px; height: 30px;" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
+                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
                                         <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>
                                     </h:panelGroup>
                                     <h:outputText value="#{model.answer.name}"/>

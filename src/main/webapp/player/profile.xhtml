@@ -42,7 +42,7 @@
                         <h:form enctype="multipart/form-data">
                             <p:panelGrid columns="1" styleClass="ui-g-10">
                                 <f:facet name="header">
-                                    <a:identicon text="#{profileBean.selectedRecord.email}" style="width: 210px; height: 210px;" alt="#{profileBean.selectedRecord.name}" title="#{profileBean.selectedRecord.name}" rendered="#{empty profileBean.selectedRecord.bytes}"/>
+                                    <a:identicon text="#{profileBean.selectedRecord.email}" width="210" height="210" alt="#{profileBean.selectedRecord.name}" title="#{profileBean.selectedRecord.name}" rendered="#{empty profileBean.selectedRecord.bytes}"/>
                                     <o:graphicImage value="#{profileBean.selectedRecord.bytes}" dataURI="true" width="210" height="210" alt="#{profileBean.selectedRecord.name}" title="#{profileBean.selectedRecord.name}" rendered="#{not empty profileBean.selectedRecord.bytes}"/>
                                 </f:facet>
 
