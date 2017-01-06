@@ -8,7 +8,7 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="bizibee"/>
-        <property name="User" value="root"/>
+        <property name="User" value="bizibee"/>
         <property name="Password" value="Q1w2e3r+"/>
         <property name="URL" value="jdbc:mysql://localhost:3306/bizibee?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
