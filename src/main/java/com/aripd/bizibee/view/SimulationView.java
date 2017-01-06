@@ -209,7 +209,7 @@ public class SimulationView implements Serializable {
             }
 
             responseService.create(response);
-            messageUtil.addGlobalInfoFlashMessage("Updated");
+            messageUtil.addGlobalInfoFlashMessage("Saved");
         }
 
         String navigation = "/player/simulation?uuid=" + selectedRecord.getUuid() + "&amp;faces-redirect=true";

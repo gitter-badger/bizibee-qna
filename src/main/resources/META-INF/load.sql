@@ -53,7 +53,7 @@ INSERT INTO `QUESTIONENTITY` VALUES
 (22,2,NULL,'Description about E-Commerce Investment','E-Commerce Investment','Remark about E-Commerce Investment',TRUE,22,'MULTIPLE_CHOICE',UUID(),7),
 (23,2,NULL,'Description about Question10','Question10','Remark about Question10',TRUE,23,'SINGLE_CHOICE',UUID(),NULL),
 (24,2,NULL,'Description about Delisting','Delisting','Remark about Delisting',TRUE,24,'SINGLE_CHOICE',UUID(),8),
-(25,2,NULL,'Description about Planogram','Planogram','Remark about Planogram',TRUE,25,'PLANOGRAM1',UUID(),9);
+(25,2,NULL,'Description about Planogram','Planogram','Remark about Planogram',TRUE,25,'PLANOGRAM2',UUID(),9);
 
 INSERT INTO `ANSWERENTITY` VALUES 
 (1,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,'Answer1',1),
