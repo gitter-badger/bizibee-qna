@@ -55,6 +55,9 @@ public class QuestionEntity extends AbstractEntity {
     @OneToMany(mappedBy = "question", orphanRemoval = true)
     private List<AnswerEntity> answers;
 
+    @ManyToOne
+    private GuideEntity guide;
+
     public QuestionEntity() {
     }
 
@@ -141,6 +144,14 @@ public class QuestionEntity extends AbstractEntity {
 
     public void setAnswers(List<AnswerEntity> answers) {
         this.answers = answers;
+    }
+
+    public GuideEntity getGuide() {
+        return guide;
+    }
+
+    public void setGuide(GuideEntity guide) {
+        this.guide = guide;
     }
 
 }

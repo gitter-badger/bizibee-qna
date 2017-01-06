@@ -69,6 +69,11 @@
                     <p:selectBooleanButton id="required" value="#{questionView.newQuestion.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                    <p:outputLabel for="guide" value="#{i18n['Guide']}"/>
+                    <p:selectOneMenu id="guide" value="#{questionView.newQuestion.guide}" label="#{i18n['Guide']}" converter="#{guideConverter}">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                        <f:selectItems value="#{questionView.guides}" var="guide" itemValue="#{guide}" itemLabel="#{guide.name}"/>
+                    </p:selectOneMenu>
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{questionView.doCreateRecord}" ajax="false"/>

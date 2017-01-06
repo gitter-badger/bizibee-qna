@@ -1,9 +1,11 @@
 <!DOCTYPE html [<!ENTITY nbsp "&#160;"> <!ENTITY bull "&#8226;"> <!ENTITY copy "&#169;">]>
 <html lang="#{localeBean.locale}"
       xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:a="http://aripd.com/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <f:view contentType="text/html" encoding="UTF-8" locale="#{localeBean.locale}">
@@ -37,13 +39,15 @@
                 <div class="landing-header">
                     <div class="landing-header-content clearfix">
                         <p:link outcome="/index" style="text-decoration: none; color: #ffffff; font-size: 1.6em;">
-                            <!--<p:graphicImage name="images/logo.png" width="113" />-->
-                            <i class="fa fa-crosshairs"></i>
                             <h:panelGroup rendered="#{empty request.userPrincipal}">
+                                <!--<p:graphicImage name="images/logo.png" width="113" />-->
+                                <i class="fa fa-crosshairs"></i>
                                 BiZiBee<sup>®</sup>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{not empty request.userPrincipal}">
-                                #{dashboardView.selectedUser.simulation.name}
+                                <a:identicon text="#{dashboardView.selectedUser.simulation.name}" width="38" height="38" style="vertical-align: middle;" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{empty dashboardView.selectedUser.simulation.bytes}"/>
+                                <o:graphicImage value="#{dashboardView.selectedUser.simulation.bytes}" dataURI="true" width="38" height="38" style="vertical-align: middle;" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{not empty dashboardView.selectedUser.simulation.bytes}"/>
+                                <h:outputText value="#{dashboardView.selectedUser.simulation.name}" />
                             </h:panelGroup>
                         </p:link>
                         <p:link id="menu-button" outcome="/index" fragment="introduction">

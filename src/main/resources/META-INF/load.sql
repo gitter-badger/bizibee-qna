@@ -3,14 +3,6 @@ VALUES
 	(1,0,'ARIPDCOM','2017-01-17 16:29:48','2016-12-18 16:29:48',NULL,0,0,0,0,'ARI Business Management Systems',0,0,'',0),
 	(2,100000,'UNILEVER2016','2017-01-17 16:29:48','2016-12-18 16:29:48','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo nisl velit, at scelerisque leo tempor eget. Sed at orci auctor, lacinia dolor id, dignissim sapien. Ut pulvinar sapien vel mi dignissim vulputate. Nunc viverra ligula eget dignissim lacinia. Nulla pulvinar imperdiet eros, eget rhoncus dui rutrum non. Sed sit amet tristique tortor, sit amet sollicitudin augue. Sed volutpat orci eget ipsum dictum, vitae posuere arcu dignissim. Mauris fermentum interdum finibus. Ut erat massa, congue quis feugiat sed, sodales non risus. Proin sit amet enim sed lacus aliquam vulputate ut sed leo. Suspendisse tincidunt nisi nec massa dignissim dignissim.',0.4,0.25,0.4,0.55,'Unilever Beyond Sales 2016',5000000,0,'Thanks for your contribution',0.2);
 
-
-INSERT INTO `GUIDEENTITY` (`ID`,`SIMULATION_ID`,`DESCRIPTION`,`NAME`,`REMARK`,`SORTORDER`) VALUES  
-(1,2,'Description about 1','Name1','Remark about 1',1),
-(2,2,'Description about 2','Name2','Remark about 2',2),
-(3,2,'Description about 3','Name3','Remark about 3',3),
-(4,2,'Description about 4','Name4','Remark about 4',4),
-(5,2,'Description about 5','Name5','Remark about 5',5);
-
 INSERT INTO `USERENTITY` (`ID`,`SIMULATION_ID`,`EMAIL`,`NAME`,`PASSWORD`,`USERGROUP`,`USERNAME`) VALUES 
 (1,1,'cem@aripd.com','cem aripd','cem','Administrators','cem'),
 (2,2,'ruler@aripd.com','ruler Unilever','ruler','Rulers','ruler'),
@@ -25,32 +17,43 @@ INSERT INTO `TEAMENTITY` VALUES
 (5,'E Team'),
 (6,'F Team');
 
+INSERT INTO `GUIDEENTITY` (`ID`,`SIMULATION_ID`,`DESCRIPTION`,`NAME`,`REMARK`,`SORTORDER`) VALUES  
+(1,2,'Description about Price Positioning','Price Positioning','Remark about Price Positioning',1),
+(2,2,'Description about Volume Hunting','Volume Hunting','Remark about Volume Hunting',2),
+(3,2,'Description about Listing','Listing','Remark about Listing',3),
+(4,2,'Description about Promotion','Promotion','Remark about Promotion',4),
+(5,2,'Description about Team Management','Team Management','Remark about Team Management',5),
+(6,2,'Description about Display','Display','Remark about Display',6),
+(7,2,'Description about E-Commerce Investment','E-Commerce Investment','Remark about E-Commerce Investment',7),
+(8,2,'Description about Delisting','Delisting','Remark about Delisting',8),
+(9,2,'Description about Planogram','Planogram','Remark about Planogram',9);
+
 INSERT INTO `QUESTIONENTITY` VALUES
-(1,2,NULL,'Description about Question1','Question1','Remark about Question1',TRUE,1,'SINGLE_CHOICE',UUID()),
-(2,2,NULL,'Description about Price Positioning','Price Positioning','Remark about Price Positioning',TRUE,2,'RANGE_CHOICE',UUID()),
-(3,2,NULL,'Description about Question2','Question2','Remark about Question2',TRUE,3,'SINGLE_CHOICE',UUID()),
-(4,2,NULL,'Description about Volume Hunting','Volume Hunting','Remark about Volume Hunting',TRUE,4,'SINGLE_CHOICE',UUID()),
-(5,2,NULL,'Description about Listing','Listing','Remark about Listing',TRUE,5,'MULTIPLE_CHOICE',UUID()),
-(6,2,NULL,'Description about Question3','Question3','Remark about Question3',TRUE,6,'SINGLE_CHOICE',UUID()),
-(7,2,NULL,'Description about Question4','Question4','Remark about Question4',TRUE,7,'SINGLE_CHOICE',UUID()),
-(8,2,NULL,'Description about Promotion - Pro 600 ml beauty','Promotion - Pro 600 ml beauty','Remark about Promotion - Pro 600 ml beauty',TRUE,8,'SINGLE_CHOICE',UUID()),
-(9,2,NULL,'Description about Promotion - Neoru 350 Dailycare','Promotion - Neoru 350 Dailycare','Remark about Promotion - Neoru 350 Dailycare',TRUE,9,'SINGLE_CHOICE',UUID()),
-(10,2,NULL,'Description about Promotion - Astro 600+200 güzellik+bakım','Promotion - Astro 600+200 güzellik+bakım','Remark about Promotion - Astro 600+200 güzellik+bakım',TRUE,10,'SINGLE_CHOICE',UUID()),
-(11,2,NULL,'Description about Promotion - ASTRO 600 ML GÜZELLİK','Promotion - ASTRO 600 ML GÜZELLİK','Remark about Promotion - ASTRO 600 ML GÜZELLİK',TRUE,11,'SINGLE_CHOICE',UUID()),
-(12,2,NULL,'Description about Question5','Question5','Remark about Question5',TRUE,12,'SINGLE_CHOICE',UUID()),
-(13,2,NULL,'Description about Team Management','Team Management','Remark about Team Management',TRUE,13,'MULTIPLE_CHOICE',UUID()),
-(14,2,NULL,'Description about Question6','Question6','Remark about Question6',TRUE,14,'SINGLE_CHOICE',UUID()),
-(15,2,NULL,'Description about Display - PRO 600+200 KEPEK+GÜZELLİK','Display - PRO 600+200 KEPEK+GÜZELLİK','Remark about Display - PRO 600+200 KEPEK+GÜZELLİK',TRUE,15,'MULTIPLE_CHOICE',UUID()),
-(16,2,NULL,'Description about Display - PRO 600+200 GÜZELLİK + KEPEK','Display - PRO 600+200 GÜZELLİK + KEPEK','Remark about Display - PRO 600+200 GÜZELLİK + KEPEK',TRUE,16,'MULTIPLE_CHOICE',UUID()),
-(17,2,NULL,'Description about Display - NEURO 500+350 ml bakım+dökülme','Display - NEURO 500+350 ml bakım+dökülme','Remark about Display - NEURO 500+350 ml bakım+dökülme',TRUE,17,'MULTIPLE_CHOICE',UUID()),
-(18,2,NULL,'Description about Display - neuro 500 ml bakım','Display - neuro 500 ml bakım','Remark about Display - neuro 500 ml bakım',TRUE,18,'MULTIPLE_CHOICE',UUID()),
-(19,2,NULL,'Description about Question7','Question7','Remark about Question7',TRUE,19,'SINGLE_CHOICE',UUID()),
-(20,2,NULL,'Description about Question8','Question8','Remark about Question8',TRUE,20,'SINGLE_CHOICE',UUID()),
-(21,2,NULL,'Description about Question9','Question9','Remark about Question9',TRUE,21,'SINGLE_CHOICE',UUID()),
-(22,2,NULL,'Description about E-Commerce Investment','E-Commerce Investment','Remark about E-Commerce Investment',TRUE,22,'MULTIPLE_CHOICE',UUID()),
-(23,2,NULL,'Description about Question10','Question10','Remark about Question10',TRUE,23,'SINGLE_CHOICE',UUID()),
-(24,2,NULL,'Description about Delisting','Delisting','Remark about Delisting',TRUE,24,'SINGLE_CHOICE',UUID()),
-(25,2,NULL,'Description about Planogram','Planogram','Remark about Planogram',TRUE,25,'PLANOGRAM1',UUID());
+(1,2,NULL,'Description about Question1','Question1','Remark about Question1',TRUE,1,'SINGLE_CHOICE',UUID(),NULL),
+(2,2,NULL,'Description about Price Positioning','Price Positioning','Remark about Price Positioning',TRUE,2,'RANGE_CHOICE',UUID(),1),
+(3,2,NULL,'Description about Question2','Question2','Remark about Question2',TRUE,3,'SINGLE_CHOICE',UUID(),NULL),
+(4,2,NULL,'Description about Volume Hunting','Volume Hunting','Remark about Volume Hunting',TRUE,4,'SINGLE_CHOICE',UUID(),2),
+(5,2,NULL,'Description about Listing','Listing','Remark about Listing',TRUE,5,'MULTIPLE_CHOICE',UUID(),3),
+(6,2,NULL,'Description about Question3','Question3','Remark about Question3',TRUE,6,'SINGLE_CHOICE',UUID(),NULL),
+(7,2,NULL,'Description about Question4','Question4','Remark about Question4',TRUE,7,'SINGLE_CHOICE',UUID(),NULL),
+(8,2,NULL,'Description about Promotion - Pro 600 ml beauty','Promotion - Pro 600 ml beauty','Remark about Promotion - Pro 600 ml beauty',TRUE,8,'SINGLE_CHOICE',UUID(),4),
+(9,2,NULL,'Description about Promotion - Neoru 350 Dailycare','Promotion - Neoru 350 Dailycare','Remark about Promotion - Neoru 350 Dailycare',TRUE,9,'SINGLE_CHOICE',UUID(),4),
+(10,2,NULL,'Description about Promotion - Astro 600+200 güzellik+bakım','Promotion - Astro 600+200 güzellik+bakım','Remark about Promotion - Astro 600+200 güzellik+bakım',TRUE,10,'SINGLE_CHOICE',UUID(),4),
+(11,2,NULL,'Description about Promotion - ASTRO 600 ML GÜZELLİK','Promotion - ASTRO 600 ML GÜZELLİK','Remark about Promotion - ASTRO 600 ML GÜZELLİK',TRUE,11,'SINGLE_CHOICE',UUID(),4),
+(12,2,NULL,'Description about Question5','Question5','Remark about Question5',TRUE,12,'SINGLE_CHOICE',UUID(),NULL),
+(13,2,NULL,'Description about Team Management','Team Management','Remark about Team Management',TRUE,13,'MULTIPLE_CHOICE',UUID(),5),
+(14,2,NULL,'Description about Question6','Question6','Remark about Question6',TRUE,14,'SINGLE_CHOICE',UUID(),NULL),
+(15,2,NULL,'Description about Display - PRO 600+200 KEPEK+GÜZELLİK','Display - PRO 600+200 KEPEK+GÜZELLİK','Remark about Display - PRO 600+200 KEPEK+GÜZELLİK',TRUE,15,'MULTIPLE_CHOICE',UUID(),6),
+(16,2,NULL,'Description about Display - PRO 600+200 GÜZELLİK + KEPEK','Display - PRO 600+200 GÜZELLİK + KEPEK','Remark about Display - PRO 600+200 GÜZELLİK + KEPEK',TRUE,16,'MULTIPLE_CHOICE',UUID(),6),
+(17,2,NULL,'Description about Display - NEURO 500+350 ml bakım+dökülme','Display - NEURO 500+350 ml bakım+dökülme','Remark about Display - NEURO 500+350 ml bakım+dökülme',TRUE,17,'MULTIPLE_CHOICE',UUID(),6),
+(18,2,NULL,'Description about Display - neuro 500 ml bakım','Display - neuro 500 ml bakım','Remark about Display - neuro 500 ml bakım',TRUE,18,'MULTIPLE_CHOICE',UUID(),6),
+(19,2,NULL,'Description about Question7','Question7','Remark about Question7',TRUE,19,'SINGLE_CHOICE',UUID(),NULL),
+(20,2,NULL,'Description about Question8','Question8','Remark about Question8',TRUE,20,'SINGLE_CHOICE',UUID(),NULL),
+(21,2,NULL,'Description about Question9','Question9','Remark about Question9',TRUE,21,'SINGLE_CHOICE',UUID(),NULL),
+(22,2,NULL,'Description about E-Commerce Investment','E-Commerce Investment','Remark about E-Commerce Investment',TRUE,22,'MULTIPLE_CHOICE',UUID(),7),
+(23,2,NULL,'Description about Question10','Question10','Remark about Question10',TRUE,23,'SINGLE_CHOICE',UUID(),NULL),
+(24,2,NULL,'Description about Delisting','Delisting','Remark about Delisting',TRUE,24,'SINGLE_CHOICE',UUID(),8),
+(25,2,NULL,'Description about Planogram','Planogram','Remark about Planogram',TRUE,25,'PLANOGRAM1',UUID(),9);
 
 INSERT INTO `ANSWERENTITY` VALUES 
 (1,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,'Answer1',1),

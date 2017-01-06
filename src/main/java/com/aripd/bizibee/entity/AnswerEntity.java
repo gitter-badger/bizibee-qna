@@ -29,9 +29,9 @@ public class AnswerEntity extends AbstractEntity {
     @Lob
     private byte[] bytes;
 
-    @ManyToOne
     @NotNull
     @JoinColumn(nullable = false)
+    @ManyToOne
     private QuestionEntity question;
 
     private int coefScore = 0;

@@ -5,6 +5,7 @@ import com.aripd.bizibee.model.data.LazyQuestionDataModel;
 import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.bizibee.entity.Type;
 import com.aripd.bizibee.entity.AnswerEntity;
+import com.aripd.bizibee.entity.GuideEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.primefaces.model.UploadedFile;
 import com.aripd.bizibee.service.AnswerService;
+import com.aripd.bizibee.service.GuideService;
 import com.aripd.bizibee.service.QuestionService;
 
 @Named
@@ -38,6 +40,9 @@ public class QuestionView implements Serializable {
     private AnswerService answerService;
     private AnswerEntity newAnswer;
     private AnswerEntity selectedAnswer;
+
+    @Inject
+    private GuideService guideService;
 
     @Inject
     MessageUtil messageUtil;
@@ -72,6 +77,10 @@ public class QuestionView implements Serializable {
 
     public List<Type> getTypes() {
         return Arrays.asList(Type.values());
+    }
+
+    public List<GuideEntity> getGuides() {
+        return guideService.findAll();
     }
 
     public List<QuestionEntity> getQuestions() {
