@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
-    <mail-resource jndi-name="mail/bizibee" 
-                   host="smtp.yandex.com.tr" 
-                   user="dev@aripd.com" 
-                   from="dev@aripd.com" 
-                   object-type="user"
-                   store-protocol="imaps" 
-                   store-protocol-class="com.sun.mail.imap.IMAPSSLStore" 
-                   transport-protocol="smtps" 
-                   transport-protocol-class="com.sun.mail.smtp.SMTPSSLTransport"
-                   debug="true"
-                   enabled="true">
-        <property name="mail.smtps.host" value="smtp.yandex.com.tr"/>
-        <property name="mail.smtps.password" value="PASSWORD"/>
-        <property name="mail.smtps.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
-        <property name="mail.smtps.auth" value="true"/>
-        <property name="mail.smtps.socketFactory.port" value="465"/>
-        <property name="mail.smtps.port" value="465"/>
-        <property name="mail.smtps.starttls.enable" value="false"/>
-        <property name="mail.smtps.timeout" value="180000"/>
-        <property name="mail.smtps.user" value="dev@aripd.com"/>
-        <property name="mail.smtps.socketFactory.fallback" value="false"/>
-        
-        <property name="mail.imaps.host" value="imap.yandex.com.tr"/>
-        <property name="mail.imaps.port" value="993"/>
-        <property name="mail.imaps.password" value="PASSWORD"/>
-        <property name="mail.imaps.starttls.enable" value="false"/>
-        <property name="mail.imaps.user" value="dev@aripd.com"/>
-        <property name="mail.imaps.socketFactory.fallback" value="false"/>
-        <property name="mail.imaps.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
-        <property name="mail.imaps.connectiontimeout" value="60000"/>
-        <property name="mail.imaps.timeout" value="180000"/>
-        <property name="mail.imaps.socketFactory.port" value="993"/>
-    </mail-resource>
 
     <jdbc-resource enabled="true" jndi-name="jdbc/bizibee" object-type="user" pool-name="bizibee"/>
 
