@@ -46,9 +46,9 @@ case $CASEserver in
   remote)
     ASADMIN="/opt/glassfish4/bin/asadmin"
     MYSQL="/usr/bin/mysql"
-    GLASSFISH_RESOURCES="/root/Developments/NetBeansProjects/bizibee/src/main/webapp/WEB-INF/glassfish-resources.xml"
-    WAR="/root/Developments/NetBeansProjects/bizibee/target/bizibee-1.0.war"
-    SQL="/root/Developments/NetBeansProjects/bizibee/src/main/resources/META-INF/load.sql"
+    GLASSFISH_RESOURCES="/root/bizibee/src/main/webapp/WEB-INF/glassfish-resources.xml"
+    WAR="/root/bizibee/target/bizibee-1.0.war"
+    SQL="/root/bizibee/src/main/resources/META-INF/load.sql"
     ;;
 esac
 
