@@ -129,23 +129,24 @@
                     <!-- <webXml>src/main/webapp/WEB-INF/web.xml</webXml> -->
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.glassfish.maven.plugin</groupId>
                 <artifactId>maven-glassfish-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <glassfishDirectory>${glassfish.home}</glassfishDirectory>
-                    <user>${glassfish.user}</user>
-                    <passwordFile>${glassfish.passfile}</passwordFile>
+                    <glassfishDirectory>${development.glassfish.home}</glassfishDirectory>
+                    <user>${development.glassfish.user}</user>
+                    <passwordFile>${development.glassfish.passfile}</passwordFile>
+                    <adminPassword>${development.glassfish.adminPassword}</adminPassword>
                     <domain>
-                        <name>${glassfish.domain}</name>
-                        <!--<host>${glassfish.host}</host>-->
+                        <name>${development.glassfish.domain}</name>
+                        <host>${development.glassfish.host}</host>
                         <httpPort>80</httpPort>
                         <adminPort>4848</adminPort>
-                        <!--                        <httpsPort>8181</httpsPort>
+                                                <httpsPort>8181</httpsPort>
                         <iiopPort>3700</iiopPort>
                         <jmsPort>7676</jmsPort>
-                        <reuse>false</reuse>-->
+                        <reuse>false</reuse>
                     </domain>
                     <resourceDescriptor>src/main/webapp/WEB-INF/glassfish-resources.xml</resourceDescriptor>
                     <components>
@@ -161,7 +162,7 @@
                     <terse>false</terse>
                     <echo>true</echo>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
