@@ -2552,6 +2552,13 @@ h2 {
   vertical-align: top;
 }
 
+#planogram2Form .ui-panelgrid {
+  background: url("#{resource['images/planogram.jpg']}");
+}
+#planogram2Form .ui-panelgrid .ui-widget-content {
+  background-color: transparent;
+}
+
 /* Dashboard */
 .dashboard {
   margin-top: 16px;

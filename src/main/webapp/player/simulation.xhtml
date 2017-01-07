@@ -111,7 +111,7 @@
                             </p:commandButton>
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
+                        <h:form id="planogram2Form" rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
                             <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
                                 <c:forEach var="i" begin="1" end="23">
                                     <h:column>
