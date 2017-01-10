@@ -2548,10 +2548,6 @@ h2 {
   font-size: 24px;
 }
 
-.verticalAlignTop {
-  vertical-align: top;
-}
-
 #planogram2Form .ui-panelgrid {
   background: url("#{resource['images/planogram.jpg']}");
 }

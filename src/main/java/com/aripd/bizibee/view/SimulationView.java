@@ -9,6 +9,7 @@ import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.model.response.Response1Model;
 import com.aripd.bizibee.model.response.Response2Model;
 import com.aripd.bizibee.model.response.Response5Model;
+import com.aripd.bizibee.model.response.Response6Model;
 import com.aripd.bizibee.model.response.ResponseConverter;
 import java.io.Serializable;
 import java.util.List;
@@ -51,6 +52,7 @@ public class SimulationView implements Serializable {
     @Inject
     private QuestionService questionService;
     private QuestionEntity selectedRecord;
+    private QuestionEntity nextRecord;
     private List<QuestionEntity> questions;
 
     private String uuid;
@@ -59,6 +61,7 @@ public class SimulationView implements Serializable {
     private Response1Model model1;
     private Response2Model model2;
     private List<Response5Model> model5;
+    private Response6Model model6;
 
     @Inject
     MessageUtil messageUtil;
@@ -89,9 +92,12 @@ public class SimulationView implements Serializable {
             sequence = questions.indexOf(selectedRecord);
         }
 
+        nextRecord = this.getNext(selectedRecord);
+
         model1 = new Response1Model();
         model2 = new Response2Model();
         model5 = new ArrayList<>();
+        model6 = new Response6Model();
 
         for (AnswerEntity answer : selectedRecord.getAnswers()) {
             switch (selectedRecord.getType()) {
@@ -103,6 +109,8 @@ public class SimulationView implements Serializable {
                 case PLANOGRAM1:
                 case PLANOGRAM2:
                     model5.add(new Response5Model(answer));
+                    break;
+                case FILE_UPLOAD:
                     break;
             }
         }
@@ -116,6 +124,7 @@ public class SimulationView implements Serializable {
             disabled = true;
 
             String outcome = response.getOutcome();
+            byte[] bytes = response.getBytes();
             QuestionEntity question = response.getQuestion();
 
             JsonObject jsonObject1;
@@ -171,12 +180,16 @@ public class SimulationView implements Serializable {
                             value = jsonObject2.getJsonNumber("value").intValue();
                             m.setValue(value);
                         } catch (NullPointerException | ClassCastException ex) {
-                            // TODO bunun yerine default olarak answer.getIndexMin() girilebilir
+                            // TODO bunun yerine default olarak answer.getCoefIndexMin() girilebilir
                             value = answer.getCoefIndexMin();
                         }
 
                         model5.add(m);
                     }
+                    break;
+                case FILE_UPLOAD:
+                    model6 = new Response6Model();
+                    model6.setBytes(bytes);
                     break;
             }
         }
@@ -206,10 +219,12 @@ public class SimulationView implements Serializable {
                 case PLANOGRAM2:
                     response.setOutcome(model5.toString());
                     break;
+                case FILE_UPLOAD:
+                    response.setBytes(model6.getFile().getContents());
+                    break;
             }
 
             responseService.create(response);
-            messageUtil.addGlobalInfoFlashMessage("Saved");
         }
 
         String navigation = "/player/simulation?uuid=" + selectedRecord.getUuid() + "&amp;faces-redirect=true";
@@ -262,6 +277,14 @@ public class SimulationView implements Serializable {
         this.selectedRecord = selectedRecord;
     }
 
+    public QuestionEntity getNextRecord() {
+        return nextRecord;
+    }
+
+    public void setNextRecord(QuestionEntity nextRecord) {
+        this.nextRecord = nextRecord;
+    }
+
     public List<QuestionEntity> getQuestions() {
         return questions;
     }
@@ -290,6 +313,22 @@ public class SimulationView implements Serializable {
         return menuModel;
     }
 
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
     public Response1Model getModel1() {
         return model1;
     }
@@ -314,20 +353,12 @@ public class SimulationView implements Serializable {
         this.model5 = model5;
     }
 
-    public boolean isDisabled() {
-        return disabled;
+    public Response6Model getModel6() {
+        return model6;
     }
 
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setModel6(Response6Model model6) {
+        this.model6 = model6;
     }
 
 }

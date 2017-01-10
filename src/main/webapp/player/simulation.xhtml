@@ -33,7 +33,7 @@
                     <h2>#{dashboardView.selectedUser.name}</h2>
                 </h:panelGrid>
 
-                <div class="ui-g ui-fluid dashboard">
+                <div class="ui-g dashboard">
                     <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.menuModel.elements.size() lt 10}">
                         <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}" />
                     </h:panelGroup>
@@ -149,6 +149,18 @@
                             </p:repeat>
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}">
                                 <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
+                            </p:commandButton>
+                        </h:form>
+
+                        <h:form enctype="multipart/form-data" rendered="#{simulationView.selectedRecord.type eq 'FILE_UPLOAD'}">
+                            <h:panelGrid columns="1">
+                                <o:graphicImage value="#{simulationView.model6.bytes}" dataURI="true" style="width: 100%;" rendered="#{not empty simulationView.model6.bytes}"/>
+                                <p:fileUpload value="#{simulationView.model6.file}" label="#{i18n['Choose']}" 
+                                              disabled="#{simulationView.disabled}" 
+                                              mode="simple" skinSimple="true" 
+                                              validator="uploadImageValidator"/>
+                            </h:panelGrid>
+                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" ajax="false">
                             </p:commandButton>
                         </h:form>
                     </div>
@@ -287,7 +299,9 @@
                                     </h:panelGroup>
                                 </ui:repeat>
                                 <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{!simulationView.disabled}" />
+                                    <div style="text-align: center;">
+                                        <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" />
+                                    </div>
                                     <div style="text-align: center;">
                                         <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
                                             <f:param value="#{simulationView.sequence+1}" />
@@ -310,6 +324,15 @@
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+
+        <h:form rendered="#{simulationView.nextRecord.kind eq 'NOTIFICATION' and simulationView.disabled}">
+            <p:dialog widgetVar="notificationDialog" header="#{i18n['You have a notification']}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
+                <p><h:outputText value="#{i18n['To continue you have to read notification first']}" /></p>
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Go to notification']}" action="#{simulationView.goNext}" disabled="#{!simulationView.disabled}" />
                 </f:facet>
             </p:dialog>
         </h:form>

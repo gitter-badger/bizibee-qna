@@ -15,25 +15,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.bizibee.service.UserService;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javax.faces.FacesException;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.AnswerService;
 
@@ -166,21 +151,34 @@ public class ReportView implements Serializable {
             case MULTIPLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(outcome);
                 jsonArray1 = jsonObject1.getJsonArray("answers");
-                for (JsonValue jsonValue1 : jsonArray1) {
-                    JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+                if (jsonArray1 != null && jsonArray1.size() > 0) {
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
 
-                    answerId = jsonObject2.getJsonNumber("id").longValue();
-                    answer = answerService.find(answerId);
-                    score += answer.getCoefScore();
-                    scoreLocal += answer.getCoefScore();
-                    budget += answer.getCoefBudget();
-                    budgetLocal += answer.getCoefBudget();
-                    usg += answer.getCoefUsg();
-                    usgLocal += answer.getCoefUsg();
-                    gm += answer.getCoefGm();
-                    gmLocal += answer.getCoefGm();
-                    ms += answer.getCoefMs();
-                    msLocal += answer.getCoefMs();
+                        answerId = jsonObject2.getJsonNumber("id").longValue();
+                        answer = answerService.find(answerId);
+                        score += answer.getCoefScore();
+                        scoreLocal += answer.getCoefScore();
+                        budget += answer.getCoefBudget();
+                        budgetLocal += answer.getCoefBudget();
+                        usg += answer.getCoefUsg();
+                        usgLocal += answer.getCoefUsg();
+                        gm += answer.getCoefGm();
+                        gmLocal += answer.getCoefGm();
+                        ms += answer.getCoefMs();
+                        msLocal += answer.getCoefMs();
+                    }
+                } else {
+                    score += question.getCoefScore();
+                    scoreLocal += question.getCoefScore();
+                    budget += question.getCoefBudget();
+                    budgetLocal += question.getCoefBudget();
+                    usg += question.getCoefUsg();
+                    usgLocal += question.getCoefUsg();
+                    gm += question.getCoefGm();
+                    gmLocal += question.getCoefGm();
+                    ms += question.getCoefMs();
+                    msLocal += question.getCoefMs();
                 }
 
                 scoreChange = scoreLocal;
@@ -232,6 +230,10 @@ public class ReportView implements Serializable {
                 msChange = msLocal;
                 sales += sales * usgChange;
                 break;
+            case PLANOGRAM1:
+            case PLANOGRAM2:
+            case FILE_UPLOAD:
+                break;
         }
         return outcome;
     }
@@ -241,40 +243,6 @@ public class ReportView implements Serializable {
             return responseService.findByUser(u);
         } else {
             return responseService.findByUser(user);
-        }
-    }
-
-    public void doGenerateReport() {
-        try {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            ExternalContext externalContext = facesContext.getExternalContext();
-
-            // get the JRXML template as a stream
-            InputStream inputStream = externalContext.getResourceAsStream("/resources/reports/Report.jrxml");
-            JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
-            InputStream is_subreport = externalContext.getResourceAsStream("/resources/reports/Report_Item.jrxml");
-            JasperReport jaspersubreport = JasperCompileManager.compileReport(is_subreport);
-
-            InputStream logo = externalContext.getResourceAsStream("/resources/reports/logo.png");
-
-            Map<String, Object> jasperParameters = new HashMap();
-//            jasperParameters.put(JRParameter.REPORT_LOCALE, LocaleProvider.getLocale());
-            jasperParameters.put("SUBREPORT1", jaspersubreport);
-            jasperParameters.put("player", selectedPlayer);
-            jasperParameters.put("responses", responseService.findByUser(selectedPlayer));
-            jasperParameters.put("logo", logo);
-
-            // filling report with data from data source
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, jasperParameters);
-            // exporting process
-            File file = File.createTempFile("Report." + selectedPlayer.getUsername() + ".", ".pdf");
-            externalContext.setResponseHeader("Content-Type", "application/force-download");
-            externalContext.setResponseHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
-            OutputStream out = externalContext.getResponseOutputStream();
-            JasperExportManager.exportReportToPdfStream(jasperPrint, out);
-            facesContext.responseComplete();
-        } catch (JRException | IOException ex) {
-            throw new FacesException(ex);
         }
     }
 

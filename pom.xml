@@ -294,11 +294,6 @@
             <artifactId>aricl</artifactId>
             <version>1.4</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>6.4.0</version>
-        </dependency>
     </dependencies>
     
     <properties>

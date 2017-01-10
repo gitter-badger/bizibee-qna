@@ -56,9 +56,13 @@ public class ResponseConverter {
         } catch (NullPointerException ex) {
             return Json.createObjectBuilder()
                     .add("answer", model.getAnswer().getId())
-                    .add("value", "")
+                    .add("value", "")//TODO .addNull("value")
                     .build();
         }
+    }
+
+    static JsonObject convert(Response6Model model) {
+        return Json.createObjectBuilder().build();
     }
 
 }

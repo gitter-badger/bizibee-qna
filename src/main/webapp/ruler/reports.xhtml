@@ -36,9 +36,6 @@
                                     <h:outputText value="#{player.teamName}"/>
                                 </p:column>
                                 <p:column headerText="#{i18n['Action']}">
-                                    <p:commandButton value="#{i18n['Report']}" action="#{reportView.doGenerateReport}" ajax="false">
-                                        <f:setPropertyActionListener value="#{player}" target="#{reportView.selectedPlayer}" />
-                                    </p:commandButton>
                                     <p:link outcome="/ruler/report" value="#{i18n['Report']}">
                                         <f:param name="id" value="#{player.id}" />
                                     </p:link>

@@ -6,7 +6,8 @@ public enum Type {
     MULTIPLE_CHOICE("MULTIPLE_CHOICE"),
     RANGE_CHOICE("RANGE_CHOICE"),
     PLANOGRAM1("PLANOGRAM1"),
-    PLANOGRAM2("PLANOGRAM2");
+    PLANOGRAM2("PLANOGRAM2"),
+    FILE_UPLOAD("FILE_UPLOAD");
 
     private final String label;
 

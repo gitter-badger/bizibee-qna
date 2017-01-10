@@ -6,6 +6,7 @@ import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.bizibee.entity.Type;
 import com.aripd.bizibee.entity.AnswerEntity;
 import com.aripd.bizibee.entity.GuideEntity;
+import com.aripd.bizibee.entity.Kind;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -73,6 +74,10 @@ public class QuestionView implements Serializable {
             return;
         }
 
+    }
+
+    public List<Kind> getKinds() {
+        return Arrays.asList(Kind.values());
     }
 
     public List<Type> getTypes() {

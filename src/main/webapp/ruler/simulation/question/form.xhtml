@@ -35,6 +35,11 @@
                                 <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
                                 <p:inputTextarea id="remark" value="#{questionView.selectedQuestion.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" styleClass="ui-g-12" />
 
+                                <p:outputLabel for="kind" value="#{i18n['Kind']}"/>
+                                <p:selectOneMenu id="kind" value="#{questionView.selectedQuestion.kind}" label="#{i18n['Kind']}" converter="#{kindConverter}" required="true">
+                                    <f:selectItems value="#{questionView.kinds}" var="kind" itemValue="#{kind}" itemLabel="#{i18n[kind.label]}"/>
+                                </p:selectOneMenu>
+
                                 <p:outputLabel for="type" value="#{i18n['Type']}"/>
                                 <p:selectOneMenu id="type" value="#{questionView.selectedQuestion.type}" label="#{i18n['Type']}" converter="#{typeConverter}" required="true">
                                     <f:selectItems value="#{questionView.types}" var="type" itemValue="#{type}" itemLabel="#{i18n[type.label]}"/>

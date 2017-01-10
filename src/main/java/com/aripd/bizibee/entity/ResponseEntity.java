@@ -4,6 +4,7 @@ import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
@@ -32,6 +33,9 @@ public class ResponseEntity extends AbstractEntity {
 
     @Column(columnDefinition = "TEXT")
     private String outcome;
+
+    @Lob
+    private byte[] bytes;
 
     public ResponseEntity() {
     }
@@ -72,6 +76,14 @@ public class ResponseEntity extends AbstractEntity {
 
     public void setOutcome(String outcome) {
         this.outcome = outcome;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 
 }

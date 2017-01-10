@@ -37,6 +37,11 @@ public class QuestionEntity extends AbstractEntity {
     private Type type;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Kind kind;
+
+    @NotNull
     @Column(nullable = false)
     private String name;
 
@@ -57,6 +62,12 @@ public class QuestionEntity extends AbstractEntity {
 
     @ManyToOne
     private GuideEntity guide;
+
+    private int coefScore = 0;
+    private double coefBudget = 0;
+    private double coefUsg = 0;
+    private double coefGm = 0;
+    private double coefMs = 0;
 
     public QuestionEntity() {
     }
@@ -88,6 +99,14 @@ public class QuestionEntity extends AbstractEntity {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public Kind getKind() {
+        return kind;
+    }
+
+    public void setKind(Kind kind) {
+        this.kind = kind;
     }
 
     public String getDescription() {
@@ -152,6 +171,46 @@ public class QuestionEntity extends AbstractEntity {
 
     public void setGuide(GuideEntity guide) {
         this.guide = guide;
+    }
+
+    public int getCoefScore() {
+        return coefScore;
+    }
+
+    public void setCoefScore(int coefScore) {
+        this.coefScore = coefScore;
+    }
+
+    public double getCoefBudget() {
+        return coefBudget;
+    }
+
+    public void setCoefBudget(double coefBudget) {
+        this.coefBudget = coefBudget;
+    }
+
+    public double getCoefUsg() {
+        return coefUsg;
+    }
+
+    public void setCoefUsg(double coefUsg) {
+        this.coefUsg = coefUsg;
+    }
+
+    public double getCoefGm() {
+        return coefGm;
+    }
+
+    public void setCoefGm(double coefGm) {
+        this.coefGm = coefGm;
+    }
+
+    public double getCoefMs() {
+        return coefMs;
+    }
+
+    public void setCoefMs(double coefMs) {
+        this.coefMs = coefMs;
     }
 
 }
