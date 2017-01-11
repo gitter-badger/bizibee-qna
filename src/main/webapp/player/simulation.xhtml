@@ -167,7 +167,9 @@
                         <h:form enctype="multipart/form-data" rendered="#{simulationView.selectedRecord.type eq 'FILE_UPLOAD'}">
                             <h:panelGrid columns="1">
                                 <o:graphicImage value="#{simulationView.model6.bytes}" dataURI="true" style="width: 100%;" rendered="#{not empty simulationView.model6.bytes}"/>
-                                <p:fileUpload value="#{simulationView.model6.file}" label="#{i18n['Choose']}" 
+                                <p:fileUpload value="#{simulationView.model6.file}" 
+                                              label="#{i18n['Choose']}" 
+                                              required="#{simulationView.selectedRecord.required}" 
                                               disabled="#{simulationView.disabled}" 
                                               mode="simple" skinSimple="true" 
                                               validator="uploadImageValidator"/>

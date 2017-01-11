@@ -19,9 +19,9 @@ public class UploadImageValidator implements Validator {
         UploadedFile file = (UploadedFile) value;
 
         if (file == null || file.getContents().length == 0) {
-            //FacesMessage msg = new FacesMessage("Unable to upload the file", "File cannot be empty");
-            //msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            //throw new ValidatorException(msg);
+            FacesMessage msg = new FacesMessage("Unable to upload the file", "File cannot be empty");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         } else {
             List<String> contentTypes = Arrays.asList("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/bmp", "image/x-windows-bmp", "image/tiff", "image/x-tiff");
 
