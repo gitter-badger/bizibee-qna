@@ -51,6 +51,12 @@
                                 <p:outputLabel for="image" value="#{i18n['Image']}"/>
                                 <p:fileUpload id="image" value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
 
+                                <p:outputLabel for="group" value="#{i18n['Group']}"/>
+                                <p:selectOneMenu id="group" value="#{questionView.selectedQuestion.group}" label="#{i18n['Group']}" converter="#{groupConverter}">
+                                    <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{questionView.groups}" var="group" itemValue="#{group}" itemLabel="#{group.name}"/>
+                                </p:selectOneMenu>
+
                                 <p:outputLabel for="guide" value="#{i18n['Guide']}"/>
                                 <p:selectOneMenu id="guide" value="#{questionView.selectedQuestion.guide}" label="#{i18n['Guide']}" converter="#{guideConverter}">
                                     <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 

@@ -31,6 +31,9 @@
                                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                                     </p:commandButton>
                                 </f:facet>
+                                <p:column headerText="#{i18n['Group']}">
+                                    <h:outputText value="#{question.group.name}"/>
+                                </p:column>
                                 <p:column headerText="#{i18n['Name']}" width="200" sortBy="#{question.name}" filterBy="#{question.name}">
                                     <h:outputText value="#{question.name}"/>
                                 </p:column>
@@ -55,25 +58,44 @@
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{questionView.newQuestion.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+
                     <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
                     <p:inputText id="sortOrder" value="#{questionView.newQuestion.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
+
                     <p:outputLabel for="description" value="#{i18n['Description']}"/>
                     <p:inputTextarea id="description" value="#{questionView.newQuestion.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" />
+
                     <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
                     <p:inputTextarea id="remark" value="#{questionView.newQuestion.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" />
+
+                    <p:outputLabel for="kind" value="#{i18n['Kind']}"/>
+                    <p:selectOneMenu id="kind" value="#{questionView.newQuestion.kind}" label="#{i18n['Kind']}" converter="#{kindConverter}" required="true">
+                        <f:selectItems value="#{questionView.kinds}" var="kind" itemValue="#{kind}" itemLabel="#{i18n[kind.label]}"/>
+                    </p:selectOneMenu>
+
                     <p:outputLabel for="type" value="#{i18n['Type']}"/>
                     <p:selectOneMenu id="type" value="#{questionView.newQuestion.type}" label="#{i18n['Type']}" converter="#{typeConverter}" required="true">
                         <f:selectItems value="#{questionView.types}" var="type" itemValue="#{type}" itemLabel="#{i18n[type.label]}"/>
                     </p:selectOneMenu>
+
                     <p:outputLabel for="required" value="#{i18n['Required']}"/>
                     <p:selectBooleanButton id="required" value="#{questionView.newQuestion.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+
                     <p:outputLabel for="image" value="#{i18n['Image']}"/>
                     <p:fileUpload id="image" value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+
+                    <p:outputLabel for="group" value="#{i18n['Group']}"/>
+                    <p:selectOneMenu id="group" value="#{questionView.newQuestion.group}" label="#{i18n['Group']}" converter="#{groupConverter}">
+                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
+                        <f:selectItems value="#{questionView.groups}" var="group" itemValue="#{group}" itemLabel="#{group.name}"/>
+                    </p:selectOneMenu>
+
                     <p:outputLabel for="guide" value="#{i18n['Guide']}"/>
                     <p:selectOneMenu id="guide" value="#{questionView.newQuestion.guide}" label="#{i18n['Guide']}" converter="#{guideConverter}">
                         <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                         <f:selectItems value="#{questionView.guides}" var="guide" itemValue="#{guide}" itemLabel="#{guide.name}"/>
                     </p:selectOneMenu>
+
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{questionView.doCreateRecord}" ajax="false"/>

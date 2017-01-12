@@ -4,6 +4,7 @@ import com.aripd.bizibee.comparison.ComparisonQuestionSortOrderAsc;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.bizibee.entity.AnswerEntity;
+import com.aripd.bizibee.entity.GroupEntity;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.model.response.Response1Model;
@@ -30,6 +31,7 @@ import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 import com.aripd.bizibee.service.AnswerService;
+import com.aripd.bizibee.service.GroupService;
 import com.aripd.bizibee.service.QuestionService;
 
 @Named
@@ -45,6 +47,9 @@ public class SimulationView implements Serializable {
     @Inject
     private ResponseService responseService;
     private boolean disabled;
+
+    @Inject
+    private GroupService groupService;
 
     @Inject
     private AnswerService answerService;
@@ -229,6 +234,10 @@ public class SimulationView implements Serializable {
 
         String navigation = "/player/simulation?uuid=" + selectedRecord.getUuid() + "&amp;faces-redirect=true";
         RequestUtil.doNavigate(navigation);
+    }
+
+    public List<GroupEntity> getGroups() {
+        return groupService.findAll();
     }
 
     public AnswerEntity slotToAnswer(int slot) {

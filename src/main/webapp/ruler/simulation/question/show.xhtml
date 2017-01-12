@@ -42,6 +42,8 @@
                                 <h:panelGroup>
                                     <o:graphicImage value="#{questionView.selectedQuestion.bytes}" dataURI="true" alt="#{questionView.selectedQuestion.name}" title="#{questionView.selectedQuestion.name}" rendered="#{not empty questionView.selectedQuestion.bytes}"/>
                                 </h:panelGroup>
+                                <p:outputLabel value="#{i18n['Group']}"/>
+                                <h:outputText value="#{questionView.selectedQuestion.group.name}"/>
                                 <p:outputLabel value="#{i18n['Guide']}"/>
                                 <h:outputText value="#{questionView.selectedQuestion.guide.name}"/>
                             </p:panelGrid>

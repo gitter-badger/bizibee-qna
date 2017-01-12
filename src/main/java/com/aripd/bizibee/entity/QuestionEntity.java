@@ -61,6 +61,9 @@ public class QuestionEntity extends AbstractEntity {
     private List<AnswerEntity> answers;
 
     @ManyToOne
+    private GroupEntity group;
+
+    @ManyToOne
     private GuideEntity guide;
 
     private int coefScore = 0;
@@ -163,6 +166,14 @@ public class QuestionEntity extends AbstractEntity {
 
     public void setAnswers(List<AnswerEntity> answers) {
         this.answers = answers;
+    }
+
+    public GroupEntity getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupEntity group) {
+        this.group = group;
     }
 
     public GuideEntity getGuide() {

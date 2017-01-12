@@ -38,11 +38,17 @@
                         <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}" />
                     </h:panelGroup>
                     <div class="ui-g-3">
-                        <p:dataList id="panel1" value="#{simulationView.menuModel.elements}" var="element" varStatus="varStatus" type="ordered">
+                        <p:dataList id="panel1" value="#{simulationView.groups}" var="group" varStatus="varStatus" type="ordered">
+                            <f:facet name="header">#{i18n['Groups']}</f:facet>
+                            <h:outputText value="#{group.name}" style=" font-weight: #{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
+                        </p:dataList>
+                        <!--<p:sticky target="panel1" margin="90" />-->
+
+                        <p:dataList id="panel2" value="#{simulationView.menuModel.elements}" var="element" varStatus="varStatus" type="ordered">
                             <f:facet name="header">#{i18n['Steps']}</f:facet>
                             <h:outputText value="#{element.value}" style=" font-weight: #{simulationView.sequence.equals(varStatus.index)?'bold':'normal'};" />
                         </p:dataList>
-                        <p:sticky target="panel1" margin="90" />
+                        <!--<p:sticky target="panel2" margin="90" />-->
                     </div>
                     <div class="ui-g-6">
                         <h2><h:outputText value="#{simulationView.selectedRecord.name}"/></h2>
