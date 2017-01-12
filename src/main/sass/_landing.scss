@@ -134,6 +134,10 @@
                 color: #a4a4a4;
             }
 
+            ul {
+                color: #a4a4a4;
+            }
+
             > p {
                 font-size: 20px;
             }
@@ -174,7 +178,7 @@
 
     #mobile {
         background-color: #bcc7cf;
-        height: 570px;
+        height: 650px;
         overflow: hidden;
 
         .mobile-content {
@@ -192,22 +196,24 @@
                 font-size: 18px;
                 position: absolute;
                 top: 250px;
-                color: #7f7f7f;
+                color: #f2f2f2;
+                z-index: 100;
+                width: 600px;
+            }
+
+            .list {
+                position: absolute;
+                top: 380px;
+                color: #f2f2f2;
+                z-index: 100;
+                width: 500px;
             }
 
             img {
                 position: absolute;
                 right: 0px;
-                top: 125px;
-            }
-
-            .ui-button {
-                position: absolute;;
-                top: 300px;
-
-                .ui-button-text {
-                    padding: 1em 5em;
-                }
+                top: 310px;
+                width: 550px;
             }
         }
     }
@@ -215,14 +221,19 @@
     #pricing {
         background-color: #ffffff;
         padding: 100px 0;
+        height: 450px;
+        overflow: hidden;
 
         .pricing-content {
             width: 960px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
 
             .ui-g {
                 margin-top: 50px;
+                color: #a4a4a4;
+                text-align: left;
             }
 
             p {
@@ -231,6 +242,13 @@
 
             > p {
                 font-size: 20px;
+            }
+
+            img {
+                position: absolute;
+                top: 410px;
+                width: 550px;
+                transform: translate(-50%, -50%);
             }
 
             .pricing-title {
@@ -249,7 +267,7 @@
 
                 .pricing-fee {
                     @include border-radius(50px);
-                    background-color: #589cf0;
+                    background-color: #0388e5;
                     color: #ffffff;
                     width: 100px;
                     height: 100px;
@@ -259,7 +277,7 @@
                 }
 
                 &:hover {
-                    background-color: #006de5;
+                    background-color: #0388e5;
                     color: #ffffff;
 
                     p {
@@ -268,7 +286,7 @@
 
                     .pricing-fee {
                         background-color: #eaeeef;
-                        color: #589cf0;
+                        color: #0388e5;
                     }
                 }
             }
@@ -329,6 +347,7 @@
             }
 
             .testimonials-container {
+                color: #a4a4a4;
                 margin-top: 50px;
 
                 iframe {
@@ -502,16 +521,15 @@
                     padding-bottom: 30px;
                 }
 
-                img {
-                    position: absolute;
-                    top: 260px;
-                }
-
-                .ui-button {
+                .list {
                     position: static;
                     display: block;
-                    width: 250px;
-                    margin: 0 auto;
+                    padding-bottom: 30px;
+                }
+
+                img {
+                    position: absolute;
+                    top: 360px;
                 }
             }
         }

@@ -2111,7 +2111,7 @@ html {
   font-size: 16px;
 }
 .wrapper .sidebar .profile > a:hover {
-  color: #2399e5;
+  color: #0388e5;
 }
 .wrapper .sidebar .profile > ul {
   margin-bottom: -20px;
@@ -2173,7 +2173,7 @@ html {
 }
 .wrapper .sidebar ul li > a:hover {
   padding-left: 20px;
-  color: #2399e5;
+  color: #0388e5;
 }
 .wrapper .sidebar ul li > a:hover .menu-badge {
   color:   white;
@@ -2181,7 +2181,7 @@ html {
 .wrapper .sidebar ul li.active-menuitem > a {
   border-bottom: 0 none;
   background-color: #2e3035;
-  color: #2399e5;
+  color: #0388e5;
 }
 .wrapper .sidebar ul li.active-menuitem > a .fa:last-child {
   background: none !important;
@@ -2931,6 +2931,9 @@ a.fragment {
 .landing-wrapper #features .features-content p {
   color: #a4a4a4;
 }
+.landing-wrapper #features .features-content ul {
+  color: #a4a4a4;
+}
 .landing-wrapper #features .features-content > p {
   font-size: 20px;
 }
@@ -2961,7 +2964,7 @@ a.fragment {
 }
 .landing-wrapper #mobile {
   background-color: #bcc7cf;
-  height: 570px;
+  height: 650px;
   overflow: hidden;
 }
 .landing-wrapper #mobile .mobile-content {
@@ -2978,37 +2981,51 @@ a.fragment {
   font-size: 18px;
   position: absolute;
   top: 250px;
-  color: #7f7f7f;
+  color: #f2f2f2;
+  z-index: 100;
+  width: 600px;
+}
+.landing-wrapper #mobile .mobile-content .list {
+  position: absolute;
+  top: 380px;
+  color: #f2f2f2;
+  z-index: 100;
+  width: 500px;
 }
 .landing-wrapper #mobile .mobile-content img {
   position: absolute;
   right: 0px;
-  top: 125px;
-}
-.landing-wrapper #mobile .mobile-content .ui-button {
-  position: absolute;
-  top: 300px;
-}
-.landing-wrapper #mobile .mobile-content .ui-button .ui-button-text {
-  padding: 1em 5em;
+  top: 310px;
+  width: 550px;
 }
 .landing-wrapper #pricing {
   background-color: #ffffff;
   padding: 100px 0;
+  height: 450px;
+  overflow: hidden;
 }
 .landing-wrapper #pricing .pricing-content {
   width: 960px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
 }
 .landing-wrapper #pricing .pricing-content .ui-g {
   margin-top: 50px;
+  color: #a4a4a4;
+  text-align: left;
 }
 .landing-wrapper #pricing .pricing-content p {
   color: #a4a4a4;
 }
 .landing-wrapper #pricing .pricing-content > p {
   font-size: 20px;
+}
+.landing-wrapper #pricing .pricing-content img {
+  position: absolute;
+  top: 410px;
+  width: 550px;
+  transform: translate(-50%, -50%);
 }
 .landing-wrapper #pricing .pricing-content .pricing-title {
   font-size: 32px;
@@ -3031,7 +3048,7 @@ a.fragment {
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
-  background-color: #589cf0;
+  background-color: #0388e5;
   color: #ffffff;
   width: 100px;
   height: 100px;
@@ -3040,7 +3057,7 @@ a.fragment {
   line-height: 100px;
 }
 .landing-wrapper #pricing .pricing-content .pricing-box:hover {
-  background-color: #006de5;
+  background-color: #0388e5;
   color: #ffffff;
 }
 .landing-wrapper #pricing .pricing-content .pricing-box:hover p {
@@ -3048,7 +3065,7 @@ a.fragment {
 }
 .landing-wrapper #pricing .pricing-content .pricing-box:hover .pricing-fee {
   background-color: #eaeeef;
-  color: #589cf0;
+  color: #0388e5;
 }
 .landing-wrapper #video {
   background-color: #dde2e5;
@@ -3094,6 +3111,7 @@ a.fragment {
   font-size: 32px;
 }
 .landing-wrapper #testimonials .testimonials-content .testimonials-container {
+  color: #a4a4a4;
   margin-top: 50px;
 }
 .landing-wrapper #testimonials .testimonials-content .testimonials-container iframe {
@@ -3238,15 +3256,14 @@ a.fragment {
     display: block;
     padding-bottom: 30px;
   }
-  .landing-wrapper #mobile .mobile-content img {
-    position: absolute;
-    top: 260px;
-  }
-  .landing-wrapper #mobile .mobile-content .ui-button {
+  .landing-wrapper #mobile .mobile-content .list {
     position: static;
     display: block;
-    width: 250px;
-    margin: 0 auto;
+    padding-bottom: 30px;
+  }
+  .landing-wrapper #mobile .mobile-content img {
+    position: absolute;
+    top: 360px;
   }
   .landing-wrapper #pricing {
     padding: 30px 0;
@@ -4169,7 +4186,7 @@ a.fragment {
   }
 }
 a.ui-commandlink, a.ui-link {
-  color: #2399e5;
+  color: #0388e5;
 }
 
 .ui-fluid .fc .ui-button {
