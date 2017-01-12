@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{questionView.id}"/>
+            <f:event type="preRenderView" listener="#{questionView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Question']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationQuestion question="#{questionView.selectedQuestion}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="#{i18n['Name']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.name}"/>
+                            <p:outputLabel value="#{i18n['Sort Order']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.sortOrder}"/>
+                            <p:outputLabel value="#{i18n['Description']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.description}"/>
+                            <p:outputLabel value="#{i18n['Remark']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.remark}"/>
+                            <p:outputLabel value="#{i18n['Kind']}"/>
+                            <h:outputText value="#{i18n[questionView.selectedQuestion.kind]}"/>
+                            <p:outputLabel value="#{i18n['Type']}"/>
+                            <h:outputText value="#{i18n[questionView.selectedQuestion.type]}"/>
+                            <p:outputLabel value="#{i18n['Required']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.required}"/>
+                            <p:outputLabel value="#{i18n['Image']}"/>
+                            <h:panelGroup>
+                                <o:graphicImage value="#{questionView.selectedQuestion.bytes}" dataURI="true" alt="#{questionView.selectedQuestion.name}" title="#{questionView.selectedQuestion.name}" rendered="#{not empty questionView.selectedQuestion.bytes}"/>
+                            </h:panelGroup>
+                            <p:outputLabel value="#{i18n['Group']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.group.name}"/>
+                            <p:outputLabel value="#{i18n['Guide']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.guide.name}"/>
+
+                            <p:outputLabel value="#{i18n['coefScore']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.coefScore}"/>
+                            <p:outputLabel value="#{i18n['coefBudget']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.coefBudget}"/>
+                            <p:outputLabel value="#{i18n['coefUsg']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.coefUsg}"/>
+                            <p:outputLabel value="#{i18n['coefGm']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.coefGm}"/>
+                            <p:outputLabel value="#{i18n['coefMs']}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.coefMs}"/>
+                        </p:panelGrid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

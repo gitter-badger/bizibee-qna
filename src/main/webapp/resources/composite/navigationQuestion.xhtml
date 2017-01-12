@@ -14,7 +14,7 @@
     <composite:implementation>
         <h:form>
             <p:menu>
-                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/show.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/show" value="#{i18n['Show']}" icon="fa fa-search">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/view.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/view" value="#{i18n['View']}" icon="fa fa-search">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/form.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/form" value="#{i18n['Edit']}" icon="fa fa-edit">

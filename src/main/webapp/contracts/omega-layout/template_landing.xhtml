@@ -96,7 +96,7 @@
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
-                                    <ul style="font-size: smaller;">
+                                    <ul>
                                         <li><p:link outcome="/index" fragment="introduction" value="#{i18n['Home']}"/></li>
                                         <li><p:link outcome="/index" fragment="features" value="#{i18n['Features']}"/></li>
                                         <li><p:link outcome="/index" fragment="mobile" value="#{i18n['Mobile']}"/></li>
@@ -105,7 +105,7 @@
                                     </ul>
                                 </div>
                                 <div class="ui-g-2">
-                                    <ul style="font-size: smaller;">
+                                    <ul>
                                         <li><p:link outcome="/login" value="#{i18n['Log In']}"/></li>
                                         <li><p:link outcome="/signup" value="#{i18n['Sign Up']}"/></li>
                                         <li><p:link outcome="/terms" value="#{i18n['Terms of Use']}"/></li>
@@ -113,10 +113,10 @@
                                 </div>
                                 <div class="ui-g-2">
                                     <h:form>
-                                        <ul style="font-size: smaller;">
+                                        <ul>
                                             <ui:repeat value="#{localeBean.locales}" var="locale">
                                                 <li>
-                                                    <p:commandLink immediate="true" value="#{locale.getDisplayName(localeBean.locale)}" action="#{localeBean.onSet}">
+                                                    <p:commandLink immediate="true" value="#{locale.getDisplayName(locale)}" action="#{localeBean.onSet}" style="font-size: smaller;">
                                                         <f:setPropertyActionListener value="#{locale}" target="#{localeBean.locale}"/>
                                                     </p:commandLink>
                                                 </li>
