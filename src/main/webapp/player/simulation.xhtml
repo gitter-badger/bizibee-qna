@@ -10,7 +10,8 @@
     <ui:define name="head">
         <style type="text/css">
             .ui-steps .ui-steps-item {
-                width: calc(100% / #{simulationView.menuModel.elements.size()});
+                width: calc(100% / #{simulationView.menuModelByGroups.elements.size()});
+                /*width: calc(100% / #{simulationView.menuModelByQuestions.elements.size()});*/
                 height: 100px;
             }
             .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-title {
@@ -34,23 +35,24 @@
                 </h:panelGrid>
 
                 <div class="ui-g dashboard">
-                    <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="false">
-                        <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModel}" />
+                    <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
+                        <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="true" model="#{simulationView.menuModelByGroups}" />
+                        <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModelByQuestions}" rendered="false" />
                     </h:panelGroup>
-                    <div class="ui-g-3">
+                    <h:panelGroup layout="block" styleClass="ui-g-3" rendered="false">
                         <p:dataList id="panel1" value="#{simulationView.groups}" var="group" varStatus="varStatus" type="ordered">
                             <f:facet name="header">#{i18n['Groups']}</f:facet>
                             <h:outputText value="#{group.name}" style=" font-weight: #{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
                         </p:dataList>
-                        <!--<p:sticky target="panel1" margin="90" />-->
+                        <p:sticky target="panel1" margin="90" />
 
-                        <p:dataList id="panel2" value="#{simulationView.menuModel.elements}" var="element" varStatus="varStatus" type="ordered">
+                        <p:dataList id="panel2" value="#{simulationView.menuModelByQuestions.elements}" var="element" varStatus="varStatus" type="ordered">
                             <f:facet name="header">#{i18n['Steps']}</f:facet>
                             <h:outputText value="#{element.value}" style=" font-weight: #{simulationView.sequence.equals(varStatus.index)?'bold':'normal'};" />
                         </p:dataList>
-                        <!--<p:sticky target="panel2" margin="90" />-->
-                    </div>
-                    <div class="ui-g-6">
+                        <p:sticky target="panel2" margin="90" />
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="ui-g-8">
                         <h2><h:outputText value="#{simulationView.selectedRecord.name}"/></h2>
                         <h3><h:outputText value="#{simulationView.selectedRecord.description}"/></h3>
                         <o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" width="100%" rendered="#{not empty simulationView.selectedRecord.bytes}"/>
@@ -183,8 +185,8 @@
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check" ajax="false"/>
                             <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
-                    </div>
-                    <div class="ui-g-3">
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
                         <h:form id="panel">
                             <p:panel>
                                 <h:panelGroup rendered="#{empty reportView.getResponses(dashboardView.selectedUser)}">
@@ -325,14 +327,14 @@
                                                                     <h:panelGroup layout="block" style="text-align: center;" rendered="false">
                                                                         <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
                                                                             <f:param value="#{simulationView.sequence+1}" />
-                                                                            <f:param value="#{simulationView.menuModel.elements.size()}" />
+                                                                            <f:param value="#{simulationView.menuModelByQuestions.elements.size()}" />
                                                                         </h:outputFormat>
                                                                     </h:panelGroup>
                                                                 </f:facet>-->
                             </p:panel>
                         </h:form>
                         <p:sticky target="panel" margin="90" />
-                    </div>
+                    </h:panelGroup>
                 </div>
             </div>
 

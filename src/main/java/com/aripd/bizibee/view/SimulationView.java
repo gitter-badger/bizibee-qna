@@ -38,7 +38,8 @@ import com.aripd.bizibee.service.QuestionService;
 @ViewScoped
 public class SimulationView implements Serializable {
 
-    private final MenuModel menuModel;
+    private final MenuModel menuModelByGroups;
+    private final MenuModel menuModelByQuestions;
 
     @Inject
     private UserService userService;
@@ -50,6 +51,7 @@ public class SimulationView implements Serializable {
 
     @Inject
     private GroupService groupService;
+    private List<GroupEntity> groups;
 
     @Inject
     private AnswerService answerService;
@@ -73,18 +75,23 @@ public class SimulationView implements Serializable {
 
     public SimulationView() {
         selectedRecord = new QuestionEntity();
-        menuModel = new DefaultMenuModel();
+        menuModelByQuestions = new DefaultMenuModel();
+        menuModelByGroups = new DefaultMenuModel();
     }
 
     @PostConstruct
     public void init() {
         user = userService.getCurrentUser();
 
+        groups = groupService.findAll();
         questions = questionService.findAll();
         Collections.sort(questions, new ComparisonQuestionSortOrderAsc());
 
+        for (GroupEntity group : groups) {
+            menuModelByGroups.addElement(new DefaultMenuItem(group.getName()));
+        }
         for (QuestionEntity question : questions) {
-            menuModel.addElement(new DefaultMenuItem(question.getName()));
+            menuModelByQuestions.addElement(new DefaultMenuItem(question.getName()));
         }
     }
 
@@ -236,10 +243,6 @@ public class SimulationView implements Serializable {
         RequestUtil.doNavigate(navigation);
     }
 
-    public List<GroupEntity> getGroups() {
-        return groupService.findAll();
-    }
-
     public AnswerEntity slotToAnswer(int slot) {
         return model5.stream().filter(m -> m.getValue().equals(slot)).findFirst().orElse(null).getAnswer();
     }
@@ -294,6 +297,14 @@ public class SimulationView implements Serializable {
         this.nextRecord = nextRecord;
     }
 
+    public List<GroupEntity> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GroupEntity> groups) {
+        this.groups = groups;
+    }
+
     public List<QuestionEntity> getQuestions() {
         return questions;
     }
@@ -318,8 +329,12 @@ public class SimulationView implements Serializable {
         this.sequence = sequence;
     }
 
-    public MenuModel getMenuModel() {
-        return menuModel;
+    public MenuModel getMenuModelByGroups() {
+        return menuModelByGroups;
+    }
+
+    public MenuModel getMenuModelByQuestions() {
+        return menuModelByQuestions;
     }
 
     public UserEntity getUser() {
