@@ -8,14 +8,13 @@ import com.aripd.bizibee.service.UserService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.FacesException;
-import javax.faces.application.NavigationHandler;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
 import com.aripd.bizibee.service.QuestionService;
+import com.aripd.util.RequestUtil;
 
 @Named
 @ViewScoped
@@ -69,10 +68,8 @@ public class DashboardView implements Serializable {
         simulationService.update(selectedSimulation);
         messageUtil.addGlobalInfoFlashMessage("Uploaded");
 
-        String navigation = "/ruler/simulation/logo.xhtml?faces-redirect=true";
-        FacesContext context = FacesContext.getCurrentInstance();
-        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-        navigationHandler.handleNavigation(context, null, navigation);
+        String navigation = "/ruler/simulation/logo?faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public void doResetImage(ActionEvent actionEvent) {
@@ -80,10 +77,8 @@ public class DashboardView implements Serializable {
         simulationService.update(selectedSimulation);
         messageUtil.addGlobalInfoFlashMessage("Resetted");
 
-        String navigation = "/ruler/simulation/logo.xhtml?faces-redirect=true";
-        FacesContext context = FacesContext.getCurrentInstance();
-        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-        navigationHandler.handleNavigation(context, null, navigation);
+        String navigation = "/ruler/simulation/logo?faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public void doUpdateSimulation(ActionEvent actionEvent) {

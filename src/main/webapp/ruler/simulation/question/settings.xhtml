@@ -24,7 +24,7 @@
                         <h:form>
                             <h:panelGrid columns="1" styleClass="ui-g-12">
                                 <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
-                                <p:inputText id="sortOrder" value="#{questionView.selectedQuestion.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" styleClass="ui-g-12" required="true"/>
+                                <p:inputText id="sortOrder" value="#{questionView.selectedQuestion.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" styleClass="ui-g-12"/>
 
                                 <p:outputLabel for="kind" value="#{i18n['Kind']}"/>
                                 <p:selectOneMenu id="kind" value="#{questionView.selectedQuestion.kind}" label="#{i18n['Kind']}" converter="#{kindConverter}" required="true">
@@ -53,9 +53,6 @@
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{questionView.doUpdateRecord}"/>
-                                    <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" action="/ruler/simulation/question/index?faces-redirect=true" actionListener="#{questionView.doDeleteRecord}" icon="fa fa-trash">
-                                        <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
-                                    </p:commandButton>
                                 </f:facet>
                             </h:panelGrid>
                         </h:form>

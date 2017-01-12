@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:a="http://aripd.com/ui"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{answerView.id}"/>
+            <f:event type="preRenderView" listener="#{answerView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Answer']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationAnswer answer="#{answerView.selectedRecord}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form enctype="multipart/form-data">
+                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <f:facet name="header">
+                                    <o:graphicImage value="#{answerView.selectedRecord.bytes}" dataURI="true" width="210" height="210" alt="#{answerView.selectedRecord.name}" title="#{answerView.selectedRecord.name}" rendered="#{not empty answerView.selectedRecord.bytes}"/>
+                                </f:facet>
+
+                                <p:fileUpload value="#{answerView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{answerView.doUploadImage}" update="@form, :growl" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{answerView.doResetImage}" update="@form, :growl"/>
+                                </f:facet>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

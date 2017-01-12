@@ -3,6 +3,7 @@ package com.aripd.bizibee.view;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
 import com.aripd.bizibee.service.UserService;
+import com.aripd.util.RequestUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.FacesException;
@@ -69,10 +70,8 @@ public class ProfileBean implements Serializable {
         userService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Uploaded");
 
-        String navigation = "/player/profile.xhtml?faces-redirect=true";
-        FacesContext context = FacesContext.getCurrentInstance();
-        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-        navigationHandler.handleNavigation(context, null, navigation);
+        String navigation = "/player/profile?faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public void doResetImage(ActionEvent actionEvent) {
@@ -80,10 +79,8 @@ public class ProfileBean implements Serializable {
         userService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Resetted");
 
-        String navigation = "/player/profile.xhtml?faces-redirect=true";
-        FacesContext context = FacesContext.getCurrentInstance();
-        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-        navigationHandler.handleNavigation(context, null, navigation);
+        String navigation = "/player/profile?faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public UserEntity getSelectedRecord() {

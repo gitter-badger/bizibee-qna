@@ -23,8 +23,7 @@ import com.aripd.bizibee.service.AnswerService;
 import com.aripd.bizibee.service.GroupService;
 import com.aripd.bizibee.service.GuideService;
 import com.aripd.bizibee.service.QuestionService;
-import javax.faces.application.NavigationHandler;
-import javax.faces.context.FacesContext;
+import com.aripd.util.RequestUtil;
 
 @Named
 @ViewScoped
@@ -114,10 +113,8 @@ public class QuestionView implements Serializable {
         questionService.update(selectedQuestion);
         messageUtil.addGlobalInfoFlashMessage("Uploaded");
 
-        String navigation = "/ruler/simulation/question/image.xhtml?id=" + selectedQuestion.getId() + "&amp;faces-redirect=true";
-        FacesContext context = FacesContext.getCurrentInstance();
-        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-        navigationHandler.handleNavigation(context, null, navigation);
+        String navigation = "/ruler/simulation/question/image?id=" + selectedQuestion.getId() + "&amp;faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public void doResetImage(ActionEvent actionEvent) {
@@ -125,10 +122,8 @@ public class QuestionView implements Serializable {
         questionService.update(selectedQuestion);
         messageUtil.addGlobalInfoFlashMessage("Resetted");
 
-        String navigation = "/ruler/simulation/question/image.xhtml?id=" + selectedQuestion.getId() + "&amp;faces-redirect=true";
-        FacesContext context = FacesContext.getCurrentInstance();
-        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
-        navigationHandler.handleNavigation(context, null, navigation);
+        String navigation = "/ruler/simulation/question/image?id=" + selectedQuestion.getId() + "&amp;faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public void doCreateRecord(ActionEvent actionEvent) {

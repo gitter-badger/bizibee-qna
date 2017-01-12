@@ -37,7 +37,7 @@
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{guideView.doUpdateRecord}"/>
-                                    <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" action="/ruler/guide/index?faces-redirect=true" actionListener="#{guideView.doDeleteRecord}" icon="fa fa-trash">
+                                    <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" action="/ruler/simulation/guide/index?faces-redirect=true" actionListener="#{guideView.doDeleteRecord}" icon="fa fa-trash">
                                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                                     </p:commandButton>
                                 </f:facet>

@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{answerView.id}"/>
+            <f:event type="preRenderView" listener="#{answerView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Answer']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationAnswer answer="#{answerView.selectedRecord}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form>
+                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                                <p:inputText id="name" value="#{answerView.selectedRecord.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" styleClass="ui-g-12" required="true"/>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{answerView.doUpdateRecord}"/>
+                                    <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" actionListener="#{answerView.doDeleteRecord}" icon="fa fa-trash">
+                                        <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
+                                    </p:commandButton>
+                                </f:facet>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

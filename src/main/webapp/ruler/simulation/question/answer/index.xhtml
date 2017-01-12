@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{questionView.id}"/>
+            <f:event type="preRenderView" listener="#{questionView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Question']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationQuestion question="#{questionView.selectedQuestion}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form id="form">
+                            <p:dataTable id="dataTable" var="answer" value="#{questionView.answers}" emptyMessage="#{i18n['No records found']}"
+                                         rowKey="#{answer.id}" selectionMode="single" selection="#{questionView.selectedAnswer}"
+                                         >
+                                <f:facet name="header">
+                                    <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
+                                </f:facet>
+                                <p:column headerText="#{i18n['Name']}" width="300">
+                                    <h:outputText value="#{answer.name}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['coefBudget']}">
+                                    <h:outputText value="#{answer.coefBudget}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['coefGm']}">
+                                    <h:outputText value="#{answer.coefGm}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['coefMs']}">
+                                    <h:outputText value="#{answer.coefMs}"/>
+                                </p:column>
+                                <p:column headerText="#{i18n['coefUsg']}">
+                                    <h:outputText value="#{answer.coefUsg}"/>
+                                </p:column>
+                                <p:column exportable="false" width="100">
+                                    <p:link outcome="/ruler/simulation/question/answer/show" value="#{i18n['Show']}">
+                                        <f:param name="id" value="#{answer.id}"/>
+                                    </p:link>
+                                    <p:link outcome="/ruler/simulation/question/answer/form" value="#{i18n['Edit']}">
+                                        <f:param name="id" value="#{answer.id}"/>
+                                    </p:link>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="dialog">
+        <h:form id="newForm">
+            <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="#{i18n['Name']}"/>
+                    <p:inputText id="name" value="#{questionView.newAnswer.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
+                </p:panelGrid>
+
+                <f:facet name="footer">
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{questionView.doCreateAnswer}"/>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
+                </f:facet>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

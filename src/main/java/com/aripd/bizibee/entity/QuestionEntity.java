@@ -45,7 +45,7 @@ public class QuestionEntity extends AbstractEntity {
     @Column(nullable = false)
     private String name;
 
-    private int sortOrder;
+    private int sortOrder = 0;
 
     private String description;
 
@@ -55,7 +55,7 @@ public class QuestionEntity extends AbstractEntity {
     @Lob
     private byte[] bytes;
 
-    private boolean required;
+    private boolean required = false;
 
     @OneToMany(mappedBy = "question", orphanRemoval = true)
     private List<AnswerEntity> answers;

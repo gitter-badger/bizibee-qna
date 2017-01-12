@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{answerView.id}"/>
+            <f:event type="preRenderView" listener="#{answerView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Answer']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationAnswer answer="#{answerView.selectedRecord}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form>
+                            <p:tabView orientation="right">
+                                <p:tab title="#{i18n['Index Coefficients']}">
+                                    <h:panelGrid columns="1" styleClass="ui-g-12">
+                                        <p:outputLabel for="coefIndexMin" value="#{i18n['coefIndexMin']}"/>
+                                        <p:inputText id="coefIndexMin" value="#{answerView.selectedRecord.coefIndexMin}" label="#{i18n['coefIndexMin']}" placeholder="#{i18n['coefIndexMin']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefIndexMax" value="#{i18n['coefIndexMax']}"/>
+                                        <p:inputText id="coefIndexMax" value="#{answerView.selectedRecord.coefIndexMax}" label="#{i18n['coefIndexMax']}" placeholder="#{i18n['coefIndexMax']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefIndexStep" value="#{i18n['coefIndexStep']}"/>
+                                        <p:inputText id="coefIndexStep" value="#{answerView.selectedRecord.coefIndexStep}" label="#{i18n['coefIndexStep']}" placeholder="#{i18n['coefIndexStep']}" styleClass="ui-g-12"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{i18n['Score Coefficients']}">
+                                    <h:panelGrid columns="1" styleClass="ui-g-12">
+                                        <p:outputLabel for="coefScore" value="#{i18n['coefScore']}"/>
+                                        <p:inputText id="coefScore" value="#{answerView.selectedRecord.coefScore}" label="#{i18n['coefScore']}" placeholder="#{i18n['coefScore']}" styleClass="ui-g-12"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{i18n['Budget Coefficients']}">
+                                    <h:panelGrid columns="1" styleClass="ui-g-12">
+                                        <p:outputLabel for="coefBudget" value="#{i18n['coefBudget']}"/>
+                                        <p:inputText id="coefBudget" value="#{answerView.selectedRecord.coefBudget}" label="#{i18n['coefBudget']}" placeholder="#{i18n['coefBudget']}" styleClass="ui-g-12"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{i18n['USG Coefficients']}">
+                                    <h:panelGrid columns="1" styleClass="ui-g-12">
+                                        <p:outputLabel for="coefUsg" value="#{i18n['coefUsg']}"/>
+                                        <p:inputText id="coefUsg" value="#{answerView.selectedRecord.coefUsg}" label="#{i18n['coefUsg']}" placeholder="#{i18n['coefUsg']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefUsgGainMin" value="#{i18n['coefUsgGainMin']}"/>
+                                        <p:inputText id="coefUsgGainMin" value="#{answerView.selectedRecord.coefUsgGainMin}" label="#{i18n['coefUsgGainMin']}" placeholder="#{i18n['coefUsgGainMin']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefUsgGainMax" value="#{i18n['coefUsgGainMax']}"/>
+                                        <p:inputText id="coefUsgGainMax" value="#{answerView.selectedRecord.coefUsgGainMax}" label="#{i18n['coefUsgGainMax']}" placeholder="#{i18n['coefUsgGainMax']}" styleClass="ui-g-12"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{i18n['GM Coefficients']}">
+                                    <h:panelGrid columns="1" styleClass="ui-g-12">
+                                        <p:outputLabel for="coefGm" value="#{i18n['coefGm']}"/>
+                                        <p:inputText id="coefGm" value="#{answerView.selectedRecord.coefGm}" label="#{i18n['coefGm']}" placeholder="#{i18n['coefGm']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefGmGainMin" value="#{i18n['coefGmGainMin']}"/>
+                                        <p:inputText id="coefGmGainMin" value="#{answerView.selectedRecord.coefGmGainMin}" label="#{i18n['coefGmGainMin']}" placeholder="#{i18n['coefGmGainMin']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefGmGainMax" value="#{i18n['coefGmGainMax']}"/>
+                                        <p:inputText id="coefGmGainMax" value="#{answerView.selectedRecord.coefGmGainMax}" label="#{i18n['coefGmGainMax']}" placeholder="#{i18n['coefGmGainMax']}" styleClass="ui-g-12"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="#{i18n['MS Coefficients']}">
+                                    <h:panelGrid columns="1" styleClass="ui-g-12">
+                                        <p:outputLabel for="coefMs" value="#{i18n['coefMs']}"/>
+                                        <p:inputText id="coefMs" value="#{answerView.selectedRecord.coefMs}" label="#{i18n['coefMs']}" placeholder="#{i18n['coefMs']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefMsBreakpointIndexMin" value="#{i18n['coefMsBreakpointIndexMin']}"/>
+                                        <p:inputText id="coefMsBreakpointIndexMin" value="#{answerView.selectedRecord.coefMsBreakpointIndexMin}" label="#{i18n['coefMsBreakpointIndexMin']}" placeholder="#{i18n['coefMsBreakpointIndexMin']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefMsBreakpointIndexMax" value="#{i18n['coefMsBreakpointIndexMax']}"/>
+                                        <p:inputText id="coefMsBreakpointIndexMax" value="#{answerView.selectedRecord.coefMsBreakpointIndexMax}" label="#{i18n['coefMsBreakpointIndexMax']}" placeholder="#{i18n['coefMsBreakpointIndexMax']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefMsOptimalIndexMax" value="#{i18n['coefMsOptimalIndexMax']}"/>
+                                        <p:inputText id="coefMsOptimalIndexMax" value="#{answerView.selectedRecord.coefMsOptimalIndexMax}" label="#{i18n['coefMsOptimalIndexMax']}" placeholder="#{i18n['coefMsOptimalIndexMax']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefMsGainMin" value="#{i18n['coefMsGainMin']}"/>
+                                        <p:inputText id="coefMsGainMin" value="#{answerView.selectedRecord.coefMsGainMin}" label="#{i18n['coefMsGainMin']}" placeholder="#{i18n['coefMsGainMin']}" styleClass="ui-g-12"/>
+                                        <p:outputLabel for="coefMsGainMax" value="#{i18n['coefMsGainMax']}"/>
+                                        <p:inputText id="coefMsGainMax" value="#{answerView.selectedRecord.coefMsGainMax}" label="#{i18n['coefMsGainMax']}" placeholder="#{i18n['coefMsGainMax']}" styleClass="ui-g-12"/>
+                                    </h:panelGrid>
+                                </p:tab>
+                            </p:tabView>
+
+                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{answerView.doUpdateRecord}"/>
+                                </f:facet>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

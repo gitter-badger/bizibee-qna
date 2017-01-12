@@ -14,22 +14,22 @@
     <composite:implementation>
         <h:form>
             <p:menu>
-                <p:menuitem outcome="/ruler/simulation/question/show" value="#{i18n['Show']}" icon="fa fa-search">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/show.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/show" value="#{i18n['Show']}" icon="fa fa-search">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
-                <p:menuitem outcome="/ruler/simulation/question/form" value="#{i18n['Edit']}" icon="fa fa-edit">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/form.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/form" value="#{i18n['Edit']}" icon="fa fa-edit">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
-                <p:menuitem outcome="/ruler/simulation/question/settings" value="#{i18n['Settings']}" icon="fa fa-cog">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/settings.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/settings" value="#{i18n['Settings']}" icon="fa fa-cog">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
-                <p:menuitem outcome="/ruler/simulation/question/image" value="#{i18n['Image']}" icon="fa fa-picture-o">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/image.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/image" value="#{i18n['Image']}" icon="fa fa-picture-o">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
-                <p:menuitem outcome="/ruler/simulation/question/answer" value="#{i18n['Answers']}" icon="fa fa-list">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/answer/index.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/answer/index" value="#{i18n['Answers']}" icon="fa fa-list">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
-                <p:menuitem outcome="/ruler/simulation/index" value="#{i18n['Back']}" icon="fa fa-arrow-left" />
+                <p:menuitem outcome="/ruler/simulation/index" value="#{i18n['Back to Simulation']}" icon="fa fa-arrow-left" />
             </p:menu>
         </h:form>
     </composite:implementation>

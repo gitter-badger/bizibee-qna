@@ -9,7 +9,7 @@
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
-                <h1 class="feature-title">#{i18n['Questions']}</h1>
+                <h1 class="feature-title">#{i18n['Simulation']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
@@ -44,6 +44,9 @@
                                     <p:link outcome="/ruler/simulation/question/show" value="#{i18n['Show']}">
                                         <f:param name="id" value="#{question.id}"/>
                                     </p:link>
+                                    <p:link outcome="/ruler/simulation/question/form" value="#{i18n['Edit']}">
+                                        <f:param name="id" value="#{question.id}"/>
+                                    </p:link>
                                 </p:column>
                             </p:dataTable>
                         </h:form>
@@ -53,20 +56,11 @@
         </div>
     </ui:define>
     <ui:define name="dialog">
-        <h:form id="newForm" enctype="multipart/form-data">
+        <h:form id="newForm">
             <p:dialog id="newDlg" header="#{i18n['Create New']}" widgetVar="newDialog" resizable="false" closeOnEscape="true" modal="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="name" value="#{i18n['Name']}"/>
                     <p:inputText id="name" value="#{questionView.newQuestion.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" required="true"/>
-
-                    <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
-                    <p:inputText id="sortOrder" value="#{questionView.newQuestion.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" required="true"/>
-
-                    <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                    <p:inputTextarea id="description" value="#{questionView.newQuestion.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" />
-
-                    <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
-                    <p:inputTextarea id="remark" value="#{questionView.newQuestion.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" />
 
                     <p:outputLabel for="kind" value="#{i18n['Kind']}"/>
                     <p:selectOneMenu id="kind" value="#{questionView.newQuestion.kind}" label="#{i18n['Kind']}" converter="#{kindConverter}" required="true">
@@ -77,28 +71,9 @@
                     <p:selectOneMenu id="type" value="#{questionView.newQuestion.type}" label="#{i18n['Type']}" converter="#{typeConverter}" required="true">
                         <f:selectItems value="#{questionView.types}" var="type" itemValue="#{type}" itemLabel="#{i18n[type.label]}"/>
                     </p:selectOneMenu>
-
-                    <p:outputLabel for="required" value="#{i18n['Required']}"/>
-                    <p:selectBooleanButton id="required" value="#{questionView.newQuestion.required}" label="#{i18n['Required']}" onLabel="#{i18n['Yes']}" offLabel="#{i18n['No']}" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
-
-                    <p:outputLabel for="image" value="#{i18n['Image']}"/>
-                    <p:fileUpload id="image" value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
-
-                    <p:outputLabel for="group" value="#{i18n['Group']}"/>
-                    <p:selectOneMenu id="group" value="#{questionView.newQuestion.group}" label="#{i18n['Group']}" converter="#{groupConverter}">
-                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{questionView.groups}" var="group" itemValue="#{group}" itemLabel="#{group.name}"/>
-                    </p:selectOneMenu>
-
-                    <p:outputLabel for="guide" value="#{i18n['Guide']}"/>
-                    <p:selectOneMenu id="guide" value="#{questionView.newQuestion.guide}" label="#{i18n['Guide']}" converter="#{guideConverter}">
-                        <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
-                        <f:selectItems value="#{questionView.guides}" var="guide" itemValue="#{guide}" itemLabel="#{guide.name}"/>
-                    </p:selectOneMenu>
-
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{questionView.doCreateRecord}" ajax="false"/>
+                    <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{questionView.doCreateRecord}"/>
                     <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>

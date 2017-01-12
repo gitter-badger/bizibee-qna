@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{answerView.id}"/>
+            <f:event type="preRenderView" listener="#{answerView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Answer']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationAnswer answer="#{answerView.selectedRecord}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form id="showForm">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="#{i18n['Name']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.name}"/>
+                                <p:outputLabel value="#{i18n['Image']}"/>
+                                <h:panelGroup>
+                                    <o:graphicImage value="#{answerView.selectedRecord.bytes}" dataURI="true" alt="#{answerView.selectedRecord.name}" title="#{answerView.selectedRecord.name}" rendered="#{not empty answerView.selectedRecord.bytes}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{i18n['coefIndexMin']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefIndexMin}"/>
+                                <p:outputLabel value="#{i18n['coefIndexMax']}"/>
+                                <h:outputText value="#{i18n[answerView.selectedRecord.coefIndexMax]}"/>
+                                <p:outputLabel value="#{i18n['coefIndexStep']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefIndexStep}"/>
+
+                                <p:outputLabel value="#{i18n['coefScore']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefScore}"/>
+
+                                <p:outputLabel value="#{i18n['coefBudget']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefBudget}"/>
+
+                                <p:outputLabel value="#{i18n['coefUsg']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefUsg}"/>
+                                <p:outputLabel value="#{i18n['coefUsgGainMin']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefUsgGainMin}"/>
+                                <p:outputLabel value="#{i18n['coefUsgGainMax']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefUsgGainMax}"/>
+
+                                <p:outputLabel value="#{i18n['coefGm']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefGm}"/>
+                                <p:outputLabel value="#{i18n['coefGmGainMin']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefGmGainMin}"/>
+                                <p:outputLabel value="#{i18n['coefGmGainMax']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefGmGainMax}"/>
+
+                                <p:outputLabel value="#{i18n['coefMs']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefMs}"/>
+                                <p:outputLabel value="#{i18n['coefMsBreakpointIndexMin']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefMsBreakpointIndexMin}"/>
+                                <p:outputLabel value="#{i18n['coefMsBreakpointIndexMax']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefMsBreakpointIndexMax}"/>
+                                <p:outputLabel value="#{i18n['coefMsOptimalIndexMax']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefMsOptimalIndexMax}"/>
+                                <p:outputLabel value="#{i18n['coefMsGainMin']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefMsGainMin}"/>
+                                <p:outputLabel value="#{i18n['coefMsGainMax']}"/>
+                                <h:outputText value="#{answerView.selectedRecord.coefMsGainMax}"/>
+
+                            </p:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
