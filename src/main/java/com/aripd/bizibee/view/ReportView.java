@@ -21,6 +21,7 @@ import javax.json.JsonObject;
 import javax.json.JsonValue;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.AnswerService;
+import com.aripd.bizibee.service.QuestionService;
 
 @Named
 @ViewScoped
@@ -38,6 +39,9 @@ public class ReportView implements Serializable {
     @Inject
     private ResponseService responseService;
     private ResponseEntity selectedRecord;
+
+    @Inject
+    private QuestionService questionService;
 
     @Inject
     private AnswerService answerService;
@@ -236,6 +240,10 @@ public class ReportView implements Serializable {
                 break;
         }
         return outcome;
+    }
+
+    public List<QuestionEntity> getQuestions() {
+        return questionService.findAll();
     }
 
     public List<ResponseEntity> getResponses(UserEntity u) {

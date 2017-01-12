@@ -37,8 +37,9 @@ public class SimulationEntity extends AbstractEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    private String thanksDialogHeader;
     @Column(columnDefinition = "TEXT")
-    private String thanks;
+    private String thanksDialogContent;
 
     private double scoreStart = 0;
     private double salesStart = 0;
@@ -104,12 +105,20 @@ public class SimulationEntity extends AbstractEntity {
         this.description = description;
     }
 
-    public String getThanks() {
-        return thanks;
+    public String getThanksDialogHeader() {
+        return thanksDialogHeader;
     }
 
-    public void setThanks(String thanks) {
-        this.thanks = thanks;
+    public void setThanksDialogHeader(String thanksDialogHeader) {
+        this.thanksDialogHeader = thanksDialogHeader;
+    }
+
+    public String getThanksDialogContent() {
+        return thanksDialogContent;
+    }
+
+    public void setThanksDialogContent(String thanksDialogContent) {
+        this.thanksDialogContent = thanksDialogContent;
     }
 
     public double getScoreStart() {

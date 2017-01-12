@@ -18,8 +18,11 @@
                     <div class="ui-g-9">
                         <h:form>
                             <h:panelGrid columns="1" styleClass="ui-g-12">
-                                <p:outputLabel for="thanks" value="#{i18n['Thanks Message']}"/>
-                                <p:inputTextarea id="thanks" value="#{dashboardView.selectedSimulation.thanks}" label="#{i18n['Thanks Message']}" placeholder="#{i18n['Thanks Message']}" autoResize="true" styleClass="ui-g-12" />
+                                <p:outputLabel for="thanksDialogHeader" value="#{i18n['Header']}"/>
+                                <p:inputText id="thanksDialogHeader" value="#{dashboardView.selectedSimulation.thanksDialogHeader}" label="#{i18n['Header']}" placeholder="#{i18n['Header']}" styleClass="ui-g-12" />
+
+                                <p:outputLabel for="thanksDialogContent" value="#{i18n['Content']}"/>
+                                <p:inputTextarea id="thanksDialogContent" value="#{dashboardView.selectedSimulation.thanksDialogContent}" label="#{i18n['Content']}" placeholder="#{i18n['Content']}" autoResize="true" styleClass="ui-g-12" />
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{dashboardView.doUpdateSimulation}"/>

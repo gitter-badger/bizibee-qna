@@ -182,13 +182,15 @@
                 </div>
             </div>
 
-            <h:panelGroup rendered="#{varStatus.last and request.isUserInRole('Player')}">
-                <div class="ui-g-12">
-                    <div class="card clearfix summary">
-                        <h:outputText value="#{reportView.simulation.thanks}" />
-                    </div>
-                </div>
-            </h:panelGroup>
+            <h:form rendered="#{reportView.questions.size() eq varStatus.index+1 and request.isUserInRole('Player')}">
+                <p:dialog widgetVar="thanksDialog" header="#{reportView.simulation.thanksDialogHeader}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
+                    <p><h:outputText value="#{reportView.simulation.thanksDialogContent}" /></p>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{i18n['Close']}" onclick="PF('thanksDialog').hide();"/>
+                    </f:facet>
+                </p:dialog>
+            </h:form>
+
         </ui:repeat>
 
     </composite:implementation>
