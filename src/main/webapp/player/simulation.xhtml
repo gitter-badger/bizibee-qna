@@ -185,6 +185,11 @@
                             <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check" ajax="false"/>
                             <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
+
+                        <h:form rendered="#{not empty simulationView.selectedRecord.guide}" style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #a4a4a4;">
+                            <div><p:commandLink value="#{i18n['Read BeeMind']}" styleClass="fa fa-info-circle" onclick="PF('guideDialog').show();"/></div>
+                            <div><p:link value="#{i18n['Go to BeeMind']}"  outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" styleClass="fa fa-book" /></div>
+                        </h:form>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
                         <h:form id="panel">
@@ -340,8 +345,8 @@
 
         </div>
 
-        <h:form rendered="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}">
-            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
+        <h:form>
+            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}" modal="true" closable="false" draggable="false">
                 <h2><h:outputText value="#{simulationView.selectedRecord.guide.description}" /></h2>
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" /></p>
                 <f:facet name="footer">

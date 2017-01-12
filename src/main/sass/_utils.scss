@@ -11,6 +11,15 @@ h2 {
     margin: 0;
 }
 
+a {
+    &.fragment {
+        display: block;
+        position: relative;
+        top: -100px;
+        visibility: hidden;
+    }
+}
+
 /* Utils */
 .clearfix:after {
     content:" ";
