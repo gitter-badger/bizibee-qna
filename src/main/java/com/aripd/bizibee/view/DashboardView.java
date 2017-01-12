@@ -62,12 +62,7 @@ public class DashboardView implements Serializable {
         return questionService.count();
     }
 
-    public void doUpdateSimulation(ActionEvent actionEvent) {
-        simulationService.update(selectedSimulation);
-        messageUtil.addGlobalInfoFlashMessage("Updated");
-    }
-
-    public void doUploadLogo(ActionEvent actionEvent) {
+    public void doUploadImage(ActionEvent actionEvent) {
         if (file != null && file.getSize() > 0) {
             selectedSimulation.setBytes(file.getContents());
         }
@@ -80,7 +75,7 @@ public class DashboardView implements Serializable {
         navigationHandler.handleNavigation(context, null, navigation);
     }
 
-    public void doResetLogo(ActionEvent actionEvent) {
+    public void doResetImage(ActionEvent actionEvent) {
         selectedSimulation.setBytes(null);
         simulationService.update(selectedSimulation);
         messageUtil.addGlobalInfoFlashMessage("Resetted");
@@ -89,6 +84,11 @@ public class DashboardView implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
         navigationHandler.handleNavigation(context, null, navigation);
+    }
+
+    public void doUpdateSimulation(ActionEvent actionEvent) {
+        simulationService.update(selectedSimulation);
+        messageUtil.addGlobalInfoFlashMessage("Updated");
     }
 
     public UserEntity getSelectedUser() {

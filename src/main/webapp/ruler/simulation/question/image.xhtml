@@ -8,29 +8,32 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{questionView.id}"/>
+            <f:event type="preRenderView" listener="#{questionView.onLoad}"/>
+        </f:metadata>
+
         <div id="features">
             <div class="features-content">
-                <h1 class="feature-title">#{i18n['Simulation']}</h1>
+                <h1 class="feature-title">#{i18n['Question']}</h1>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
 
                 <div class="ui-g">
                     <div class="ui-g-3">
-                        <composite:navigationSimulation/>
+                        <composite:navigationQuestion question="#{questionView.selectedQuestion}"/>
                     </div>
                     <div class="ui-g-9">
-                        <p>Please choose a square image. Image will be shrinked to 38 by 38 pixels</p>
                         <h:form enctype="multipart/form-data">
                             <h:panelGrid columns="1" styleClass="ui-g-12">
                                 <f:facet name="header">
-                                    <a:identicon text="#{dashboardView.selectedSimulation.name}" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{empty dashboardView.selectedSimulation.bytes}"/>
-                                    <o:graphicImage value="#{dashboardView.selectedSimulation.bytes}" dataURI="true" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{not empty dashboardView.selectedSimulation.bytes}"/>
+                                    <o:graphicImage value="#{questionView.selectedQuestion.bytes}" dataURI="true" width="210" height="210" alt="#{questionView.selectedQuestion.name}" title="#{questionView.selectedQuestion.name}" rendered="#{not empty questionView.selectedQuestion.bytes}"/>
                                 </f:facet>
 
-                                <p:fileUpload value="#{dashboardView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                                <p:fileUpload value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
 
                                 <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{dashboardView.doUploadImage}" update="@form, :growl" ajax="false"/>
-                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{dashboardView.doResetImage}" update="@form, :growl"/>
+                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{questionView.doUploadImage}" update="@form, :growl" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{questionView.doResetImage}" update="@form, :growl"/>
                                 </f:facet>
                             </h:panelGrid>
                         </h:form>

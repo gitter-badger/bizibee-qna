@@ -20,6 +20,12 @@
                 <p:menuitem outcome="/ruler/simulation/question/form" value="#{i18n['Edit']}" icon="fa fa-edit">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
+                <p:menuitem outcome="/ruler/simulation/question/settings" value="#{i18n['Settings']}" icon="fa fa-cog">
+                    <f:param name="id" value="#{cc.attrs.question.id}" />
+                </p:menuitem>
+                <p:menuitem outcome="/ruler/simulation/question/image" value="#{i18n['Image']}" icon="fa fa-picture-o">
+                    <f:param name="id" value="#{cc.attrs.question.id}" />
+                </p:menuitem>
                 <p:menuitem outcome="/ruler/simulation/question/answer" value="#{i18n['Answers']}" icon="fa fa-list">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>

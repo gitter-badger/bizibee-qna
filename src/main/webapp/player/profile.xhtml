@@ -37,7 +37,7 @@
                         </h:form>
                     </div>
                     <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <h2>Change Your Avatar</h2>
+                        <h2>Change Your Image</h2>
                         <p>You can upload 210 by 210 pixel image.</p>
                         <h:form enctype="multipart/form-data">
                             <p:panelGrid columns="1" styleClass="ui-g-10">
@@ -49,8 +49,8 @@
                                 <p:fileUpload value="#{profileBean.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
 
                                 <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{profileBean.doUploadAvatar}" update="@form, :growl" ajax="false"/>
-                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{profileBean.doResetAvatar}" update="@form, :growl"/>
+                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{profileBean.doUploadImage}" update="@form, :growl" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{profileBean.doResetImage}" update="@form, :growl"/>
                                 </f:facet>
                             </p:panelGrid>
                         </h:form>

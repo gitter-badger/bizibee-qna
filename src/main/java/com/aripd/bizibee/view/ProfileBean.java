@@ -62,7 +62,7 @@ public class ProfileBean implements Serializable {
         }
     }
 
-    public void doUploadAvatar(ActionEvent actionEvent) {
+    public void doUploadImage(ActionEvent actionEvent) {
         if (file != null && file.getSize() > 0) {
             selectedRecord.setBytes(file.getContents());
         }
@@ -75,7 +75,7 @@ public class ProfileBean implements Serializable {
         navigationHandler.handleNavigation(context, null, navigation);
     }
 
-    public void doResetAvatar(ActionEvent actionEvent) {
+    public void doResetImage(ActionEvent actionEvent) {
         selectedRecord.setBytes(null);
         userService.update(selectedRecord);
         messageUtil.addGlobalInfoFlashMessage("Resetted");

@@ -23,6 +23,8 @@ import com.aripd.bizibee.service.AnswerService;
 import com.aripd.bizibee.service.GroupService;
 import com.aripd.bizibee.service.GuideService;
 import com.aripd.bizibee.service.QuestionService;
+import javax.faces.application.NavigationHandler;
+import javax.faces.context.FacesContext;
 
 @Named
 @ViewScoped
@@ -105,18 +107,36 @@ public class QuestionView implements Serializable {
         return answerService.findByQuestion(selectedQuestion);
     }
 
-    public void doCreateRecord(ActionEvent actionEvent) {
+    public void doUploadImage(ActionEvent actionEvent) {
         if (file != null && file.getSize() > 0) {
-            newQuestion.setBytes(file.getContents());
+            selectedQuestion.setBytes(file.getContents());
         }
+        questionService.update(selectedQuestion);
+        messageUtil.addGlobalInfoFlashMessage("Uploaded");
+
+        String navigation = "/ruler/simulation/question/image.xhtml?id=" + selectedQuestion.getId() + "&amp;faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+        navigationHandler.handleNavigation(context, null, navigation);
+    }
+
+    public void doResetImage(ActionEvent actionEvent) {
+        selectedQuestion.setBytes(null);
+        questionService.update(selectedQuestion);
+        messageUtil.addGlobalInfoFlashMessage("Resetted");
+
+        String navigation = "/ruler/simulation/question/image.xhtml?id=" + selectedQuestion.getId() + "&amp;faces-redirect=true";
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
+        navigationHandler.handleNavigation(context, null, navigation);
+    }
+
+    public void doCreateRecord(ActionEvent actionEvent) {
         questionService.create(newQuestion);
         messageUtil.addGlobalInfoFlashMessage("Created");
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
-        if (file != null && file.getSize() > 0) {
-            selectedQuestion.setBytes(file.getContents());
-        }
         questionService.update(selectedQuestion);
         messageUtil.addGlobalInfoFlashMessage("Updated");
     }
