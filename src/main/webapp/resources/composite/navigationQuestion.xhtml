@@ -20,6 +20,9 @@
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/form.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/form" value="#{i18n['Edit']}" icon="fa fa-edit">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/coefficient.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/coefficient" value="#{i18n['Coefficients']}" icon="fa fa-sliders">
+                    <f:param name="id" value="#{cc.attrs.question.id}" />
+                </p:menuitem>
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/settings.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/settings" value="#{i18n['Settings']}" icon="fa fa-cog">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>

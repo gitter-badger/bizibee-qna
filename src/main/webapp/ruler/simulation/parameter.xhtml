@@ -17,7 +17,7 @@
                     </div>
                     <div class="ui-g-9">
                         <h:form>
-                            <p:fieldset legend="Initials" style="margin-bottom:20px">
+                            <p:fieldset legend="#{i18n['Initial Parameters']}" style="margin-bottom:20px">
                                 <h:panelGrid columns="1" styleClass="ui-g-12">
                                     <p:outputLabel for="scoreStart" value="#{i18n['scoreStart']}"/>
                                     <p:inputText id="scoreStart" value="#{dashboardView.selectedSimulation.scoreStart}" label="#{i18n['scoreStart']}" placeholder="#{i18n['scoreStart']}" styleClass="ui-g-12" required="true" />
@@ -39,7 +39,7 @@
                                     </f:facet>
                                 </h:panelGrid>
                             </p:fieldset>
-                            <p:fieldset legend="Weighted" style="margin-bottom:20px">
+                            <p:fieldset legend="#{i18n['Weighted Parameters']}" style="margin-bottom:20px">
                                 <h:panelGrid columns="1" styleClass="ui-g-12">
                                     <p:outputLabel for="usgWeighted" value="#{i18n['usgWeighted']}"/>
                                     <p:inputText id="usgWeighted" value="#{dashboardView.selectedSimulation.usgWeighted}" label="#{i18n['usgWeighted']}" placeholder="#{i18n['usgWeighted']}" styleClass="ui-g-12" required="true" />

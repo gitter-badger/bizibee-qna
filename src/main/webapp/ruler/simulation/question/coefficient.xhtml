@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{questionView.id}"/>
+            <f:event type="preRenderView" listener="#{questionView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Question']}</h1>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationQuestion question="#{questionView.selectedQuestion}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form>
+                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <p:outputLabel for="coefScore" value="#{i18n['coefScore']}"/>
+                                <p:inputText id="coefScore" value="#{questionView.selectedQuestion.coefScore}" label="#{i18n['coefScore']}" placeholder="#{i18n['coefScore']}" styleClass="ui-g-12"/>
+
+                                <p:outputLabel for="coefBudget" value="#{i18n['coefBudget']}"/>
+                                <p:inputText id="coefBudget" value="#{questionView.selectedQuestion.coefBudget}" label="#{i18n['coefBudget']}" placeholder="#{i18n['coefBudget']}" styleClass="ui-g-12"/>
+
+                                <p:outputLabel for="coefUsg" value="#{i18n['coefUsg']}"/>
+                                <p:inputText id="coefUsg" value="#{questionView.selectedQuestion.coefUsg}" label="#{i18n['coefUsg']}" placeholder="#{i18n['coefUsg']}" styleClass="ui-g-12"/>
+
+                                <p:outputLabel for="coefGm" value="#{i18n['coefGm']}"/>
+                                <p:inputText id="coefGm" value="#{questionView.selectedQuestion.coefGm}" label="#{i18n['coefGm']}" placeholder="#{i18n['coefGm']}" styleClass="ui-g-12"/>
+
+                                <p:outputLabel for="coefMs" value="#{i18n['coefMs']}"/>
+                                <p:inputText id="coefMs" value="#{questionView.selectedQuestion.coefMs}" label="#{i18n['coefMs']}" placeholder="#{i18n['coefMs']}" styleClass="ui-g-12"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{questionView.doUpdateRecord}"/>
+                                </f:facet>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

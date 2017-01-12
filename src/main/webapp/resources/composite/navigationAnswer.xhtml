@@ -20,7 +20,7 @@
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/answer/form.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/answer/form" value="#{i18n['Edit']}" icon="fa fa-edit">
                     <f:param name="id" value="#{cc.attrs.answer.id}" />
                 </p:menuitem>
-                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/answer/coefficient.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/answer/coefficient" value="#{i18n['Coefficients']}" icon="fa fa-cog">
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/answer/coefficient.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/answer/coefficient" value="#{i18n['Coefficients']}" icon="fa fa-sliders">
                     <f:param name="id" value="#{cc.attrs.answer.id}" />
                 </p:menuitem>
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/answer/image.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/answer/image" value="#{i18n['Image']}" icon="fa fa-picture-o">
