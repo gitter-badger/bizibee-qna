@@ -131,20 +131,23 @@
                         </h:form>
 
                         <h:form id="planogram2Form" rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
-                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
-                                <c:forEach var="i" begin="1" end="23">
-                                    <h:column>
-                                        <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
-                                        <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
-                                    </h:column>
-                                </c:forEach>
-                            </p:panelGrid>
+                            <h:panelGroup id="planogramPanel">
+                                <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
+                                    <c:forEach var="i" begin="1" end="23">
+                                        <h:column>
+                                            <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
+                                            <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
+                                        </h:column>
+                                    </c:forEach>
+                                </p:panelGrid>
 
-                            <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{!simulationView.disabled}">
-                                <c:forEach var="i" begin="1" end="46">
-                                    <h:column><span id="item${i}">${i}</span></h:column>
-                                </c:forEach>
-                            </p:panelGrid>
+                                <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{!simulationView.disabled}">
+                                    <c:forEach var="i" begin="1" end="46">
+                                        <h:column><span id="item${i}">${i}</span></h:column>
+                                    </c:forEach>
+                                </p:panelGrid>
+                            </h:panelGroup>
+                            <p:sticky target="planogramPanel" margin="90" />
 
                             <p:repeat var="model" value="#{simulationView.model5}" varStatus="varStatus">
                                 <h:panelGrid columns="3">
@@ -187,8 +190,8 @@
                         </h:form>
 
                         <h:form rendered="#{not empty simulationView.selectedRecord.guide}" style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #a4a4a4;">
-                            <div><p:commandLink value="#{i18n['Read BeeMind']}" styleClass="fa fa-info-circle" onclick="PF('guideDialog').show();"/></div>
-                            <div><p:link value="#{i18n['Go to BeeMind']}"  outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" styleClass="fa fa-book" /></div>
+                            <!--<div><p:commandLink value="#{i18n['Read BeeMind']}" styleClass="fa fa-info-circle" onclick="PF('guideDialog').show();"/></div>-->
+                            <div><p:link value="#{i18n['Go to BeeMind']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" /></div>
                         </h:form>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
@@ -351,6 +354,7 @@
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
+                    <p:button value="#{i18n['Go to BeeMind']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button"/>
                 </f:facet>
             </p:dialog>
         </h:form>
