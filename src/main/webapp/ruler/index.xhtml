@@ -13,7 +13,7 @@
                 <div class="ui-g ui-fluid dashboard">
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">Revenue</span>
+                            <span class="title">#{i18n['Revenue']}</span>
                             <span class="detail">Sales Income</span>
                             <span class="count revenue">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.salesStart}">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">Budget</span>
+                            <span class="title">#{i18n['Budget']}</span>
                             <span class="detail">Restriction on expenditure</span>
                             <span class="count budget">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">Gross Margin</span>
+                            <span class="title">#{i18n['GM']}</span>
                             <span class="detail">Revenue minus cost of goods sold</span>
                             <span class="count grossmargin">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
@@ -49,7 +49,7 @@
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">Market Share</span>
+                            <span class="title">#{i18n['MS']}</span>
                             <span class="detail">Portion of the market</span>
                             <span class="count marketshare">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
