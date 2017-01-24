@@ -271,7 +271,7 @@
                                                 </span>
                                             </li>
                                             <li>
-                                                <span class="count budget">
+                                                <span class="count budget #{reportView.budget lt 0 ? 'error' : ''}">
                                                     <h:outputText value="#{reportView.budget}">
                                                         <f:convertNumber type="number" />
                                                     </h:outputText>

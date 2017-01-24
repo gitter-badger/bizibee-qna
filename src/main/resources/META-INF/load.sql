@@ -8,7 +8,15 @@ VALUES
 	(1,NULL,'cem@aripd.com','cem aripd','cem',NULL,'Administrators','cem',NULL,1,NULL),
 	(2,NULL,'ruler@aripd.com','ruler Unilever','ruler',NULL,'Rulers','ruler',NULL,2,NULL),
 	(3,NULL,'player1@aripd.com','player1 Unilever','player1',NULL,'Players','player1',NULL,2,NULL),
-	(4,NULL,'player2@aripd.com','player2 Unilever','player2',NULL,'Players','player2',NULL,2,NULL);
+	(4,NULL,'player2@aripd.com','player2 Unilever','player2',NULL,'Players','player2',NULL,2,NULL),
+	(5,NULL,'player3@aripd.com','player3 Unilever','player3',NULL,'Players','player3',NULL,2,NULL),
+	(6,NULL,'player4@aripd.com','player4 Unilever','player4',NULL,'Players','player4',NULL,2,NULL),
+	(7,NULL,'player5@aripd.com','player5 Unilever','player5',NULL,'Players','player5',NULL,2,NULL),
+	(8,NULL,'player6@aripd.com','player6 Unilever','player6',NULL,'Players','player6',NULL,2,NULL),
+	(9,NULL,'player7@aripd.com','player7 Unilever','player7',NULL,'Players','player7',NULL,2,NULL),
+	(10,NULL,'player8@aripd.com','player8 Unilever','player8',NULL,'Players','player8',NULL,2,NULL),
+	(11,NULL,'player9@aripd.com','player9 Unilever','player9',NULL,'Players','player9',NULL,2,NULL),
+	(12,NULL,'player10@aripd.com','player10 Unilever','player10',NULL,'Players','player10',NULL,2,NULL);
 
 INSERT INTO `TEAMENTITY` (`ID`, `NAME`)
 VALUES

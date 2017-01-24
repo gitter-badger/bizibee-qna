@@ -2798,6 +2798,15 @@ a.fragment {
 .dashboard .scoreboard li .count.budget {
   background-color: #f9c851;
 }
+.dashboard .scoreboard li .count.budget.error {
+  background-color: #ff0000;
+  color: #ffffff;
+  font-weight: bolder;
+}
+.dashboard .scoreboard li .count.budget.error:before {
+  content: "!!!";
+  margin-right: 6px;
+}
 .dashboard .scoreboard li .count.revenue {
   background-color: #007be5;
 }
