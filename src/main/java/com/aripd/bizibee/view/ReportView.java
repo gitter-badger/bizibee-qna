@@ -239,6 +239,14 @@ public class ReportView implements Serializable {
             case FILE_UPLOAD:
                 break;
         }
+
+        /**
+         * Market Share cannot be greater than 100%
+         */
+        if (ms > 1) {
+            ms = 1;
+        }
+
         return outcome;
     }
 
