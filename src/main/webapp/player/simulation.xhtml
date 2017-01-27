@@ -12,10 +12,17 @@
             .ui-steps .ui-steps-item {
                 width: calc(100% / #{simulationView.menuModelByGroups.elements.size()});
                 /*width: calc(100% / #{simulationView.menuModelByQuestions.elements.size()});*/
-                height: 100px;
+                line-height: 75px;
+                text-align: center;
+            }
+            .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-number {
+                display: none;
             }
             .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-title {
                 white-space: initial;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
             }
         </style>
     </ui:define>
