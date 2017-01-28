@@ -166,7 +166,7 @@
                                                max="#{model.answer.coefIndexMax}"
                                                size="#{model.answer.inputSize}"
                                                stepFactor="#{model.answer.coefIndexStep}"
-                                               onblur="planogram(this, this.value, #{model.answer.id})" 
+                                               onblur="planogram(this, #{model.answer.id})" 
                                                converter="javax.faces.Integer"/>
                                     <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="false" />
                                     <h:panelGroup>
