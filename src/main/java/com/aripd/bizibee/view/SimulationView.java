@@ -33,10 +33,16 @@ import org.primefaces.model.menu.MenuModel;
 import com.aripd.bizibee.service.AnswerService;
 import com.aripd.bizibee.service.GroupService;
 import com.aripd.bizibee.service.QuestionService;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Named
 @ViewScoped
 public class SimulationView implements Serializable {
+
+    private static final Logger LOG = Logger.getLogger(SimulationView.class.getName());
 
     private final MenuModel menuModelByGroups;
     private final MenuModel menuModelByQuestions;
@@ -222,21 +228,38 @@ public class SimulationView implements Serializable {
             switch (selectedRecord.getType()) {
                 case SINGLE_CHOICE:
                     response.setOutcome(model1.toString());
+                    responseService.create(response);
                     break;
                 case MULTIPLE_CHOICE:
                     response.setOutcome(model2.toString());
+                    responseService.create(response);
                     break;
                 case RANGE_CHOICE:
                 case PLANOGRAM1:
                 case PLANOGRAM2:
-                    response.setOutcome(model5.toString());
+                    List<Integer> values = new ArrayList<>();
+                    model5.forEach((model) -> {
+                        values.add(model.getValue());
+                    });
+                    Set<Integer> uniques = new HashSet<>(values);
+                    boolean hasEmptyElement = values.contains(null);
+
+                    if (hasEmptyElement) {
+                        messageUtil.addGlobalErrorFlashMessage("You can not leave it blank");
+                    } else if (values.size() != uniques.size()) {
+                        messageUtil.addGlobalErrorFlashMessage("You can not enter the same slot number");
+                    } else if (values.size() == uniques.size() && !hasEmptyElement) {
+                        response.setOutcome(model5.toString());
+                        responseService.create(response);
+                    }
+
                     break;
                 case FILE_UPLOAD:
                     response.setBytes(model6.getFile().getContents());
+                    responseService.create(response);
                     break;
             }
 
-            responseService.create(response);
         }
 
         String navigation = "/player/simulation?uuid=" + selectedRecord.getUuid() + "&amp;faces-redirect=true";

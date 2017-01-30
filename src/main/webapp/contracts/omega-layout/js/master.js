@@ -23,7 +23,7 @@ function planogram(e, answerId) {
     var width = img.attr('width');
     var height = img.attr('height');
     $('#item' + e.value).html($('<img>', {id: 'image' + answerId, src: src, alt: alt, title: title, width: width, height: height, style: 'width: ' + width + 'px; height: ' + height + 'px;'}));
-    checkOnePlanogram(e);
+//    checkOnePlanogram(e);
 //    checkPlanogram();
 }
 
@@ -54,11 +54,11 @@ function checkPlanogram() {
     var unique = $.distinct(inputValues);
     var hasEmptyElement = $.hasEmptyElement(inputValues);
 
-    if (inputValues.length != unique.length) {
-        alert("You can not enter the same slot number");
-        return false;
-    } else if (hasEmptyElement) {
+    if (hasEmptyElement) {
         alert("You can not leave it blank");
+        return false;
+    } else if (inputValues.length != unique.length) {
+        alert("You can not enter the same slot number");
         return false;
     } else if (inputValues.length == unique.length && hasEmptyElement == false) {
         return true;
