@@ -65,6 +65,9 @@ public class QuestionEntity extends AbstractEntity {
 
     @ManyToOne
     private GuideEntity guide;
+    
+    private String confirmHeader;
+    private String confirmMessage;
 
     private int coefScore = 0;
     private double coefBudget = 0;
@@ -182,6 +185,22 @@ public class QuestionEntity extends AbstractEntity {
 
     public void setGuide(GuideEntity guide) {
         this.guide = guide;
+    }
+
+    public String getConfirmHeader() {
+        return confirmHeader;
+    }
+
+    public void setConfirmHeader(String confirmHeader) {
+        this.confirmHeader = confirmHeader;
+    }
+
+    public String getConfirmMessage() {
+        return confirmMessage;
+    }
+
+    public void setConfirmMessage(String confirmMessage) {
+        this.confirmMessage = confirmMessage;
     }
 
     public int getCoefScore() {

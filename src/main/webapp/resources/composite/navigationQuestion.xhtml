@@ -29,6 +29,9 @@
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/image.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/image" value="#{i18n['Image']}" icon="fa fa-picture-o">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/confirm.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/confirm" value="#{i18n['Confirm']}" icon="fa fa-exclamation">
+                    <f:param name="id" value="#{cc.attrs.question.id}" />
+                </p:menuitem>
                 <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/question/answer/index.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/question/answer/index" value="#{i18n['Answers']}" icon="fa fa-list">
                     <f:param name="id" value="#{cc.attrs.question.id}" />
                 </p:menuitem>
