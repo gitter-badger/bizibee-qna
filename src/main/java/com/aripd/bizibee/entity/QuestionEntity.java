@@ -68,6 +68,9 @@ public class QuestionEntity extends AbstractEntity {
     
     private String confirmHeader;
     private String confirmMessage;
+    
+    private String notificationHeader;
+    private String notificationMessage;
 
     private int coefScore = 0;
     private double coefBudget = 0;
@@ -201,6 +204,22 @@ public class QuestionEntity extends AbstractEntity {
 
     public void setConfirmMessage(String confirmMessage) {
         this.confirmMessage = confirmMessage;
+    }
+
+    public String getNotificationHeader() {
+        return notificationHeader;
+    }
+
+    public void setNotificationHeader(String notificationHeader) {
+        this.notificationHeader = notificationHeader;
+    }
+
+    public String getNotificationMessage() {
+        return notificationMessage;
+    }
+
+    public void setNotificationMessage(String notificationMessage) {
+        this.notificationMessage = notificationMessage;
     }
 
     public int getCoefScore() {

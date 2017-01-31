@@ -367,8 +367,8 @@
         </h:form>
 
         <h:form rendered="#{simulationView.nextRecord.kind eq 'NOTIFICATION' and simulationView.disabled}">
-            <p:dialog widgetVar="notificationDialog" header="#{i18n['You have a notification']}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
-                <p><h:outputText value="#{i18n['To continue you have to read notification first']}" /></p>
+            <p:dialog widgetVar="notificationDialog" header="#{simulationView.nextRecord.notificationHeader}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
+                <p><h:outputText value="#{simulationView.nextRecord.notificationMessage}" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Go to notification']}" action="#{simulationView.goNext}" disabled="#{!simulationView.disabled}" />
                 </f:facet>
