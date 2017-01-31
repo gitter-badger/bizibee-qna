@@ -235,6 +235,9 @@ public class SimulationView implements Serializable {
                     responseService.create(response);
                     break;
                 case RANGE_CHOICE:
+                    response.setOutcome(model5.toString());
+                    responseService.create(response);
+                    break;
                 case PLANOGRAM1:
                 case PLANOGRAM2:
                     List<Integer> values = new ArrayList<>();
