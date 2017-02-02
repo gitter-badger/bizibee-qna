@@ -12,6 +12,18 @@ $.extend({
     },
     hasEmptyElement: function (anArray) {
         return ($.inArray("", anArray) > -1);
+    },
+    anchorLinks: function () {
+        $(":header").hover(
+                function () {
+//                    $(this).append($("<span> ¶</span>"));
+                    $(this).append($('<a href="' + window.location.href + '#' + $(this).id + '"> ¶</a>'));
+                },
+                function () {
+//                    $(this).find("span:last").remove();
+                    $(this).find("a:last").remove();
+                }
+        );
     }
 });
 
