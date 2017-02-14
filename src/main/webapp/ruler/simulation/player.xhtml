@@ -106,7 +106,7 @@
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['Save']}" update=":form:dataTable, :growl" oncomplete="handleSubmitRequest(xhr, status, args, 'newDlg','newForm','newDialog');" actionListener="#{playerView.doCreateRecord}"/>
-                    <p:commandButton value="#{i18n['Close']}" onclick="PF('editDialog').hide();"/>
+                    <p:commandButton value="#{i18n['Close']}" onclick="PF('newDialog').hide();"/>
                 </f:facet>
             </p:dialog>
         </h:form>
