@@ -197,8 +197,8 @@
                         </h:form>
 
                         <h:form rendered="#{not empty simulationView.selectedRecord.guide}" style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #a4a4a4;">
-                            <!--<div><p:commandLink value="#{i18n['Read BeeMind']}" styleClass="fa fa-info-circle" onclick="PF('guideDialog').show();"/></div>-->
-                            <div><p:link value="#{i18n['Go to BeeMind']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" /></div>
+                            <!--<div><p:commandLink value="#{i18n['Read Sales Fundamentals']}" styleClass="fa fa-info-circle" onclick="PF('guideDialog').show();"/></div>-->
+                            <div><p:link value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" /></div>
                         </h:form>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
@@ -246,7 +246,7 @@
                                             <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
                                             <span class="detail">Portion of the market</span>
                                         </li>
-                                        <li>
+<!--                                        <li>
                                             <span class="count score">
                                                 <h:outputText value="#{reportView.simulation.scoreStart}">
                                                     <f:convertNumber type="number" />
@@ -254,7 +254,7 @@
                                             </span>
                                             <span class="title">#{i18n['Score']}</span>
                                             <span class="detail">#{i18n['Score']}</span>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </h:panelGroup>
 
@@ -319,7 +319,7 @@
                                                     </h:outputText>
                                                 </span>
                                             </li>
-                                            <li>
+<!--                                            <li>
                                                 <span class="count score">
                                                     <h:outputText value="#{reportView.score}">
                                                         <f:convertNumber type="number" />
@@ -331,7 +331,7 @@
                                                         <f:convertNumber type="number" />
                                                     </h:outputText>
                                                 </span>
-                                            </li>
+                                            </li>-->
                                         </ul>
                                     </h:panelGroup>
                                 </ui:repeat>
@@ -361,7 +361,7 @@
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
-                    <p:button value="#{i18n['Go to BeeMind']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button"/>
+                    <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button"/>
                 </f:facet>
             </p:dialog>
         </h:form>

@@ -45,8 +45,8 @@
                                     <f:selectItems value="#{questionView.groups}" var="group" itemValue="#{group}" itemLabel="#{group.name}"/>
                                 </p:selectOneMenu>
 
-                                <p:outputLabel for="guide" value="#{i18n['Guide']}"/>
-                                <p:selectOneMenu id="guide" value="#{questionView.selectedQuestion.guide}" label="#{i18n['Guide']}" converter="#{guideConverter}">
+                                <p:outputLabel for="guide" value="#{i18n['Sales Fundamentals']}"/>
+                                <p:selectOneMenu id="guide" value="#{questionView.selectedQuestion.guide}" label="#{i18n['Sales Fundamentals']}" converter="#{guideConverter}">
                                     <f:selectItem itemLabel="#{i18n['Select One']}" itemValue="" noSelectionOption="true"/> 
                                     <f:selectItems value="#{questionView.guides}" var="guide" itemValue="#{guide}" itemLabel="#{guide.name}"/>
                                 </p:selectOneMenu>
