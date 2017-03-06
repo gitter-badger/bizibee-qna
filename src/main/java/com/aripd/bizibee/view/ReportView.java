@@ -2,6 +2,7 @@ package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.bizibee.entity.AnswerEntity;
+import com.aripd.bizibee.entity.Kind;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SimulationEntity;
@@ -22,6 +23,12 @@ import javax.json.JsonValue;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.AnswerService;
 import com.aripd.bizibee.service.QuestionService;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 
 @Named
 @ViewScoped
@@ -260,6 +267,81 @@ public class ReportView implements Serializable {
         } else {
             return responseService.findByUser(user);
         }
+    }
+
+    public BarChartModel getBarModel1(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        BarChartModel model = new BarChartModel();
+        model.setTitle("Revenue Chart");
+//        model.setLegendPosition("ne");
+//        Axis xAxis = model.getAxis(AxisType.X);
+//        xAxis.setLabel("Gender");
+//        Axis yAxis = model.getAxis(AxisType.Y);
+//        yAxis.setLabel("Births");
+//        yAxis.setMin(0);
+//        yAxis.setMax(200);
+
+        ChartSeries series1 = new ChartSeries();
+//        series1.setLabel("Revenue");
+        series1.set("Initial", sales);
+//        series1.set("2004", 120);
+//        series1.set("2005", 100);
+//        series1.set("2006", 44);
+//        series1.set("2007", 150);
+//        series1.set("2008", 25);
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series1.set(i.getQuestion().getName(), sales + (i.getId() * 100));
+                });
+
+        model.addSeries(series1);
+
+        return model;
+    }
+
+    public LineChartModel getLineModel1(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        LineChartModel model = new LineChartModel();
+        model.setTitle("Revenue Chart");
+//        model.setLegendPosition("e");
+//        Axis yAxis = model.getAxis(AxisType.Y);
+//        yAxis.setMin(0);
+//        yAxis.setMax(10);
+
+        LineChartSeries series1 = new LineChartSeries();
+//        series1.setLabel("Revenue");
+        series1.set(0, sales);
+//        series1.set(1, 2);
+//        series1.set(2, 1);
+//        series1.set(3, 3);
+//        series1.set(4, 6);
+//        series1.set(5, 8);
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series1.set(i.getId(), sales + (i.getId() * 100));
+                });
+
+        model.addSeries(series1);
+
+        return model;
     }
 
     public ResponseEntity getSelectedRecord() {

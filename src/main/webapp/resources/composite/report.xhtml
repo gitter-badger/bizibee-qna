@@ -13,6 +13,11 @@
         <composite:attribute name="player" required="false"/>
     </composite:interface>
     <composite:implementation>
+        
+        <p:chart type="bar" model="#{reportView.getBarModel1(cc.attrs.player)}" style="height:300px;"/>
+
+        <p:chart type="line" model="#{reportView.getLineModel1(cc.attrs.player)}" style="height:300px;"/>
+        
         <h2><h:outputText value="#{i18n['Initial Values']}" /></h2>
 
         <div class="ui-g ui-fluid dashboard">
