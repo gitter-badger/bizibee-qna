@@ -47,6 +47,7 @@ public class QuestionEntity extends AbstractEntity {
 
     private int sortOrder = 0;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(columnDefinition = "TEXT")

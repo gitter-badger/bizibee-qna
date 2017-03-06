@@ -30,6 +30,7 @@ public class GuideEntity extends AbstractEntity {
     @Column(nullable = false)
     private int sortOrder = 0;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(columnDefinition = "TEXT")
