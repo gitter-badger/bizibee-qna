@@ -13,8 +13,13 @@
         <composite:attribute name="player" required="false"/>
     </composite:interface>
     <composite:implementation>
-        
-        <p:chart type="bar" model="#{reportView.getBarModelGM(cc.attrs.player)}" style="height:600px;" responsive="true" />
+
+        <p:panel style="margin-bottom: 10px;">
+            <p:chart type="line" model="#{reportView.getMultiAxisModel(cc.attrs.player)}" style="height:900px;" responsive="true" />
+        </p:panel>
+        <p:panel style="margin-bottom: 10px;">
+            <p:chart type="bar" model="#{reportView.getBarModelGM(cc.attrs.player)}" style="height:600px;" responsive="true" />
+        </p:panel>
 
         <h2><h:outputText value="#{i18n['Initial Values']}" /></h2>
 

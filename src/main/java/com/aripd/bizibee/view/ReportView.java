@@ -26,7 +26,12 @@ import com.aripd.bizibee.service.QuestionService;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.BarChartSeries;
+import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
+import org.primefaces.model.chart.LinearAxis;
 
 @Named
 @ViewScoped
@@ -522,6 +527,69 @@ public class ReportView implements Serializable {
         } else {
             return responseService.findByUser(user);
         }
+    }
+
+    public LineChartModel getMultiAxisModel(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        LineChartModel model = new LineChartModel();
+
+        BarChartSeries series1 = new BarChartSeries();
+        series1.setLabel("Revenue");
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series1.set(i.getQuestion().getName(), response2Revenue(i));
+                });
+        if (series1.getData().isEmpty()) {
+            series1.set("Initial Value", sales);
+        }
+
+        LineChartSeries series2 = new LineChartSeries();
+        series2.setLabel("USG");
+        series2.setXaxis(AxisType.X2);
+        series2.setYaxis(AxisType.Y2);
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series2.set(i.getQuestion().getName(), response2USG(i));
+                });
+        if (series2.getData().isEmpty()) {
+            series2.set("Initial Value", usg);
+        }
+
+        model.addSeries(series1);
+        model.addSeries(series2);
+
+        model.setTitle("Revenue & USG Chart");
+        model.setMouseoverHighlight(false);
+
+        model.getAxes().put(AxisType.X, new CategoryAxis("Decisions"));
+        model.getAxes().get(AxisType.X).setTickAngle(-50);
+        model.getAxes().put(AxisType.X2, new CategoryAxis("Decisions"));
+        model.getAxes().get(AxisType.X2).setTickAngle(-50);
+
+        Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setLabel("Revenue");
+//        yAxis.setMin(0);
+//        yAxis.setMax(200);
+
+        Axis y2Axis = new LinearAxis("USG");
+//        y2Axis.setMin(0);
+//        y2Axis.setMax(200);
+
+        model.getAxes().put(AxisType.Y2, y2Axis);
+
+        return model;
     }
 
     public BarChartModel getBarModelRevenue(UserEntity u) {

@@ -205,3 +205,32 @@ VALUES
 (121,2,NULL,0,0,0,0,0,0,0,-0.0025,0,0,0,0,0,0,-0.00765,0,0,'astro 400 ml daycare',26),
 (122,2,NULL,0,-0.000727,0,0,0,0,0,-0.057,0,0,0,0,0,0,-0.17431,0,0,'neuro 900 ml dökülme karşıtı',26),
 (123,2,NULL,0,0.000336,0,0,0,0,0,-0.0065,0,0,0,0,0,0,-0.01988,0,0,'astro 600 ml bakım',26);
+
+INSERT INTO `RESPONSEENTITY` (`ID`, `SIMULATION_ID`, `BYTES`, `OUTCOME`, `QUESTION_ID`, `USER_ID`)
+VALUES
+	(1,2,NULL,'{\"id\":5}',1,3),
+	(2,2,NULL,'[{\"answer\":6,\"value\":101}, {\"answer\":7,\"value\":91}, {\"answer\":8,\"value\":91}, {\"answer\":9,\"value\":90}]',2,3),
+	(3,2,NULL,'{\"id\":13}',3,3),
+	(4,2,NULL,'{\"id\":16}',4,3),
+	(5,2,NULL,'{\"id\":24}',5,3),
+	(6,2,NULL,'{\"id\":28}',6,3),
+	(7,2,NULL,'{\"id\":30}',7,3),
+	(8,2,NULL,'{\"id\":34}',8,3),
+	(9,2,NULL,'{\"id\":38}',9,3),
+	(10,2,NULL,'{\"id\":41}',10,3),
+	(11,2,NULL,'{\"id\":46}',11,3),
+	(12,2,NULL,'{\"answers\":[{\"id\":48}]}',12,3),
+	(13,2,NULL,'{\"id\":54}',13,3),
+	(14,2,NULL,'{\"answers\":[{\"id\":56}]}',14,3),
+	(15,2,NULL,'{\"answers\":[{\"id\":59}]}',15,3),
+	(16,2,NULL,'{\"answers\":[{\"id\":62}]}',16,3),
+	(17,2,NULL,'{\"answers\":[{\"id\":65}]}',17,3),
+	(18,2,NULL,'{\"id\":71}',18,3),
+	(19,2,NULL,'[{\"answer\":72,\"value\":1}, {\"answer\":73,\"value\":2}, {\"answer\":74,\"value\":3}, {\"answer\":75,\"value\":4}, {\"answer\":76,\"value\":5}, {\"answer\":77,\"value\":6}, {\"answer\":78,\"value\":7}, {\"answer\":79,\"value\":8}, {\"answer\":80,\"value\":9}, {\"answer\":81,\"value\":10}, {\"answer\":82,\"value\":11}, {\"answer\":83,\"value\":12}, {\"answer\":84,\"value\":13}, {\"answer\":85,\"value\":14}, {\"answer\":86,\"value\":15}, {\"answer\":87,\"value\":16}, {\"answer\":88,\"value\":17}, {\"answer\":89,\"value\":18}, {\"answer\":90,\"value\":19}, {\"answer\":91,\"value\":20}, {\"answer\":92,\"value\":21}]',19,3),
+	(20,2,NULL,'{\"id\":97}',20,3),
+	(21,2,NULL,'{\"id\":102}',21,3),
+	(22,2,NULL,'{\"answers\":[]}',22,3),
+	(23,2,NULL,'{\"id\":110}',23,3),
+	(24,2,NULL,'{\"answers\":[{\"id\":111},{\"id\":112}]}',24,3),
+	(25,2,NULL,'{\"id\":117}',25,3),
+	(26,2,NULL,'{\"id\":119}',26,3);
