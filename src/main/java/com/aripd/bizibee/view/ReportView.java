@@ -255,6 +255,263 @@ public class ReportView implements Serializable {
         return outcome;
     }
 
+    private double response2Revenue(ResponseEntity response) {
+        JsonObject jsonObject1;
+        JsonArray jsonArray1;
+
+        Long answerId;
+        AnswerEntity answer;
+
+        int value;
+
+        double usgLocal = 0;
+
+        switch (response.getQuestion().getType()) {
+            case SINGLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+
+                try {
+                    answerId = jsonObject1.getJsonNumber("id").longValue();
+                    answer = answerService.find(answerId);
+//                    score += answer.getCoefScore();
+//                    scoreLocal = answer.getCoefScore();
+//                    budget += answer.getCoefBudget();
+//                    budgetLocal = answer.getCoefBudget();
+//                    usg += answer.getCoefUsg();
+                    usgLocal = answer.getCoefUsg();
+//                    gm += answer.getCoefGm();
+//                    gmLocal = answer.getCoefGm();
+//                    ms += answer.getCoefMs();
+//                    msLocal = answer.getCoefMs();
+                } catch (NullPointerException ex) {
+                }
+
+//                scoreChange = scoreLocal;
+//                budgetChange = budgetLocal;
+                usgChange = usgLocal;
+//                gmChange = gmLocal;
+//                msChange = msLocal;
+                sales += sales * usgChange;
+                break;
+            case MULTIPLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+                jsonArray1 = jsonObject1.getJsonArray("answers");
+                if (jsonArray1 != null && jsonArray1.size() > 0) {
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        answerId = jsonObject2.getJsonNumber("id").longValue();
+                        answer = answerService.find(answerId);
+//                        score += answer.getCoefScore();
+//                        scoreLocal += answer.getCoefScore();
+//                        budget += answer.getCoefBudget();
+//                        budgetLocal += answer.getCoefBudget();
+//                        usg += answer.getCoefUsg();
+                        usgLocal += answer.getCoefUsg();
+//                        gm += answer.getCoefGm();
+//                        gmLocal += answer.getCoefGm();
+//                        ms += answer.getCoefMs();
+//                        msLocal += answer.getCoefMs();
+                    }
+                } else {
+//                    score += response.getQuestion().getCoefScore();
+//                    scoreLocal += response.getQuestion().getCoefScore();
+//                    budget += response.getQuestion().getCoefBudget();
+//                    budgetLocal += response.getQuestion().getCoefBudget();
+//                    usg += response.getQuestion().getCoefUsg();
+                    usgLocal += response.getQuestion().getCoefUsg();
+//                    gm += response.getQuestion().getCoefGm();
+//                    gmLocal += response.getQuestion().getCoefGm();
+//                    ms += response.getQuestion().getCoefMs();
+//                    msLocal += response.getQuestion().getCoefMs();
+                }
+
+//                scoreChange = scoreLocal;
+//                budgetChange = budgetLocal;
+                usgChange = usgLocal;
+//                gmChange = gmLocal;
+//                msChange = msLocal;
+                sales += sales * usgChange;
+                break;
+            case RANGE_CHOICE:
+                jsonArray1 = ResponseConverter.jsonArrayFromString(response.getOutcome());
+                for (JsonValue jsonValue1 : jsonArray1) {
+                    JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                    answerId = jsonObject2.getJsonNumber("answer").longValue();
+                    answer = answerService.find(answerId);
+
+                    try {
+                        value = jsonObject2.getJsonNumber("value").intValue();
+                    } catch (NullPointerException | ClassCastException ex) {
+                        // TODO bunun yerine default olarak answer.getIndexMin() girilebilir
+                        value = answer.getCoefIndexMin();
+                    }
+
+//                    score += answer.getCoefScore();
+//                    scoreLocal += answer.getCoefScore();
+//                    budget += answer.getCoefBudget();
+//                    budgetLocal += answer.getCoefBudget();
+//                    usg += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
+                    usgLocal += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
+//                    gm += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
+//                    gmLocal += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
+//                    if (value >= answer.getCoefIndexMin() && value < answer.getCoefMsBreakpointIndexMin()) {
+//                        ms += 0;
+//                        msLocal += 0;
+//                    } else if (value >= answer.getCoefMsBreakpointIndexMin() && value < answer.getCoefMsBreakpointIndexMax()) {
+//                        ms += answer.getCoefMsGainMax() + ((value - answer.getCoefMsBreakpointIndexMin()) * (answer.getCoefMsGainMin() - answer.getCoefMsGainMax())) / (answer.getCoefMsBreakpointIndexMax() - answer.getCoefMsBreakpointIndexMin());
+//                        msLocal += answer.getCoefMsGainMax() + ((value - answer.getCoefMsBreakpointIndexMin()) * (answer.getCoefMsGainMin() - answer.getCoefMsGainMax())) / (answer.getCoefMsBreakpointIndexMax() - answer.getCoefMsBreakpointIndexMin());
+//                    } else {
+//                        ms += answer.getCoefMsGainMin();
+//                        msLocal += answer.getCoefMsGainMin();
+//                    }
+                }
+
+//                scoreChange = scoreLocal;
+//                budgetChange = budgetLocal;
+                usgChange = usgLocal;
+//                gmChange = gmLocal;
+//                msChange = msLocal;
+                sales += sales * usgChange;
+                break;
+            case PLANOGRAM1:
+            case PLANOGRAM2:
+            case FILE_UPLOAD:
+                break;
+        }
+
+        return sales;
+    }
+
+    private double response2USG(ResponseEntity response) {
+        JsonObject jsonObject1;
+        JsonArray jsonArray1;
+
+        Long answerId;
+        AnswerEntity answer;
+
+        int value;
+
+        double usgLocal = 0;
+
+        switch (response.getQuestion().getType()) {
+            case SINGLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+
+                try {
+                    answerId = jsonObject1.getJsonNumber("id").longValue();
+                    answer = answerService.find(answerId);
+                    usgLocal = answer.getCoefUsg();
+                } catch (NullPointerException ex) {
+                }
+                break;
+            case MULTIPLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+                jsonArray1 = jsonObject1.getJsonArray("answers");
+                if (jsonArray1 != null && jsonArray1.size() > 0) {
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        answerId = jsonObject2.getJsonNumber("id").longValue();
+                        answer = answerService.find(answerId);
+                        usgLocal += answer.getCoefUsg();
+                    }
+                } else {
+                    usgLocal += response.getQuestion().getCoefUsg();
+                }
+                break;
+            case RANGE_CHOICE:
+                jsonArray1 = ResponseConverter.jsonArrayFromString(response.getOutcome());
+                for (JsonValue jsonValue1 : jsonArray1) {
+                    JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                    answerId = jsonObject2.getJsonNumber("answer").longValue();
+                    answer = answerService.find(answerId);
+
+                    try {
+                        value = jsonObject2.getJsonNumber("value").intValue();
+                    } catch (NullPointerException | ClassCastException ex) {
+                        // TODO bunun yerine default olarak answer.getIndexMin() girilebilir
+                        value = answer.getCoefIndexMin();
+                    }
+
+                    usgLocal += ((answer.getCoefIndexMax() - value) * (answer.getCoefUsgGainMax() - answer.getCoefUsgGainMin()) / (answer.getCoefIndexMax() - answer.getCoefIndexMin())) + answer.getCoefUsgGainMin();
+                }
+                break;
+            case PLANOGRAM1:
+            case PLANOGRAM2:
+            case FILE_UPLOAD:
+                break;
+        }
+
+        return usgLocal;
+    }
+
+    private double response2GM(ResponseEntity response) {
+        JsonObject jsonObject1;
+        JsonArray jsonArray1;
+
+        Long answerId;
+        AnswerEntity answer;
+
+        int value;
+
+        double gmLocal = 0;
+
+        switch (response.getQuestion().getType()) {
+            case SINGLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+
+                try {
+                    answerId = jsonObject1.getJsonNumber("id").longValue();
+                    answer = answerService.find(answerId);
+                    gmLocal = answer.getCoefGm();
+                } catch (NullPointerException ex) {
+                }
+                break;
+            case MULTIPLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+                jsonArray1 = jsonObject1.getJsonArray("answers");
+                if (jsonArray1 != null && jsonArray1.size() > 0) {
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        answerId = jsonObject2.getJsonNumber("id").longValue();
+                        answer = answerService.find(answerId);
+                        gmLocal += answer.getCoefGm();
+                    }
+                } else {
+                    gmLocal += response.getQuestion().getCoefGm();
+                }
+                break;
+            case RANGE_CHOICE:
+                jsonArray1 = ResponseConverter.jsonArrayFromString(response.getOutcome());
+                for (JsonValue jsonValue1 : jsonArray1) {
+                    JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                    answerId = jsonObject2.getJsonNumber("answer").longValue();
+                    answer = answerService.find(answerId);
+
+                    try {
+                        value = jsonObject2.getJsonNumber("value").intValue();
+                    } catch (NullPointerException | ClassCastException ex) {
+                        // TODO bunun yerine default olarak answer.getIndexMin() girilebilir
+                        value = answer.getCoefIndexMin();
+                    }
+
+                    gmLocal += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
+                }
+                break;
+            case PLANOGRAM1:
+            case PLANOGRAM2:
+            case FILE_UPLOAD:
+                break;
+        }
+
+        return gmLocal;
+    }
+
     public List<QuestionEntity> getQuestions() {
         return questionService.findAll();
     }
@@ -267,7 +524,7 @@ public class ReportView implements Serializable {
         }
     }
 
-    public BarChartModel getBarModel1(UserEntity u) {
+    public BarChartModel getBarModelRevenue(UserEntity u) {
         List<ResponseEntity> responses;
         if (u != null) {
             responses = responseService.findByUser(u);
@@ -294,7 +551,67 @@ public class ReportView implements Serializable {
                 .stream()
                 .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
                 .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), sales + (i.getId() * 100000));
+                    series1.set(i.getQuestion().getName(), response2Revenue(i));
+                });
+
+        model.addSeries(series1);
+
+        return model;
+    }
+
+    public BarChartModel getBarModelUSG(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        BarChartModel model = new BarChartModel();
+        model.setTitle("USG Chart");
+        Axis xAxis = model.getAxis(AxisType.X);
+        xAxis.setTickAngle(-50);
+        Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setTickFormat("%.2f");
+
+        ChartSeries series1 = new ChartSeries();
+        series1.set("Initial Value", usg);
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series1.set(i.getQuestion().getName(), response2USG(i));
+                });
+
+        model.addSeries(series1);
+
+        return model;
+    }
+
+    public BarChartModel getBarModelGM(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        BarChartModel model = new BarChartModel();
+        model.setTitle("GM Chart");
+        Axis xAxis = model.getAxis(AxisType.X);
+        xAxis.setTickAngle(-50);
+        Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setTickFormat("%.2f");
+
+        ChartSeries series1 = new ChartSeries();
+//        series1.set("Initial Value", gm);
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series1.set(i.getQuestion().getName(), response2GM(i));
                 });
 
         model.addSeries(series1);
