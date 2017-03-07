@@ -32,6 +32,7 @@ import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.chart.LinearAxis;
+import org.primefaces.model.chart.PieChartModel;
 
 @Named
 @ViewScoped
@@ -389,6 +390,73 @@ public class ReportView implements Serializable {
         return sales;
     }
 
+    private double response2Budget(ResponseEntity response) {
+        JsonObject jsonObject1;
+        JsonArray jsonArray1;
+
+        Long answerId;
+        AnswerEntity answer;
+
+        int value;
+
+        double budgetLocal = 0;
+
+        switch (response.getQuestion().getType()) {
+            case SINGLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+
+                try {
+                    answerId = jsonObject1.getJsonNumber("id").longValue();
+                    answer = answerService.find(answerId);
+                    budgetLocal = answer.getCoefBudget();
+                } catch (NullPointerException ex) {
+                }
+                budget += budgetLocal;
+                break;
+            case MULTIPLE_CHOICE:
+                jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
+                jsonArray1 = jsonObject1.getJsonArray("answers");
+                if (jsonArray1 != null && jsonArray1.size() > 0) {
+                    for (JsonValue jsonValue1 : jsonArray1) {
+                        JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                        answerId = jsonObject2.getJsonNumber("id").longValue();
+                        answer = answerService.find(answerId);
+                        budgetLocal += answer.getCoefBudget();
+                    }
+                } else {
+                    budgetLocal += response.getQuestion().getCoefBudget();
+                }
+                budget += budgetLocal;
+                break;
+            case RANGE_CHOICE:
+                jsonArray1 = ResponseConverter.jsonArrayFromString(response.getOutcome());
+                for (JsonValue jsonValue1 : jsonArray1) {
+                    JsonObject jsonObject2 = ResponseConverter.jsonObjectFromString(jsonValue1.toString());
+
+                    answerId = jsonObject2.getJsonNumber("answer").longValue();
+                    answer = answerService.find(answerId);
+
+                    try {
+                        value = jsonObject2.getJsonNumber("value").intValue();
+                    } catch (NullPointerException | ClassCastException ex) {
+                        // TODO bunun yerine default olarak answer.getIndexMin() girilebilir
+                        value = answer.getCoefIndexMin();
+                    }
+
+                    budgetLocal += answer.getCoefBudget();
+                }
+                budget += budgetLocal;
+                break;
+            case PLANOGRAM1:
+            case PLANOGRAM2:
+            case FILE_UPLOAD:
+                break;
+        }
+
+        return budget;
+    }
+
     private double response2USG(ResponseEntity response) {
         JsonObject jsonObject1;
         JsonArray jsonArray1;
@@ -683,6 +751,58 @@ public class ReportView implements Serializable {
                 });
 
         model.addSeries(series1);
+
+        return model;
+    }
+
+    public BarChartModel getBarModelBudget(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        BarChartModel model = new BarChartModel();
+        model.setTitle("Budget Chart");
+        Axis xAxis = model.getAxis(AxisType.X);
+        xAxis.setTickAngle(-50);
+        Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setTickFormat("%.2f");
+
+        ChartSeries series1 = new ChartSeries();
+//        series1.set("Initial Value", budget);
+
+        responses
+                .stream()
+                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
+                .forEach(i -> {
+                    series1.set(i.getQuestion().getName(), response2Budget(i));
+                });
+
+        model.addSeries(series1);
+
+        return model;
+    }
+
+    public PieChartModel getPieModelMS(UserEntity u) {
+        List<ResponseEntity> responses;
+        if (u != null) {
+            responses = responseService.findByUser(u);
+        } else {
+            responses = responseService.findByUser(user);
+        }
+
+        PieChartModel model = new PieChartModel();
+
+        model.set("Others", 1 - ms);
+        model.set("You", ms);
+
+        model.setTitle("Custom Pie");
+        model.setLegendPosition("e");
+        model.setFill(false);
+        model.setShowDataLabels(true);
+        model.setDiameter(150);
 
         return model;
     }
