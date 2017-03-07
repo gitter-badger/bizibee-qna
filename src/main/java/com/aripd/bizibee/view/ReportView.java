@@ -27,8 +27,6 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
 
 @Named
 @ViewScoped
@@ -280,8 +278,9 @@ public class ReportView implements Serializable {
         BarChartModel model = new BarChartModel();
         model.setTitle("Revenue Chart");
 //        model.setLegendPosition("ne");
-//        Axis xAxis = model.getAxis(AxisType.X);
+        Axis xAxis = model.getAxis(AxisType.X);
 //        xAxis.setLabel("Gender");
+        xAxis.setTickAngle(-50);
 //        Axis yAxis = model.getAxis(AxisType.Y);
 //        yAxis.setLabel("Births");
 //        yAxis.setMin(0);
@@ -289,54 +288,13 @@ public class ReportView implements Serializable {
 
         ChartSeries series1 = new ChartSeries();
 //        series1.setLabel("Revenue");
-        series1.set("Initial", sales);
-//        series1.set("2004", 120);
-//        series1.set("2005", 100);
-//        series1.set("2006", 44);
-//        series1.set("2007", 150);
-//        series1.set("2008", 25);
+        series1.set("Initial Value", sales);
 
         responses
                 .stream()
                 .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
                 .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), sales + (i.getId() * 100));
-                });
-
-        model.addSeries(series1);
-
-        return model;
-    }
-
-    public LineChartModel getLineModel1(UserEntity u) {
-        List<ResponseEntity> responses;
-        if (u != null) {
-            responses = responseService.findByUser(u);
-        } else {
-            responses = responseService.findByUser(user);
-        }
-
-        LineChartModel model = new LineChartModel();
-        model.setTitle("Revenue Chart");
-//        model.setLegendPosition("e");
-//        Axis yAxis = model.getAxis(AxisType.Y);
-//        yAxis.setMin(0);
-//        yAxis.setMax(10);
-
-        LineChartSeries series1 = new LineChartSeries();
-//        series1.setLabel("Revenue");
-        series1.set(0, sales);
-//        series1.set(1, 2);
-//        series1.set(2, 1);
-//        series1.set(3, 3);
-//        series1.set(4, 6);
-//        series1.set(5, 8);
-
-        responses
-                .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getId(), sales + (i.getId() * 100));
+                    series1.set(i.getQuestion().getName(), sales + (i.getId() * 100000));
                 });
 
         model.addSeries(series1);
