@@ -21,10 +21,10 @@
             <p:chart type="bar" model="#{reportView.getBarModelGM(cc.attrs.player)}" style="height: 600px;" responsive="true" />
         </p:panel>
         <p:panel style="margin-bottom: 10px;">
-            <p:chart type="bar" model="#{reportView.getBarModelBudget(cc.attrs.player)}" style="height: 600px;" responsive="true" />
+            <p:chart type="bar" model="#{reportView.getBarModelMS(cc.attrs.player)}" style="height: 600px;" responsive="true" />
         </p:panel>
         <p:panel style="margin-bottom: 10px;">
-            <p:chart type="pie" model="#{reportView.getPieModelMS(cc.attrs.player)}" style="width: 400px; height: 300px;" responsive="true" />
+            <p:chart type="bar" model="#{reportView.getBarModelBudget(cc.attrs.player)}" style="height: 600px;" responsive="true" />
         </p:panel>
 
         <h2><h:outputText value="#{i18n['Initial Values']}" /></h2>

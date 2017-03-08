@@ -173,6 +173,8 @@
                                                    label="#{simulationView.selectedRecord.name}" 
                                                    required="#{simulationView.selectedRecord.required}" 
                                                    disabled="#{simulationView.disabled}"
+                                                   minValue="#{model.answer.coefIndexMin}" 
+                                                   maxValue="#{model.answer.coefIndexMax}"
                                                    size="#{model.answer.inputSize}"
                                                    onblur="planogram(this, #{model.answer.id})" 
                                                    converter="javax.faces.Integer"/>
