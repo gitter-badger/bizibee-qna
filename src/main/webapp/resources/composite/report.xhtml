@@ -201,6 +201,7 @@
             <h:form rendered="#{reportView.questions.size() eq varStatus.index+1 and request.isUserInRole('Player')}">
                 <p:dialog widgetVar="thanksDialog" header="#{reportView.simulation.thanksDialogHeader}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
                     <p><h:outputText value="#{reportView.simulation.thanksDialogContent}" /></p>
+                    <p><p:link value="#{reportView.simulation.thanksLinkText}" href="#{reportView.simulation.thanksLinkHref}" /></p>
                     <f:facet name="footer">
                         <p:commandButton value="#{i18n['Close']}" onclick="PF('thanksDialog').hide();"/>
                     </f:facet>
@@ -208,6 +209,8 @@
             </h:form>
 
         </ui:repeat>
+
+        <p:button value="#{reportView.simulation.thanksLinkText}" href="#{reportView.simulation.thanksLinkHref}" />
 
     </composite:implementation>
 

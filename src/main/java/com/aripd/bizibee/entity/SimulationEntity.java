@@ -40,6 +40,8 @@ public class SimulationEntity extends AbstractEntity {
     private String thanksDialogHeader;
     @Column(columnDefinition = "TEXT")
     private String thanksDialogContent;
+    private String thanksLinkHref;
+    private String thanksLinkText;
 
     private double scoreStart = 0;
     private double salesStart = 0;
@@ -119,6 +121,22 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setThanksDialogContent(String thanksDialogContent) {
         this.thanksDialogContent = thanksDialogContent;
+    }
+
+    public String getThanksLinkHref() {
+        return thanksLinkHref;
+    }
+
+    public void setThanksLinkHref(String thanksLinkHref) {
+        this.thanksLinkHref = thanksLinkHref;
+    }
+
+    public String getThanksLinkText() {
+        return thanksLinkText;
+    }
+
+    public void setThanksLinkText(String thanksLinkText) {
+        this.thanksLinkText = thanksLinkText;
     }
 
     public double getScoreStart() {
