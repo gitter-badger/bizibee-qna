@@ -32,7 +32,6 @@ import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.chart.LinearAxis;
-import org.primefaces.model.chart.PieChartModel;
 
 @Named
 @ViewScoped
@@ -40,7 +39,6 @@ public class ReportView implements Serializable {
 
     @Inject
     private UserService userService;
-    private LazyDataModel<UserEntity> lazyModelPlayer;
     private UserEntity user;
     private SimulationEntity simulation;
 
@@ -84,7 +82,6 @@ public class ReportView implements Serializable {
     public void init() {
         user = userService.getCurrentUser();
         simulation = user.getSimulation();
-        lazyModelPlayer = new LazyUserDataModelBySimulation(userService, simulation);
 
         score = simulation.getScoreStart();
         scoreChange = 0;
@@ -116,6 +113,10 @@ public class ReportView implements Serializable {
             return;
         }
 
+    }
+
+    public LazyDataModel<UserEntity> getLazyModelPlayer() {
+        return new LazyUserDataModelBySimulation(userService, simulation);
     }
 
     public String calculateScore(ResponseEntity response) {
@@ -712,6 +713,7 @@ public class ReportView implements Serializable {
         model.addSeries(series2);
 
         model.setTitle("Revenue & USG Chart");
+        model.setLegendPosition("ne");
         model.setMouseoverHighlight(false);
 
         model.getAxes().put(AxisType.X, new CategoryAxis("Decisions"));
@@ -729,41 +731,6 @@ public class ReportView implements Serializable {
 //        y2Axis.setMax(200);
 
         model.getAxes().put(AxisType.Y2, y2Axis);
-
-        return model;
-    }
-
-    public BarChartModel getBarModelRevenue(UserEntity u) {
-        List<ResponseEntity> responses;
-        if (u != null) {
-            responses = responseService.findByUser(u);
-        } else {
-            responses = responseService.findByUser(user);
-        }
-
-        BarChartModel model = new BarChartModel();
-        model.setTitle("Revenue Chart");
-//        model.setLegendPosition("ne");
-        Axis xAxis = model.getAxis(AxisType.X);
-//        xAxis.setLabel("Gender");
-        xAxis.setTickAngle(-50);
-//        Axis yAxis = model.getAxis(AxisType.Y);
-//        yAxis.setLabel("Births");
-//        yAxis.setMin(0);
-//        yAxis.setMax(200);
-
-        ChartSeries series1 = new ChartSeries();
-//        series1.setLabel("Revenue");
-        series1.set("Initial Value", sales);
-
-        responses
-                .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2Revenue(i));
-                });
-
-        model.addSeries(series1);
 
         return model;
     }
@@ -982,10 +949,6 @@ public class ReportView implements Serializable {
 
     public void setBudgetChange(double budgetChange) {
         this.budgetChange = budgetChange;
-    }
-
-    public LazyDataModel<UserEntity> getLazyModelPlayer() {
-        return lazyModelPlayer;
     }
 
     public Long getId() {
