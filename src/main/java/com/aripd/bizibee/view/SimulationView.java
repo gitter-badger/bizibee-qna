@@ -35,14 +35,10 @@ import com.aripd.bizibee.service.GroupService;
 import com.aripd.bizibee.service.QuestionService;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Named
 @ViewScoped
 public class SimulationView implements Serializable {
-
-    private static final Logger LOG = Logger.getLogger(SimulationView.class.getName());
 
     private final MenuModel menuModelByGroups;
     private final MenuModel menuModelByQuestions;
