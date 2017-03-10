@@ -29,15 +29,15 @@ VALUES
 
 INSERT INTO `GUIDEENTITY` (`ID`, `SIMULATION_ID`, `DESCRIPTION`, `NAME`, `REMARK`, `SORTORDER`)
 VALUES
-(1,2,'','Price Positioning','Price is one of the core element of 6P. A concious shopper always check the price before buying process. That’s why every single company must check their products’ prices in the market. Price positioning is restructuring a product’s price by considering competition. While index to market average can bu used, index to biggest competitor can be used for positioning. However, possible changes in profitability and sales volume should be well predicted before positioning. Checking prices in the market and regulating them will be preferable for business results. Companies have 3 main purpose, USG-GM-MS, consider that they are related with eachother. For example; the lower prices you offer for market share gain, the lower gross margin you will have after that.',1),
-(2,2,'','Volume Hunting','Volume Hunting is a mechanism where company sells products at favorable costs and renounces profitability in order to increase «product’s household penetration» Favorable costs to customer bring aggresive prices on shelf and it is likely to see an increase in market share and distribution. However, since profitability will be low during activity; timing, number of products and discount rates must be well organized because of gm target. ',2),
-(3,2,'','Promotion','Promotion is a mechanism to impress shopper at points where shoppers and customers meet (inserts, in store visuals, virtual stores..). Some promotion tools are as follows. Gift Promotion(off pack): Giving away gifts for each product purchase on the cash-point Gift Copack Promotion: Mechanism where main product and gift are in the same package and displayed on the shelf as a copack. Price Promotion: Promotion where regular shelf prices are lowered during promotion period.',3),
-(4,2,'','Team Management','Team management is the ability of an individual or an organization to administer and coordinate a group of individuals to perform a task. Team management involves teamwork, communication, objective setting and performance appraisals. Moreover, team management is the capability to identify problems and resolve conflicts within a team. There are various methods and leadership styles a team manager can take to increase personnel productivity and build an effective team',4),
-(5,2,'','Display','Display is a method where products are exhibited to attract consumer in order to increase sales. There are some valuable areas in stores which aims sell-out growth Gondola: Cashier display: Ale-Central(additional display areas in the middle of the aisles), Some examples about these areas:',5),
-(6,2,'','Planogram','For hair category’s shelf assorment, standing in front of shelf, prices of products are decreasing from left to right. This method is called «PIANO». Eye-hand level is the most precious area of shelf. Also, it is important to place products by their sizes.',6),
-(7,2,'','E-Commerce Investment','Retail E-commerce sales are sales of goods and services where the business takes place over the Internet, an extra-net, Electronic Data Interchange (EDI) network, or other online system. Payment may or may not be made online. Business in this context is defined as an order placed by the buyer or price and terms of sale negotiated. For our company, being available at customer’s e-commerce system improves brand awareness, enables consumer to reach our products easily. Since online shopping has reached 10m people, being active at this platform will bring increase in USG and Markes Share.',7),
-(8,2,'','Listing','Listing is openning a product to sales permanently. Although listing a product seems beneficial, if product does not perform well, delisting will be thought and customer’s confidence may hurt. Decrease in profitability may be observed for «to be listed» product as it requires marketing investment. Therefore, variables like return on sales, sustainability and profitability should be balanced and optimized during listing.',8),
-(9,2,'','Delisting','Delisting is closing a product to sales permanently. This can happen because of product perception, unsuitability of product to shopper of customer. Likewise, low performances in market share, turnover and profitability can cause that. When a product is delisted, there will be loss of sales. Therefore, balance should be preserved. An alternative product can be proposed for delisted one, or a profitable product’s face area may be increased.',9);
+(1,2,'','Price Positioning','',1),
+(2,2,'','Volume Hunting','',2),
+(3,2,'','Promotion','',3),
+(4,2,'','Team Management','',4),
+(5,2,'','Display','',5),
+(6,2,'','Planogram','',6),
+(7,2,'','eCommerce','',7),
+(8,2,'','Listing','',8),
+(9,2,'','Delisting','',9);
 
 INSERT INTO `GROUPENTITY` 
 VALUES
@@ -47,7 +47,7 @@ VALUES
 (4,2,'Team Management'),
 (5,2,'Display'),
 (6,2,'Planogram'),
-(7,2,'E-Commerce Investment'),
+(7,2,'eCommerce'),
 (8,2,'Listing'),
 (9,2,'Delisting');
 
@@ -74,7 +74,7 @@ VALUES
 (19,2,NULL,0,0,0,0,0,'Confirmation for Planogram','Are you sure to submit for Planogram?','Now its time to decide your Planogram. If you position your products and sizes in the right place, there will be best sell out datas.','SIMULATION','Planogram','Notification for Planogram','To continue read notification for Planogram','',TRUE,19,'PLANOGRAM2',UUID(),6,6),
 (20,2,NULL,0,0,0,0,0,'Confirmation for Question8','Are you sure to submit for Question8?','Description about Question8','QUESTION','Question8','Notification for Question8','To continue read notification for Question8','',TRUE,20,'SINGLE_CHOICE',UUID(),NULL,NULL),
 (21,2,NULL,0,0,0,0,0,'Confirmation for Question9','Are you sure to submit for Question9?','Description about Question9','QUESTION','Question9','Notification for Question9','To continue read notification for Question9','',TRUE,21,'SINGLE_CHOICE',UUID(),NULL,NULL),
-(22,2,NULL,0,0,0,0,0,'Confirmation for E-Commerce Investment','Are you sure to submit for E-Commerce Investment?','For Planet Market in e-commerce area, we can use following mechanism. However, each requires certain budget.','SIMULATION','E-Commerce Investment','Notification for E-Commerce Investment','To continue read notification for E-Commerce Investment','',FALSE,22,'MULTIPLE_CHOICE',UUID(),7,7),
+(22,2,NULL,0,0,0,0,0,'Confirmation for eCommerce','Are you sure to submit for eCommerce?','For Planet Market in eCommerce area, we can use following mechanism. However, each requires certain budget.','SIMULATION','eCommerce','Notification for eCommerce','To continue read notification for eCommerce','',FALSE,22,'MULTIPLE_CHOICE',UUID(),7,7),
 (23,2,NULL,0,0,0,0,0,'Confirmation for Question3','Are you sure to submit for Question3?','Description about Question3','QUESTION','Question3','Notification for Question3','To continue read notification for Question3','',TRUE,23,'SINGLE_CHOICE',UUID(),NULL,NULL),
 (24,2,NULL,0,0,0,0,0,'Confirmation for Listing','Are you sure to submit for Listing?','You have to decide listing of Arthur&Guss and Donny Hagel premium hair shampoo brands, which are already listed at National Accounts, to Planet Market at Local Modern Trade channel. If you submit before marking any decision, simulation get the choice ‘no new listing’.','SIMULATION','Listing','Notification for Listing','To continue read notification for Listing','',FALSE,24,'MULTIPLE_CHOICE',UUID(),8,8),
 (25,2,NULL,0,0,0,0,0,'Confirmation for Question10','Are you sure to submit for Question10?','Description about Question10','QUESTION','Question10','Notification for Question10','To continue read notification for Question10','',TRUE,25,'SINGLE_CHOICE',UUID(),NULL,NULL),
@@ -184,9 +184,9 @@ VALUES
 (100,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'Answer3',21),
 (101,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'Answer4',21),
 (102,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'Answer5',21),
-(103,2,NULL,-36000,0,0,0,0,0,0,0.009174,0,0,0,0,0,0,0.05,0,0,'Hiring someone with technical knowledge to deal e-commerce area',22),
+(103,2,NULL,-36000,0,0,0,0,0,0,0.009174,0,0,0,0,0,0,0.05,0,0,'Hiring someone with technical knowledge to deal eCommerce area',22),
 (104,2,NULL,-20000,0,0,0,0,0,0,0.0018348,0,0,0,0,0,0,0.01,0,0,'Creating campaign visuals via agency for customers webpage',22),
-(105,2,NULL,-10000,0,0,0,0,0,0,0.009174,0,0,0,0,0,0,0.05,0,0,'Planning activities special to e-commerce, where prices are slightly lower than normal ones',22),
+(105,2,NULL,-10000,0,0,0,0,0,0,0.009174,0,0,0,0,0,0,0.05,0,0,'Planning activities special to eCommerce, where prices are slightly lower than normal ones',22),
 (106,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,'Answer1',23),
 (107,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'Answer2',23),
 (108,2,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'Answer3',23),

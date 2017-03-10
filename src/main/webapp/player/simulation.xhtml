@@ -366,9 +366,10 @@
         </div>
 
         <h:form>
-            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" width="500" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}" modal="true" closable="false" draggable="false">
+            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" width="800" position="top" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}" modal="true" closable="false" draggable="false">
                 <h2><h:outputText value="#{simulationView.selectedRecord.guide.description}" escape="false" /></h2>
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" escape="false" /></p>
+                <p><p:graphicImage name="/files/#{simulationView.selectedRecord.guide.name}.jpg" width="700" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
                     <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" rendered="false"/>
