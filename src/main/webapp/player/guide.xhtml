@@ -23,7 +23,7 @@
                         <ui:repeat value="#{guideView.guides}" var="guide">
                             <a id="fragment_#{guide.id}" class="fragment"></a>
                             <h2><h:outputText value="#{guide.name}" /></h2>
-                            <h3><h:outputText value="#{guide.description}" /></h3>
+                            <h3><h:outputText value="#{guide.description}" escape="false" /></h3>
                             <p><h:outputText value="#{guide.remark}" escape="false" /></p>
                         </ui:repeat>
                     </div>

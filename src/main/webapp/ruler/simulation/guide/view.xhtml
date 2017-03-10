@@ -34,9 +34,9 @@
                                 <p:outputLabel value="#{i18n['Sort Order']}"/>
                                 <h:outputText value="#{guideView.selectedGuide.sortOrder}"/>
                                 <p:outputLabel value="#{i18n['Description']}"/>
-                                <h:outputText value="#{guideView.selectedGuide.description}"/>
+                                <h:outputText value="#{guideView.selectedGuide.description}" escape="false" />
                                 <p:outputLabel value="#{i18n['Remark']}"/>
-                                <h:outputText value="#{guideView.selectedGuide.remark}"/>
+                                <h:outputText value="#{guideView.selectedGuide.remark}" escape="false"/>
                             </p:panelGrid>
                         </h:form>
                     </div>
