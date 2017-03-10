@@ -371,7 +371,7 @@
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" escape="true" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
-                    <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button"/>
+                    <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" rendered="false"/>
                 </f:facet>
             </p:dialog>
         </h:form>
