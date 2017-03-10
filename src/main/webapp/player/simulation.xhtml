@@ -43,7 +43,7 @@
 
                 <div class="ui-g dashboard">
                     <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
-                        <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="true" model="#{simulationView.menuModelByGroups}" />
+                        <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="false" model="#{simulationView.menuModelByGroups}" />
                         <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModelByQuestions}" rendered="false" />
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-3" rendered="false">

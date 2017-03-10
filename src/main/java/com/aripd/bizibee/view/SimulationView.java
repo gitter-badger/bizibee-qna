@@ -35,6 +35,7 @@ import com.aripd.bizibee.service.GroupService;
 import com.aripd.bizibee.service.QuestionService;
 import java.util.HashSet;
 import java.util.Set;
+import org.primefaces.model.menu.MenuItem;
 
 @Named
 @ViewScoped
@@ -90,7 +91,13 @@ public class SimulationView implements Serializable {
         Collections.sort(questions, new ComparisonQuestionSortOrderAsc());
 
         for (GroupEntity group : groups) {
-            menuModelByGroups.addElement(new DefaultMenuItem(group.getName()));
+            List<QuestionEntity> groupQuestions = group.getQuestions();
+            Collections.sort(groupQuestions, new ComparisonQuestionSortOrderAsc());
+            QuestionEntity firstQuestion = groupQuestions.get(0);
+
+            DefaultMenuItem element = new DefaultMenuItem(group.getName());
+            element.setOutcome("/player/simulation?uuid=" + firstQuestion.getUuid());
+            menuModelByGroups.addElement(element);
         }
         for (QuestionEntity question : questions) {
             menuModelByQuestions.addElement(new DefaultMenuItem(question.getName()));
