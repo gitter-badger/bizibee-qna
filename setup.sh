@@ -40,14 +40,14 @@ case $CASEserver in
     ASADMIN="/Users/cem/Developments/glassfish4/glassfish/bin/asadmin"
     MYSQL="/usr/local/Cellar/mysql/5.7.15/bin/mysql"
     GLASSFISH_RESOURCES="/Users/cem/Developments/NetBeansProjects/bizibee/src/main/webapp/WEB-INF/glassfish-resources.xml"
-    WAR="/Users/cem/Developments/NetBeansProjects/bizibee/target/bizibee-1.0.war"
+    WAR="/Users/cem/Developments/NetBeansProjects/bizibee/target/bizibee-qna-1.0.war"
     SQL="/Users/cem/Developments/NetBeansProjects/bizibee/src/main/resources/META-INF/load.sql"
     ;;
   remote)
     ASADMIN="/opt/glassfish4/bin/asadmin"
     MYSQL="/usr/bin/mysql"
     GLASSFISH_RESOURCES="/root/bizibee/src/main/webapp/WEB-INF/glassfish-resources.xml"
-    WAR="/root/bizibee/target/bizibee-1.0.war"
+    WAR="/root/bizibee/target/bizibee-qna-1.0.war"
     SQL="/root/bizibee/src/main/resources/META-INF/load.sql"
     ;;
 esac
@@ -74,7 +74,7 @@ case $CASEaction in
     $ASADMIN deploy $WAR
     ;;
   undeploy)
-    $ASADMIN undeploy bizibee-1.0
+    $ASADMIN undeploy bizibee-qna-1.0
     ;;
   database)
     $MYSQL -u root -p --default-character-set=utf8 bizibee < $SQL
