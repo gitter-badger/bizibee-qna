@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.eclipse.persistence.annotations.Multitenant;
 import org.eclipse.persistence.annotations.MultitenantType;
@@ -30,6 +31,14 @@ public class GroupEntity extends AbstractEntity {
     private List<QuestionEntity> questions;
 
     public GroupEntity() {
+    }
+
+    @Transient
+    public QuestionEntity getQuestion() {
+        return questions
+                .stream()
+                .min((p1, p2) -> Integer.compare(p1.getSortOrder(), p2.getSortOrder()))
+                .get();
     }
 
     public SimulationEntity getSimulation() {

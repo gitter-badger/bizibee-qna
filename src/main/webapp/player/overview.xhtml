@@ -18,11 +18,12 @@
                         <ul class="contacts">
                             <ui:repeat value="#{overviewView.groups}" var="group" varStatus="varStatus">
                                 <li>
-                                    <a href="#">
+                                    <p:link outcome="/player/simulation">
+                                        <f:param name="uuid" value="#{group.question.uuid}" />
                                         <i class="fa fa-check-square-o fa-3x"></i>
                                         <span class="name"><h:outputText value="#{group.name}" /></span>
                                         <span class="email"><h:outputText value="#{group.name}" /></span>
-                                    </a>
+                                    </p:link>
                                 </li>
                             </ui:repeat>
                         </ul>

@@ -16,7 +16,8 @@
 
         <p:tabView dynamic="true" cache="true">
             <p:tab title="List View">
-                <h2><h:outputText value="#{i18n['Initial Values']}" /></h2>
+                <hr style="width: 25%"/>
+                <h2><p:link fragment="#"><h:outputText value="#{i18n['Initial Values']}" /></p:link></h2>
 
                 <div class="ui-g ui-fluid dashboard">
                     <div class="ui-g-12 ui-md-3">
@@ -86,11 +87,12 @@
                 </div>
 
                 <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
+                    <hr style="width: 25%"/>
                     <h:panelGroup rendered="#{response.question.kind eq 'SIMULATION'}">
                         <h2>
-                            <h:link outcome="/player/simulation" value="#{response.question.name}" rendered="#{empty cc.attrs.player}">
+                            <p:link outcome="/player/simulation" value="#{response.question.name}" rendered="#{empty cc.attrs.player}">
                                 <f:param name="uuid" value="#{response.question.uuid}" />
-                            </h:link>
+                            </p:link>
                             <h:outputText value="#{response.question.name}" rendered="#{not empty cc.attrs.player}"/>
                         </h2>
                         <h:outputText value="#{reportView.calculateScore(response)}" style="display: none;" />
