@@ -43,10 +43,14 @@
 
                 <div class="ui-g dashboard">
                     <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
-                        <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="false" model="#{simulationView.menuModelByGroups}" />
+                        <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="false" model="#{simulationView.menuModelByGroups}" rendered="false" />
                         <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModelByQuestions}" rendered="false" />
-                        <p:dataGrid value="#{simulationView.groups}" var="group" varStatus="varStatus" columns="#{simulationView.groups.size()}" rendered="false">
-                            <h:outputText value="#{group.name}" style="font-weight: #{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
+                        <p:dataGrid value="#{simulationView.groups}" var="group" columns="#{simulationView.groups.size()}">
+                            <p:link outcome="/player/simulation">
+                                <f:param name="uuid" value="#{group.question.uuid}" />
+                                <i class="fa fa-check-square-o"></i>
+                                <h:outputText value="#{group.name}" style="font-weight:#{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
+                            </p:link>
                         </p:dataGrid>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-3" rendered="false">
@@ -369,7 +373,7 @@
         </div>
 
         <h:form>
-            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}" modal="true" closable="false" draggable="false">
+            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and simulationView.selectedRecord eq simulationView.selectedRecord.group.question and !simulationView.disabled}" modal="true" closable="false" draggable="false">
                 <h2><h:outputText value="#{simulationView.selectedRecord.guide.description}" escape="false" /></h2>
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" escape="false" /></p>
                 <p><p:graphicImage name="/files/#{simulationView.selectedRecord.guide.name}.jpg" width="700" rendered="false" /></p>
