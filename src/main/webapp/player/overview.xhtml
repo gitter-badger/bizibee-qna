@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Decisions Overview']}</h1>
+                <p>A Brief Overview of Decisions</p>
+
+                <div class="ui-g dashboard">
+                    <div class="ui-g-12 ui-lg-4">
+                    </div>
+                    <div class="ui-g-12 ui-lg-4">
+                        <ul class="contacts">
+                            <ui:repeat value="#{overviewView.groups}" var="group" varStatus="varStatus">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-check-square-o fa-3x"></i>
+                                        <span class="name"><h:outputText value="#{group.name}" /></span>
+                                        <span class="email"><h:outputText value="#{group.name}" /></span>
+                                    </a>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                    <div class="ui-g-12 ui-lg-4">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

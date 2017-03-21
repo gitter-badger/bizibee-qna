@@ -45,6 +45,9 @@
                     <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
                         <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="false" model="#{simulationView.menuModelByGroups}" />
                         <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModelByQuestions}" rendered="false" />
+                        <p:dataGrid value="#{simulationView.groups}" var="group" varStatus="varStatus" columns="#{simulationView.groups.size()}" rendered="false">
+                            <h:outputText value="#{group.name}" style="font-weight: #{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
+                        </p:dataGrid>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-3" rendered="false">
                         <p:dataList id="panel1" value="#{simulationView.groups}" var="group" varStatus="varStatus" type="ordered">
@@ -366,13 +369,13 @@
         </div>
 
         <h:form>
-            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" width="800" position="top" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}" modal="true" closable="false" draggable="false">
+            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and !simulationView.disabled}" modal="true" closable="false" draggable="false">
                 <h2><h:outputText value="#{simulationView.selectedRecord.guide.description}" escape="false" /></h2>
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" escape="false" /></p>
-                <p><p:graphicImage name="/files/#{simulationView.selectedRecord.guide.name}.jpg" width="700" /></p>
+                <p><p:graphicImage name="/files/#{simulationView.selectedRecord.guide.name}.jpg" width="700" rendered="false" /></p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
-                    <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" rendered="false"/>
+                    <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" />
                 </f:facet>
             </p:dialog>
         </h:form>

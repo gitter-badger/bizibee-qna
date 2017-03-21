@@ -1,16 +1,21 @@
 package com.aripd.bizibee.service;
 
+import com.aripd.bizibee.entity.Kind;
 import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.bizibee.entity.QuestionEntity_;
 import com.aripd.bizibee.entity.UserEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Tuple;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -49,6 +54,25 @@ public class QuestionServiceBean extends CrudServiceBean<QuestionEntity, Long> i
         } catch (NoResultException ex) {
             return null;
         }
+    }
+
+    @Override
+    public int calculateNumberOfQuestionsByKind(List<Kind> kind) {
+        try {
+            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+            Root<QuestionEntity> root = cq.from(QuestionEntity.class);
+
+            cq.select(cb.count(root));
+
+            Predicate predicate = root.get(QuestionEntity_.kind).in(kind);
+            cq.where(predicate);
+
+            return getEntityManager().createQuery(cq).getSingleResult().intValue();
+        } catch (NoResultException ex) {
+            return 0;
+        }
+
     }
 
 }
