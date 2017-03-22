@@ -23,7 +23,7 @@ public class AnswerEntity extends AbstractEntity {
     private SimulationEntity simulation;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String name;
 
     @Lob

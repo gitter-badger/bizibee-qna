@@ -7,7 +7,7 @@
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
-                <!--<h1 class="feature-title">#{i18n['Dashboard']}</h1>-->
+                <h1 class="feature-title">Get Ready for the Customer Development</h1>
                 <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="false" /></p>
 
                 <div class="ui-g ui-fluid dashboard">
@@ -105,9 +105,8 @@
                         <div class="highlight-box">
                             <div class="initials" style="background-color:#f9c851; color:#b58c2b;"><i class="fa fa-list"></i></div>
                             <div class="card">
-                                <span class="fa fa-list"></span>
                                 <span>#{i18n['Decisions']}</span>
-                                <span class="count">#{dashboardView.numberOfQuestions}</span>
+                                <span class="count">#{dashboardView.numberOfDecisions}</span>
                                 <span>
                                     <p:link value="#{i18n['View']}" outcome="/player/overview" />
                                 </span>
@@ -118,7 +117,6 @@
                         <div class="highlight-box">
                             <div class="initials" style="background-color:#007be5; color:#00448f;"><i class="fa fa-line-chart"></i></div>
                             <div class="card">
-                                <span class="fa fa-line-chart"></span>
                                 <span>#{i18n['Report']}</span>
                                 <span class="count"> </span>
                                 <span>
