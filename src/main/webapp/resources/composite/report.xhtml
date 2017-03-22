@@ -87,8 +87,8 @@
                 </div>
 
                 <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
-                    <hr style="width: 25%"/>
                     <h:panelGroup rendered="#{response.question.kind eq 'SIMULATION'}">
+                        <hr style="width: 25%"/>
                         <h2>
                             <p:link outcome="/player/simulation" value="#{response.question.name}" rendered="#{empty cc.attrs.player}">
                                 <f:param name="uuid" value="#{response.question.uuid}" />

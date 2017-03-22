@@ -18,11 +18,17 @@
                         <ul class="contacts">
                             <ui:repeat value="#{overviewView.groups}" var="group" varStatus="varStatus">
                                 <li>
-                                    <p:link outcome="/player/simulation">
+                                    <p:link outcome="/player/simulation" rendered="false">
                                         <f:param name="uuid" value="#{group.question.uuid}" />
                                         <i class="fa fa-check-square-o fa-3x"></i>
                                         <span class="name"><h:outputText value="#{group.name}" /></span>
                                         <span class="email"><h:outputText value="#{group.name}" /></span>
+                                    </p:link>
+                                    <p:link fragment="#" rendered="true">
+                                        <h:panelGroup styleClass="fa fa-3x fa-check-circle" style="color: #20d077;" rendered="#{overviewView.checkCompletion(group)}"/>
+                                        <h:panelGroup styleClass="fa fa-3x fa-times-circle" style="color: #ef6262;" rendered="#{!overviewView.checkCompletion(group)}"/>
+                                        <span class="name"><h:outputText value="#{group.name}" /></span>
+                                        <!--<span class="email"><h:outputText value="#{group.name}" /></span>-->
                                     </p:link>
                                 </li>
                             </ui:repeat>
