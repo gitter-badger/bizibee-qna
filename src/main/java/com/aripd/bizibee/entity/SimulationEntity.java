@@ -34,6 +34,7 @@ public class SimulationEntity extends AbstractEntity {
     @Lob
     private byte[] bytes;
 
+    private String headline;
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -97,6 +98,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
     }
 
     public String getDescription() {

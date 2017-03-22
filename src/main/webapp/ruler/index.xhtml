@@ -7,7 +7,7 @@
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
-                <h1 class="feature-title">#{i18n['Dashboard']}</h1>
+                <h1 class="feature-title">#{dashboardView.selectedUser.simulation.headline}</h1>
                 <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="false" /></p>
 
                 <div class="ui-g ui-fluid dashboard">

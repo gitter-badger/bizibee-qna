@@ -18,6 +18,9 @@
                     <div class="ui-g-9">
                         <h:form>
                             <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <p:outputLabel for="headline" value="#{i18n['Headline']}"/>
+                                <p:inputText id="headline" value="#{dashboardView.selectedSimulation.headline}" label="#{i18n['Headline']}" placeholder="#{i18n['Headline']}" styleClass="ui-g-12" />
+
                                 <p:outputLabel for="description" value="#{i18n['Description']}"/>
                                 <p:inputTextarea id="description" value="#{dashboardView.selectedSimulation.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" styleClass="ui-g-12" />
 
