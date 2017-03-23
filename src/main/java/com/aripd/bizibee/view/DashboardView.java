@@ -40,6 +40,8 @@ public class DashboardView implements Serializable {
 
     @Inject
     private QuestionService questionService;
+    private List<QuestionEntity> questions;
+    List<QuestionEntity> responded;
 
     @Inject
     private GroupService groupService;
@@ -58,6 +60,15 @@ public class DashboardView implements Serializable {
         try {
             selectedUser = userService.getCurrentUser();
             selectedSimulation = selectedUser.getSimulation();
+
+            questions = questionService.findAll();
+            questions.sort((p1, p2) -> p1.getSortOrder() - p2.getSortOrder());
+
+            responded = responseService.findByUser(selectedUser)
+                    .stream()
+                    .map(m -> m.getQuestion())
+                    .collect(Collectors.toList());
+
         } catch (NullPointerException ex) {
             throw new FacesException(ex);
         }
@@ -80,17 +91,8 @@ public class DashboardView implements Serializable {
     }
 
     public void continueTheSimulation(ActionEvent actionEvent) {
-        List<QuestionEntity> questions = questionService.findAll();
-        questions.sort((p1, p2) -> p1.getSortOrder() - p2.getSortOrder());
-
-        List<ResponseEntity> responses = responseService.findByUser(selectedUser);
-        List<QuestionEntity> responded = responses
-                .stream()
-                .map(m -> m.getQuestion())
-                .collect(Collectors.toList());
-
-        questions.removeAll(responded);
         if (!questions.isEmpty()) {
+            questions.removeAll(responded);
             QuestionEntity nextQuestion = questions.get(0);
 
             String navigation = "/player/simulation?uuid=" + nextQuestion.getUuid() + "&amp;faces-redirect=true";
@@ -148,6 +150,22 @@ public class DashboardView implements Serializable {
 
     public void setFile(UploadedFile file) {
         this.file = file;
+    }
+
+    public List<QuestionEntity> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<QuestionEntity> questions) {
+        this.questions = questions;
+    }
+
+    public List<QuestionEntity> getResponded() {
+        return responded;
+    }
+
+    public void setResponded(List<QuestionEntity> responded) {
+        this.responded = responded;
     }
 
 }
