@@ -273,7 +273,12 @@ public class SimulationView implements Serializable {
 
     public AnswerEntity slotToAnswer(int slot) {
         try {
-            return model5.stream().filter(m -> m.getValue().equals(slot)).findFirst().orElse(null).getAnswer();
+            return model5
+                    .stream()
+                    .filter(m -> m.getValue().equals(slot))
+                    .findFirst()
+                    .orElse(null)
+                    .getAnswer();
         } catch (NullPointerException ex) {
             return null;
         }
