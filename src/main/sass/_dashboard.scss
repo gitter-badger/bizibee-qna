@@ -94,6 +94,20 @@
             font-size: 54px;
             padding-top: 20px;
             text-align: center;
+
+            &.decisions {
+                background-color:#f9c851;
+                color:#b58c2b;
+            }
+            &.report {
+                background-color:#007be5;
+                color:#00448f;
+            }
+            &.guide {
+                background-color:#20d077;
+                color:#038d4a;
+            }
+
         }
 
         .card {

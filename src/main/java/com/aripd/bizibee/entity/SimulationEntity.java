@@ -54,6 +54,8 @@ public class SimulationEntity extends AbstractEntity {
     private double msWeighted = 0;
     private double usgWeighted = 0;
 
+    private String colorBar = "0388e5";
+
     @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
 
@@ -210,6 +212,14 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setUsgWeighted(double usgWeighted) {
         this.usgWeighted = usgWeighted;
+    }
+
+    public String getColorBar() {
+        return colorBar;
+    }
+
+    public void setColorBar(String colorBar) {
+        this.colorBar = colorBar;
     }
 
     public List<UserEntity> getUsers() {

@@ -28,11 +28,57 @@
             <f:facet name="middle">
             </f:facet>
             <f:facet name="last">
-                <style>
-                    .landing-wrapper .landing-header {
-                        /*background: #9388e5 url('https://img-fotki.yandex.ru/get/60015/73987442.5/0_e8735_c58a251e_orig');*/
-                    }
-                </style>
+                <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Player')}">
+                    <style>
+                        .landing-wrapper .landing-header {
+                            background: ##{dashboardView.selectedUser.simulation.colorBar} url('https://img-fotki.yandex.ru/get/60015/73987442.5/0_e8735_c58a251e_orig');
+                        }
+                        .dashboard .summary .count.revenue {
+                            background-color: red;
+                            color: black;
+                        }
+                        .dashboard .summary .count.budget {
+                            background-color: yellow;
+                            color: black;
+                        }
+                        .dashboard .summary .count.grossmargin {
+                            background-color: green;
+                            color: black;
+                        }
+                        .dashboard .summary .count.marketshare {
+                            background-color: red;
+                            color: black;
+                        }
+                        .dashboard .summary .count.underlyingsalesgrowth {
+                            background-color: blue;
+                            color: black;
+                        }
+                        .dashboard .highlight-box .initials.decisions {
+                            background-color: yellow;
+                            color: white;
+                        }
+                        .dashboard .highlight-box .initials.report {
+                            background-color: blue;
+                            color: white;
+                        }
+                        .dashboard .highlight-box .initials.guide {
+                            background-color: green;
+                            color: white;
+                        }
+                        .dashboard .scoreboard li .count.revenue {
+                            background-color: blue;
+                        }
+                        .dashboard .scoreboard li .count.budget {
+                            background-color: yellow;
+                        }
+                        .dashboard .scoreboard li .count.grossmargin {
+                            background-color: green;
+                        }
+                        .dashboard .scoreboard li .count.marketshare {
+                            background-color: red;
+                        }
+                    </style>
+                </h:panelGroup>
             </f:facet>
 
             <ui:insert name="head"/>
