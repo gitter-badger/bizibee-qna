@@ -31,9 +31,10 @@
                 <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Player')}">
                     <style>
                         .landing-wrapper .landing-header {
-                            background: ##{dashboardView.selectedUser.simulation.colorBar} url('https://img-fotki.yandex.ru/get/60015/73987442.5/0_e8735_c58a251e_orig');
+                            /*background: ##{dashboardView.selectedUser.simulation.colorBar} url('http://www.halltaylorfuneralhomes.com/art/backgroundBelowTopBar_950x201.jpg') no-repeat center;*/
+                            background: ##{dashboardView.selectedUser.simulation.colorBar};
                         }
-                        .dashboard .summary .count.revenue {
+/*                        .dashboard .summary .count.revenue {
                             background-color: red;
                             color: black;
                         }
@@ -76,7 +77,7 @@
                         }
                         .dashboard .scoreboard li .count.marketshare {
                             background-color: red;
-                        }
+                        }*/
                     </style>
                 </h:panelGroup>
             </f:facet>
