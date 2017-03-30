@@ -471,6 +471,7 @@ public class ChartView implements Serializable {
 
         model.setTitle("Revenue & USG Chart");
         model.setExtender("customExtender");
+        model.setSeriesColors("58BA27,FFCC33,F74A4A,F52F2F,A30303");
 //        model.setLegendPosition("ne");
         model.setMouseoverHighlight(false);
 
@@ -504,6 +505,7 @@ public class ChartView implements Serializable {
         BarChartModel model = new BarChartModel();
         model.setTitle("GM Chart");
         model.setExtender("customExtender");
+        model.setSeriesColors("58BA27,FFCC33,F74A4A,F52F2F,A30303");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setTickAngle(-50);
         Axis yAxis = model.getAxis(AxisType.Y);
@@ -536,6 +538,7 @@ public class ChartView implements Serializable {
         BarChartModel model = new BarChartModel();
         model.setTitle("MS Chart");
         model.setExtender("customExtender");
+        model.setSeriesColors("58BA27,FFCC33,F74A4A,F52F2F,A30303");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setTickAngle(-50);
         Axis yAxis = model.getAxis(AxisType.Y);
@@ -568,6 +571,7 @@ public class ChartView implements Serializable {
         BarChartModel model = new BarChartModel();
         model.setTitle("Budget Chart");
         model.setExtender("customExtender");
+        model.setSeriesColors("58BA27,FFCC33,F74A4A,F52F2F,A30303");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setTickAngle(-50);
         Axis yAxis = model.getAxis(AxisType.Y);

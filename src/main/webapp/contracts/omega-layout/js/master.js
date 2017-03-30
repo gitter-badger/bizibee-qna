@@ -29,8 +29,10 @@ $.extend({
 
 function customExtender() {
     this.cfg.grid = {
-        background: '#FFF' //Set background to white
+        background: "#FFFFFF"
     };
+    this.cfg.seriesColors = ["#0388e5", "#FFCC33"];
+    this.cfg.negativeSeriesColors = ["#ef6262", "#498991", "#C08840", "#9F9274", "#546D61", "#646C4A", "#6F6621", "#6E3F5F", "#4F64B0", "#A89050", "#C45923", "#187399", "#945381", "#959E5C", "#C7AF7B", "#478396", "#907294"];
 }
 
 function planogram(e, answerId) {
