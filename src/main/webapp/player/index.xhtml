@@ -145,7 +145,7 @@
                         <h:form>
                             <p:button value="#{i18n['Start the Simulation']}" outcome="/player/simulation" icon="fa fa-hourglass-start" rendered="#{dashboardView.responded.size() eq 0}" />
                             <p:commandButton value="#{i18n['Continue the Simulation']}" actionListener="#{dashboardView.continueTheSimulation}" icon="fa fa-history" rendered="#{dashboardView.responded.size() gt 0 and dashboardView.responded.size() lt dashboardView.questions.size()}" />
-                            <p:panel rendered="#{dashboardView.responded.size() eq dashboardView.questions.size()}">
+                            <p:panel rendered="#{dashboardView.responded.size() eq dashboardView.questions.size()}" style="text-align: center;">
                                 <h3><h:outputText value="#{dashboardView.selectedSimulation.thanksDialogHeader}" /></h3>
                                 <p><h:outputText value="#{dashboardView.selectedSimulation.thanksDialogContent}" /></p>
                                 <p><p:link value="#{dashboardView.selectedSimulation.thanksLinkText}" href="#{dashboardView.selectedSimulation.thanksLinkHref}" /></p>

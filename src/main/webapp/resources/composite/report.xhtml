@@ -70,20 +70,20 @@
                             </span>
                         </div>
                     </div>
-                    <!--            <div class="ui-g-12 ui-md-2">
-                                    <div class="card clearfix summary">
-                                        <h:outputText id="score" value="#{i18n['Score']}" styleClass="title" />
-                                        <p:tooltip for="score" position="top" style="width: 300px;" value="Score" />
-                                        <span class="detail">#{i18n['Score']}</span>
-                                        <span class="count score">
-                                            <h:outputText value="#{reportView.simulation.scoreStart}">
-                                                <f:convertNumber type="number" />
-                                            </h:outputText>
-                                        </span>
-                                        <span class="detail">
-                                        </span>
-                                    </div>
-                                </div>-->
+                    <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-2" rendered="#{request.isUserInRole('Ruler')}">
+                        <div class="card clearfix summary">
+                            <h:outputText id="score" value="#{i18n['Score']}" styleClass="title" />
+                            <p:tooltip for="score" position="top" style="width: 300px;" value="Score" />
+                            <span class="detail">#{i18n['Score']}</span>
+                            <span class="count score">
+                                <h:outputText value="#{reportView.simulation.scoreStart}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                            <span class="detail">
+                            </span>
+                        </div>
+                    </h:panelGroup>
                 </div>
 
                 <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
@@ -171,21 +171,21 @@
                                     </span>
                                 </div>
                             </div>
-                            <!--                <div class="ui-g-12 ui-md-2">
-                                                <div class="card clearfix summary">
-                                                    <span class="title">#{i18n['Score']}</span>
-                                                    <span class="detail">
-                                                        <h:outputText value="#{reportView.scoreChange}">
-                                                            <f:convertNumber type="number" />
-                                                        </h:outputText>
-                                                    </span>
-                                                    <span class="count score">
-                                                        <h:outputText value="#{reportView.score}">
-                                                            <f:convertNumber type="number" />
-                                                        </h:outputText>
-                                                    </span>
-                                                </div>
-                                            </div>-->
+                            <h:panelGroup styleClass="ui-g-12 ui-md-2" rendered="#{request.isUserInRole('Ruler')}">
+                                <div class="card clearfix summary">
+                                    <span class="title">#{i18n['Score']}</span>
+                                    <span class="detail">
+                                        <h:outputText value="#{reportView.scoreChange}">
+                                            <f:convertNumber type="number" />
+                                        </h:outputText>
+                                    </span>
+                                    <span class="count score">
+                                        <h:outputText value="#{reportView.score}">
+                                            <f:convertNumber type="number" />
+                                        </h:outputText>
+                                    </span>
+                                </div>
+                            </h:panelGroup>
                         </div>
                     </h:panelGroup>
 
