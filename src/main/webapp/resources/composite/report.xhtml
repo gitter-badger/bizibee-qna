@@ -202,16 +202,16 @@
                 </ui:repeat>
             </p:tab>
             <p:tab title="Chart View">
-                <p:panel style="margin-bottom: 10px;">
+                <p:panel header="Revenue and Sales Growth" style="margin-bottom: 10px;">
                     <p:chart type="line" model="#{chartView.getMultiAxisModel(cc.attrs.player)}" style="height: 900px;" responsive="true" />
                 </p:panel>
-                <p:panel style="margin-bottom: 10px;">
+                <p:panel header="Gross Margin" style="margin-bottom: 10px;">
                     <p:chart type="bar" model="#{chartView.getBarModelGM(cc.attrs.player)}" style="height: 600px;" responsive="true" />
                 </p:panel>
-                <p:panel style="margin-bottom: 10px;">
+                <p:panel header="Market Share" style="margin-bottom: 10px;">
                     <p:chart type="bar" model="#{chartView.getBarModelMS(cc.attrs.player)}" style="height: 600px;" responsive="true" />
                 </p:panel>
-                <p:panel style="margin-bottom: 10px;">
+                <p:panel header="Budget" style="margin-bottom: 10px;">
                     <p:chart type="bar" model="#{chartView.getBarModelBudget(cc.attrs.player)}" style="height: 600px;" responsive="true" />
                 </p:panel>
             </p:tab>
