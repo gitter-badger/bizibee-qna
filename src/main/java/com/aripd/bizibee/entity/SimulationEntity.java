@@ -55,6 +55,22 @@ public class SimulationEntity extends AbstractEntity {
     private double usgWeighted = 0;
 
     private String colorBar = "0388e5";
+    private String backgroundColorRevenue = "007be5";
+    private String colorRevenue = "ffffff";
+    private String backgroundColorBudget = "f9c851";
+    private String colorBudget = "ffffff";
+    private String backgroundColorGM = "20d077";
+    private String colorGM = "ffffff";
+    private String backgroundColorMS = "ef6262";
+    private String colorMS = "ffffff";
+    private String backgroundColorUSG = "007be5";
+    private String colorUSG = "ffffff";
+    private String backgroundColorDecisions = "f9c851";
+    private String colorDecisions = "b58c2b";
+    private String backgroundColorReport = "007be5";
+    private String colorReport = "00448f";
+    private String backgroundColorGuide = "20d077";
+    private String colorGuide = "038d4a";
 
     @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
@@ -220,6 +236,134 @@ public class SimulationEntity extends AbstractEntity {
 
     public void setColorBar(String colorBar) {
         this.colorBar = colorBar;
+    }
+
+    public String getBackgroundColorRevenue() {
+        return backgroundColorRevenue;
+    }
+
+    public void setBackgroundColorRevenue(String backgroundColorRevenue) {
+        this.backgroundColorRevenue = backgroundColorRevenue;
+    }
+
+    public String getColorRevenue() {
+        return colorRevenue;
+    }
+
+    public void setColorRevenue(String colorRevenue) {
+        this.colorRevenue = colorRevenue;
+    }
+
+    public String getBackgroundColorBudget() {
+        return backgroundColorBudget;
+    }
+
+    public void setBackgroundColorBudget(String backgroundColorBudget) {
+        this.backgroundColorBudget = backgroundColorBudget;
+    }
+
+    public String getColorBudget() {
+        return colorBudget;
+    }
+
+    public void setColorBudget(String colorBudget) {
+        this.colorBudget = colorBudget;
+    }
+
+    public String getBackgroundColorGM() {
+        return backgroundColorGM;
+    }
+
+    public void setBackgroundColorGM(String backgroundColorGM) {
+        this.backgroundColorGM = backgroundColorGM;
+    }
+
+    public String getColorGM() {
+        return colorGM;
+    }
+
+    public void setColorGM(String colorGM) {
+        this.colorGM = colorGM;
+    }
+
+    public String getBackgroundColorMS() {
+        return backgroundColorMS;
+    }
+
+    public void setBackgroundColorMS(String backgroundColorMS) {
+        this.backgroundColorMS = backgroundColorMS;
+    }
+
+    public String getColorMS() {
+        return colorMS;
+    }
+
+    public void setColorMS(String colorMS) {
+        this.colorMS = colorMS;
+    }
+
+    public String getBackgroundColorUSG() {
+        return backgroundColorUSG;
+    }
+
+    public void setBackgroundColorUSG(String backgroundColorUSG) {
+        this.backgroundColorUSG = backgroundColorUSG;
+    }
+
+    public String getColorUSG() {
+        return colorUSG;
+    }
+
+    public void setColorUSG(String colorUSG) {
+        this.colorUSG = colorUSG;
+    }
+
+    public String getBackgroundColorDecisions() {
+        return backgroundColorDecisions;
+    }
+
+    public void setBackgroundColorDecisions(String backgroundColorDecisions) {
+        this.backgroundColorDecisions = backgroundColorDecisions;
+    }
+
+    public String getColorDecisions() {
+        return colorDecisions;
+    }
+
+    public void setColorDecisions(String colorDecisions) {
+        this.colorDecisions = colorDecisions;
+    }
+
+    public String getBackgroundColorReport() {
+        return backgroundColorReport;
+    }
+
+    public void setBackgroundColorReport(String backgroundColorReport) {
+        this.backgroundColorReport = backgroundColorReport;
+    }
+
+    public String getColorReport() {
+        return colorReport;
+    }
+
+    public void setColorReport(String colorReport) {
+        this.colorReport = colorReport;
+    }
+
+    public String getBackgroundColorGuide() {
+        return backgroundColorGuide;
+    }
+
+    public void setBackgroundColorGuide(String backgroundColorGuide) {
+        this.backgroundColorGuide = backgroundColorGuide;
+    }
+
+    public String getColorGuide() {
+        return colorGuide;
+    }
+
+    public void setColorGuide(String colorGuide) {
+        this.colorGuide = colorGuide;
     }
 
     public List<UserEntity> getUsers() {

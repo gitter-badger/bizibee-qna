@@ -17,9 +17,57 @@
                     </div>
                     <div class="ui-g-9">
                         <h:form>
-                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                            <h:panelGrid columns="2" styleClass="ui-g-12">
                                 <p:outputLabel for="colorBar" value="#{i18n['colorBar']}"/>
                                 <p:colorPicker id="colorBar" value="#{dashboardView.selectedSimulation.colorBar}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorRevenue" value="#{i18n['backgroundColorRevenue']}"/>
+                                <p:colorPicker id="backgroundColorRevenue" value="#{dashboardView.selectedSimulation.backgroundColorRevenue}" mode="inline" />
+
+                                <p:outputLabel for="colorRevenue" value="#{i18n['colorRevenue']}"/>
+                                <p:colorPicker id="colorRevenue" value="#{dashboardView.selectedSimulation.colorRevenue}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorBudget" value="#{i18n['backgroundColorBudget']}"/>
+                                <p:colorPicker id="backgroundColorBudget" value="#{dashboardView.selectedSimulation.backgroundColorBudget}" mode="inline" />
+
+                                <p:outputLabel for="colorBudget" value="#{i18n['colorBudget']}"/>
+                                <p:colorPicker id="colorBudget" value="#{dashboardView.selectedSimulation.colorBudget}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorGM" value="#{i18n['backgroundColorGM']}"/>
+                                <p:colorPicker id="backgroundColorGM" value="#{dashboardView.selectedSimulation.backgroundColorGM}" mode="inline" />
+
+                                <p:outputLabel for="colorGM" value="#{i18n['colorGM']}"/>
+                                <p:colorPicker id="colorGM" value="#{dashboardView.selectedSimulation.colorGM}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorMS" value="#{i18n['backgroundColorMS']}"/>
+                                <p:colorPicker id="backgroundColorMS" value="#{dashboardView.selectedSimulation.backgroundColorMS}" mode="inline" />
+
+                                <p:outputLabel for="colorMS" value="#{i18n['colorMS']}"/>
+                                <p:colorPicker id="colorMS" value="#{dashboardView.selectedSimulation.colorMS}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorUSG" value="#{i18n['backgroundColorUSG']}"/>
+                                <p:colorPicker id="backgroundColorUSG" value="#{dashboardView.selectedSimulation.backgroundColorUSG}" mode="inline" />
+
+                                <p:outputLabel for="colorUSG" value="#{i18n['colorUSG']}"/>
+                                <p:colorPicker id="colorUSG" value="#{dashboardView.selectedSimulation.colorUSG}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorDecisions" value="#{i18n['backgroundColorDecisions']}"/>
+                                <p:colorPicker id="backgroundColorDecisions" value="#{dashboardView.selectedSimulation.backgroundColorDecisions}" mode="inline" />
+
+                                <p:outputLabel for="colorDecisions" value="#{i18n['colorDecisions']}"/>
+                                <p:colorPicker id="colorDecisions" value="#{dashboardView.selectedSimulation.colorDecisions}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorReport" value="#{i18n['backgroundColorReport']}"/>
+                                <p:colorPicker id="backgroundColorReport" value="#{dashboardView.selectedSimulation.backgroundColorReport}" mode="inline" />
+
+                                <p:outputLabel for="colorReport" value="#{i18n['colorReport']}"/>
+                                <p:colorPicker id="colorReport" value="#{dashboardView.selectedSimulation.colorReport}" mode="inline" />
+
+                                <p:outputLabel for="backgroundColorGuide" value="#{i18n['backgroundColorGuide']}"/>
+                                <p:colorPicker id="backgroundColorGuide" value="#{dashboardView.selectedSimulation.backgroundColorGuide}" mode="inline" />
+
+                                <p:outputLabel for="colorGuide" value="#{i18n['colorGuide']}"/>
+                                <p:colorPicker id="colorGuide" value="#{dashboardView.selectedSimulation.colorGuide}" mode="inline" />
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@all" actionListener="#{dashboardView.doUpdateSimulation}"/>
