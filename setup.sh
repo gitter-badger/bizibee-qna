@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 read -p "Choose an action (type [1]local, [2]remote): " SERVER
-read -p "Choose an action (type [1]resource, [2]realm, [3]deploy, [4]undeploy or [5]database): " ACTION
+read -p "Choose an action (type [1]resource, [2]realm, [3]deploy, [4]undeploy, [5]database, [6]assign): " ACTION
 
 if [ $SERVER -eq 1 ]
 then
@@ -29,6 +29,9 @@ then
 elif [ $ACTION -eq 5 ]
 then
   CASEaction="database"
+elif [ $ACTION -eq 6 ]
+then
+  CASEaction="assign"
 else
   echo "Not found"
   CASEaction="end"
@@ -75,6 +78,9 @@ case $CASEaction in
     ;;
   undeploy)
     $ASADMIN undeploy bizibee-qna-1.0
+    ;;
+  assign)
+    $ASADMIN set server.application-ref.bizibee-qna-1.0.virtual-servers=server
     ;;
   database)
     $MYSQL -u root -p --default-character-set=utf8 bizibee < $SQL
