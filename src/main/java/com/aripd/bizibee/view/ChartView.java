@@ -447,9 +447,9 @@ public class ChartView implements Serializable {
                 .forEach(i -> {
                     series1.set(i.getQuestion().getName(), response2Revenue(i));
                 });
-        if (series1.getData().isEmpty()) {
-            series1.set("Initial Value", sales);
-        }
+//        if (series1.getData().isEmpty()) {
+//            series1.set("Initial Value", sales);
+//        }
 
         LineChartSeries series2 = new LineChartSeries();
         series2.setLabel("USG");
@@ -460,16 +460,17 @@ public class ChartView implements Serializable {
                 .stream()
                 .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
                 .forEach(i -> {
-                    series2.set(i.getQuestion().getName(), response2USG(i));
+                    series2.set(i.getQuestion().getName(), response2USG(i) * 100);
                 });
-        if (series2.getData().isEmpty()) {
-            series2.set("Initial Value", usg);
-        }
+//        if (series2.getData().isEmpty()) {
+//            series2.set("Initial Value", usg * 100);
+//        }
 
         model.addSeries(series1);
         model.addSeries(series2);
 
         model.setTitle("Revenue & USG Chart");
+        model.setExtender("customExtender");
 //        model.setLegendPosition("ne");
         model.setMouseoverHighlight(false);
 
@@ -483,41 +484,11 @@ public class ChartView implements Serializable {
 //        yAxis.setMin(0);
 //        yAxis.setMax(200);
 
-        Axis y2Axis = new LinearAxis("USG");
+        Axis y2Axis = new LinearAxis("USG (percentage)");
 //        y2Axis.setMin(0);
 //        y2Axis.setMax(200);
 
         model.getAxes().put(AxisType.Y2, y2Axis);
-
-        return model;
-    }
-
-    public BarChartModel getBarModelUSG(UserEntity u) {
-        List<ResponseEntity> responses;
-        if (u != null) {
-            responses = responseService.findByUser(u);
-        } else {
-            responses = responseService.findByUser(user);
-        }
-
-        BarChartModel model = new BarChartModel();
-        model.setTitle("USG Chart");
-        Axis xAxis = model.getAxis(AxisType.X);
-        xAxis.setTickAngle(-50);
-        Axis yAxis = model.getAxis(AxisType.Y);
-        yAxis.setTickFormat("%.2f");
-
-        ChartSeries series1 = new ChartSeries();
-        series1.set("Initial Value", usg);
-
-        responses
-                .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2USG(i));
-                });
-
-        model.addSeries(series1);
 
         return model;
     }
@@ -532,9 +503,11 @@ public class ChartView implements Serializable {
 
         BarChartModel model = new BarChartModel();
         model.setTitle("GM Chart");
+        model.setExtender("customExtender");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setTickAngle(-50);
         Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setLabel("GM (percentage)");
         yAxis.setTickFormat("%.2f");
 
         ChartSeries series1 = new ChartSeries();
@@ -544,7 +517,7 @@ public class ChartView implements Serializable {
                 .stream()
                 .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
                 .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2GM(i));
+                    series1.set(i.getQuestion().getName(), response2GM(i) * 100);
                 });
 
         model.addSeries(series1);
@@ -562,9 +535,11 @@ public class ChartView implements Serializable {
 
         BarChartModel model = new BarChartModel();
         model.setTitle("MS Chart");
+        model.setExtender("customExtender");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setTickAngle(-50);
         Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setLabel("MS (percentage)");
         yAxis.setTickFormat("%.2f");
 
         ChartSeries series1 = new ChartSeries();
@@ -574,7 +549,7 @@ public class ChartView implements Serializable {
                 .stream()
                 .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
                 .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2MS(i));
+                    series1.set(i.getQuestion().getName(), response2MS(i) * 100);
                 });
 
         model.addSeries(series1);
@@ -592,9 +567,11 @@ public class ChartView implements Serializable {
 
         BarChartModel model = new BarChartModel();
         model.setTitle("Budget Chart");
+        model.setExtender("customExtender");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setTickAngle(-50);
         Axis yAxis = model.getAxis(AxisType.Y);
+        yAxis.setLabel("Budget");
         yAxis.setTickFormat("%.2f");
 
         ChartSeries series1 = new ChartSeries();

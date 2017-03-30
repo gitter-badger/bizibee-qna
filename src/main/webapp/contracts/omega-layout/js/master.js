@@ -27,6 +27,12 @@ $.extend({
     }
 });
 
+function customExtender() {
+    this.cfg.grid = {
+        background: '#FFF' //Set background to white
+    };
+}
+
 function planogram(e, answerId) {
     var img = $(e).parent().parent().next().find('img');
     var src = img.attr('src');
