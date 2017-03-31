@@ -87,7 +87,7 @@
                 </div>
 
                 <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
-                    <h:panelGroup rendered="#{response.question.kind eq 'SIMULATION'}">
+                    <h:panelGroup rendered="#{request.isUserInRole('Player') ? response.question.kind eq 'SIMULATION' : true }">
                         <hr style="width: 25%"/>
                         <h2>
                             <p:link outcome="/player/simulation" value="#{response.question.name}" rendered="#{empty cc.attrs.player}">
@@ -216,8 +216,6 @@
                 </p:panel>
             </p:tab>
         </p:tabView>
-
-        <p:button value="#{reportView.simulation.thanksLinkText}" href="#{reportView.simulation.thanksLinkHref}" />
 
     </composite:implementation>
 
