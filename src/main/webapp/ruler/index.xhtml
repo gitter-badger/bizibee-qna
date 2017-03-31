@@ -13,7 +13,8 @@
                 <div class="ui-g ui-fluid dashboard">
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">#{i18n['Revenue']}</span>
+                            <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
+                            <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
                             <span class="detail">Sales Income</span>
                             <span class="count revenue">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.salesStart}">
@@ -25,7 +26,8 @@
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">#{i18n['Budget']}</span>
+                            <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
+                            <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
                             <span class="detail">Restriction on expenditure</span>
                             <span class="count budget">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.budgetStart}">
@@ -37,7 +39,8 @@
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">#{i18n['GM']}</span>
+                            <h:outputText id="grossmargin" value="#{i18n['GM']}" styleClass="title" />
+                            <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
                             <span class="detail">Revenue minus cost of goods sold</span>
                             <span class="count grossmargin">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.gmStart}">
@@ -49,7 +52,8 @@
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <div class="card clearfix summary">
-                            <span class="title">#{i18n['MS']}</span>
+                            <h:outputText id="marketshare" value="#{i18n['MS']}" styleClass="title" />
+                            <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
                             <span class="detail">Portion of the market</span>
                             <span class="count marketshare">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.msStart}">
@@ -62,7 +66,8 @@
 
                     <div class="ui-g-12 ui-md-4">
                         <div class="card clearfix summary">
-                            <span class="title">USG</span>
+                            <h:outputText id="underlyingsalesgrowth" value="#{i18n['USG']}" styleClass="title" />
+                            <p:tooltip for="underlyingsalesgrowth" position="top" style="width: 300px;" value="USG reflects the change in revenue from continuing operations at constant rates of exchange, excluding the effects of acquisitions and disposals. It is a measure that provides valuable additional information on the underlying performance of the business. In particular, it presents the organic growth of our business year on year and is used internally as a core measure of sales performance." />
                             <span class="detail">Underlying Sales Growth Weighted</span>
                             <span class="count underlyingsalesgrowth">
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.usgWeighted}">
@@ -142,7 +147,6 @@
                         <div class="highlight-box">
                             <div class="initials decisions"><i class="fa fa-list"></i></div>
                             <div class="card">
-                                <span class="fa fa-list"></span>
                                 <span>#{i18n['Decisions']}</span>
                                 <span class="count">#{dashboardView.numberOfDecisions}</span>
                             </div>
@@ -152,7 +156,6 @@
                         <div class="highlight-box">
                             <div class="initials report"><i class="fa fa-line-chart"></i></div>
                             <div class="card">
-                                <span class="fa fa-line-chart"></span>
                                 <span>#{i18n['Report']}</span>
                                 <span class="count"> </span>
                                 <span>
@@ -173,7 +176,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
