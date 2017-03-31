@@ -42,16 +42,16 @@ case $CASEserver in
   local)
     ASADMIN="/Users/cem/Developments/glassfish4/glassfish/bin/asadmin"
     MYSQL="/usr/local/Cellar/mysql/5.7.15/bin/mysql"
-    GLASSFISH_RESOURCES="/Users/cem/Developments/NetBeansProjects/bizibee/src/main/webapp/WEB-INF/glassfish-resources.xml"
-    WAR="/Users/cem/Developments/NetBeansProjects/bizibee/target/bizibee-qna-1.0.war"
-    SQL="/Users/cem/Developments/NetBeansProjects/bizibee/src/main/resources/META-INF/load.sql"
+    GLASSFISH_RESOURCES="/Users/cem/Developments/NetBeansProjects/bizibee-qna/src/main/webapp/WEB-INF/glassfish-resources.xml"
+    WAR="/Users/cem/Developments/NetBeansProjects/bizibee-qna/target/bizibee-qna-1.0.war"
+    SQL="/Users/cem/Developments/NetBeansProjects/bizibee-qna/src/main/resources/META-INF/load.sql"
     ;;
   remote)
     ASADMIN="/opt/glassfish4/bin/asadmin"
     MYSQL="/usr/bin/mysql"
-    GLASSFISH_RESOURCES="/root/bizibee/src/main/webapp/WEB-INF/glassfish-resources.xml"
-    WAR="/root/bizibee/target/bizibee-qna-1.0.war"
-    SQL="/root/bizibee/src/main/resources/META-INF/load.sql"
+    GLASSFISH_RESOURCES="/root/bizibee-qna/src/main/webapp/WEB-INF/glassfish-resources.xml"
+    WAR="/root/bizibee-qna/target/bizibee-qna-1.0.war"
+    SQL="/root/bizibee-qna/src/main/resources/META-INF/load.sql"
     ;;
 esac
 
