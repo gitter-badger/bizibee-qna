@@ -34,9 +34,9 @@
 
         <div id="features">
             <div class="features-content">
-                <h1 class="feature-title">#{i18n['Simulation']}</h1>
-                <h:panelGrid columns="2" columnClasses="ui-g-3,ui-g-9">
-                    <a:identicon text="#{dashboardView.selectedUser.email}" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}"  rendered="#{empty dashboardView.selectedUser.bytes}"/>
+                <!--<h1 class="feature-title">#{i18n['Simulation']}</h1>-->
+                <h:panelGrid columns="2" columnClasses="ui-g-3,ui-g-9" rendered="false">
+                    <a:identicon text="#{dashboardView.selectedUser.email}" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{empty dashboardView.selectedUser.bytes}"/>
                     <o:graphicImage value="#{dashboardView.selectedUser.bytes}" dataURI="true" style="width: 100%;" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{not empty dashboardView.selectedUser.bytes}"/>
                     <h2>#{dashboardView.selectedUser.name}</h2>
                 </h:panelGrid>

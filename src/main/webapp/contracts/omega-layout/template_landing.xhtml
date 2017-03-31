@@ -130,6 +130,10 @@
                                     <p:commandLink value="#{i18n['Logout']}" action="#{loginBean.doLogout}" rendered="#{not empty request.userPrincipal}"/>
                                 </h:form>
                             </li>
+                            <li>
+                                <a:identicon text="#{dashboardView.selectedUser.email}" width="30" height="30" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{request.isUserInRole('Player') and empty dashboardView.selectedUser.bytes}"/>
+                                <o:graphicImage value="#{dashboardView.selectedUser.bytes}" dataURI="true" width="30" height="30" alt="#{dashboardView.selectedUser.name}" title="#{dashboardView.selectedUser.name}" rendered="#{request.isUserInRole('Player') and not empty dashboardView.selectedUser.bytes}"/>
+                            </li>
                         </ul>
                     </div>
                 </div>
