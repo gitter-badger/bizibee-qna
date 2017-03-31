@@ -1,8 +1,6 @@
 package com.aripd.bizibee.view;
 
-import com.aripd.bizibee.entity.Kind;
 import com.aripd.bizibee.entity.QuestionEntity;
-import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SimulationEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.UserEntity;
@@ -20,7 +18,6 @@ import org.primefaces.model.UploadedFile;
 import com.aripd.bizibee.service.QuestionService;
 import com.aripd.bizibee.service.ResponseService;
 import com.aripd.util.RequestUtil;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,10 +81,6 @@ public class DashboardView implements Serializable {
 
     public int getNumberOfDecisions() {
         return groupService.count();
-    }
-
-    public int getNumberOfQuestions() {
-        return questionService.calculateNumberOfQuestionsByKind(Arrays.asList(Kind.SIMULATION));
     }
 
     public void continueTheSimulation(ActionEvent actionEvent) {

@@ -54,23 +54,24 @@ public class SimulationEntity extends AbstractEntity {
     private double msWeighted = 0;
     private double usgWeighted = 0;
 
-    private String colorBar = "0388e5";
-    private String backgroundColorRevenue = "007be5";
-    private String colorRevenue = "ffffff";
-    private String backgroundColorBudget = "f9c851";
-    private String colorBudget = "ffffff";
-    private String backgroundColorGM = "20d077";
-    private String colorGM = "ffffff";
-    private String backgroundColorMS = "ef6262";
-    private String colorMS = "ffffff";
-    private String backgroundColorUSG = "007be5";
-    private String colorUSG = "ffffff";
-    private String backgroundColorDecisions = "f9c851";
-    private String colorDecisions = "b58c2b";
-    private String backgroundColorReport = "007be5";
-    private String colorReport = "00448f";
-    private String backgroundColorGuide = "20d077";
-    private String colorGuide = "038d4a";
+    private String backgroundColorBar = "0388e5";//150958
+    private String backgroundColorBudget = "f9c851";//fbb040
+    private String backgroundColorDecisions = "f9c851";//fbb040
+    private String backgroundColorGM = "20d077";//1c75bc
+    private String backgroundColorGuide = "20d077";//1c75bc
+    private String backgroundColorMS = "ef6262";//f58220
+    private String backgroundColorReport = "007be5";//8a1f63
+    private String backgroundColorRevenue = "007be5";//8a1f63
+    private String backgroundColorUSG = "007be5";//f58220
+
+    private String colorBudget = "ffffff";//ffffff
+    private String colorDecisions = "b58c2b";//a85f00
+    private String colorGM = "ffffff";//ffffff
+    private String colorGuide = "038d4a";//00458f
+    private String colorMS = "ffffff";//ffffff
+    private String colorReport = "00448f";//630045
+    private String colorRevenue = "ffffff";//ffffff
+    private String colorUSG = "ffffff";//ffffff
 
     @OneToMany(mappedBy = "simulation", orphanRemoval = true)
     private List<UserEntity> users;
@@ -230,28 +231,12 @@ public class SimulationEntity extends AbstractEntity {
         this.usgWeighted = usgWeighted;
     }
 
-    public String getColorBar() {
-        return colorBar;
+    public String getBackgroundColorBar() {
+        return backgroundColorBar;
     }
 
-    public void setColorBar(String colorBar) {
-        this.colorBar = colorBar;
-    }
-
-    public String getBackgroundColorRevenue() {
-        return backgroundColorRevenue;
-    }
-
-    public void setBackgroundColorRevenue(String backgroundColorRevenue) {
-        this.backgroundColorRevenue = backgroundColorRevenue;
-    }
-
-    public String getColorRevenue() {
-        return colorRevenue;
-    }
-
-    public void setColorRevenue(String colorRevenue) {
-        this.colorRevenue = colorRevenue;
+    public void setBackgroundColorBar(String backgroundColorBar) {
+        this.backgroundColorBar = backgroundColorBar;
     }
 
     public String getBackgroundColorBudget() {
@@ -262,12 +247,12 @@ public class SimulationEntity extends AbstractEntity {
         this.backgroundColorBudget = backgroundColorBudget;
     }
 
-    public String getColorBudget() {
-        return colorBudget;
+    public String getBackgroundColorDecisions() {
+        return backgroundColorDecisions;
     }
 
-    public void setColorBudget(String colorBudget) {
-        this.colorBudget = colorBudget;
+    public void setBackgroundColorDecisions(String backgroundColorDecisions) {
+        this.backgroundColorDecisions = backgroundColorDecisions;
     }
 
     public String getBackgroundColorGM() {
@@ -278,12 +263,12 @@ public class SimulationEntity extends AbstractEntity {
         this.backgroundColorGM = backgroundColorGM;
     }
 
-    public String getColorGM() {
-        return colorGM;
+    public String getBackgroundColorGuide() {
+        return backgroundColorGuide;
     }
 
-    public void setColorGM(String colorGM) {
-        this.colorGM = colorGM;
+    public void setBackgroundColorGuide(String backgroundColorGuide) {
+        this.backgroundColorGuide = backgroundColorGuide;
     }
 
     public String getBackgroundColorMS() {
@@ -294,12 +279,20 @@ public class SimulationEntity extends AbstractEntity {
         this.backgroundColorMS = backgroundColorMS;
     }
 
-    public String getColorMS() {
-        return colorMS;
+    public String getBackgroundColorReport() {
+        return backgroundColorReport;
     }
 
-    public void setColorMS(String colorMS) {
-        this.colorMS = colorMS;
+    public void setBackgroundColorReport(String backgroundColorReport) {
+        this.backgroundColorReport = backgroundColorReport;
+    }
+
+    public String getBackgroundColorRevenue() {
+        return backgroundColorRevenue;
+    }
+
+    public void setBackgroundColorRevenue(String backgroundColorRevenue) {
+        this.backgroundColorRevenue = backgroundColorRevenue;
     }
 
     public String getBackgroundColorUSG() {
@@ -310,20 +303,12 @@ public class SimulationEntity extends AbstractEntity {
         this.backgroundColorUSG = backgroundColorUSG;
     }
 
-    public String getColorUSG() {
-        return colorUSG;
+    public String getColorBudget() {
+        return colorBudget;
     }
 
-    public void setColorUSG(String colorUSG) {
-        this.colorUSG = colorUSG;
-    }
-
-    public String getBackgroundColorDecisions() {
-        return backgroundColorDecisions;
-    }
-
-    public void setBackgroundColorDecisions(String backgroundColorDecisions) {
-        this.backgroundColorDecisions = backgroundColorDecisions;
+    public void setColorBudget(String colorBudget) {
+        this.colorBudget = colorBudget;
     }
 
     public String getColorDecisions() {
@@ -334,12 +319,28 @@ public class SimulationEntity extends AbstractEntity {
         this.colorDecisions = colorDecisions;
     }
 
-    public String getBackgroundColorReport() {
-        return backgroundColorReport;
+    public String getColorGM() {
+        return colorGM;
     }
 
-    public void setBackgroundColorReport(String backgroundColorReport) {
-        this.backgroundColorReport = backgroundColorReport;
+    public void setColorGM(String colorGM) {
+        this.colorGM = colorGM;
+    }
+
+    public String getColorGuide() {
+        return colorGuide;
+    }
+
+    public void setColorGuide(String colorGuide) {
+        this.colorGuide = colorGuide;
+    }
+
+    public String getColorMS() {
+        return colorMS;
+    }
+
+    public void setColorMS(String colorMS) {
+        this.colorMS = colorMS;
     }
 
     public String getColorReport() {
@@ -350,20 +351,20 @@ public class SimulationEntity extends AbstractEntity {
         this.colorReport = colorReport;
     }
 
-    public String getBackgroundColorGuide() {
-        return backgroundColorGuide;
+    public String getColorRevenue() {
+        return colorRevenue;
     }
 
-    public void setBackgroundColorGuide(String backgroundColorGuide) {
-        this.backgroundColorGuide = backgroundColorGuide;
+    public void setColorRevenue(String colorRevenue) {
+        this.colorRevenue = colorRevenue;
     }
 
-    public String getColorGuide() {
-        return colorGuide;
+    public String getColorUSG() {
+        return colorUSG;
     }
 
-    public void setColorGuide(String colorGuide) {
-        this.colorGuide = colorGuide;
+    public void setColorUSG(String colorUSG) {
+        this.colorUSG = colorUSG;
     }
 
     public List<UserEntity> getUsers() {

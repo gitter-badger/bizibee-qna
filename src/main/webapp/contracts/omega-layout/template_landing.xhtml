@@ -31,8 +31,8 @@
                 <h:panelGroup rendered="#{request.isUserInRole('Ruler') or request.isUserInRole('Player')}">
                     <style>
                         .landing-wrapper .landing-header {
-                            /*background: ##{dashboardView.selectedUser.simulation.colorBar} url('http://www.halltaylorfuneralhomes.com/art/backgroundBelowTopBar_950x201.jpg') no-repeat center;*/
-                            background: ##{dashboardView.selectedUser.simulation.colorBar};
+                            /*background: ##{dashboardView.selectedUser.simulation.backgroundColorBar} url('http://www.halltaylorfuneralhomes.com/art/backgroundBelowTopBar_950x201.jpg') no-repeat center;*/
+                            background: ##{dashboardView.selectedUser.simulation.backgroundColorBar};
                         }
                         .dashboard .summary .count.revenue {
                             background-color: ##{dashboardView.selectedUser.simulation.backgroundColorRevenue};
