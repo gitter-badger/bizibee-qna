@@ -1,7 +1,7 @@
 INSERT INTO `SIMULATIONENTITY` (`ID`, `BACKGROUNDCOLORBAR`, `BACKGROUNDCOLORBUDGET`, `BACKGROUNDCOLORDECISIONS`, `BACKGROUNDCOLORGM`, `BACKGROUNDCOLORGUIDE`, `BACKGROUNDCOLORMS`, `BACKGROUNDCOLORREPORT`, `BACKGROUNDCOLORREVENUE`, `BACKGROUNDCOLORUSG`, `BUDGETSTART`, `BYTES`, `CODE`, `COLORBUDGET`, `COLORDECISIONS`, `COLORGM`, `COLORGUIDE`, `COLORMS`, `COLORREPORT`, `COLORREVENUE`, `COLORUSG`, `DATEEND`, `DATESTART`, `DESCRIPTION`, `GMSTART`, `GMWEIGHTED`, `HEADLINE`, `MSSTART`, `MSWEIGHTED`, `NAME`, `SALESSTART`, `SCORESTART`, `THANKSDIALOGCONTENT`, `THANKSDIALOGHEADER`, `THANKSLINKHREF`, `THANKSLINKTEXT`, `USGWEIGHTED`)
 VALUES
 	(1,'0388e5','f9c851','f9c851','20d077','20d077','ef6262','007be5','007be5','007be5',0,NULL,'ARIPDCOM','ffffff','b58c2b','ffffff','038d4a','ffffff','00448f','ffffff','ffffff',NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,NULL,0,0,'',0,0,'ARI Business Management Systems',0,0,'','','','',0),
-	(2,'150958','fbb040','fbb040','1c75bc','1c75bc','f58220','8a1f63','8a1f63','f58220',100000,NULL,'UNILEVER2017','ffffff','a85f00','ffffff','00458f','ffffff','630045','ffffff','ffffff',NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,'Your group are working as Customer Development Managers in Local Modern Trade in First Look Hair Co. First Look Hair Co. is one of leading Personal Care companies in Turkey. You can find detailed information about First Look Hair Co from next pages. You and your sales team are maintaining a sustainable partnership with your customer Planet. Planet is the biggest Supermarket Chains in İstanbul. You can find detailed information in the attached file about the case.',0.4,0.25,'Get Ready for the Customer Development',0.4,0.55,'Unilever Beyond Sales 2017',5000000,0,'Your simulations is completed. Thanks for your contribution.','Thanks for your contribution','http://www.unilever.com','Go to Competition Page',0.2);
+	(2,'150958','fbb040','fbb040','1c75bc','1c75bc','f58220','8a1f63','8a1f63','f58220',100000,NULL,'UNILEVER2017','ffffff','a85f00','ffffff','00458f','ffffff','630045','ffffff','ffffff',NOW() + INTERVAL 15 DAY,NOW() - INTERVAL 15 DAY,'Your group are working as Customer Development Managers in Local Modern Trade in First Look Hair Co. First Look Hair Co. is one of leading Personal Care companies in Turkey. You can find detailed information about First Look Hair Co from next pages. You and your sales team are maintaining a sustainable partnership with your customer Planet. Planet is the biggest Supermarket Chains in İstanbul. You can find detailed information in the attached file about the case.',0.4,0.25,'Get Ready for the Customer Development',0.4,0.55,'Unilever Beyond Sales 2017',5000000,0,'Your simulations is completed.','Thanks for your contribution','http://www.unilever.com','Go to Competition Page',0.2);
 
 INSERT INTO `USERENTITY` (`ID`, `BYTES`, `EMAIL`, `NAME`, `PASSWORD`, `TEAMNAME`, `USERGROUP`, `USERNAME`, `UUID`, `SIMULATION_ID`, `TEAM_ID`)
 VALUES
@@ -195,3 +195,36 @@ VALUES
 (111,2,NULL,0,0,0,0,0,0,0,-0.0025,0,0,0,0,0,0,-0.00765,0,0,'Astro 400 ML Daycare Shampoo',26),
 (112,2,NULL,0,-0.000727,0,0,0,0,0,-0.057,0,0,0,0,0,0,-0.17431,0,0,'Neuro 900 ML Anti-Hairloss Shampoo',26),
 (113,2,NULL,0,0.000336,0,0,0,0,0,-0.0065,0,0,0,0,0,0,-0.01988,0,0,'Astro 600 ML Daycare Shampoo',26);
+
+
+
+
+INSERT INTO `RESPONSEENTITY` (`ID`, `SIMULATION_ID`, `BYTES`, `OUTCOME`, `QUESTION_ID`, `USER_ID`)
+VALUES
+	(1,2,NULL,'{\"id\":1}',1,3),
+	(2,2,NULL,'[{\"answer\":5,\"value\":100}, {\"answer\":6,\"value\":90}, {\"answer\":7,\"value\":90}, {\"answer\":8,\"value\":90}]',2,3),
+	(3,2,NULL,'{\"id\":9}',3,3),
+	(4,2,NULL,'{\"id\":17}',4,3),
+	(5,2,NULL,'{\"id\":22}',5,3),
+	(6,2,NULL,'{\"id\":26}',6,3),
+	(7,2,NULL,'{\"id\":27}',7,3),
+	(8,2,NULL,'{\"id\":31}',8,3),
+	(9,2,NULL,'{\"id\":35}',9,3),
+	(10,2,NULL,'{\"id\":38}',10,3),
+	(11,2,NULL,'{\"id\":42}',11,3),
+	(12,2,NULL,'{\"answers\":[{\"id\":43},{\"id\":44},{\"id\":45}]}',12,3),
+	(13,2,NULL,'{\"id\":46}',13,3),
+	(14,2,NULL,'{\"answers\":[{\"id\":50},{\"id\":51},{\"id\":52}]}',14,3),
+	(15,2,NULL,'{\"answers\":[{\"id\":53},{\"id\":54},{\"id\":55}]}',15,3),
+	(16,2,NULL,'{\"answers\":[{\"id\":56},{\"id\":57},{\"id\":58}]}',16,3),
+	(17,2,NULL,'{\"answers\":[{\"id\":59},{\"id\":60},{\"id\":61}]}',17,3),
+	(18,2,NULL,'{\"id\":62}',18,3),
+	(19,2,NULL,'[{\"answer\":66,\"value\":1}, {\"answer\":67,\"value\":2}, {\"answer\":68,\"value\":3}, {\"answer\":69,\"value\":4}, {\"answer\":70,\"value\":5}, {\"answer\":71,\"value\":6}, {\"answer\":72,\"value\":7}, {\"answer\":73,\"value\":8}, {\"answer\":74,\"value\":9}, {\"answer\":75,\"value\":10}, {\"answer\":76,\"value\":11}, {\"answer\":77,\"value\":12}, {\"answer\":78,\"value\":13}, {\"answer\":79,\"value\":14}, {\"answer\":80,\"value\":15}, {\"answer\":81,\"value\":16}, {\"answer\":82,\"value\":17}, {\"answer\":83,\"value\":18}, {\"answer\":84,\"value\":19}, {\"answer\":85,\"value\":20}, {\"answer\":86,\"value\":21}]',19,3),
+	(20,2,NULL,'{\"id\":87}',20,3),
+	(21,2,NULL,'{\"id\":91}',21,3),
+	(22,2,NULL,'{\"answers\":[{\"id\":95},{\"id\":96},{\"id\":97}]}',22,3),
+	(23,2,NULL,'{\"id\":98}',23,3),
+	(24,2,NULL,'{\"answers\":[{\"id\":102},{\"id\":103}]}',24,3),
+	(25,2,NULL,'{\"id\":104}',25,3),
+	(26,2,NULL,'{\"id\":109}',26,3);
+
