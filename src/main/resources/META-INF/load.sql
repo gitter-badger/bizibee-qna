@@ -198,6 +198,7 @@ VALUES
 
 
 
+
 INSERT INTO `RESPONSEENTITY` (`ID`, `SIMULATION_ID`, `BYTES`, `OUTCOME`, `QUESTION_ID`, `USER_ID`)
 VALUES
 	(1,2,NULL,'{\"id\":1}',1,3),
@@ -229,4 +230,8 @@ VALUES
 	(27,2,NULL,'{\"id\":1}',1,4),
 	(28,2,NULL,'[{\"answer\":5,\"value\":100}, {\"answer\":6,\"value\":90}, {\"answer\":7,\"value\":90}, {\"answer\":8,\"value\":90}]',2,4),
 	(29,2,NULL,'{\"id\":12}',3,4),
-	(30,2,NULL,'{\"id\":14}',4,4);
+	(30,2,NULL,'{\"id\":14}',4,4),
+	(31,2,NULL,'{\"id\":22}',5,4),
+	(32,2,NULL,'{\"id\":23}',6,4),
+	(33,2,NULL,'{\"id\":28}',7,4),
+	(34,2,NULL,'{\"id\":30}',8,4);
