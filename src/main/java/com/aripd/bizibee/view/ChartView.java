@@ -2,6 +2,7 @@ package com.aripd.bizibee.view;
 
 import com.aripd.bizibee.entity.AnswerEntity;
 import com.aripd.bizibee.entity.Kind;
+import com.aripd.bizibee.entity.QuestionEntity;
 import com.aripd.util.MessageUtil;
 import com.aripd.bizibee.entity.ResponseEntity;
 import com.aripd.bizibee.entity.SimulationEntity;
@@ -21,6 +22,7 @@ import javax.json.JsonValue;
 import com.aripd.bizibee.service.AnswerService;
 import com.aripd.bizibee.service.QuestionService;
 import java.util.Arrays;
+import java.util.Optional;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
@@ -45,6 +47,7 @@ public class ChartView implements Serializable {
 
     @Inject
     private QuestionService questionService;
+    private List<QuestionEntity> questions;
 
     @Inject
     private AnswerService answerService;
@@ -91,6 +94,8 @@ public class ChartView implements Serializable {
         usgWeighted = simulation.getUsgWeighted();
         usg = 0;
         usgChange = 0;
+
+        questions = questionService.findByKinds(Arrays.asList(Kind.SIMULATION));
     }
 
     private double response2Revenue(ResponseEntity response) {
@@ -446,40 +451,38 @@ public class ChartView implements Serializable {
         BarChartSeries series1 = new BarChartSeries();
         series1.setLabel("Revenue");
 
-        responses
+        questions
                 .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2Revenue(i));
+                .forEach(q -> {
+                    Optional<ResponseEntity> r1 = responses
+                            .stream()
+                            .filter(r -> r.getQuestion().equals(q))
+                            .findFirst();
+                    if (r1.isPresent()) {
+                        series1.set(r1.get().getQuestion().getName(), response2Revenue(r1.get()));
+                    } else {
+                        series1.set(q.getName(), null);
+                    }
                 });
-        if (series1.getData().isEmpty()) {
-//            series1.set("Initial Value", sales);
-            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
-                    .stream()
-                    .forEach(i -> {
-                        series1.set(i.getName(), null);
-                    });
-        }
 
         LineChartSeries series2 = new LineChartSeries();
         series2.setLabel("USG");
         series2.setXaxis(AxisType.X2);
         series2.setYaxis(AxisType.Y2);
 
-        responses
+        questions
                 .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series2.set(i.getQuestion().getName(), response2USG(i) * 100);
+                .forEach(q -> {
+                    Optional<ResponseEntity> r1 = responses
+                            .stream()
+                            .filter(r -> r.getQuestion().equals(q))
+                            .findFirst();
+                    if (r1.isPresent()) {
+                        series2.set(r1.get().getQuestion().getName(), response2USG(r1.get()) * 100);
+                    } else {
+                        series2.set(q.getName(), null);
+                    }
                 });
-        if (series2.getData().isEmpty()) {
-//            series2.set("Initial Value", usg * 100);
-            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
-                    .stream()
-                    .forEach(i -> {
-                        series2.set(i.getName(), null);
-                    });
-        }
 
         model.addSeries(series1);
         model.addSeries(series2);
@@ -529,20 +532,19 @@ public class ChartView implements Serializable {
 
         ChartSeries series1 = new ChartSeries();
 
-        responses
+        questions
                 .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2GM(i) * 100);
+                .forEach(q -> {
+                    Optional<ResponseEntity> r1 = responses
+                            .stream()
+                            .filter(r -> r.getQuestion().equals(q))
+                            .findFirst();
+                    if (r1.isPresent()) {
+                        series1.set(r1.get().getQuestion().getName(), response2GM(r1.get()) * 100);
+                    } else {
+                        series1.set(q.getName(), null);
+                    }
                 });
-        if (series1.getData().isEmpty()) {
-//        series1.set("Initial Value", gm);
-            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
-                    .stream()
-                    .forEach(i -> {
-                        series1.set(i.getName(), null);
-                    });
-        }
 
         model.addSeries(series1);
 
@@ -569,20 +571,19 @@ public class ChartView implements Serializable {
 
         ChartSeries series1 = new ChartSeries();
 
-        responses
+        questions
                 .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2MS(i) * 100);
+                .forEach(q -> {
+                    Optional<ResponseEntity> r1 = responses
+                            .stream()
+                            .filter(r -> r.getQuestion().equals(q))
+                            .findFirst();
+                    if (r1.isPresent()) {
+                        series1.set(r1.get().getQuestion().getName(), response2MS(r1.get()) * 100);
+                    } else {
+                        series1.set(q.getName(), null);
+                    }
                 });
-        if (series1.getData().isEmpty()) {
-//        series1.set("Initial Value", ms);
-            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
-                    .stream()
-                    .forEach(i -> {
-                        series1.set(i.getName(), null);
-                    });
-        }
 
         model.addSeries(series1);
 
@@ -609,20 +610,19 @@ public class ChartView implements Serializable {
 
         ChartSeries series1 = new ChartSeries();
 
-        responses
+        questions
                 .stream()
-                .filter(i -> i.getQuestion().getKind().equals(Kind.SIMULATION))
-                .forEach(i -> {
-                    series1.set(i.getQuestion().getName(), response2Budget(i));
+                .forEach(q -> {
+                    Optional<ResponseEntity> r1 = responses
+                            .stream()
+                            .filter(r -> r.getQuestion().equals(q))
+                            .findFirst();
+                    if (r1.isPresent()) {
+                        series1.set(r1.get().getQuestion().getName(), response2Budget(r1.get()));
+                    } else {
+                        series1.set(q.getName(), null);
+                    }
                 });
-        if (series1.getData().isEmpty()) {
-//        series1.set("Initial Value", budget);
-            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
-                    .stream()
-                    .forEach(i -> {
-                        series1.set(i.getName(), null);
-                    });
-        }
 
         model.addSeries(series1);
 
@@ -755,6 +755,14 @@ public class ChartView implements Serializable {
 
     public void setMsWeighted(double msWeighted) {
         this.msWeighted = msWeighted;
+    }
+
+    public List<QuestionEntity> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<QuestionEntity> questions) {
+        this.questions = questions;
     }
 
 }
