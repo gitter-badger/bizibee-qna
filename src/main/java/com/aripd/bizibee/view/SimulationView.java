@@ -289,7 +289,7 @@ public class SimulationView implements Serializable {
             QuestionEntity question = getNext(selectedRecord);
             return "/player/simulation?uuid=" + question.getUuid() + "&amp;faces-redirect=true";
         } catch (NullPointerException ex) {
-            return "/player/report?faces-redirect=true";
+            return "/player/report/list?faces-redirect=true";
         }
     }
 
@@ -298,7 +298,7 @@ public class SimulationView implements Serializable {
             QuestionEntity question = getPrevious(selectedRecord);
             return "/player/simulation?uuid=" + question.getUuid() + "&amp;faces-redirect=true";
         } catch (NullPointerException ex) {
-            return "/player/report?faces-redirect=true";
+            return "/player/report/list?faces-redirect=true";
         }
     }
 

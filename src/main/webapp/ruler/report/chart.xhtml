@@ -6,12 +6,17 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{reportView.id}"/>
+            <f:event type="preRenderView" listener="#{reportView.onLoad}"/>
+        </f:metadata>
+
         <div id="features">
             <div class="features-content">
                 <h1 class="feature-title">#{i18n['Report']}</h1>
-                <p>You can see your results.</p>
+                <p>You can see the results of #{reportView.selectedPlayer.username}.</p>
 
-                <composite:report/>
+                <composite:chart player="#{reportView.selectedPlayer}"/>
             </div>
         </div>
     </ui:define>

@@ -91,7 +91,7 @@ public class DashboardView implements Serializable {
             String navigation = "/player/simulation?uuid=" + nextQuestion.getUuid() + "&amp;faces-redirect=true";
             RequestUtil.doNavigate(navigation);
         } else {
-            String navigation = "/player/report?faces-redirect=true";
+            String navigation = "/player/report/list?faces-redirect=true";
             RequestUtil.doNavigate(navigation);
         }
     }
