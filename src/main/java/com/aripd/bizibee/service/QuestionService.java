@@ -10,6 +10,8 @@ public interface QuestionService extends CrudService<QuestionEntity, Long> {
 
     public QuestionEntity findOneByUuid(String uuid);
 
-    public int calculateNumberOfQuestionsByKind(List<Kind> asList);
+    public List<QuestionEntity> findByKinds(List<Kind> kinds);
+
+    public int calculateNumberOfQuestionsByKinds(List<Kind> kinds);
 
 }

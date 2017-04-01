@@ -11,11 +11,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -57,7 +54,19 @@ public class QuestionServiceBean extends CrudServiceBean<QuestionEntity, Long> i
     }
 
     @Override
-    public int calculateNumberOfQuestionsByKind(List<Kind> kind) {
+    public List<QuestionEntity> findByKinds(List<Kind> kinds) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<QuestionEntity> cq = cb.createQuery(QuestionEntity.class);
+        Root<QuestionEntity> root = cq.from(QuestionEntity.class);
+
+        Predicate predicate = root.get(QuestionEntity_.kind).in(kinds);
+        cq.where(predicate);
+
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+
+    @Override
+    public int calculateNumberOfQuestionsByKinds(List<Kind> kinds) {
         try {
             CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
             CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -65,7 +74,7 @@ public class QuestionServiceBean extends CrudServiceBean<QuestionEntity, Long> i
 
             cq.select(cb.count(root));
 
-            Predicate predicate = root.get(QuestionEntity_.kind).in(kind);
+            Predicate predicate = root.get(QuestionEntity_.kind).in(kinds);
             cq.where(predicate);
 
             return getEntityManager().createQuery(cq).getSingleResult().intValue();

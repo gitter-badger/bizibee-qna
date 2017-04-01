@@ -19,6 +19,8 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 import com.aripd.bizibee.service.AnswerService;
+import com.aripd.bizibee.service.QuestionService;
+import java.util.Arrays;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
@@ -40,6 +42,9 @@ public class ChartView implements Serializable {
 
     @Inject
     private ResponseService responseService;
+
+    @Inject
+    private QuestionService questionService;
 
     @Inject
     private AnswerService answerService;
@@ -447,9 +452,14 @@ public class ChartView implements Serializable {
                 .forEach(i -> {
                     series1.set(i.getQuestion().getName(), response2Revenue(i));
                 });
-//        if (series1.getData().isEmpty()) {
+        if (series1.getData().isEmpty()) {
 //            series1.set("Initial Value", sales);
-//        }
+            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
+                    .stream()
+                    .forEach(i -> {
+                        series1.set(i.getName(), null);
+                    });
+        }
 
         LineChartSeries series2 = new LineChartSeries();
         series2.setLabel("USG");
@@ -462,9 +472,14 @@ public class ChartView implements Serializable {
                 .forEach(i -> {
                     series2.set(i.getQuestion().getName(), response2USG(i) * 100);
                 });
-//        if (series2.getData().isEmpty()) {
+        if (series2.getData().isEmpty()) {
 //            series2.set("Initial Value", usg * 100);
-//        }
+            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
+                    .stream()
+                    .forEach(i -> {
+                        series2.set(i.getName(), null);
+                    });
+        }
 
         model.addSeries(series1);
         model.addSeries(series2);
@@ -513,7 +528,6 @@ public class ChartView implements Serializable {
         yAxis.setTickFormat("%.2f");
 
         ChartSeries series1 = new ChartSeries();
-//        series1.set("Initial Value", gm);
 
         responses
                 .stream()
@@ -521,6 +535,14 @@ public class ChartView implements Serializable {
                 .forEach(i -> {
                     series1.set(i.getQuestion().getName(), response2GM(i) * 100);
                 });
+        if (series1.getData().isEmpty()) {
+//        series1.set("Initial Value", gm);
+            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
+                    .stream()
+                    .forEach(i -> {
+                        series1.set(i.getName(), null);
+                    });
+        }
 
         model.addSeries(series1);
 
@@ -546,7 +568,6 @@ public class ChartView implements Serializable {
         yAxis.setTickFormat("%.2f");
 
         ChartSeries series1 = new ChartSeries();
-//        series1.set("Initial Value", ms);
 
         responses
                 .stream()
@@ -554,6 +575,14 @@ public class ChartView implements Serializable {
                 .forEach(i -> {
                     series1.set(i.getQuestion().getName(), response2MS(i) * 100);
                 });
+        if (series1.getData().isEmpty()) {
+//        series1.set("Initial Value", ms);
+            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
+                    .stream()
+                    .forEach(i -> {
+                        series1.set(i.getName(), null);
+                    });
+        }
 
         model.addSeries(series1);
 
@@ -579,7 +608,6 @@ public class ChartView implements Serializable {
         yAxis.setTickFormat("%.2f");
 
         ChartSeries series1 = new ChartSeries();
-//        series1.set("Initial Value", budget);
 
         responses
                 .stream()
@@ -587,6 +615,14 @@ public class ChartView implements Serializable {
                 .forEach(i -> {
                     series1.set(i.getQuestion().getName(), response2Budget(i));
                 });
+        if (series1.getData().isEmpty()) {
+//        series1.set("Initial Value", budget);
+            questionService.findByKinds(Arrays.asList(Kind.SIMULATION))
+                    .stream()
+                    .forEach(i -> {
+                        series1.set(i.getName(), null);
+                    });
+        }
 
         model.addSeries(series1);
 
