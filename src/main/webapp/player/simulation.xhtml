@@ -214,7 +214,6 @@
                         </h:form>
 
                         <h:form rendered="#{not empty simulationView.selectedRecord.guide}" style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #a4a4a4;">
-                            <!--<div><p:commandLink value="#{i18n['Read Sales Fundamentals']}" styleClass="fa fa-info-circle" onclick="PF('guideDialog').show();"/></div>-->
                             <div><p:link value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" /></div>
                         </h:form>
                     </h:panelGroup>
