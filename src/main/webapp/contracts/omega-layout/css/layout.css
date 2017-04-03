@@ -2556,10 +2556,11 @@ a.fragment {
 }
 
 #planogram2Form .ui-panelgrid {
-  background: url("#{resource['images/planogram.jpg']}");
+  /*background: url("#{resource['images/planogram.jpg']}");*/
 }
 #planogram2Form .ui-panelgrid .ui-widget-content {
-  background-color: transparent;
+  /*background-color: transparent;*/
+  background-color: #ffffff;
 }
 
 /* Dashboard */

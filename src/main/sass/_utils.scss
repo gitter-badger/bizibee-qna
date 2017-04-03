@@ -42,10 +42,11 @@ a {
 
 #planogram2Form {
     .ui-panelgrid {
-        background: url("\#{resource['images/planogram.jpg']}");
+        /*background: url("\#{resource['images/planogram.jpg']}");*/
 
         .ui-widget-content {
-            background-color: transparent;
+            /*background-color: transparent;*/
+            background-color: #ffffff;
         }
     }
 }

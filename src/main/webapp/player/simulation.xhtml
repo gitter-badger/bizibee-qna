@@ -147,19 +147,83 @@
 
                         <h:form id="planogram2Form" rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
                             <h:panelGroup id="planogramPanel">
-                                <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
-                                    <c:forEach var="i" begin="1" end="23">
-                                        <h:column>
+                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
+                                    <c:forEach var="i" begin="1" end="60">
+                                        <p:column>
                                             <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
                                             <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
-                                        </h:column>
+                                        </p:column>
                                     </c:forEach>
                                 </p:panelGrid>
 
-                                <p:panelGrid columns="6" styleClass="ui-g-12" style="text-align:center;" rendered="#{!simulationView.disabled}">
-                                    <c:forEach var="i" begin="1" end="46">
-                                        <h:column><span id="item${i}">${i}</span></h:column>
-                                    </c:forEach>
+                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{!simulationView.disabled}">
+                                    <!--                                    <c:forEach var="i" begin="1" end="65">
+                                                                            <p:column><span id="item${i}">${i}</span></p:column>
+                                                                        </c:forEach>-->
+                                    <p:column><p:graphicImage name="/files/sku24.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item1">1</span></p:column>
+                                    <p:column><span id="item2">2</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item3">3</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku32.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku35.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item4">4</span></p:column>
+                                    <p:column><span id="item5">5</span></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku25.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item6">6</span></p:column>
+                                    <p:column><span id="item7">7</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item8">8</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item9">9</span></p:column>
+                                    <p:column><span id="item10">10</span></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item11">11</span></p:column>
+                                    <p:column><span id="item12">12</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item13">13</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item14">14</span></p:column>
+                                    <p:column><span id="item15">15</span></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item16">16</span></p:column>
+                                    <p:column><span id="item17">17</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item18">18</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku30.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku34.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item19">19</span></p:column>
+                                    <p:column><span id="item20">20</span></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku27.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item21">21</span></p:column>
+                                    <p:column><span id="item22">22</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku37.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku40.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item23">23</span></p:column>
+                                    <p:column><span id="item24">24</span></p:column>
+                                    <p:column><p:graphicImage name="/files/sku31.png" width="30" height="30" /></p:column>
+                                    <p:column><span id="item25">25</span></p:column>
+                                    <p:column><span id="item26">26</span></p:column>
                                 </p:panelGrid>
                             </h:panelGroup>
                             <p:sticky target="planogramPanel" margin="90" />
@@ -185,10 +249,10 @@
                                                    size="#{model.answer.inputSize}"
                                                    onblur="planogram(this, #{model.answer.id})" 
                                                    converter="javax.faces.Integer"/>
-                                    <p:graphicImage value="https://unsplash.it/30/?image=#{varStatus.index}" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="false" />
                                     <h:panelGroup>
-                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
-                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>
+<!--                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
+                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>-->
+                                        <p:graphicImage name="/files/sku#{varStatus.index+1}.png" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" />
                                     </h:panelGroup>
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
