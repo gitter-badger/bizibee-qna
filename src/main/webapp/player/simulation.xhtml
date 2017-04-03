@@ -148,80 +148,144 @@
                         <h:form id="planogram2Form" rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
                             <h:panelGroup id="planogramPanel">
                                 <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
-                                    <c:forEach var="i" begin="1" end="60">
-                                        <p:column>
-                                            <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
-                                            <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
-                                        </p:column>
-                                    </c:forEach>
+                                    <!--                                    <c:forEach var="i" begin="1" end="60">
+                                                                            <p:column>
+                                                                                <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
+                                                                                <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
+                                                                            </p:column>
+                                                                        </c:forEach>-->
+                                    <p:column><p:graphicImage name="/files/sku24.png" width="30" height="30" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(1).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(2).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(2).name}" title="#{simulationView.slotToAnswer(2).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(3).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(3).name}" title="#{simulationView.slotToAnswer(3).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku32.png" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku35.png" width="30" height="30" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(4).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(4).name}" title="#{simulationView.slotToAnswer(4).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(5).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(5).name}" title="#{simulationView.slotToAnswer(5).name}" /></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku25.png" width="30" height="30" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(6).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(6).name}" title="#{simulationView.slotToAnswer(6).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(7).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(7).name}" title="#{simulationView.slotToAnswer(7).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(8).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(8).name}" title="#{simulationView.slotToAnswer(8).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(9).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(9).name}" title="#{simulationView.slotToAnswer(9).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(10).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(10).name}" title="#{simulationView.slotToAnswer(10).name}" /></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(11).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(11).name}" title="#{simulationView.slotToAnswer(11).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(12).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(12).name}" title="#{simulationView.slotToAnswer(12).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(13).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(13).name}" title="#{simulationView.slotToAnswer(13).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(14).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(14).name}" title="#{simulationView.slotToAnswer(14).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(15).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(15).name}" title="#{simulationView.slotToAnswer(15).name}" /></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(16).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(16).name}" title="#{simulationView.slotToAnswer(16).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(17).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(17).name}" title="#{simulationView.slotToAnswer(17).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(18).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(18).name}" title="#{simulationView.slotToAnswer(18).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku30.png" width="30" height="30" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku34.png" width="30" height="30" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(19).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(19).name}" title="#{simulationView.slotToAnswer(19).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(20).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(20).name}" title="#{simulationView.slotToAnswer(20).name}" /></p:column>
+
+                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku27.png" width="30" height="30" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(21).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(21).name}" title="#{simulationView.slotToAnswer(21).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(22).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(22).name}" title="#{simulationView.slotToAnswer(22).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku37.png" width="30" height="30" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku40.png" width="30" height="30" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(23).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(23).name}" title="#{simulationView.slotToAnswer(23).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(24).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(24).name}" title="#{simulationView.slotToAnswer(24).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku31.png" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(25).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(25).name}" title="#{simulationView.slotToAnswer(25).name}" /></p:column>
+                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(26).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(26).name}" title="#{simulationView.slotToAnswer(26).name}" /></p:column>
                                 </p:panelGrid>
 
                                 <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{!simulationView.disabled}">
                                     <!--                                    <c:forEach var="i" begin="1" end="65">
                                                                             <p:column><span id="item${i}">${i}</span></p:column>
                                                                         </c:forEach>-->
-                                    <p:column><p:graphicImage name="/files/sku24.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku24.png" width="30" height="30" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item1">1</span></p:column>
                                     <p:column><span id="item2">2</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" /></p:column>
                                     <p:column><span id="item3">3</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku32.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku35.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku32.png" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku35.png" width="30" height="30" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" /></p:column>
                                     <p:column><span id="item4">4</span></p:column>
                                     <p:column><span id="item5">5</span></p:column>
 
-                                    <p:column><p:graphicImage name="/files/sku25.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku25.png" width="30" height="30" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku29.png" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item6">6</span></p:column>
                                     <p:column><span id="item7">7</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" /></p:column>
                                     <p:column><span id="item8">8</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item9">9</span></p:column>
                                     <p:column><span id="item10">10</span></p:column>
 
-                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item11">11</span></p:column>
                                     <p:column><span id="item12">12</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" /></p:column>
                                     <p:column><span id="item13">13</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku33.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item14">14</span></p:column>
                                     <p:column><span id="item15">15</span></p:column>
 
-                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku22.png" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku26.png" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item16">16</span></p:column>
                                     <p:column><span id="item17">17</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku36.png" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku39.png" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" /></p:column>
                                     <p:column><span id="item18">18</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku30.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku34.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku30.png" width="30" height="30" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku34.png" width="30" height="30" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" /></p:column>
                                     <p:column><span id="item19">19</span></p:column>
                                     <p:column><span id="item20">20</span></p:column>
 
-                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku27.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku23.png" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku27.png" width="30" height="30" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" /></p:column>
                                     <p:column><span id="item21">21</span></p:column>
                                     <p:column><span id="item22">22</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku37.png" width="30" height="30" /></p:column>
-                                    <p:column><p:graphicImage name="/files/sku40.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku37.png" width="30" height="30" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku40.png" width="30" height="30" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" /></p:column>
                                     <p:column><span id="item23">23</span></p:column>
                                     <p:column><span id="item24">24</span></p:column>
-                                    <p:column><p:graphicImage name="/files/sku31.png" width="30" height="30" /></p:column>
+                                    <p:column><p:graphicImage name="/files/sku31.png" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" /></p:column>
                                     <p:column><span id="item25">25</span></p:column>
                                     <p:column><span id="item26">26</span></p:column>
                                 </p:panelGrid>
@@ -252,7 +316,7 @@
                                     <h:panelGroup>
 <!--                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
                                         <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>-->
-                                        <p:graphicImage name="/files/sku#{varStatus.index+1}.png" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" />
+                                        <p:graphicImage name="/files/#{model.answer.image}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" />
                                     </h:panelGroup>
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>

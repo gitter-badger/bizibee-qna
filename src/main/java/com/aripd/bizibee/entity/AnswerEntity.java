@@ -26,6 +26,8 @@ public class AnswerEntity extends AbstractEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String name;
 
+    private String image;
+
     @Lob
     private byte[] bytes;
 
@@ -79,6 +81,14 @@ public class AnswerEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public byte[] getBytes() {
