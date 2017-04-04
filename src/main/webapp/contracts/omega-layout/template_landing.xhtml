@@ -105,8 +105,8 @@
                                 BiZiBee<sup>®</sup>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{not empty request.userPrincipal}">
-                                <a:identicon text="#{dashboardView.selectedUser.simulation.name}" width="38" height="38" style="vertical-align: middle;" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{empty dashboardView.selectedUser.simulation.bytes}"/>
-                                <o:graphicImage value="#{dashboardView.selectedUser.simulation.bytes}" dataURI="true" width="38" height="38" style="vertical-align: middle;" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{not empty dashboardView.selectedUser.simulation.bytes}"/>
+                                <a:identicon text="#{dashboardView.selectedUser.simulation.name}" width="38" height="38" style="vertical-align: middle;" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{empty dashboardView.selectedUser.simulation.bytesCompany}"/>
+                                <o:graphicImage value="#{dashboardView.selectedUser.simulation.bytesCompany}" dataURI="true" width="38" height="38" style="vertical-align: middle;" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{not empty dashboardView.selectedUser.simulation.bytesCompany}"/>
                                 <h:outputText value="#{dashboardView.selectedUser.simulation.name}" />
                             </h:panelGroup>
                         </p:link>

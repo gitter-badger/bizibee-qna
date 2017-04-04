@@ -2,11 +2,13 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
         <div id="features">
             <div class="features-content">
+                <o:graphicImage value="#{dashboardView.selectedUser.simulation.bytesSimulation}" dataURI="true" width="210" height="210" alt="#{dashboardView.selectedUser.simulation.name}" title="#{dashboardView.selectedUser.simulation.name}" rendered="#{not empty dashboardView.selectedUser.simulation.bytesSimulation}"/>
                 <h1 class="feature-title">#{dashboardView.selectedUser.simulation.headline}</h1>
                 <p><h:outputText value="#{dashboardView.selectedUser.simulation.description}" escape="false" /></p>
 

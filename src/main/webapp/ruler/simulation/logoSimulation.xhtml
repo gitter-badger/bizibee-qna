@@ -18,19 +18,19 @@
                         <composite:navigationSimulation/>
                     </div>
                     <div class="ui-g-9">
-                        <p>Please choose a square image. Image will be shrinked to 38 by 38 pixels</p>
+                        <p>Please choose an image</p>
                         <h:form enctype="multipart/form-data">
                             <h:panelGrid columns="1" styleClass="ui-g-12">
                                 <f:facet name="header">
-                                    <a:identicon text="#{dashboardView.selectedSimulation.name}" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{empty dashboardView.selectedSimulation.bytes}"/>
-                                    <o:graphicImage value="#{dashboardView.selectedSimulation.bytes}" dataURI="true" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{not empty dashboardView.selectedSimulation.bytes}"/>
+                                    <a:identicon text="#{dashboardView.selectedSimulation.name}" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{empty dashboardView.selectedSimulation.bytesCompany}"/>
+                                    <o:graphicImage value="#{dashboardView.selectedSimulation.bytesSimulation}" dataURI="true" width="210" height="210" alt="#{dashboardView.selectedSimulation.name}" title="#{dashboardView.selectedSimulation.name}" rendered="#{not empty dashboardView.selectedSimulation.bytesSimulation}"/>
                                 </f:facet>
 
-                                <p:fileUpload value="#{dashboardView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+                                <p:fileUpload value="#{dashboardView.fileSimulation}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
 
                                 <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{dashboardView.doUploadImage}" update="@form, :growl" ajax="false"/>
-                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{dashboardView.doResetImage}" update="@form, :growl"/>
+                                    <p:commandButton value="#{i18n['Upload']}" actionListener="#{dashboardView.doUploadImageSimulation}" update="@form, :growl" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset']}" actionListener="#{dashboardView.doResetImageSimulation}" update="@form, :growl"/>
                                 </f:facet>
                             </h:panelGrid>
                         </h:form>

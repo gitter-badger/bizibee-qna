@@ -32,7 +32,9 @@ public class SimulationEntity extends AbstractEntity {
     private String name;
 
     @Lob
-    private byte[] bytes;
+    private byte[] bytesCompany;
+    @Lob
+    private byte[] bytesSimulation;
 
     private String headline;
     @Column(columnDefinition = "TEXT")
@@ -111,12 +113,20 @@ public class SimulationEntity extends AbstractEntity {
         this.name = name;
     }
 
-    public byte[] getBytes() {
-        return bytes;
+    public byte[] getBytesCompany() {
+        return bytesCompany;
     }
 
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
+    public void setBytesCompany(byte[] bytesCompany) {
+        this.bytesCompany = bytesCompany;
+    }
+
+    public byte[] getBytesSimulation() {
+        return bytesSimulation;
+    }
+
+    public void setBytesSimulation(byte[] bytesSimulation) {
+        this.bytesSimulation = bytesSimulation;
     }
 
     public String getHeadline() {

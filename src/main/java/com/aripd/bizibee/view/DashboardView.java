@@ -34,6 +34,7 @@ public class DashboardView implements Serializable {
     private SimulationEntity selectedSimulation;
 
     private UploadedFile file;
+    private UploadedFile fileSimulation;
 
     @Inject
     private QuestionService questionService;
@@ -98,21 +99,41 @@ public class DashboardView implements Serializable {
 
     public void doUploadImage(ActionEvent actionEvent) {
         if (file != null && file.getSize() > 0) {
-            selectedSimulation.setBytes(file.getContents());
+            selectedSimulation.setBytesCompany(file.getContents());
         }
         simulationService.update(selectedSimulation);
         messageUtil.addGlobalInfoFlashMessage("Uploaded");
 
-        String navigation = "/ruler/simulation/logo?faces-redirect=true";
+        String navigation = "/ruler/simulation/logoCompany?faces-redirect=true";
         RequestUtil.doNavigate(navigation);
     }
 
     public void doResetImage(ActionEvent actionEvent) {
-        selectedSimulation.setBytes(null);
+        selectedSimulation.setBytesCompany(null);
         simulationService.update(selectedSimulation);
         messageUtil.addGlobalInfoFlashMessage("Resetted");
 
-        String navigation = "/ruler/simulation/logo?faces-redirect=true";
+        String navigation = "/ruler/simulation/logoCompany?faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
+    }
+
+    public void doUploadImageSimulation(ActionEvent actionEvent) {
+        if (fileSimulation != null && fileSimulation.getSize() > 0) {
+            selectedSimulation.setBytesSimulation(fileSimulation.getContents());
+        }
+        simulationService.update(selectedSimulation);
+        messageUtil.addGlobalInfoFlashMessage("Uploaded");
+
+        String navigation = "/ruler/simulation/logoSimulation?faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
+    }
+
+    public void doResetImageSimulation(ActionEvent actionEvent) {
+        selectedSimulation.setBytesSimulation(null);
+        simulationService.update(selectedSimulation);
+        messageUtil.addGlobalInfoFlashMessage("Resetted");
+
+        String navigation = "/ruler/simulation/logoSimulation?faces-redirect=true";
         RequestUtil.doNavigate(navigation);
     }
 
@@ -143,6 +164,14 @@ public class DashboardView implements Serializable {
 
     public void setFile(UploadedFile file) {
         this.file = file;
+    }
+
+    public UploadedFile getFileSimulation() {
+        return fileSimulation;
+    }
+
+    public void setFileSimulation(UploadedFile fileSimulation) {
+        this.fileSimulation = fileSimulation;
     }
 
     public List<QuestionEntity> getQuestions() {
