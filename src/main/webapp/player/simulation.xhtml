@@ -157,7 +157,10 @@
                                     <p:column><p:graphicImage name="/files/sku24.png" width="30" height="30" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" /></p:column>
                                     <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" /></p:column>
                                     <p:column><p:graphicImage name="/files/sku28.png" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" /></p:column>
-                                    <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(1).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" /></p:column>
+                                    <p:column>
+                                        <!--<o:graphicImage value="#{simulationView.slotToAnswer(1).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" rendered="#{not empty simulationView.slotToAnswer(1).bytes}"/>-->
+                                        <p:graphicImage name="/files/#{simulationView.slotToAnswer(1).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" rendered="true" />
+                                    </p:column>
                                     <p:column><p:graphicImage name="/files/#{simulationView.slotToAnswer(2).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(2).name}" title="#{simulationView.slotToAnswer(2).name}" /></p:column>
                                     <p:column><p:graphicImage name="/files/sku38.png" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" /></p:column>
                                     <p:column><p:graphicImage name="/files/sku41.png" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" /></p:column>
@@ -316,7 +319,7 @@
                                     <h:panelGroup>
 <!--                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
                                         <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>-->
-                                        <p:graphicImage name="/files/#{model.answer.image}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" />
+                                        <p:graphicImage name="/files/#{model.answer.image}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="true" />
                                     </h:panelGroup>
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>

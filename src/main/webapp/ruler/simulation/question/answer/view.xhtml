@@ -23,6 +23,12 @@
                     </div>
                     <div class="ui-g-9">
                         <p:panelGrid columns="2">
+                            <f:facet name="header">
+                                <p:button outcome="/ruler/simulation/question/answer/form" value="#{i18n['Edit']}">
+                                    <f:param name="id" value="#{answerView.selectedRecord.id}" />
+                                </p:button>
+                            </f:facet>
+
                             <p:outputLabel value="#{i18n['Name']}"/>
                             <h:outputText value="#{answerView.selectedRecord.name}"/>
                             <p:outputLabel value="#{i18n['Image']}"/>
