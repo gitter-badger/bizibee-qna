@@ -37,6 +37,8 @@
                                 <h:outputText value="#{guideView.selectedGuide.description}" escape="false" />
                                 <p:outputLabel value="#{i18n['Remark']}"/>
                                 <h:outputText value="#{guideView.selectedGuide.remark}" escape="false"/>
+                                <p:outputLabel value="#{i18n['Image']}"/>
+                                <o:graphicImage value="#{guideView.selectedGuide.bytes}" dataURI="true" alt="#{guideView.selectedGuide.name}" title="#{guideView.selectedGuide.name}" rendered="#{not empty guideView.selectedGuide.bytes}"/>
                             </p:panelGrid>
                         </h:form>
                     </div>

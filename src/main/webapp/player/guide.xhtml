@@ -2,6 +2,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
@@ -25,7 +26,9 @@
                             <h2><h:outputText value="#{guide.name}" /></h2>
                             <h3><h:outputText value="#{guide.description}" escape="false" /></h3>
                             <p><h:outputText value="#{guide.remark}" escape="false" rendered="false" /></p>
-                            <p><p:graphicImage name="/files/#{guide.name}.jpg" width="700" /></p>
+                            <p>
+                                <o:graphicImage value="#{guide.bytes}" dataURI="true" width="700" alt="#{guide.name}" title="#{guide.name}" rendered="#{not empty guide.bytes}"/>
+                            </p>
                         </ui:repeat>
                     </div>
                 </div>

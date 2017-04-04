@@ -13,8 +13,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import com.aripd.bizibee.service.GuideService;
+import com.aripd.util.RequestUtil;
 import java.util.ArrayList;
 import java.util.Collections;
+import org.primefaces.model.UploadedFile;
 
 @Named
 @ViewScoped
@@ -28,6 +30,8 @@ public class GuideView implements Serializable {
     private LazyDataModel<GuideEntity> lazyModel;
 
     private Long id;
+
+    private UploadedFile file;
 
     @Inject
     MessageUtil messageUtil;
@@ -70,13 +74,28 @@ public class GuideView implements Serializable {
     }
 
     public void doUpdateRecord(ActionEvent actionEvent) {
+        if (file != null && file.getSize() > 0) {
+            selectedGuide.setBytes(file.getContents());
+        }
         guideService.update(selectedGuide);
         messageUtil.addGlobalInfoFlashMessage("Updated");
+
+        String navigation = "/ruler/simulation/guide/form?id=" + selectedGuide.getId() + "&amp;faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public void doDeleteRecord(ActionEvent actionEvent) {
         guideService.delete(selectedGuide);
         messageUtil.addGlobalInfoFlashMessage("Deleted");
+    }
+
+    public void doResetImage(ActionEvent actionEvent) {
+        selectedGuide.setBytes(null);
+        guideService.update(selectedGuide);
+        messageUtil.addGlobalInfoFlashMessage("Resetted");
+
+        String navigation = "/ruler/simulation/guide/form?id=" + selectedGuide.getId() + "&amp;faces-redirect=true";
+        RequestUtil.doNavigate(navigation);
     }
 
     public GuideEntity getSelectedGuide() {
@@ -113,6 +132,14 @@ public class GuideView implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
 }

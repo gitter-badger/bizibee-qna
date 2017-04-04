@@ -3,6 +3,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template_landing.xhtml">
     <ui:define name="content">
@@ -21,27 +22,34 @@
                         <composite:navigationSimulation/>
                     </div>
                     <div class="ui-g-9">
-                        <h:form>
+                        <h:form enctype="multipart/form-data">
                             <h:panelGrid columns="1" styleClass="ui-g-12">
                                 <p:outputLabel for="name" value="#{i18n['Name']}"/>
                                 <p:inputText id="name" value="#{guideView.selectedGuide.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" styleClass="ui-g-12" required="true"/>
-                                
+
                                 <p:outputLabel for="sortOrder" value="#{i18n['Sort Order']}"/>
                                 <p:inputText id="sortOrder" value="#{guideView.selectedGuide.sortOrder}" label="#{i18n['Sort Order']}" placeholder="#{i18n['Sort Order']}" styleClass="ui-g-12" required="true"/>
-                                
+
                                 <p:outputLabel for="description" value="#{i18n['Description']}"/>
                                 <p:inputTextarea id="description" value="#{guideView.selectedGuide.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" styleClass="ui-g-12" />
-                                
+
                                 <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
                                 <p:inputTextarea id="remark" value="#{guideView.selectedGuide.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" styleClass="ui-g-12" />
 
+                                <p:outputLabel for="file" value="#{i18n['Image']}"/>
+                                <p:fileUpload id="file" value="#{guideView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+
                                 <f:facet name="footer">
-                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{guideView.doUpdateRecord}"/>
+                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{guideView.doUpdateRecord}" ajax="false"/>
                                     <p:commandButton value="#{i18n['Delete']}" update="@form, :growl" action="/ruler/simulation/guide/index?faces-redirect=true" actionListener="#{guideView.doDeleteRecord}" icon="fa fa-trash">
                                         <p:confirm header="#{i18n['Confirmation']}" message="#{i18n['Are you sure?']}" icon="ui-icon-alert"/>
                                     </p:commandButton>
+                                    <p:commandButton value="#{i18n['Reset Image']}" actionListener="#{guideView.doResetImage}" update="@form, :growl"/>
                                 </f:facet>
                             </h:panelGrid>
+
+                            <o:graphicImage value="#{guideView.selectedGuide.bytes}" dataURI="true" alt="#{guideView.selectedGuide.name}" title="#{guideView.selectedGuide.name}" rendered="#{not empty guideView.selectedGuide.bytes}"/>
+
                         </h:form>
                     </div>
                 </div>

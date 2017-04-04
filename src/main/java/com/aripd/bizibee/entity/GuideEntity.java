@@ -5,6 +5,7 @@ import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -35,6 +36,9 @@ public class GuideEntity extends AbstractEntity {
 
     @Column(columnDefinition = "TEXT")
     private String remark;
+
+    @Lob
+    private byte[] bytes;
 
     @OneToMany(mappedBy = "guide", orphanRemoval = true)
     private List<QuestionEntity> questions;
@@ -80,6 +84,14 @@ public class GuideEntity extends AbstractEntity {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 
     public List<QuestionEntity> getQuestions() {
