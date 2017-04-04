@@ -70,7 +70,9 @@
                         <h2><h:outputText value="#{simulationView.selectedRecord.name}" /></h2>
                         <h3><h:outputText value="#{simulationView.selectedRecord.description}" /></h3>
                         <p><h:outputText value="#{simulationView.selectedRecord.remark}" /></p>
-                        <o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" width="100%" rendered="#{not empty simulationView.selectedRecord.bytes}"/>
+                        <p>
+                            <o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" rendered="#{not empty simulationView.selectedRecord.bytes}"/>
+                        </p>
 
                         <h:form rendered="#{simulationView.selectedRecord.type eq 'SINGLE_CHOICE'}">
                             <p:selectOneRadio value="#{simulationView.model1.answer}" 
