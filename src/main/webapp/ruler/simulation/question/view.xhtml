@@ -34,9 +34,9 @@
                             <p:outputLabel value="#{i18n['Sort Order']}"/>
                             <h:outputText value="#{questionView.selectedQuestion.sortOrder}"/>
                             <p:outputLabel value="#{i18n['Description']}"/>
-                            <h:outputText value="#{questionView.selectedQuestion.description}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.description}" escape="false"/>
                             <p:outputLabel value="#{i18n['Remark']}"/>
-                            <h:outputText value="#{questionView.selectedQuestion.remark}"/>
+                            <h:outputText value="#{questionView.selectedQuestion.remark}" escape="false"/>
                             <p:outputLabel value="#{i18n['Kind']}"/>
                             <h:outputText value="#{i18n[questionView.selectedQuestion.kind]}"/>
                             <p:outputLabel value="#{i18n['Type']}"/>

@@ -26,7 +26,7 @@
                         <h:form enctype="multipart/form-data">
                             <h:panelGrid columns="1" styleClass="ui-g-12">
                                 <f:facet name="header">
-                                    <o:graphicImage value="#{questionView.selectedQuestion.bytes}" dataURI="true" width="210" height="210" alt="#{questionView.selectedQuestion.name}" title="#{questionView.selectedQuestion.name}" rendered="#{not empty questionView.selectedQuestion.bytes}"/>
+                                    <o:graphicImage value="#{questionView.selectedQuestion.bytes}" dataURI="true" alt="#{questionView.selectedQuestion.name}" title="#{questionView.selectedQuestion.name}" rendered="#{not empty questionView.selectedQuestion.bytes}"/>
                                 </f:facet>
 
                                 <p:fileUpload value="#{questionView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
