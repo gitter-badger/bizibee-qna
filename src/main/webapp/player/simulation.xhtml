@@ -503,7 +503,9 @@
             <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and simulationView.selectedRecord eq simulationView.selectedRecord.group.question and !simulationView.disabled}" modal="true" closable="false" draggable="false">
                 <h2><h:outputText value="#{simulationView.selectedRecord.guide.description}" escape="false" /></h2>
                 <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" escape="false" /></p>
-                <p><p:graphicImage name="/files/#{simulationView.selectedRecord.guide.name}.jpg" width="700" rendered="false" /></p>
+                <p>
+                    <o:graphicImage value="#{simulationView.selectedRecord.guide.bytes}" dataURI="true" width="700" alt="#{simulationView.selectedRecord.guide.name}" title="#{simulationView.selectedRecord.guide.name}" rendered="#{false and not empty simulationView.selectedRecord.guide.bytes}"/>
+                </p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
                     <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" />
