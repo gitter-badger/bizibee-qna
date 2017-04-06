@@ -14,19 +14,6 @@
     </composite:interface>
     <composite:implementation>
 
-        <h:form>
-            <p:tabMenu activeIndex="#{param.i}">
-                <p:menuitem value="#{i18n['List View']}" outcome="#{not empty cc.attrs.player?'/ruler/report/list':'/player/report/list'}" icon="fa fa-list">
-                    <f:param name="i" value="0" />
-                    <f:param name="id" value="#{cc.attrs.player.id}" rendered="#{not empty cc.attrs.player}" />
-                </p:menuitem>
-                <p:menuitem value="#{i18n['Chart View']}" outcome="#{not empty cc.attrs.player?'/ruler/report/chart':'/player/report/chart'}" icon="fa fa-bar-chart">
-                    <f:param name="i" value="1" />
-                    <f:param name="id" value="#{cc.attrs.player.id}" rendered="#{not empty cc.attrs.player}" />
-                </p:menuitem>
-            </p:tabMenu>
-        </h:form>
-
         <h2><p:link fragment="#"><h:outputText value="#{i18n['Initial Values']}" /></p:link></h2>
 
         <div class="ui-g ui-fluid dashboard">
@@ -127,7 +114,7 @@
                                     <f:convertNumber type="number" />
                                 </h:outputText>
                             </span>
-                            <span class="count budget">
+                            <span class="count budget #{reportView.budget lt 0 ? 'error' : ''}">
                                 <h:outputText value="#{reportView.budget}">
                                     <f:convertNumber type="number" />
                                 </h:outputText>

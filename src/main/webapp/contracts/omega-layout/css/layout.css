@@ -2608,6 +2608,11 @@ a.fragment {
 .dashboard .summary .count.budget {
   background-color: #f9c851;
 }
+.dashboard .summary .count.budget.error {
+  background-color: #ff0000;
+  color: #ffffff;
+  font-weight: bolder;
+}
 .dashboard .summary .count.revenue {
   background-color: #007be5;
 }

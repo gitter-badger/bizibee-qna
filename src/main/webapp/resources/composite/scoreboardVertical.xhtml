@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <composite:interface>
+        <composite:attribute name="player" required="false"/>
+    </composite:interface>
+    <composite:implementation>
+
+        <p:panel header="#{i18n['Scoreboard']}" style="margin: 10px auto; width: 100%;" rendered="true">
+            <h:panelGroup layout="block" styleClass="dashboard" rendered="#{empty reportView.getResponses(cc.attrs.player)}">
+                <ul class="scoreboard">
+                    <li>
+                        <span class="count revenue">
+                            <h:outputText value="#{reportView.simulation.salesStart}">
+                                <f:convertNumber type="number" />
+                            </h:outputText>
+                        </span>
+                        <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
+                        <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
+                        <span class="detail"></span>
+                    </li>
+                    <li>
+                        <span class="count budget">
+                            <h:outputText value="#{reportView.simulation.budgetStart}">
+                                <f:convertNumber type="number" />
+                            </h:outputText>
+                        </span>
+                        <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
+                        <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
+                        <span class="detail">Restriction on expenditure</span>
+                    </li>
+                    <li>
+                        <span class="count grossmargin">
+                            <h:outputText value="#{reportView.simulation.gmStart}">
+                                <f:convertNumber type="percent" minFractionDigits="2" />
+                            </h:outputText>
+                        </span>
+                        <h:outputText id="grossmargin" value="#{i18n['GM']}" styleClass="title" />
+                        <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
+                        <span class="detail">Revenue minus cost of goods sold</span>
+                    </li>
+                    <li>
+                        <span class="count marketshare">
+                            <h:outputText value="#{reportView.simulation.msStart}">
+                                <f:convertNumber type="percent" minFractionDigits="2" />
+                            </h:outputText>
+                        </span>
+                        <h:outputText id="marketshare" value="#{i18n['MS']}" styleClass="title" />
+                        <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
+                        <span class="detail">Portion of the market</span>
+                    </li>
+                    <!--                                        <li>
+                                                                <span class="count score">
+                                                                    <h:outputText value="#{reportView.simulation.scoreStart}">
+                                                                        <f:convertNumber type="number" />
+                                                                    </h:outputText>
+                                                                </span>
+                                                                <span class="title">#{i18n['Score']}</span>
+                                                                <span class="detail">#{i18n['Score']}</span>
+                                                            </li>-->
+                </ul>
+            </h:panelGroup>
+
+            <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus" rendered="#{not empty reportView.getResponses(cc.attrs.player)}">
+                <h:panelGroup layout="block" styleClass="dashboard" style="#{varStatus.last?'display: block;':'display: none;'}">
+                    <h:outputText value="#{reportView.calculateScore(response)}" style="display:none;" />
+
+                    <ul class="scoreboard">
+                        <li>
+                            <span class="count revenue">
+                                <h:outputText value="#{reportView.sales}">
+                                    <f:convertNumber type="number" maxFractionDigits="0" />
+                                </h:outputText>
+                            </span>
+                            <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
+                            <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
+                            <span class="detail">
+                                <h:outputText value="#{reportView.usgChange}">
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
+                                </h:outputText>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="count budget #{reportView.budget lt 0 ? 'error' : ''}">
+                                <h:outputText value="#{reportView.budget}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                            <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
+                            <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
+                            <span class="detail">
+                                <h:outputText value="#{reportView.budgetChange}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="count grossmargin">
+                                <h:outputText value="#{reportView.gm}">
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
+                                </h:outputText>
+                            </span>
+                            <h:outputText id="grossmargin" value="#{i18n['GM']}" styleClass="title" />
+                            <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
+                            <span class="detail">
+                                <h:outputText value="#{reportView.gmChange}">
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
+                                </h:outputText>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="count marketshare">
+                                <h:outputText value="#{reportView.ms}">
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
+                                </h:outputText>
+                            </span>
+                            <h:outputText id="marketshare" value="#{i18n['MS']}" styleClass="title" />
+                            <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
+                            <span class="detail">
+                                <h:outputText value="#{reportView.msChange}">
+                                    <f:convertNumber type="percent" minFractionDigits="2" />
+                                </h:outputText>
+                            </span>
+                        </li>
+                        <!--                                            <li>
+                                                                        <span class="count score">
+                                                                            <h:outputText value="#{reportView.score}">
+                                                                                <f:convertNumber type="number" />
+                                                                            </h:outputText>
+                                                                        </span>
+                                                                        <span class="title">#{i18n['Score']}</span>
+                                                                        <span class="detail">
+                                                                            <h:outputText value="#{reportView.scoreChange}">
+                                                                                <f:convertNumber type="number" />
+                                                                            </h:outputText>
+                                                                        </span>
+                                                                    </li>-->
+                    </ul>
+                </h:panelGroup>
+            </ui:repeat>
+            <!--                                <f:facet name="footer">
+                                                <h:panelGroup layout="block" style="text-align: center;">
+                                                    <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
+                                                </h:panelGroup>
+                                                <h:panelGroup layout="block" style="text-align: center;" rendered="false">
+                                                    <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
+                                                        <f:param value="#{simulationView.sequence+1}" />
+                                                        <f:param value="#{simulationView.menuModelByQuestions.elements.size()}" />
+                                                    </h:outputFormat>
+                                                </h:panelGroup>
+                                            </f:facet>-->
+        </p:panel>
+
+    </composite:implementation>
+
+</html>

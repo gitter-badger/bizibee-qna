@@ -14,29 +14,16 @@
     </composite:interface>
     <composite:implementation>
 
-        <h:form>
-            <p:tabMenu activeIndex="#{param.i}">
-                <p:menuitem value="#{i18n['List View']}" outcome="#{not empty cc.attrs.player?'/ruler/report/list':'/player/report/list'}" icon="fa fa-list">
-                    <f:param name="i" value="0" />
-                    <f:param name="id" value="#{cc.attrs.player.id}" rendered="#{not empty cc.attrs.player}" />
-                </p:menuitem>
-                <p:menuitem value="#{i18n['Chart View']}" outcome="#{not empty cc.attrs.player?'/ruler/report/chart':'/player/report/chart'}" icon="fa fa-bar-chart">
-                    <f:param name="i" value="1" />
-                    <f:param name="id" value="#{cc.attrs.player.id}" rendered="#{not empty cc.attrs.player}" />
-                </p:menuitem>
-            </p:tabMenu>
-        </h:form>
-
-        <p:panel header="Revenue and Sales Growth" style="margin: 10px 0px;">
+        <p:panel header="Revenue and Sales Growth" style="margin: 10px auto; width: 100%;">
             <p:chart type="line" model="#{chartView.getMultiAxisModel(cc.attrs.player)}" style="height: 900px;" responsive="true" />
         </p:panel>
-        <p:panel header="Gross Margin" style="margin: 10px 0px;">
+        <p:panel header="Gross Margin" style="margin: 10px auto; width: 100%;">
             <p:chart type="bar" model="#{chartView.getBarModelGM(cc.attrs.player)}" style="height: 600px;" responsive="true" />
         </p:panel>
-        <p:panel header="Market Share" style="margin: 10px 0px;">
+        <p:panel header="Market Share" style="margin: 10px auto; width: 100%;">
             <p:chart type="bar" model="#{chartView.getBarModelMS(cc.attrs.player)}" style="height: 600px;" responsive="true" />
         </p:panel>
-        <p:panel header="Budget" style="margin: 10px 0px;">
+        <p:panel header="Budget" style="margin: 10px auto; width: 100%;">
             <p:chart type="bar" model="#{chartView.getBarModelBudget(cc.attrs.player)}" style="height: 600px;" responsive="true" />
         </p:panel>
 

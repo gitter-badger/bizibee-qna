@@ -11,6 +11,20 @@
                 <h1 class="feature-title">#{i18n['Report']}</h1>
                 <p>You can see your results.</p>
 
+                <h:form>
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="#{i18n['List View']}" outcome="/player/report/list" icon="fa fa-list">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="#{i18n['Chart View']}" outcome="/player/report/chart" icon="fa fa-bar-chart">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="#{i18n['Scoreboard']}" outcome="/player/report/scoreboard" icon="fa fa-television">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:form>
+
                 <composite:report/>
 
             </div>

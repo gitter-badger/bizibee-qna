@@ -44,6 +44,15 @@
             }
             &.budget {
                 background-color: #f9c851;
+                &.error {
+                    background-color: #ff0000;
+                    color: #ffffff;
+                    font-weight: bolder;
+                    &:before {
+                        content: "!!!";
+                        margin-right: 6px;
+                    }
+                }
             }
             &.revenue {
                 background-color: #007be5;

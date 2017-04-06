@@ -6,7 +6,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/template_landing.xhtml">
+                template="/template_landing.xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite">
     <ui:define name="head">
         <style type="text/css">
             .ui-steps .ui-steps-item {
@@ -53,20 +54,8 @@
                             </p:link>
                         </p:dataGrid>
                     </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="ui-g-3" rendered="false">
-                        <p:dataList id="panel1" value="#{simulationView.groups}" var="group" varStatus="varStatus" type="ordered">
-                            <f:facet name="header">#{i18n['Groups']}</f:facet>
-                            <h:outputText value="#{group.name}" style=" font-weight: #{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
-                        </p:dataList>
-                        <p:sticky target="panel1" margin="90" />
-
-                        <p:dataList id="panel2" value="#{simulationView.menuModelByQuestions.elements}" var="element" varStatus="varStatus" type="ordered">
-                            <f:facet name="header">#{i18n['Steps']}</f:facet>
-                            <h:outputText value="#{element.value}" style=" font-weight: #{simulationView.sequence.equals(varStatus.index)?'bold':'normal'};" />
-                        </p:dataList>
-                        <p:sticky target="panel2" margin="90" />
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="ui-g-8">
+                    <composite:scoreboardHorizontal/>
+                    <h:panelGroup layout="block" styleClass="ui-g-12">
                         <h2><h:outputText value="#{simulationView.selectedRecord.name}" /></h2>
                         <h3><h:outputText value="#{simulationView.selectedRecord.description}" escape="false" /></h3>
                         <p><h:outputText value="#{simulationView.selectedRecord.remark}" escape="false" /></p>
@@ -135,8 +124,8 @@
                                                  size="#{model.answer.inputSize}"
                                                  converter="javax.faces.Integer"/>
                                     <h:panelGroup>
-                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
-                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>
+                                        <a:identicon text="#{model.answer.id}" width="50" height="50" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
+                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="50" height="50" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>
                                     </h:panelGroup>
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
@@ -152,92 +141,92 @@
                                 <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
                                     <!--                                    <c:forEach var="i" begin="1" end="60">
                                                                             <p:column>
-                                                                                <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
-                                                                                <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
+                                                                                <a:identicon text="#{simulationView.slotToAnswer(i).id}" width="50" height="50" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{empty simulationView.slotToAnswer(i).bytes}"/>
+                                                                                <o:graphicImage value="#{simulationView.slotToAnswer(i).bytes}" dataURI="true" width="50" height="50" alt="#{simulationView.slotToAnswer(i).name}" title="#{simulationView.slotToAnswer(i).name}" rendered="#{not empty simulationView.slotToAnswer(i).bytes}"/>
                                                                             </p:column>
                                                                         </c:forEach>-->
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku24.jpg']}" title="200 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku24.jpg" width="30" height="30" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku24.jpg" width="50" height="50" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
-                                        <!--<o:graphicImage value="#{simulationView.slotToAnswer(1).bytes}" dataURI="true" width="30" height="30" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" rendered="#{not empty simulationView.slotToAnswer(1).bytes}"/>-->
+                                        <!--<o:graphicImage value="#{simulationView.slotToAnswer(1).bytes}" dataURI="true" width="50" height="50" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" rendered="#{not empty simulationView.slotToAnswer(1).bytes}"/>-->
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(1).image)]}" title="#{simulationView.slotToAnswer(1).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(1).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(1).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(2).image)]}" title="#{simulationView.slotToAnswer(2).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(2).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(2).name}" title="#{simulationView.slotToAnswer(2).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(2).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(2).name}" title="#{simulationView.slotToAnswer(2).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(3).image)]}" title="#{simulationView.slotToAnswer(3).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(3).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(3).name}" title="#{simulationView.slotToAnswer(3).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(3).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(3).name}" title="#{simulationView.slotToAnswer(3).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku32.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku32.jpg" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku32.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku35.jpg']}" title="250 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku35.jpg" width="30" height="30" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
+                                                <p:graphicImage name="/files/sku35.jpg" width="50" height="50" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(4).image)]}" title="#{simulationView.slotToAnswer(4).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(4).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(4).name}" title="#{simulationView.slotToAnswer(4).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(4).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(4).name}" title="#{simulationView.slotToAnswer(4).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(5).image)]}" title="#{simulationView.slotToAnswer(5).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(5).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(5).name}" title="#{simulationView.slotToAnswer(5).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(5).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(5).name}" title="#{simulationView.slotToAnswer(5).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -245,84 +234,84 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku25.jpg']}" title="400 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku25.jpg" width="30" height="30" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku25.jpg" width="50" height="50" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(6).image)]}" title="#{simulationView.slotToAnswer(6).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(6).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(6).name}" title="#{simulationView.slotToAnswer(6).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(6).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(6).name}" title="#{simulationView.slotToAnswer(6).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(7).image)]}" title="#{simulationView.slotToAnswer(7).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(7).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(7).name}" title="#{simulationView.slotToAnswer(7).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(7).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(7).name}" title="#{simulationView.slotToAnswer(7).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(8).image)]}" title="#{simulationView.slotToAnswer(8).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(8).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(8).name}" title="#{simulationView.slotToAnswer(8).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(8).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(8).name}" title="#{simulationView.slotToAnswer(8).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(9).image)]}" title="#{simulationView.slotToAnswer(9).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(9).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(9).name}" title="#{simulationView.slotToAnswer(9).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(9).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(9).name}" title="#{simulationView.slotToAnswer(9).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(10).image)]}" title="#{simulationView.slotToAnswer(10).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(10).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(10).name}" title="#{simulationView.slotToAnswer(10).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(10).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(10).name}" title="#{simulationView.slotToAnswer(10).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -330,84 +319,84 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(11).image)]}" title="#{simulationView.slotToAnswer(11).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(11).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(11).name}" title="#{simulationView.slotToAnswer(11).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(11).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(11).name}" title="#{simulationView.slotToAnswer(11).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(12).image)]}" title="#{simulationView.slotToAnswer(12).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(12).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(12).name}" title="#{simulationView.slotToAnswer(12).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(12).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(12).name}" title="#{simulationView.slotToAnswer(12).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(13).image)]}" title="#{simulationView.slotToAnswer(13).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(13).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(13).name}" title="#{simulationView.slotToAnswer(13).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(13).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(13).name}" title="#{simulationView.slotToAnswer(13).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(14).image)]}" title="#{simulationView.slotToAnswer(14).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(14).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(14).name}" title="#{simulationView.slotToAnswer(14).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(14).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(14).name}" title="#{simulationView.slotToAnswer(14).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(15).image)]}" title="#{simulationView.slotToAnswer(15).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(15).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(15).name}" title="#{simulationView.slotToAnswer(15).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(15).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(15).name}" title="#{simulationView.slotToAnswer(15).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -415,84 +404,84 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(16).image)]}" title="#{simulationView.slotToAnswer(16).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(16).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(16).name}" title="#{simulationView.slotToAnswer(16).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(16).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(16).name}" title="#{simulationView.slotToAnswer(16).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(17).image)]}" title="#{simulationView.slotToAnswer(17).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(17).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(17).name}" title="#{simulationView.slotToAnswer(17).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(17).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(17).name}" title="#{simulationView.slotToAnswer(17).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(18).image)]}" title="#{simulationView.slotToAnswer(18).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(18).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(18).name}" title="#{simulationView.slotToAnswer(18).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(18).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(18).name}" title="#{simulationView.slotToAnswer(18).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku30.jpg']}" title="900 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku30.jpg" width="30" height="30" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku30.jpg" width="50" height="50" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku34.jpg']}" title="900 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku34.jpg" width="30" height="30" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
+                                                <p:graphicImage name="/files/sku34.jpg" width="50" height="50" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(19).image)]}" title="#{simulationView.slotToAnswer(19).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(19).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(19).name}" title="#{simulationView.slotToAnswer(19).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(19).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(19).name}" title="#{simulationView.slotToAnswer(19).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(20).image)]}" title="#{simulationView.slotToAnswer(20).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(20).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(20).name}" title="#{simulationView.slotToAnswer(20).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(20).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(20).name}" title="#{simulationView.slotToAnswer(20).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -500,84 +489,84 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
+                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
+                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku27.jpg']}" title="600 ml + 200ml Care + Dandruff Shampoo Copack">
-                                                <p:graphicImage name="/files/sku27.jpg" width="30" height="30" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
+                                                <p:graphicImage name="/files/sku27.jpg" width="50" height="50" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(21).image)]}" title="#{simulationView.slotToAnswer(21).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(21).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(21).name}" title="#{simulationView.slotToAnswer(21).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(21).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(21).name}" title="#{simulationView.slotToAnswer(21).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(22).image)]}" title="#{simulationView.slotToAnswer(22).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(22).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(22).name}" title="#{simulationView.slotToAnswer(22).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(22).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(22).name}" title="#{simulationView.slotToAnswer(22).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku37.jpg']}" title="600ml+200ml Beauty + yağlanma karşıtı">
-                                                <p:graphicImage name="/files/sku37.jpg" width="30" height="30" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
+                                                <p:graphicImage name="/files/sku37.jpg" width="50" height="50" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku40.jpg']}" title="600 ml + 200ml Anti Oil + Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku40.jpg" width="30" height="30" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku40.jpg" width="50" height="50" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(23).image)]}" title="#{simulationView.slotToAnswer(23).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(23).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(23).name}" title="#{simulationView.slotToAnswer(23).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(23).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(23).name}" title="#{simulationView.slotToAnswer(23).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(24).image)]}" title="#{simulationView.slotToAnswer(24).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(24).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(24).name}" title="#{simulationView.slotToAnswer(24).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(24).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(24).name}" title="#{simulationView.slotToAnswer(24).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku31.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku31.jpg" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku31.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(25).image)]}" title="#{simulationView.slotToAnswer(25).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(25).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(25).name}" title="#{simulationView.slotToAnswer(25).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(25).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(25).name}" title="#{simulationView.slotToAnswer(25).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(26).image)]}" title="#{simulationView.slotToAnswer(26).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(26).image}" width="30" height="30" alt="#{simulationView.slotToAnswer(26).name}" title="#{simulationView.slotToAnswer(26).name}" />
+                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(26).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(26).name}" title="#{simulationView.slotToAnswer(26).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -590,21 +579,21 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku24.jpg']}" title="200 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku24.jpg" width="30" height="30" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku24.jpg" width="50" height="50" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="30" height="30" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -613,14 +602,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -628,14 +617,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku32.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku32.jpg" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku32.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku35.jpg']}" title="250 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku35.jpg" width="30" height="30" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
+                                                <p:graphicImage name="/files/sku35.jpg" width="50" height="50" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -645,21 +634,21 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku25.jpg']}" title="400 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku25.jpg" width="30" height="30" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku25.jpg" width="50" height="50" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="30" height="30" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -668,14 +657,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="30" height="30" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="30" height="30" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -683,14 +672,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -700,21 +689,21 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -723,14 +712,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -738,14 +727,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -755,21 +744,21 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="30" height="30" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="30" height="30" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -778,14 +767,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="30" height="30" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="30" height="30" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
+                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -793,14 +782,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku30.jpg']}" title="900 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku30.jpg" width="30" height="30" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku30.jpg" width="50" height="50" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku34.jpg']}" title="900 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku34.jpg" width="30" height="30" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
+                                                <p:graphicImage name="/files/sku34.jpg" width="50" height="50" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -810,21 +799,21 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
+                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="30" height="30" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
+                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku27.jpg']}" title="600 ml + 200ml Care + Dandruff Shampoo Copack">
-                                                <p:graphicImage name="/files/sku27.jpg" width="30" height="30" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
+                                                <p:graphicImage name="/files/sku27.jpg" width="50" height="50" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -833,14 +822,14 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku37.jpg']}" title="600ml+200ml Beauty + yağlanma karşıtı">
-                                                <p:graphicImage name="/files/sku37.jpg" width="30" height="30" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
+                                                <p:graphicImage name="/files/sku37.jpg" width="50" height="50" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku40.jpg']}" title="600 ml + 200ml Anti Oil + Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku40.jpg" width="30" height="30" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
+                                                <p:graphicImage name="/files/sku40.jpg" width="50" height="50" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -849,7 +838,7 @@
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku31.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku31.jpg" width="30" height="30" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                                <p:graphicImage name="/files/sku31.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -881,9 +870,13 @@
                                                    onblur="planogram(this, #{model.answer.id})" 
                                                    converter="javax.faces.Integer"/>
                                     <h:panelGroup>
-<!--                                        <a:identicon text="#{model.answer.id}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
-                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>-->
-                                        <p:graphicImage name="/files/#{model.answer.image}" width="30" height="30" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="true" />
+<!--                                        <a:identicon text="#{model.answer.id}" width="50" height="50" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{empty model.answer.bytes}"/>
+                                        <o:graphicImage value="#{model.answer.bytes}" dataURI="true" width="50" height="50" alt="#{model.answer.name}" title="#{model.answer.name}" rendered="#{not empty model.answer.bytes}"/>-->
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/'.concat(model.answer.image)]}" title="#{model.answer.name}">
+                                                <p:graphicImage name="/files/#{model.answer.image}" width="50" height="50" alt="#{model.answer.name}" title="#{model.answer.name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
                                     </h:panelGroup>
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
@@ -909,157 +902,24 @@
                         </h:form>
 
                         <h:form rendered="#{not empty simulationView.selectedRecord.guide}" style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #a4a4a4;">
-                            <div><p:link value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" /></div>
+                            <p:link style="float: left;" value="#{i18n['Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" />
+                            <p:link style="float: right;" value="#{i18n['Scoreboard']}" outcome="/player/report/scoreboard" target="_blank" styleClass="fa fa-television">
+                                <f:param name="i" value="2" />
+                            </p:link>
                         </h:form>
                     </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
-                        <h:form id="panel">
-                            <p:panel>
-                                <h:panelGroup rendered="#{empty reportView.getResponses(dashboardView.selectedUser)}">
-                                    <ul class="scoreboard">
-                                        <li>
-                                            <span class="count revenue">
-                                                <h:outputText value="#{reportView.simulation.salesStart}">
-                                                    <f:convertNumber type="number" />
-                                                </h:outputText>
-                                            </span>
-                                            <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
-                                            <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
-                                            <span class="detail"></span>
-                                        </li>
-                                        <li>
-                                            <span class="count budget">
-                                                <h:outputText value="#{reportView.simulation.budgetStart}">
-                                                    <f:convertNumber type="number" />
-                                                </h:outputText>
-                                            </span>
-                                            <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
-                                            <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
-                                            <span class="detail">Restriction on expenditure</span>
-                                        </li>
-                                        <li>
-                                            <span class="count grossmargin">
-                                                <h:outputText value="#{reportView.simulation.gmStart}">
-                                                    <f:convertNumber type="percent" minFractionDigits="2" />
-                                                </h:outputText>
-                                            </span>
-                                            <h:outputText id="grossmargin" value="#{i18n['GM']}" styleClass="title" />
-                                            <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
-                                            <span class="detail">Revenue minus cost of goods sold</span>
-                                        </li>
-                                        <li>
-                                            <span class="count marketshare">
-                                                <h:outputText value="#{reportView.simulation.msStart}">
-                                                    <f:convertNumber type="percent" minFractionDigits="2" />
-                                                </h:outputText>
-                                            </span>
-                                            <h:outputText id="marketshare" value="#{i18n['MS']}" styleClass="title" />
-                                            <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
-                                            <span class="detail">Portion of the market</span>
-                                        </li>
-                                        <!--                                        <li>
-                                                                                    <span class="count score">
-                                                                                        <h:outputText value="#{reportView.simulation.scoreStart}">
-                                                                                            <f:convertNumber type="number" />
-                                                                                        </h:outputText>
-                                                                                    </span>
-                                                                                    <span class="title">#{i18n['Score']}</span>
-                                                                                    <span class="detail">#{i18n['Score']}</span>
-                                                                                </li>-->
-                                    </ul>
-                                </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="ui-g-2" rendered="#{false and simulationView.selectedRecord.kind eq 'SIMULATION'}">
+                        <p:dataList id="panel1" value="#{simulationView.groups}" var="group" varStatus="varStatus" type="definition">
+                            <f:facet name="header">#{i18n['Decisions']}</f:facet>
+                            <h:outputText value="#{group.name}" styleClass="#{simulationView.selectedRecord.group.equals(group)?'ui-state-highlight':''}" style="margin: 10px;" />
+                        </p:dataList>
+                        <p:sticky target="panel1" margin="90" />
 
-                                <ui:repeat var="response" value="#{reportView.getResponses(dashboardView.selectedUser)}" varStatus="varStatus" rendered="#{not empty reportView.getResponses(dashboardView.selectedUser)}">
-                                    <h:panelGroup style="#{varStatus.last?'display: block;':'display: none;'}">
-                                        <h:outputText value="#{reportView.calculateScore(response)}" style="display:none;" />
-
-                                        <ul class="scoreboard">
-                                            <li>
-                                                <span class="count revenue">
-                                                    <h:outputText value="#{reportView.sales}">
-                                                        <f:convertNumber type="number" maxFractionDigits="0" />
-                                                    </h:outputText>
-                                                </span>
-                                                <h:outputText id="revenue" value="#{i18n['Revenue']}" styleClass="title" />
-                                                <p:tooltip for="revenue" position="top" style="width: 300px;" value="Turnover comprises sales of goods and services after deduction of discounts and sales taxes. It does not include sales between group companies. Discounts include rebates, price reductions and incentives given to customers, promotional couponing and trade communication costs. Turnover is recognised when the risks and rewards of the underlying products and services have been substantially transferred to the customer. Revenue from services is recognised as the services are performed. Interest revenue is recognised as interest accrues using the effective interest method." />
-                                                <span class="detail">
-                                                    <h:outputText value="#{reportView.usgChange}">
-                                                        <f:convertNumber type="percent" minFractionDigits="2" />
-                                                    </h:outputText>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="count budget #{reportView.budget lt 0 ? 'error' : ''}">
-                                                    <h:outputText value="#{reportView.budget}">
-                                                        <f:convertNumber type="number" />
-                                                    </h:outputText>
-                                                </span>
-                                                <h:outputText id="budget" value="#{i18n['Budget']}" styleClass="title" />
-                                                <p:tooltip for="budget" position="top" style="width: 300px;" value="Budget is a quantitative expression of a plan for a defined period of time. It may include planned sales volumes and revenues, resource quantities, costs and expenses, assets, liabilities and cash flows." />
-                                                <span class="detail">
-                                                    <h:outputText value="#{reportView.budgetChange}">
-                                                        <f:convertNumber type="number" />
-                                                    </h:outputText>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="count grossmargin">
-                                                    <h:outputText value="#{reportView.gm}">
-                                                        <f:convertNumber type="percent" minFractionDigits="2" />
-                                                    </h:outputText>
-                                                </span>
-                                                <h:outputText id="grossmargin" value="#{i18n['GM']}" styleClass="title" />
-                                                <p:tooltip for="grossmargin" position="top" style="width: 300px;" value="Gross Margin represents the percent of total sales revenue that the company retains after incurring the direct costs associated with producing the goods and services it sells. The higher the percentage, the more the company retains on each dollar of sales, to service its other costs and debt obligations." />
-                                                <span class="detail">
-                                                    <h:outputText value="#{reportView.gmChange}">
-                                                        <f:convertNumber type="percent" minFractionDigits="2" />
-                                                    </h:outputText>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="count marketshare">
-                                                    <h:outputText value="#{reportView.ms}">
-                                                        <f:convertNumber type="percent" minFractionDigits="2" />
-                                                    </h:outputText>
-                                                </span>
-                                                <h:outputText id="marketshare" value="#{i18n['MS']}" styleClass="title" />
-                                                <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
-                                                <span class="detail">
-                                                    <h:outputText value="#{reportView.msChange}">
-                                                        <f:convertNumber type="percent" minFractionDigits="2" />
-                                                    </h:outputText>
-                                                </span>
-                                            </li>
-                                            <!--                                            <li>
-                                                                                            <span class="count score">
-                                                                                                <h:outputText value="#{reportView.score}">
-                                                                                                    <f:convertNumber type="number" />
-                                                                                                </h:outputText>
-                                                                                            </span>
-                                                                                            <span class="title">#{i18n['Score']}</span>
-                                                                                            <span class="detail">
-                                                                                                <h:outputText value="#{reportView.scoreChange}">
-                                                                                                    <f:convertNumber type="number" />
-                                                                                                </h:outputText>
-                                                                                            </span>
-                                                                                        </li>-->
-                                        </ul>
-                                    </h:panelGroup>
-                                </ui:repeat>
-                                <!--                                <f:facet name="footer">
-                                                                    <h:panelGroup layout="block" style="text-align: center;">
-                                                                        <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
-                                                                    </h:panelGroup>
-                                                                    <h:panelGroup layout="block" style="text-align: center;" rendered="false">
-                                                                        <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
-                                                                            <f:param value="#{simulationView.sequence+1}" />
-                                                                            <f:param value="#{simulationView.menuModelByQuestions.elements.size()}" />
-                                                                        </h:outputFormat>
-                                                                    </h:panelGroup>
-                                                                </f:facet>-->
-                            </p:panel>
-                        </h:form>
-                        <p:sticky target="panel" margin="90" />
+                        <p:dataList id="panel2" value="#{simulationView.menuModelByQuestions.elements}" var="element" varStatus="varStatus" type="ordered" rendered="false">
+                            <f:facet name="header">#{i18n['Steps']}</f:facet>
+                            <h:outputText value="#{element.value}" style=" font-weight: #{simulationView.sequence.equals(varStatus.index)?'bold':'normal'};" />
+                        </p:dataList>
+                        <p:sticky target="panel2" margin="90" />
                     </h:panelGroup>
                 </div>
             </div>
@@ -1075,7 +935,7 @@
                 </p>
                 <f:facet name="footer">
                     <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
-                    <p:button value="#{i18n['Go to Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" />
+                    <p:button value="#{i18n['Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" />
                 </f:facet>
             </p:dialog>
         </h:form>
