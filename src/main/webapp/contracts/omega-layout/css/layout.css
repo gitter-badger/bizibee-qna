@@ -2613,6 +2613,10 @@ a.fragment {
   color: #ffffff;
   font-weight: bolder;
 }
+.dashboard .summary .count.budget.error:before {
+  content: "!!!";
+  margin-right: 6px;
+}
 .dashboard .summary .count.revenue {
   background-color: #007be5;
 }

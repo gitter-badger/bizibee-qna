@@ -57,15 +57,18 @@
                         <p:tooltip for="marketshare" position="top" style="width: 300px;" value="Market Share represents the percentage of an industry or market's total sales that is earned by a particular company over a specified time period. Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period. This metric is used to give a general idea of the size of a company in relation to its market and its competitors." />
                         <span class="detail">Portion of the market</span>
                     </li>
-                    <!--                                        <li>
-                                                                <span class="count score">
-                                                                    <h:outputText value="#{reportView.simulation.scoreStart}">
-                                                                        <f:convertNumber type="number" />
-                                                                    </h:outputText>
-                                                                </span>
-                                                                <span class="title">#{i18n['Score']}</span>
-                                                                <span class="detail">#{i18n['Score']}</span>
-                                                            </li>-->
+                    <h:panelGroup rendered="#{request.isUserInRole('Ruler')}">
+                        <li>
+                            <span class="count score">
+                                <h:outputText value="#{reportView.simulation.scoreStart}">
+                                    <f:convertNumber type="number" />
+                                </h:outputText>
+                            </span>
+                            <h:outputText id="score" value="#{i18n['Score']}" styleClass="title" />
+                            <p:tooltip for="score" position="top" style="width: 300px;" value="Score" />
+                            <span class="detail">#{i18n['Score']}</span>
+                        </li>
+                    </h:panelGroup>
                 </ul>
             </h:panelGroup>
 
@@ -130,33 +133,25 @@
                                 </h:outputText>
                             </span>
                         </li>
-                        <!--                                            <li>
-                                                                        <span class="count score">
-                                                                            <h:outputText value="#{reportView.score}">
-                                                                                <f:convertNumber type="number" />
-                                                                            </h:outputText>
-                                                                        </span>
-                                                                        <span class="title">#{i18n['Score']}</span>
-                                                                        <span class="detail">
-                                                                            <h:outputText value="#{reportView.scoreChange}">
-                                                                                <f:convertNumber type="number" />
-                                                                            </h:outputText>
-                                                                        </span>
-                                                                    </li>-->
+                        <h:panelGroup rendered="#{request.isUserInRole('Ruler')}">
+                            <li>
+                                <span class="count score">
+                                    <h:outputText value="#{reportView.score}">
+                                        <f:convertNumber type="number" />
+                                    </h:outputText>
+                                </span>
+                                <h:outputText id="score" value="#{i18n['Score']}" styleClass="title" />
+                                <p:tooltip for="score" position="top" style="width: 300px;" value="Score" />
+                                <span class="detail">
+                                    <h:outputText value="#{reportView.scoreChange}">
+                                        <f:convertNumber type="number" />
+                                    </h:outputText>
+                                </span>
+                            </li>
+                        </h:panelGroup>
                     </ul>
                 </h:panelGroup>
             </ui:repeat>
-            <!--                                <f:facet name="footer">
-                                                <h:panelGroup layout="block" style="text-align: center;">
-                                                    <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
-                                                </h:panelGroup>
-                                                <h:panelGroup layout="block" style="text-align: center;" rendered="false">
-                                                    <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
-                                                        <f:param value="#{simulationView.sequence+1}" />
-                                                        <f:param value="#{simulationView.menuModelByQuestions.elements.size()}" />
-                                                    </h:outputFormat>
-                                                </h:panelGroup>
-                                            </f:facet>-->
         </p:panel>
 
     </composite:implementation>

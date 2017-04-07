@@ -185,17 +185,6 @@
                     </h:panelGroup>
                 </h:panelGroup>
             </ui:repeat>
-            <!--                                <f:facet name="footer">
-                                                <h:panelGroup layout="block" style="text-align: center;">
-                                                    <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
-                                                </h:panelGroup>
-                                                <h:panelGroup layout="block" style="text-align: center;" rendered="false">
-                                                    <h:outputFormat value="{0} of {1}" style="font-style: italic; font-size: smaller;">
-                                                        <f:param value="#{simulationView.sequence+1}" />
-                                                        <f:param value="#{simulationView.menuModelByQuestions.elements.size()}" />
-                                                    </h:outputFormat>
-                                                </h:panelGroup>
-                                            </f:facet>-->
         </p:panel>
 
     </composite:implementation>
