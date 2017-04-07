@@ -13,4 +13,6 @@ public interface ResponseService extends CrudService<ResponseEntity, Long> {
 
     public ResponseEntity findOneByUserAndQuestion(UserEntity user, QuestionEntity question);
 
+    public ResponseEntity findOneByUserIdAndQuestionId(Long userId, Long questionId);
+
 }

@@ -5,91 +5,52 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:o="http://omnifaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/template_landing.xhtml"
-                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite">
-    <ui:define name="head">
-        <style type="text/css">
-            .ui-steps .ui-steps-item {
-                width: calc(100% / #{simulationView.menuModelByGroups.elements.size()});
-                /*width: calc(100% / #{simulationView.menuModelByQuestions.elements.size()});*/
-                line-height: 75px;
-                text-align: center;
-            }
-            .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-number {
-                display: none;
-            }
-            .ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-title {
-                white-space: initial;
-                display: inline-block;
-                vertical-align: middle;
-                line-height: normal;
-            }
-        </style>
-    </ui:define>
+                template="/template_landing.xhtml">
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="uuid" value="#{simulationView.uuid}"/>
-            <f:event type="preRenderView" listener="#{simulationView.onLoad}"/>
+            <f:viewParam name="questionId" value="#{responseController.questionId}"/>
+            <f:viewParam name="userId" value="#{responseController.userId}"/>
+            <f:event type="preRenderView" listener="#{responseController.onLoad}"/>
         </f:metadata>
 
         <div id="features">
             <div class="features-content">
-                <div class="ui-g dashboard">
-                    <h:panelGroup styleClass="ui-g-12 ui-md-12" rendered="#{simulationView.selectedRecord.kind eq 'SIMULATION'}">
-                        <p:steps activeIndex="#{simulationView.groups.indexOf(simulationView.selectedRecord.group)}" readonly="true" model="#{simulationView.menuModelByGroups}" rendered="true" />
-                        <p:steps activeIndex="#{simulationView.sequence}" readonly="true" model="#{simulationView.menuModelByQuestions}" rendered="false" />
-                        <p:dataGrid value="#{simulationView.groups}" var="group" columns="#{simulationView.groups.size()}" rendered="false">
-                            <p:link outcome="/player/simulation">
-                                <f:param name="uuid" value="#{group.question.uuid}" />
-                                <i class="fa fa-check-square-o"></i>
-                                <h:outputText value="#{group.name}" style="font-weight:#{simulationView.selectedRecord.group.equals(group)?'bold':'normal'};" />
-                            </p:link>
-                        </p:dataGrid>
-                    </h:panelGroup>
-                    <composite:scoreboardHorizontal/>
+                <div class="ui-g">
                     <h:panelGroup layout="block" styleClass="ui-g-12">
-                        <h2><h:outputText value="#{simulationView.selectedRecord.name}" /></h2>
-                        <h3><h:outputText value="#{simulationView.selectedRecord.description}" escape="false" /></h3>
-                        <p><h:outputText value="#{simulationView.selectedRecord.remark}" escape="false" /></p>
-                        <p><o:graphicImage value="#{simulationView.selectedRecord.bytes}" dataURI="true" rendered="#{not empty simulationView.selectedRecord.bytes}"/></p>
+                        <h2><h:outputText value="#{responseController.selectedRecord.question.name}" /></h2>
+                        <h3><h:outputText value="#{responseController.selectedRecord.question.description}" escape="false" /></h3>
+                        <p><h:outputText value="#{responseController.selectedRecord.question.remark}" escape="false" /></p>
+                        <p><o:graphicImage value="#{responseController.selectedRecord.question.bytes}" dataURI="true" rendered="#{not empty responseController.selectedRecord.bytes}"/></p>
 
-                        <h:form rendered="#{simulationView.selectedRecord.type eq 'SINGLE_CHOICE'}">
-                            <p:selectOneRadio value="#{simulationView.model1.answer}" 
-                                              label="#{simulationView.selectedRecord.name}" 
-                                              required="#{simulationView.selectedRecord.required}" 
-                                              disabled="#{simulationView.disabled}"
+                        <h:form rendered="#{responseController.selectedRecord.question.type eq 'SINGLE_CHOICE'}">
+                            <p:selectOneRadio value="#{responseController.model1.answer}" 
+                                              label="#{responseController.selectedRecord.question.name}" 
+                                              required="#{responseController.selectedRecord.question.required}" 
+                                              disabled="#{responseController.disabled}"
                                               layout="pageDirection" columns="1"
                                               converter="#{answerConverter}">
-                                <f:selectItems value="#{simulationView.selectedRecord.answers}" var="answer" itemValue="#{answer}" itemLabel="#{answer.name}"/>
+                                <f:selectItems value="#{responseController.selectedRecord.question.answers}" var="answer" itemValue="#{answer}" itemLabel="#{answer.name}"/>
                             </p:selectOneRadio>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check">
-                                <p:confirm header="#{simulationView.selectedRecord.confirmHeader}" message="#{simulationView.selectedRecord.confirmMessage}" icon="ui-icon-alert"/>
-                            </p:commandButton>
-                            <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.type eq 'MULTIPLE_CHOICE'}">
-                            <p:selectManyCheckbox value="#{simulationView.model2.answers}" 
-                                                  label="#{simulationView.selectedRecord.name}" 
-                                                  required="#{simulationView.selectedRecord.required}" 
-                                                  disabled="#{simulationView.disabled}"
+                        <h:form rendered="#{responseController.selectedRecord.question.type eq 'MULTIPLE_CHOICE'}">
+                            <p:selectManyCheckbox value="#{responseController.model2.answers}" 
+                                                  label="#{responseController.selectedRecord.question.name}" 
+                                                  required="#{responseController.selectedRecord.question.required}" 
+                                                  disabled="#{responseController.disabled}"
                                                   layout="pageDirection" columns="1"
                                                   converter="#{answerConverter}">
-                                <f:selectItems value="#{simulationView.selectedRecord.answers}" var="answer" itemValue="#{answer}" itemLabel="#{answer.name}"/>
+                                <f:selectItems value="#{responseController.selectedRecord.question.answers}" var="answer" itemValue="#{answer}" itemLabel="#{answer.name}"/>
                             </p:selectManyCheckbox>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check">
-                                <p:confirm header="#{simulationView.selectedRecord.confirmHeader}" message="#{simulationView.selectedRecord.confirmMessage}" icon="ui-icon-alert"/>
-                            </p:commandButton>
-                            <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.type eq 'RANGE_CHOICE'}">
-                            <p:repeat var="model" value="#{simulationView.model5}">
+                        <h:form rendered="#{responseController.selectedRecord.question.type eq 'RANGE_CHOICE'}">
+                            <p:repeat var="model" value="#{responseController.model5}">
                                 <h:panelGrid columns="2">
                                     <p:spinner value="#{model.value}" 
-                                               label="#{simulationView.selectedRecord.name}" 
-                                               required="#{simulationView.selectedRecord.required}" 
-                                               disabled="#{simulationView.disabled}"
+                                               label="#{responseController.selectedRecord.question.name}" 
+                                               required="#{responseController.selectedRecord.question.required}" 
+                                               disabled="#{responseController.disabled}"
                                                min="#{model.answer.coefIndexMin}" 
                                                max="#{model.answer.coefIndexMax}" 
                                                size="#{model.answer.inputSize}"
@@ -98,19 +59,15 @@
                                     <h:outputText value="#{model.answer.name}" />
                                 </h:panelGrid>
                             </p:repeat>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check">
-                                <p:confirm header="#{simulationView.selectedRecord.confirmHeader}" message="#{simulationView.selectedRecord.confirmMessage}" icon="ui-icon-alert"/>
-                            </p:commandButton>
-                            <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
 
-                        <h:form rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM1'}">
-                            <p:repeat var="model" value="#{simulationView.model5}">
+                        <h:form rendered="#{responseController.selectedRecord.question.type eq 'PLANOGRAM1'}">
+                            <p:repeat var="model" value="#{responseController.model5}">
                                 <h:panelGrid columns="3">
                                     <p:inputText value="#{model.value}" 
-                                                 label="#{simulationView.selectedRecord.name}" 
-                                                 required="#{simulationView.selectedRecord.required}" 
-                                                 disabled="#{simulationView.disabled}"
+                                                 label="#{responseController.selectedRecord.question.name}" 
+                                                 required="#{responseController.selectedRecord.question.required}" 
+                                                 disabled="#{responseController.disabled}"
                                                  size="#{model.answer.inputSize}"
                                                  converter="javax.faces.Integer"/>
                                     <h:panelGroup>
@@ -120,15 +77,11 @@
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
                             </p:repeat>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check">
-                                <p:confirm header="#{simulationView.selectedRecord.confirmHeader}" message="#{simulationView.selectedRecord.confirmMessage}" icon="ui-icon-alert"/>
-                            </p:commandButton>
-                            <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
 
-                        <h:form id="planogram2Form" rendered="#{simulationView.selectedRecord.type eq 'PLANOGRAM2'}">
+                        <h:form id="planogram2Form" rendered="#{responseController.selectedRecord.question.type eq 'PLANOGRAM2'}">
                             <h:panelGroup id="planogramPanel">
-                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{simulationView.disabled}">
+                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{responseController.disabled}">
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku24.jpg']}" title="200 ml Dandruff Shampoo">
@@ -151,17 +104,17 @@
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
-                                        <!--<o:graphicImage value="#{simulationView.slotToAnswer(1).bytes}" dataURI="true" width="50" height="50" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" rendered="#{not empty simulationView.slotToAnswer(1).bytes}"/>-->
+                                        <!--<o:graphicImage value="#{responseController.slotToAnswer(1).bytes}" dataURI="true" width="50" height="50" alt="#{responseController.slotToAnswer(1).name}" title="#{responseController.slotToAnswer(1).name}" rendered="#{not empty responseController.slotToAnswer(1).bytes}"/>-->
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(1).image)]}" title="#{simulationView.slotToAnswer(1).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(1).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(1).name}" title="#{simulationView.slotToAnswer(1).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(1).image)]}" title="#{responseController.slotToAnswer(1).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(1).image}" width="50" height="50" alt="#{responseController.slotToAnswer(1).name}" title="#{responseController.slotToAnswer(1).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(2).image)]}" title="#{simulationView.slotToAnswer(2).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(2).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(2).name}" title="#{simulationView.slotToAnswer(2).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(2).image)]}" title="#{responseController.slotToAnswer(2).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(2).image}" width="50" height="50" alt="#{responseController.slotToAnswer(2).name}" title="#{responseController.slotToAnswer(2).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -181,8 +134,8 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(3).image)]}" title="#{simulationView.slotToAnswer(3).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(3).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(3).name}" title="#{simulationView.slotToAnswer(3).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(3).image)]}" title="#{responseController.slotToAnswer(3).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(3).image}" width="50" height="50" alt="#{responseController.slotToAnswer(3).name}" title="#{responseController.slotToAnswer(3).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -202,15 +155,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(4).image)]}" title="#{simulationView.slotToAnswer(4).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(4).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(4).name}" title="#{simulationView.slotToAnswer(4).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(4).image)]}" title="#{responseController.slotToAnswer(4).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(4).image}" width="50" height="50" alt="#{responseController.slotToAnswer(4).name}" title="#{responseController.slotToAnswer(4).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(5).image)]}" title="#{simulationView.slotToAnswer(5).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(5).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(5).name}" title="#{simulationView.slotToAnswer(5).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(5).image)]}" title="#{responseController.slotToAnswer(5).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(5).image}" width="50" height="50" alt="#{responseController.slotToAnswer(5).name}" title="#{responseController.slotToAnswer(5).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -238,15 +191,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(6).image)]}" title="#{simulationView.slotToAnswer(6).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(6).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(6).name}" title="#{simulationView.slotToAnswer(6).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(6).image)]}" title="#{responseController.slotToAnswer(6).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(6).image}" width="50" height="50" alt="#{responseController.slotToAnswer(6).name}" title="#{responseController.slotToAnswer(6).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(7).image)]}" title="#{simulationView.slotToAnswer(7).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(7).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(7).name}" title="#{simulationView.slotToAnswer(7).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(7).image)]}" title="#{responseController.slotToAnswer(7).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(7).image}" width="50" height="50" alt="#{responseController.slotToAnswer(7).name}" title="#{responseController.slotToAnswer(7).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -266,8 +219,8 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(8).image)]}" title="#{simulationView.slotToAnswer(8).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(8).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(8).name}" title="#{simulationView.slotToAnswer(8).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(8).image)]}" title="#{responseController.slotToAnswer(8).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(8).image}" width="50" height="50" alt="#{responseController.slotToAnswer(8).name}" title="#{responseController.slotToAnswer(8).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -287,15 +240,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(9).image)]}" title="#{simulationView.slotToAnswer(9).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(9).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(9).name}" title="#{simulationView.slotToAnswer(9).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(9).image)]}" title="#{responseController.slotToAnswer(9).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(9).image}" width="50" height="50" alt="#{responseController.slotToAnswer(9).name}" title="#{responseController.slotToAnswer(9).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(10).image)]}" title="#{simulationView.slotToAnswer(10).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(10).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(10).name}" title="#{simulationView.slotToAnswer(10).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(10).image)]}" title="#{responseController.slotToAnswer(10).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(10).image}" width="50" height="50" alt="#{responseController.slotToAnswer(10).name}" title="#{responseController.slotToAnswer(10).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -323,15 +276,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(11).image)]}" title="#{simulationView.slotToAnswer(11).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(11).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(11).name}" title="#{simulationView.slotToAnswer(11).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(11).image)]}" title="#{responseController.slotToAnswer(11).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(11).image}" width="50" height="50" alt="#{responseController.slotToAnswer(11).name}" title="#{responseController.slotToAnswer(11).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(12).image)]}" title="#{simulationView.slotToAnswer(12).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(12).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(12).name}" title="#{simulationView.slotToAnswer(12).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(12).image)]}" title="#{responseController.slotToAnswer(12).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(12).image}" width="50" height="50" alt="#{responseController.slotToAnswer(12).name}" title="#{responseController.slotToAnswer(12).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -351,8 +304,8 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(13).image)]}" title="#{simulationView.slotToAnswer(13).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(13).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(13).name}" title="#{simulationView.slotToAnswer(13).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(13).image)]}" title="#{responseController.slotToAnswer(13).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(13).image}" width="50" height="50" alt="#{responseController.slotToAnswer(13).name}" title="#{responseController.slotToAnswer(13).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -372,15 +325,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(14).image)]}" title="#{simulationView.slotToAnswer(14).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(14).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(14).name}" title="#{simulationView.slotToAnswer(14).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(14).image)]}" title="#{responseController.slotToAnswer(14).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(14).image}" width="50" height="50" alt="#{responseController.slotToAnswer(14).name}" title="#{responseController.slotToAnswer(14).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(15).image)]}" title="#{simulationView.slotToAnswer(15).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(15).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(15).name}" title="#{simulationView.slotToAnswer(15).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(15).image)]}" title="#{responseController.slotToAnswer(15).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(15).image}" width="50" height="50" alt="#{responseController.slotToAnswer(15).name}" title="#{responseController.slotToAnswer(15).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -408,15 +361,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(16).image)]}" title="#{simulationView.slotToAnswer(16).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(16).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(16).name}" title="#{simulationView.slotToAnswer(16).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(16).image)]}" title="#{responseController.slotToAnswer(16).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(16).image}" width="50" height="50" alt="#{responseController.slotToAnswer(16).name}" title="#{responseController.slotToAnswer(16).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(17).image)]}" title="#{simulationView.slotToAnswer(17).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(17).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(17).name}" title="#{simulationView.slotToAnswer(17).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(17).image)]}" title="#{responseController.slotToAnswer(17).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(17).image}" width="50" height="50" alt="#{responseController.slotToAnswer(17).name}" title="#{responseController.slotToAnswer(17).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -436,8 +389,8 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(18).image)]}" title="#{simulationView.slotToAnswer(18).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(18).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(18).name}" title="#{simulationView.slotToAnswer(18).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(18).image)]}" title="#{responseController.slotToAnswer(18).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(18).image}" width="50" height="50" alt="#{responseController.slotToAnswer(18).name}" title="#{responseController.slotToAnswer(18).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -457,15 +410,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(19).image)]}" title="#{simulationView.slotToAnswer(19).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(19).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(19).name}" title="#{simulationView.slotToAnswer(19).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(19).image)]}" title="#{responseController.slotToAnswer(19).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(19).image}" width="50" height="50" alt="#{responseController.slotToAnswer(19).name}" title="#{responseController.slotToAnswer(19).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(20).image)]}" title="#{simulationView.slotToAnswer(20).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(20).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(20).name}" title="#{simulationView.slotToAnswer(20).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(20).image)]}" title="#{responseController.slotToAnswer(20).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(20).image}" width="50" height="50" alt="#{responseController.slotToAnswer(20).name}" title="#{responseController.slotToAnswer(20).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -493,15 +446,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(21).image)]}" title="#{simulationView.slotToAnswer(21).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(21).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(21).name}" title="#{simulationView.slotToAnswer(21).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(21).image)]}" title="#{responseController.slotToAnswer(21).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(21).image}" width="50" height="50" alt="#{responseController.slotToAnswer(21).name}" title="#{responseController.slotToAnswer(21).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(22).image)]}" title="#{simulationView.slotToAnswer(22).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(22).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(22).name}" title="#{simulationView.slotToAnswer(22).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(22).image)]}" title="#{responseController.slotToAnswer(22).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(22).image}" width="50" height="50" alt="#{responseController.slotToAnswer(22).name}" title="#{responseController.slotToAnswer(22).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -521,15 +474,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(23).image)]}" title="#{simulationView.slotToAnswer(23).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(23).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(23).name}" title="#{simulationView.slotToAnswer(23).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(23).image)]}" title="#{responseController.slotToAnswer(23).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(23).image}" width="50" height="50" alt="#{responseController.slotToAnswer(23).name}" title="#{responseController.slotToAnswer(23).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(24).image)]}" title="#{simulationView.slotToAnswer(24).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(24).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(24).name}" title="#{simulationView.slotToAnswer(24).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(24).image)]}" title="#{responseController.slotToAnswer(24).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(24).image}" width="50" height="50" alt="#{responseController.slotToAnswer(24).name}" title="#{responseController.slotToAnswer(24).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -542,21 +495,21 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(25).image)]}" title="#{simulationView.slotToAnswer(25).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(25).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(25).name}" title="#{simulationView.slotToAnswer(25).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(25).image)]}" title="#{responseController.slotToAnswer(25).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(25).image}" width="50" height="50" alt="#{responseController.slotToAnswer(25).name}" title="#{responseController.slotToAnswer(25).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/'.concat(simulationView.slotToAnswer(26).image)]}" title="#{simulationView.slotToAnswer(26).name}">
-                                                <p:graphicImage name="/files/#{simulationView.slotToAnswer(26).image}" width="50" height="50" alt="#{simulationView.slotToAnswer(26).name}" title="#{simulationView.slotToAnswer(26).name}" />
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(26).image)]}" title="#{responseController.slotToAnswer(26).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(26).image}" width="50" height="50" alt="#{responseController.slotToAnswer(26).name}" title="#{responseController.slotToAnswer(26).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                 </p:panelGrid>
 
-                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{!simulationView.disabled}">
+                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{!responseController.disabled}">
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/sku24.jpg']}" title="200 ml Dandruff Shampoo">
@@ -829,22 +782,12 @@
                             </h:panelGroup>
                             <p:sticky target="planogramPanel" margin="90" />
 
-                            <p:repeat var="model" value="#{simulationView.model5}" varStatus="varStatus">
+                            <p:repeat var="model" value="#{responseController.model5}" varStatus="varStatus">
                                 <h:panelGrid columns="3">
-<!--                                    <p:spinner value="#{model.value}" 
-                                               label="#{simulationView.selectedRecord.name}" 
-                                               required="#{simulationView.selectedRecord.required}" 
-                                               disabled="#{simulationView.disabled}"
-                                               min="#{model.answer.coefIndexMin}" 
-                                               max="#{model.answer.coefIndexMax}"
-                                               size="#{model.answer.inputSize}"
-                                               stepFactor="#{model.answer.coefIndexStep}"
-                                               onblur="planogram(this, #{model.answer.id})" 
-                                               converter="javax.faces.Integer"/>-->
                                     <p:inputNumber value="#{model.value}" 
-                                                   label="#{simulationView.selectedRecord.name}" 
-                                                   required="#{simulationView.selectedRecord.required}" 
-                                                   disabled="#{simulationView.disabled}"
+                                                   label="#{responseController.selectedRecord.question.name}" 
+                                                   required="#{responseController.selectedRecord.question.required}" 
+                                                   disabled="#{responseController.disabled}"
                                                    minValue="#{model.answer.coefIndexMin}" 
                                                    maxValue="#{model.answer.coefIndexMax}"
                                                    size="#{model.answer.inputSize}"
@@ -862,73 +805,23 @@
                                     <h:outputText value="#{model.answer.name}"/>
                                 </h:panelGrid>
                             </p:repeat>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check">
-                                <p:confirm header="#{simulationView.selectedRecord.confirmHeader}" message="#{simulationView.selectedRecord.confirmMessage}" icon="ui-icon-alert"/>
-                            </p:commandButton>
-                            <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
 
-                        <h:form enctype="multipart/form-data" rendered="#{simulationView.selectedRecord.type eq 'FILE_UPLOAD'}">
+                        <h:form enctype="multipart/form-data" rendered="#{responseController.selectedRecord.question.type eq 'FILE_UPLOAD'}">
                             <h:panelGrid columns="1">
-                                <o:graphicImage value="#{simulationView.model6.bytes}" dataURI="true" style="width: 100%;" rendered="#{not empty simulationView.model6.bytes}"/>
-                                <p:fileUpload value="#{simulationView.model6.file}" 
+                                <o:graphicImage value="#{responseController.model6.bytes}" dataURI="true" style="width: 100%;" rendered="#{not empty responseController.model6.bytes}"/>
+                                <p:fileUpload value="#{responseController.model6.file}" 
                                               label="#{i18n['Choose']}" 
-                                              required="#{simulationView.selectedRecord.required}" 
-                                              disabled="#{simulationView.disabled}" 
+                                              required="#{responseController.selectedRecord.question.required}" 
+                                              disabled="#{responseController.disabled}" 
                                               mode="simple" skinSimple="true" 
                                               validator="uploadImageValidator"/>
                             </h:panelGrid>
-                            <p:commandButton value="#{i18n['Submit']}" disabled="#{simulationView.disabled}" update="@form, :growl" actionListener="#{simulationView.doUpdate}" icon="fa fa-check" ajax="false"/>
-                            <p:commandButton value="#{i18n['Next']}" action="#{simulationView.goNext}" disabled="#{simulationView.nextRecord.kind eq 'NOTIFICATION' or !simulationView.disabled}" iconPos="right" icon="fa fa-chevron-right" />
                         </h:form>
 
-                        <h:form rendered="#{not empty simulationView.selectedRecord.guide}" style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #a4a4a4;">
-                            <p:link style="float: left;" value="#{i18n['Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="fa fa-book" />
-                            <p:link style="float: right;" value="#{i18n['Scoreboard']}" outcome="/player/report/scoreboard" target="_blank" styleClass="fa fa-television">
-                                <f:param name="i" value="2" />
-                            </p:link>
-                        </h:form>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="ui-g-2" rendered="#{false and simulationView.selectedRecord.kind eq 'SIMULATION'}">
-                        <p:dataList id="panel1" value="#{simulationView.groups}" var="group" varStatus="varStatus" type="definition">
-                            <f:facet name="header">#{i18n['Decisions']}</f:facet>
-                            <h:outputText value="#{group.name}" styleClass="#{simulationView.selectedRecord.group.equals(group)?'ui-state-highlight':''}" style="margin: 10px;" />
-                        </p:dataList>
-                        <p:sticky target="panel1" margin="90" />
-
-                        <p:dataList id="panel2" value="#{simulationView.menuModelByQuestions.elements}" var="element" varStatus="varStatus" type="ordered" rendered="false">
-                            <f:facet name="header">#{i18n['Steps']}</f:facet>
-                            <h:outputText value="#{element.value}" style=" font-weight: #{simulationView.sequence.equals(varStatus.index)?'bold':'normal'};" />
-                        </p:dataList>
-                        <p:sticky target="panel2" margin="90" />
                     </h:panelGroup>
                 </div>
             </div>
-
         </div>
-
-        <h:form>
-            <p:dialog widgetVar="guideDialog" header="#{simulationView.selectedRecord.guide.name}" resizable="false" visible="#{not empty simulationView.selectedRecord.guide and simulationView.selectedRecord eq simulationView.selectedRecord.group.question and !simulationView.disabled}" modal="true" closable="false" draggable="false">
-                <h2><h:outputText value="#{simulationView.selectedRecord.guide.description}" escape="false" /></h2>
-                <p><h:outputText value="#{simulationView.selectedRecord.guide.remark}" escape="false" /></p>
-                <p>
-                    <o:graphicImage value="#{simulationView.selectedRecord.guide.bytes}" dataURI="true" width="700" alt="#{simulationView.selectedRecord.guide.name}" title="#{simulationView.selectedRecord.guide.name}" rendered="#{false and not empty simulationView.selectedRecord.guide.bytes}"/>
-                </p>
-                <f:facet name="footer">
-                    <p:commandButton value="#{i18n['I read']}" onclick="PF('guideDialog').hide();"/>
-                    <p:button value="#{i18n['Sales Fundamentals']}" outcome="/player/guide" fragment="fragment_#{simulationView.selectedRecord.guide.id}" target="_blank" styleClass="gray-button" />
-                </f:facet>
-            </p:dialog>
-        </h:form>
-
-        <h:form rendered="#{simulationView.nextRecord.kind eq 'NOTIFICATION' and simulationView.disabled}">
-            <p:dialog widgetVar="notificationDialog" header="#{simulationView.nextRecord.notificationHeader}" resizable="false" visible="true" modal="true" closable="false" draggable="false">
-                <p><h:outputText value="#{simulationView.nextRecord.notificationMessage}" /></p>
-                <f:facet name="footer">
-                    <p:commandButton value="#{i18n['Go to notification']}" action="#{simulationView.goNext}" disabled="#{!simulationView.disabled}" />
-                </f:facet>
-            </p:dialog>
-        </h:form>
-
     </ui:define>
 </ui:composition>

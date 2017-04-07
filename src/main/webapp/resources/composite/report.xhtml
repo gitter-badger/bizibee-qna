@@ -14,7 +14,7 @@
     </composite:interface>
     <composite:implementation>
 
-        <h2><p:link fragment="#"><h:outputText value="#{i18n['Initial Values']}" /></p:link></h2>
+        <p><h:outputText value="#{i18n['Initial Values']}" /></p>
 
         <div class="ui-g ui-fluid dashboard">
             <div class="ui-g-12 ui-md-3">
@@ -86,12 +86,16 @@
 
         <ui:repeat var="response" value="#{reportView.getResponses(cc.attrs.player)}" varStatus="varStatus">
             <h:panelGroup rendered="#{request.isUserInRole('Player') ? response.question.kind eq 'SIMULATION' : true }">
-                <h2>
-                    <p:link outcome="/player/simulation" value="#{response.question.name}" rendered="#{empty cc.attrs.player}">
+                <p>
+                    <h:outputText value="#{response.question.name}" style="margin-right: 10px;" />
+                    <p:link outcome="/player/simulation" styleClass="fa fa-external-link" rendered="#{empty cc.attrs.player}">
                         <f:param name="uuid" value="#{response.question.uuid}" />
                     </p:link>
-                    <h:outputText value="#{response.question.name}" rendered="#{not empty cc.attrs.player}"/>
-                </h2>
+                    <p:link outcome="/ruler/report/response" styleClass="fa fa-external-link" rendered="#{not empty cc.attrs.player}">
+                        <f:param name="questionId" value="#{response.question.id}" />
+                        <f:param name="userId" value="#{cc.attrs.player.id}" />
+                    </p:link>
+                </p>
                 <h:outputText value="#{reportView.calculateScore(response)}" style="display: none;" />
 
                 <div class="ui-g ui-fluid dashboard">
