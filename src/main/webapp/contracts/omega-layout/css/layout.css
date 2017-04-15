@@ -2571,7 +2571,6 @@ a.fragment {
   margin-top: 0px;
 }
 .dashboard .summary {
-  height: 75px;
   position: relative;
 }
 .dashboard .summary .title {
@@ -2975,7 +2974,7 @@ a.fragment {
   text-align: left;
 }
 .landing-wrapper #features .features-content .ui-g > div {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 .landing-wrapper #features .features-content .feature-icon {
   vertical-align: top;
