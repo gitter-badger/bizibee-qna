@@ -322,6 +322,7 @@ public class ChartView implements Serializable {
                     gmLocal = answer.getCoefGm();
                 } catch (NullPointerException ex) {
                 }
+                gm += gmLocal;
                 break;
             case MULTIPLE_CHOICE:
                 jsonObject1 = ResponseConverter.jsonObjectFromString(response.getOutcome());
@@ -337,6 +338,7 @@ public class ChartView implements Serializable {
                 } else {
                     gmLocal += response.getQuestion().getCoefGm();
                 }
+                gm += gmLocal;
                 break;
             case RANGE_CHOICE:
                 jsonArray1 = ResponseConverter.jsonArrayFromString(response.getOutcome());
@@ -355,6 +357,7 @@ public class ChartView implements Serializable {
 
                     gmLocal += answer.getCoefGmGainMin() + ((value - answer.getCoefIndexMin()) * (answer.getCoefGmGainMax() - answer.getCoefGmGainMin()) / ((answer.getCoefIndexMax() + answer.getCoefIndexMin()) / 2 - (answer.getCoefIndexMin())));
                 }
+                gm += gmLocal;
                 break;
             case PLANOGRAM1:
             case PLANOGRAM2:
@@ -362,7 +365,7 @@ public class ChartView implements Serializable {
                 break;
         }
 
-        return gmLocal;
+        return gm;
     }
 
     private double response2MS(ResponseEntity response) {
