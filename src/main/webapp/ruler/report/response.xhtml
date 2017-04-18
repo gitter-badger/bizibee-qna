@@ -80,26 +80,19 @@
                         </h:form>
 
                         <h:form id="planogram2Form" rendered="#{responseController.selectedRecord.question.type eq 'PLANOGRAM2'}">
-                            <h:panelGroup id="planogramPanel">
-                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{responseController.disabled}">
+                            <h:panelGroup>
+                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align: center; margin: 10px;">
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku24.jpg']}" title="200 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku24.jpg" width="50" height="50" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku24.png']}" title="200 ml Dandruff Shampoo">
+                                                <p:graphicImage name="/files/sku24.png" width="50" height="50" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku28.png']}" title="200 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku28.png" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -120,15 +113,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku38.png']}" title="400 ml Beauty Shampoo">
+                                                <p:graphicImage name="/files/sku38.png" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku41.png']}" title="400 ml Anti Oil Shampoo">
+                                                <p:graphicImage name="/files/sku41.png" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -141,15 +134,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku32.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku32.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku32.png']}" title="250 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku32.png" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku35.jpg']}" title="250 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku35.jpg" width="50" height="50" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku35.png']}" title="250 ml Anti Hair Loss Shampoo">
+                                                <p:graphicImage name="/files/sku35.png" width="50" height="50" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -167,32 +160,25 @@
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
-
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku25.jpg']}" title="400 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku25.jpg" width="50" height="50" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
                                     <p:column>
                                         <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(6).image)]}" title="#{responseController.slotToAnswer(6).name}">
                                                 <p:graphicImage name="/files/#{responseController.slotToAnswer(6).image}" width="50" height="50" alt="#{responseController.slotToAnswer(6).name}" title="#{responseController.slotToAnswer(6).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku25.png']}" title="400 ml Dandruff Shampoo">
+                                                <p:graphicImage name="/files/sku25.png" width="50" height="50" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku29.png']}" title="350 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku29.png" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -205,20 +191,6 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(8).image)]}" title="#{responseController.slotToAnswer(8).name}">
                                                 <p:graphicImage name="/files/#{responseController.slotToAnswer(8).image}" width="50" height="50" alt="#{responseController.slotToAnswer(8).name}" title="#{responseController.slotToAnswer(8).name}" />
                                             </h:outputLink>
@@ -226,15 +198,15 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku38.png']}" title="400 ml Beauty Shampoo">
+                                                <p:graphicImage name="/files/sku38.png" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku41.png']}" title="400 ml Anti Oil Shampoo">
+                                                <p:graphicImage name="/files/sku41.png" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -247,30 +219,22 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku33.png']}" title="600 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku33.png" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku33.png']}" title="600 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku33.png" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(10).image)]}" title="#{responseController.slotToAnswer(10).name}">
                                                 <p:graphicImage name="/files/#{responseController.slotToAnswer(10).image}" width="50" height="50" alt="#{responseController.slotToAnswer(10).name}" title="#{responseController.slotToAnswer(10).name}" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -288,17 +252,18 @@
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
+
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku22.png']}" title="600 ml Dandruff Shampoo">
+                                                <p:graphicImage name="/files/sku22.png" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku26.png']}" title="600 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku26.png" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -311,22 +276,22 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(14).image)]}" title="#{responseController.slotToAnswer(14).name}">
                                                 <p:graphicImage name="/files/#{responseController.slotToAnswer(14).image}" width="50" height="50" alt="#{responseController.slotToAnswer(14).name}" title="#{responseController.slotToAnswer(14).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku36.png']}" title="600 ml Beauty Shampoo">
+                                                <p:graphicImage name="/files/sku36.png" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku39.png']}" title="600 ml Anti Oil Shampoo">
+                                                <p:graphicImage name="/files/sku39.png" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -337,25 +302,17 @@
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
-
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku30.png']}" title="900 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku30.png" width="50" height="50" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku34.png']}" title="900 ml Anti Hair Loss Shampoo">
+                                                <p:graphicImage name="/files/sku34.png" width="50" height="50" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -375,36 +332,23 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(18).image)]}" title="#{responseController.slotToAnswer(18).name}">
                                                 <p:graphicImage name="/files/#{responseController.slotToAnswer(18).image}" width="50" height="50" alt="#{responseController.slotToAnswer(18).name}" title="#{responseController.slotToAnswer(18).name}" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
+
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku30.jpg']}" title="900 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku30.jpg" width="50" height="50" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku22.png']}" title="600 ml Dandruff Shampoo">
+                                                <p:graphicImage name="/files/sku22.png" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku34.jpg']}" title="900 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku34.jpg" width="50" height="50" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku26.png']}" title="600 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku26.png" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -422,25 +366,17 @@
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
-
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
+                                            <h:outputLink value="#{resource['/files/sku36.png']}" title="600 ml Beauty Shampoo">
+                                                <p:graphicImage name="/files/sku36.png" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku27.jpg']}" title="600 ml + 200ml Care + Dandruff Shampoo Copack">
-                                                <p:graphicImage name="/files/sku27.jpg" width="50" height="50" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
+                                            <h:outputLink value="#{resource['/files/sku39.png']}" title="600 ml Anti Oil Shampoo">
+                                                <p:graphicImage name="/files/sku39.png" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -453,22 +389,22 @@
                                     </p:column>
                                     <p:column>
                                         <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku30.png']}" title="900 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku30.png" width="50" height="50" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku34.png']}" title="900 ml Anti Hair Loss Shampoo">
+                                                <p:graphicImage name="/files/sku34.png" width="50" height="50" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
                                             <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(22).image)]}" title="#{responseController.slotToAnswer(22).name}">
                                                 <p:graphicImage name="/files/#{responseController.slotToAnswer(22).image}" width="50" height="50" alt="#{responseController.slotToAnswer(22).name}" title="#{responseController.slotToAnswer(22).name}" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku37.jpg']}" title="600ml+200ml Beauty + yağlanma karşıtı">
-                                                <p:graphicImage name="/files/sku37.jpg" width="50" height="50" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku40.jpg']}" title="600 ml + 200ml Anti Oil + Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku40.jpg" width="50" height="50" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -486,10 +422,18 @@
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
+
                                     <p:column>
                                         <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku31.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku31.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                            <h:outputLink value="#{resource['/files/sku23.png']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
+                                                <p:graphicImage name="/files/sku23.png" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku27.png']}" title="600 ml + 200ml Care + Dandruff Shampoo Copack">
+                                                <p:graphicImage name="/files/sku27.png" width="50" height="50" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
@@ -507,280 +451,131 @@
                                             </h:outputLink>
                                         </p:lightBox>
                                     </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku37.png']}" title="600ml+200ml Beauty + yağlanma karşıtı">
+                                                <p:graphicImage name="/files/sku37.png" width="50" height="50" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku40.png']}" title="600 ml + 200ml Anti Oil + Beauty Shampoo">
+                                                <p:graphicImage name="/files/sku40.png" width="50" height="50" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(27).image)]}" title="#{responseController.slotToAnswer(27).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(27).image}" width="50" height="50" alt="#{responseController.slotToAnswer(27).name}" title="#{responseController.slotToAnswer(27).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(28).image)]}" title="#{responseController.slotToAnswer(28).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(28).image}" width="50" height="50" alt="#{responseController.slotToAnswer(28).name}" title="#{responseController.slotToAnswer(28).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/sku31.png']}" title="250 ml Care Shampoo">
+                                                <p:graphicImage name="/files/sku31.png" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(29).image)]}" title="#{responseController.slotToAnswer(29).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(29).image}" width="50" height="50" alt="#{responseController.slotToAnswer(29).name}" title="#{responseController.slotToAnswer(29).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(30).image)]}" title="#{responseController.slotToAnswer(30).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(30).image}" width="50" height="50" alt="#{responseController.slotToAnswer(30).name}" title="#{responseController.slotToAnswer(30).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
+                                    <p:column>
+                                        <p:lightBox>
+                                            <h:outputLink value="#{resource['/files/'.concat(responseController.slotToAnswer(31).image)]}" title="#{responseController.slotToAnswer(31).name}">
+                                                <p:graphicImage name="/files/#{responseController.slotToAnswer(31).image}" width="50" height="50" alt="#{responseController.slotToAnswer(31).name}" title="#{responseController.slotToAnswer(31).name}" />
+                                            </h:outputLink>
+                                        </p:lightBox>
+                                    </p:column>
                                 </p:panelGrid>
 
-                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align:center;" rendered="#{!responseController.disabled}">
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku24.jpg']}" title="200 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku24.jpg" width="50" height="50" alt="200 ml Dandruff Shampoo" title="200 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku28.jpg']}" title="200 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku28.jpg" width="50" height="50" alt="200 ml Care Shampoo" title="200 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item1">1</span></p:column>
-                                    <p:column><span id="item2">2</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item3">3</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku32.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku32.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku35.jpg']}" title="250 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku35.jpg" width="50" height="50" alt="250 ml Anti Hair Loss Shampoo" title="250 ml Anti Hair Loss Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item4">4</span></p:column>
-                                    <p:column><span id="item5">5</span></p:column>
+                                <p:panelGrid columns="12" styleClass="ui-g-12" style="text-align: center; margin: 10px;">
+                                    <p:column>24</p:column>
+                                    <p:column>28</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(1).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(2).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>38</p:column>
+                                    <p:column>41</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(3).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>32</p:column>
+                                    <p:column>35</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(4).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(5).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(6).image}" converter="#{filenameConverter}" /></p:column>
 
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku25.jpg']}" title="400 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku25.jpg" width="50" height="50" alt="400 ml Dandruff Shampoo" title="400 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku29.jpg']}" title="350 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku29.jpg" width="50" height="50" alt="350 ml Care Shampoo" title="350 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item6">6</span></p:column>
-                                    <p:column><span id="item7">7</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku38.jpg']}" title="400 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku38.jpg" width="50" height="50" alt="400 ml Beauty Shampoo" title="400 ml Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku41.jpg']}" title="400 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku41.jpg" width="50" height="50" alt="400 ml Anti Oil Shampoo" title="400 ml Anti Oil Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item8">8</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item9">9</span></p:column>
-                                    <p:column><span id="item10">10</span></p:column>
+                                    <p:column>25</p:column>
+                                    <p:column>29</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(7).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(8).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>38</p:column>
+                                    <p:column>41</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(9).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>33</p:column>
+                                    <p:column>33</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(10).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(11).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(12).image}" converter="#{filenameConverter}" /></p:column>
 
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item11">11</span></p:column>
-                                    <p:column><span id="item12">12</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item13">13</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku33.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku33.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item14">14</span></p:column>
-                                    <p:column><span id="item15">15</span></p:column>
+                                    <p:column>22</p:column>
+                                    <p:column>26</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(13).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(14).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>36</p:column>
+                                    <p:column>39</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(15).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>30</p:column>
+                                    <p:column>34</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(16).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(17).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(18).image}" converter="#{filenameConverter}" /></p:column>
 
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku22.jpg']}" title="600 ml Dandruff Shampoo">
-                                                <p:graphicImage name="/files/sku22.jpg" width="50" height="50" alt="600 ml Dandruff Shampoo" title="600 ml Dandruff Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku26.jpg']}" title="600 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku26.jpg" width="50" height="50" alt="600 ml Care Shampoo" title="600 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item16">16</span></p:column>
-                                    <p:column><span id="item17">17</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku36.jpg']}" title="600 ml Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku36.jpg" width="50" height="50" alt="600 ml Beauty Shampoo" title="600 ml Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku39.jpg']}" title="600 ml Anti Oil Shampoo">
-                                                <p:graphicImage name="/files/sku39.jpg" width="50" height="50" alt="600 ml Anti Oil Shampoo" title="600 ml Anti Oil Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item18">18</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku30.jpg']}" title="900 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku30.jpg" width="50" height="50" alt="900 ml Care Shampoo" title="900 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku34.jpg']}" title="900 ml Anti Hair Loss Shampoo">
-                                                <p:graphicImage name="/files/sku34.jpg" width="50" height="50" alt="900 ml Anti Hair Loss Shampoo" title="900 ml Anti Hair Loss Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item19">19</span></p:column>
-                                    <p:column><span id="item20">20</span></p:column>
+                                    <p:column>22</p:column>
+                                    <p:column>26</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(19).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(20).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>36</p:column>
+                                    <p:column>39</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(21).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>30</p:column>
+                                    <p:column>34</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(22).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(23).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(24).image}" converter="#{filenameConverter}" /></p:column>
 
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku23.jpg']}" title="600ml+200ml Dandruff+Care Shampoo Copack">
-                                                <p:graphicImage name="/files/sku23.jpg" width="50" height="50" alt="600ml+200ml Dandruff+Care Shampoo Copack" title="600ml+200ml Dandruff+Care Shampoo Copack" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku27.jpg']}" title="600 ml + 200ml Care + Dandruff Shampoo Copack">
-                                                <p:graphicImage name="/files/sku27.jpg" width="50" height="50" alt="600 ml + 200ml Care + Dandruff Shampoo Copack" title="600 ml + 200ml Care + Dandruff Shampoo Copack" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item21">21</span></p:column>
-                                    <p:column><span id="item22">22</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku37.jpg']}" title="600ml+200ml Beauty + yağlanma karşıtı">
-                                                <p:graphicImage name="/files/sku37.jpg" width="50" height="50" alt="600ml+200ml Beauty + yağlanma karşıtı" title="600ml+200ml Beauty + yağlanma karşıtı" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku40.jpg']}" title="600 ml + 200ml Anti Oil + Beauty Shampoo">
-                                                <p:graphicImage name="/files/sku40.jpg" width="50" height="50" alt="600 ml + 200ml Anti Oil + Beauty Shampoo" title="600 ml + 200ml Anti Oil + Beauty Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item23">23</span></p:column>
-                                    <p:column><span id="item24">24</span></p:column>
-                                    <p:column>
-                                        <p:lightBox>
-                                            <h:outputLink value="#{resource['/files/sku31.jpg']}" title="250 ml Care Shampoo">
-                                                <p:graphicImage name="/files/sku31.jpg" width="50" height="50" alt="250 ml Care Shampoo" title="250 ml Care Shampoo" />
-                                            </h:outputLink>
-                                        </p:lightBox>
-                                    </p:column>
-                                    <p:column><span id="item25">25</span></p:column>
-                                    <p:column><span id="item26">26</span></p:column>
+                                    <p:column>23</p:column>
+                                    <p:column>27</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(25).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(26).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>37</p:column>
+                                    <p:column>40</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(27).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(28).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column>31</p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(29).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(30).image}" converter="#{filenameConverter}" /></p:column>
+                                    <p:column><h:outputText value="#{responseController.slotToAnswer(31).image}" converter="#{filenameConverter}" /></p:column>
                                 </p:panelGrid>
                             </h:panelGroup>
-                            <p:sticky target="planogramPanel" margin="90" />
 
                             <p:repeat var="model" value="#{responseController.model5}" varStatus="varStatus">
                                 <h:panelGrid columns="3">
