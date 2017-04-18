@@ -37,11 +37,11 @@ public class SimulationEntity extends AbstractEntity {
     private byte[] bytesSimulation;
 
     private String headline;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
     private String thanksDialogHeader;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String thanksDialogContent;
     private String thanksLinkHref;
     private String thanksLinkText;

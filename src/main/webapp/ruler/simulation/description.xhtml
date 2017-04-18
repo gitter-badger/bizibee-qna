@@ -22,7 +22,7 @@
                                 <p:inputText id="headline" value="#{dashboardView.selectedSimulation.headline}" label="#{i18n['Headline']}" placeholder="#{i18n['Headline']}" styleClass="ui-g-12" />
 
                                 <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                                <p:inputTextarea id="description" value="#{dashboardView.selectedSimulation.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" styleClass="ui-g-12" />
+                                <p:textEditor id="description" value="#{dashboardView.selectedSimulation.description}" placeholder="#{i18n['Description']}" />
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{dashboardView.doUpdateSimulation}"/>

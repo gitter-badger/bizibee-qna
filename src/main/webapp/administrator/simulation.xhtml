@@ -22,9 +22,6 @@
                                          lazy="true" rowsPerPageTemplate="10,15,50">
                                 <f:facet name="header">
                                     <p:commandButton value="#{i18n['Create New']}" title="#{i18n['Create New']}" onclick="PF('newDialog').show();" icon="ui-icon-plus"/>
-                                    <p:commandButton value="#{i18n['Export']}" title="#{i18n['Export']}" ajax="false" icon="ui-icon-arrowthickstop-1-s">
-                                        <p:dataExporter type="xls" target="dataTable" fileName="export" />
-                                    </p:commandButton>
                                 </f:facet>
                                 <p:column headerText="#{i18n['Id']}" sortBy="#{simulation.id}" filterBy="#{simulation.id}">
                                     <h:outputText value="#{simulation.id}"/>

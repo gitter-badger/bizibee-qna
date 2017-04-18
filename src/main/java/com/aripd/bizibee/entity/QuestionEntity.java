@@ -47,10 +47,10 @@ public class QuestionEntity extends AbstractEntity {
 
     private int sortOrder = 0;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String remark;
 
     @Lob

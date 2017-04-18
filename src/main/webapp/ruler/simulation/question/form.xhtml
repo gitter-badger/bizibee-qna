@@ -27,10 +27,10 @@
                                 <p:inputText id="name" value="#{questionView.selectedQuestion.name}" label="#{i18n['Name']}" placeholder="#{i18n['Name']}" styleClass="ui-g-12" required="true"/>
 
                                 <p:outputLabel for="description" value="#{i18n['Description']}"/>
-                                <p:inputTextarea id="description" value="#{questionView.selectedQuestion.description}" label="#{i18n['Description']}" placeholder="#{i18n['Description']}" autoResize="true" styleClass="ui-g-12" />
+                                <p:textEditor id="description" value="#{questionView.selectedQuestion.description}" placeholder="#{i18n['Description']}" />
 
                                 <p:outputLabel for="remark" value="#{i18n['Remark']}"/>
-                                <p:inputTextarea id="remark" value="#{questionView.selectedQuestion.remark}" label="#{i18n['Remark']}" placeholder="#{i18n['Remark']}" autoResize="true" styleClass="ui-g-12" />
+                                <p:textEditor id="remark" value="#{questionView.selectedQuestion.remark}" placeholder="#{i18n['Remark']}" />
 
                                 <f:facet name="footer">
                                     <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{questionView.doUpdateRecord}"/>

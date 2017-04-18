@@ -19,7 +19,7 @@
 
                 <div class="ui-g">
                     <div class="ui-g-3">
-                        <composite:navigationSimulation/>
+                        <composite:navigationGuide guide="#{guideView.selectedGuide}"/>
                     </div>
                     <div class="ui-g-9">
                         <h:form id="showForm">
@@ -34,6 +34,10 @@
                                 <h:outputText value="#{guideView.selectedGuide.name}"/>
                                 <p:outputLabel value="#{i18n['Sort Order']}"/>
                                 <h:outputText value="#{guideView.selectedGuide.sortOrder}"/>
+                                <p:outputLabel value="#{i18n['notificationHeader']}"/>
+                                <h:outputText value="#{guideView.selectedGuide.notificationHeader}" />
+                                <p:outputLabel value="#{i18n['notificationMessage']}"/>
+                                <h:outputText value="#{guideView.selectedGuide.notificationMessage}" />
                                 <p:outputLabel value="#{i18n['Description']}"/>
                                 <h:outputText value="#{guideView.selectedGuide.description}" escape="false" />
                                 <p:outputLabel value="#{i18n['Remark']}"/>

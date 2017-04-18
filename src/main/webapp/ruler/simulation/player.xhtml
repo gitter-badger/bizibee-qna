@@ -30,17 +30,14 @@
                                         <p:dataExporter type="xls" target="dataTable" fileName="export" />
                                     </p:commandButton>
                                 </f:facet>
-                                <p:column headerText="#{i18n['Username']}" sortBy="#{player.username}" filterBy="#{player.username}">
-                                    <h:outputText value="#{player.username}"/>
-                                </p:column>
                                 <p:column headerText="#{i18n['Name']}" sortBy="#{player.name}" filterBy="#{player.name}">
                                     <h:outputText value="#{player.name}"/>
                                 </p:column>
-                                <p:column headerText="#{i18n['Team']}">
-                                    <h:outputText value="#{player.team.name}"/>
+                                <p:column headerText="#{i18n['Username']}" sortBy="#{player.username}" filterBy="#{player.username}">
+                                    <h:outputText value="#{player.username}"/>
                                 </p:column>
-                                <p:column headerText="#{i18n['Team']}">
-                                    <h:outputText value="#{player.teamName}"/>
+                                <p:column headerText="#{i18n['Password']}">
+                                    <h:outputText value="#{player.password}"/>
                                 </p:column>
                                 <p:column exportable="false" width="100">
                                     <p:commandLink value="#{i18n['Edit']}" update="editForm" oncomplete="PF('editDialog').show()">

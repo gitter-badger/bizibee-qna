@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template_landing.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{guideView.id}"/>
+            <f:event type="preRenderView" listener="#{guideView.onLoad}"/>
+        </f:metadata>
+
+        <div id="features">
+            <div class="features-content">
+                <h1 class="feature-title">#{i18n['Sales Fundamentals']}</h1>
+                <p></p>
+
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <composite:navigationGuide guide="#{guideView.selectedGuide}"/>
+                    </div>
+                    <div class="ui-g-9">
+                        <h:form enctype="multipart/form-data">
+                            <h:panelGrid columns="1" styleClass="ui-g-12">
+                                <p:outputLabel for="file" value="#{i18n['Image']}"/>
+                                <p:fileUpload id="file" value="#{guideView.file}" label="#{i18n['Choose']}" mode="simple" skinSimple="true" validator="uploadImageValidator"/>
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="#{i18n['Update']}" update="@form, :growl" actionListener="#{guideView.doUpdateRecord}" ajax="false"/>
+                                    <p:commandButton value="#{i18n['Reset Image']}" actionListener="#{guideView.doResetImage}" update="@form, :growl"/>
+                                </f:facet>
+                            </h:panelGrid>
+
+                            <o:graphicImage value="#{guideView.selectedGuide.bytes}" dataURI="true" alt="#{guideView.selectedGuide.name}" title="#{guideView.selectedGuide.name}" rendered="#{not empty guideView.selectedGuide.bytes}"/>
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <composite:interface>
+        <composite:attribute name="guide" required="true"/>
+    </composite:interface>
+    <composite:implementation>
+        <h:form>
+            <p:menu>
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/guide/view.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/guide/view" value="#{i18n['View']}" icon="fa fa-search">
+                    <f:param name="id" value="#{cc.attrs.guide.id}" />
+                </p:menuitem>
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/guide/form.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/guide/form" value="#{i18n['Edit']}" icon="fa fa-edit">
+                    <f:param name="id" value="#{cc.attrs.guide.id}" />
+                </p:menuitem>
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/guide/image.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/guide/image" value="#{i18n['Image']}" icon="fa fa-picture-o">
+                    <f:param name="id" value="#{cc.attrs.guide.id}" />
+                </p:menuitem>
+                <p:menuitem styleClass="#{view.viewId.equals('/ruler/simulation/guide/notification.xhtml') ? 'ui-state-active' : ''}" outcome="/ruler/simulation/guide/notification" value="#{i18n['Notification']}" icon="fa fa-flag">
+                    <f:param name="id" value="#{cc.attrs.guide.id}" />
+                </p:menuitem>
+                <p:menuitem outcome="/ruler/simulation/index" value="#{i18n['Back to Simulation']}" icon="fa fa-arrow-left" />
+            </p:menu>
+        </h:form>
+    </composite:implementation>
+
+</html>

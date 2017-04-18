@@ -22,7 +22,7 @@
                                 <p:inputText id="thanksDialogHeader" value="#{dashboardView.selectedSimulation.thanksDialogHeader}" label="#{i18n['Header']}" placeholder="#{i18n['Header']}" styleClass="ui-g-12" />
 
                                 <p:outputLabel for="thanksDialogContent" value="#{i18n['Content']}"/>
-                                <p:inputTextarea id="thanksDialogContent" value="#{dashboardView.selectedSimulation.thanksDialogContent}" label="#{i18n['Content']}" placeholder="#{i18n['Content']}" autoResize="true" styleClass="ui-g-12" />
+                                <p:textEditor id="thanksDialogContent" value="#{dashboardView.selectedSimulation.thanksDialogContent}" placeholder="#{i18n['Content']}" />
 
                                 <p:outputLabel for="thanksLinkHref" value="#{i18n['thanksLinkHref']}"/>
                                 <p:inputText id="thanksLinkHref" value="#{dashboardView.selectedSimulation.thanksLinkHref}" label="#{i18n['thanksLinkHref']}" placeholder="#{i18n['thanksLinkHref']}" styleClass="ui-g-12" />

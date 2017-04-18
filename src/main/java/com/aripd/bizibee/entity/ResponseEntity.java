@@ -31,7 +31,7 @@ public class ResponseEntity extends AbstractEntity {
     @ManyToOne
     private QuestionEntity question;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String outcome;
 
     @Lob

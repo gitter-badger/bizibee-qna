@@ -31,11 +31,14 @@ public class GuideEntity extends AbstractEntity {
     @Column(nullable = false)
     private int sortOrder = 0;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String remark;
+
+    private String notificationHeader;
+    private String notificationMessage;
 
     @Lob
     private byte[] bytes;
@@ -84,6 +87,22 @@ public class GuideEntity extends AbstractEntity {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getNotificationHeader() {
+        return notificationHeader;
+    }
+
+    public void setNotificationHeader(String notificationHeader) {
+        this.notificationHeader = notificationHeader;
+    }
+
+    public String getNotificationMessage() {
+        return notificationMessage;
+    }
+
+    public void setNotificationMessage(String notificationMessage) {
+        this.notificationMessage = notificationMessage;
     }
 
     public byte[] getBytes() {

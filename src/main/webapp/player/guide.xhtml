@@ -25,7 +25,7 @@
                             <a id="fragment_#{guide.id}" class="fragment"></a>
                             <h2><h:outputText value="#{guide.name}" /></h2>
                             <h3><h:outputText value="#{guide.description}" escape="false" /></h3>
-                            <p><h:outputText value="#{guide.remark}" escape="false" rendered="false" /></p>
+                            <p><h:outputText value="#{guide.remark}" escape="false" /></p>
                             <p>
                                 <o:graphicImage value="#{guide.bytes}" dataURI="true" width="700" alt="#{guide.name}" title="#{guide.name}" rendered="#{not empty guide.bytes}"/>
                             </p>
