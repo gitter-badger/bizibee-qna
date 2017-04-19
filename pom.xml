@@ -256,7 +256,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.1.RC3</version>
+            <version>6.1</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces</groupId>
